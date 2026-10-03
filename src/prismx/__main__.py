@@ -135,6 +135,14 @@ def cmd_bench(args: argparse.Namespace) -> None:
     run_latency_benchmark(threads_list=threads, mode=args.mode, config_path=args.config)
 
 
+def cmd_ui(args: argparse.Namespace) -> None:
+    """Launch PRISMX Streamlit web interface."""
+    import subprocess
+    ui_script = Path(__file__).resolve().parent / "ui" / "app.py"
+    print(f"Launching PRISMX Streamlit UI on port {args.port}...")
+    subprocess.run([sys.executable, "-m", "streamlit", "run", str(ui_script), "--server.port", str(args.port)])
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="python -m prismx",
@@ -159,6 +167,10 @@ def main() -> None:
     server_p.add_argument("--host", type=str, default="0.0.0.0", help="Host address")
     server_p.add_argument("--port", type=int, default=8000, help="Port number")
     server_p.add_argument("--reload", action="store_true", help="Enable auto-reload")
+
+    # ui
+    ui_p = subparsers.add_parser("ui", help="Launch Streamlit web interface")
+    ui_p.add_argument("--port", type=int, default=8501, help="Port number for Streamlit")
 
     # ingest
     ingest_p = subparsers.add_parser("ingest", help="Run ingestion pipeline")
@@ -191,6 +203,7 @@ def main() -> None:
     dispatch = {
         "search": cmd_search,
         "server": cmd_server,
+        "ui": cmd_ui,
         "ingest": cmd_ingest,
         "reindex-sparse": cmd_reindex_sparse,
         "eval": cmd_eval,
