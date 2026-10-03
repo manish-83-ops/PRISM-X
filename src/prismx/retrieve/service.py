@@ -62,7 +62,7 @@ class SearchService:
                 top_k=request.top_k,
                 filters=request.filters.dict() if request.filters else None,
                 fusion=request.fusion.dict() if request.fusion else None,
-                rerank=request.rerank or request.mode in ("hybrid_rerank", "hybrid+rerank"),
+                rerank=request.rerank or request.mode in ("hybrid_rerank", "hybrid+rerank", "prismx"),
                 rerank_k=request.rerank_k,
             )
             cached_resp: SearchResponse | None = self.cache.get(cache_key)
@@ -87,12 +87,12 @@ class SearchService:
         }
 
         should_rerank = (
-            request.mode in ("hybrid_rerank", "hybrid+rerank")
+            request.mode in ("hybrid_rerank", "hybrid+rerank", "prismx")
             or request.rerank
         ) and (self.reranker is not None)
 
         # 1. Retrieval Candidate Depth
-        rerank_k = request.rerank_k if should_rerank else request.top_k
+        rerank_k = 10 if request.mode == "prismx" else (request.rerank_k if should_rerank else request.top_k)
         min_depth = self.config.get("retrieval", {}).get("candidate_depth", 40)
         candidate_depth = max(request.top_k * 4, rerank_k, min_depth)
 
@@ -174,12 +174,13 @@ class SearchService:
         governor_state = "normal"
         if should_rerank and self.reranker is not None:
             rerank_pool = hydrated_candidates[:rerank_k]
+            rerank_budget = request.get_rerank_budget_ms()
             reranked, r_ms, gov_state = self.reranker.rerank(
                 query=request.query,
                 candidates=rerank_pool,
                 top_k=request.top_k,
                 max_length=128,
-                deadline_ms=request.deadline_ms,
+                deadline_ms=rerank_budget,
                 t_request_start=t_total_start,
                 batch_size=5,
             )

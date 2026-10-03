@@ -1,0 +1,133 @@
+/**
+ * PRISM-X API Client
+ * Single typed client for all API interactions.
+ * Uses VITE_API_BASE env variable or falls back to recorded data.
+ */
+
+import type {
+  SearchRequest,
+  SearchResponse,
+  MetaResponse,
+  UpsertRequest,
+  UpsertResponse,
+  DeleteResponse,
+} from './types';
+
+const API_BASE = import.meta.env.VITE_API_BASE !== undefined && import.meta.env.VITE_API_BASE !== ''
+  ? import.meta.env.VITE_API_BASE
+  : 'http://127.0.0.1:8000';
+
+/** Whether the client has a backend URL configured */
+export const hasLiveBackend = !!API_BASE;
+
+class ApiError extends Error {
+  status: number;
+  detail: string;
+
+  constructor(status: number, detail: string) {
+    super(`API Error ${status}: ${detail}`);
+    this.status = status;
+    this.detail = detail;
+    this.name = 'ApiError';
+  }
+}
+
+async function request<T>(path: string, options?: RequestInit): Promise<T> {
+  if (!API_BASE) {
+    throw new ApiError(0, 'No API backend configured. Switch to recorded mode.');
+  }
+
+  const url = `${API_BASE}${path}`;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+
+  try {
+    const res = await fetch(url, {
+      ...options,
+      signal: controller.signal,
+      headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers,
+      },
+    });
+
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({ detail: res.statusText }));
+      throw new ApiError(res.status, body.detail || body.error || res.statusText);
+    }
+
+    return (await res.json()) as T;
+  } catch (err) {
+    if (err instanceof ApiError) throw err;
+    if (err instanceof DOMException && err.name === 'AbortError') {
+      throw new ApiError(0, 'Request timed out after 15 seconds.');
+    }
+    throw new ApiError(0, `Network error: ${(err as Error).message}`);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+/* ─── API Methods ─── */
+
+export async function healthCheck(): Promise<{ status: string }> {
+  return request('/health');
+}
+
+export async function readinessCheck(): Promise<Record<string, unknown>> {
+  return request('/ready');
+}
+
+export async function getMeta(): Promise<MetaResponse> {
+  return request('/meta');
+}
+
+export async function search(req: SearchRequest): Promise<SearchResponse> {
+  return request('/search', {
+    method: 'POST',
+    body: JSON.stringify(req),
+  });
+}
+
+export async function upsertPassage(req: UpsertRequest): Promise<UpsertResponse> {
+  return request('/passages/upsert', {
+    method: 'POST',
+    body: JSON.stringify(req),
+  });
+}
+
+export async function deletePassage(passageId: string): Promise<DeleteResponse> {
+  return request(`/passages/${encodeURIComponent(passageId)}`, {
+    method: 'DELETE',
+  });
+}
+
+export async function getBenchmarkLatest(): Promise<Record<string, unknown>> {
+  return request('/bench/latest');
+}
+
+export async function getEvalLatest(): Promise<Record<string, unknown>> {
+  return request('/eval/latest');
+}
+
+export async function getResultsSummary(): Promise<Record<string, unknown>> {
+  return request('/results/summary');
+}
+
+/* ─── Recorded Data Loader ─── */
+
+export async function loadRecordedResponse(
+  filename: string,
+): Promise<unknown> {
+  const res = await fetch(`/recorded/${filename}`);
+  if (!res.ok) throw new ApiError(res.status, `Failed to load recorded/${filename}`);
+  return res.json();
+}
+
+export async function loadResultsData<T>(filename: string): Promise<T> {
+  const res = await fetch(`/data/${filename}`);
+  if (!res.ok) throw new ApiError(res.status, `Failed to load data/${filename}`);
+  return (await res.json()) as T;
+}
+
+export { ApiError };

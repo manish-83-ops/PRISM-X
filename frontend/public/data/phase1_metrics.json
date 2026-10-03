@@ -1,0 +1,76 @@
+{
+  "phase": 1,
+  "mode": "dense",
+  "eval_set": "BENCH (100 queries)",
+  "timestamp": "2026-10-03 16:01:50",
+  "latency_summary": {
+    "p50_ms": 46.5,
+    "p90_ms": 58.26,
+    "p95_ms": 60.16,
+    "p99_ms": 66.62,
+    "max_ms": 148.39,
+    "mean_ms": 49.25
+  },
+  "metrics": {
+    "hit_at_1": {
+      "mean": 0.73,
+      "ci_lower": 0.64,
+      "ci_upper": 0.81
+    },
+    "success_at_5": {
+      "mean": 0.93,
+      "ci_lower": 0.88,
+      "ci_upper": 0.98
+    },
+    "recall_at_5": {
+      "mean": 0.9266666666666665,
+      "ci_lower": 0.87,
+      "ci_upper": 0.97
+    },
+    "recall_at_10": {
+      "mean": 0.9266666666666665,
+      "ci_lower": 0.87,
+      "ci_upper": 0.97
+    },
+    "recall_at_20": {
+      "mean": 0.9266666666666665,
+      "ci_lower": 0.87,
+      "ci_upper": 0.97
+    },
+    "mrr_at_10": {
+      "mean": 0.8051666666666667,
+      "ci_lower": 0.7355,
+      "ci_upper": 0.8682
+    },
+    "ndcg_at_5": {
+      "mean": 0.8336889646235305,
+      "ci_lower": 0.7724,
+      "ci_upper": 0.889
+    },
+    "ndcg_at_10": {
+      "mean": 0.8336889646235305,
+      "ci_lower": 0.7724,
+      "ci_upper": 0.889
+    },
+    "dup_aware_hit_at_1": {
+      "mean": 0.73,
+      "ci_lower": 0.64,
+      "ci_upper": 0.81
+    },
+    "dup_aware_recall_at_5": {
+      "mean": 0.9266666666666665,
+      "ci_lower": 0.87,
+      "ci_upper": 0.97
+    },
+    "ragas_context_precision": {
+      "mean": 0.803498,
+      "ci_lower": 0.7347,
+      "ci_upper": 0.8662
+    },
+    "ragas_context_recall": {
+      "mean": 0.9266669999999999,
+      "ci_lower": 0.87,
+      "ci_upper": 0.97
+    }
+  }
+}

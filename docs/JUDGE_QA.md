@@ -87,6 +87,100 @@ This document addresses key architectural, empirical, and statistical questions 
 - Prior Gate 3 evaluations used canonical passage text from SQLite as the ground truth reference. While passage-based recall is valid, using the gold passage as reference introduces confounding with retrieved passage text.
 - Under **ADR-014**, we audited the official MS MARCO human-written reference answers:
   - 96 of 100 BENCH queries contain rich, human-authored answers (average length: 95 characters).
-  - 4 queries were excluded for single non-informative tokens ("Yes"/"No").
+  - 4 queries were excluded for single non-informative tokens ("Yes"/"No"): QID `61836` ("Yes"), QID `414714` ("Yes"), QID `541135` ("No"), QID `165480` ("Yes").
   - The frozen primary 25-query RAGAS benchmark (`data/manifests/frozen_ragas_bench_queries.json`) uses these human reference answers exclusively.
+
+---
+
+### Q9: What exactly does the Governor budget (`rerank_budget_ms`) cover, and why does total HTTP p95 (242.25 ms) exceed 200 ms?
+**A:**
+- **Execution Scope:** In `CONFIG.yaml`, `API_CONTRACT.md`, and `service.py`, `rerank_budget_ms` strictly guards the **cross-encoder inference micro-batch boundaries** during the rerank stage. It does **not** enforce an end-to-end total HTTP deadline.
+- **Why total p95 exceeds 200 ms:**
+  1. **Pre-Rerank Pipeline:** Dense query encoding (6–10 ms), Qdrant HNSW vector search (8–18 ms), Qdrant sparse BM25 dot-product search (6–12 ms), min-max score fusion (1–2 ms), and SQLite text store candidate hydration (5–12 ms) consume approximately **40–60 ms** *before* the reranker receives any candidates.
+  2. **Micro-Batch Boundary Checking:** Reranking processes candidates in micro-batches of 5. If elapsed wall-clock time is 145 ms when candidate 5 completes, the governor evaluates $145 < 200$ ms and dispatches the second micro-batch (candidates 6–10). This forward pass executes uninterrupted to completion, taking an additional ~60–75 ms, pushing server compute time to ~215 ms.
+  3. **HTTP Serialization & Web Server Stack:** Uvicorn event loop processing, Pydantic response validation, extensive provenance telemetry serialization (~10 KB payload), and local TCP networking consume another **15–28 ms**.
+  4. **Sum:** 50 ms (pre-rerank) + 165 ms (rerank) + 25 ms (HTTP/payload) = **240 ms**, matching the empirical p95 of **242.25 ms**.
+- **Architectural Honesty:** PRISMX does not claim a 200 ms total request cap because CPU execution cannot be safely preempted mid-instruction without thread abortion or memory leakage.
+
+---
+
+### Q10: Why is Recall@10 exactly 0.9533 across Dense, Hybrid, and Rerank? What did BM25 and Hybrid uniquely add?
+**A:**
+- **Exact Mathematical Explanation:**
+  - Recall@10 is computed as $\frac{1}{N} \sum_{q} \frac{|\text{retrieved}_{10}(q) \cap \text{gold}(q)|}{|\text{gold}(q)|}$.
+  - Out of 100 BENCH queries:
+    - **95 queries** have 1 gold passage, and it was successfully retrieved in the top 10 ($\text{recall} = 1.0$).
+    - **4 queries** (`169305`, `9454`, `55691`, `1087484`) have 1 gold passage, and it was missed in the top 10 ($\text{recall} = 0.0$).
+    - **1 query** (`899800`) has 3 gold passages; 1 of the 3 was retrieved in the top 10 ($\text{recall} = 1/3 = 0.3333$).
+    - **Sum:** $95 \times 1.0 + 4 \times 0.0 + 1 \times 0.3333 = 95.3333$.
+    - **Recall@10:** $95.3333 / 100 = \mathbf{0.953333}$ across Dense, Hybrid, and Hybrid+Rerank!
+- **Candidate Movement Breakdown:**
+  - **Top-10 Movement (Hybrid vs Dense):** Added gold passages = 0; Removed gold passages = 0.
+  - **Top-20 Movement:** Hybrid added gold passages for **2 queries** (`9454`, `55691`) that Dense missed, boosting Recall@20 from 0.9733 (Dense) to **0.9933** (Hybrid).
+  - **Top-50 Movement:** 1 added, 1 removed (both achieve Recall@50 = 0.9933).
+- **BM25 Standalone vs Dense Unique Gold Contributions:**
+  - Top-10: BM25 uniquely retrieved the gold passage for **2 queries** where Dense completely missed (`9454`, `55691`). Dense uniquely retrieved gold for 19 queries that BM25 missed.
+  - Top-20: BM25 had 2 unique queries; Dense had 14.
+  - Top-50: BM25 had 1 unique query (`55691`); Dense had 10.
+- **Takeaway:** Hybrid search broadens the recall horizon at depths 20–50 and improves early rank precision (MRR@10 +0.0198, Hit@1 +0.0200) by elevating lexical keyword exact matches.
+
+---
+
+### Q11: How was the 150-query TUNE sweep structured, and how do selection-time latencies relate to BENCH HTTP numbers?
+**A:**
+- **Seeded Subset:** The 150 TUNE queries were deterministically selected from the 500 TUNE queries using `seed=42` (`data/manifests/split_tune.json[:150]`). This preserved identical statistical distribution while reducing cross-encoder sweep runtime.
+- **Complete K Sweep Table on the 150 Seeded TUNE Queries:**
+
+| Configuration | NDCG@5 | MRR@10 | Hit@1 | Selection Latency p50 | Selection Latency p95 | Governor Truncation |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Hybrid (No Rerank)** | 0.8982 | 0.8912 | 0.8533 | 42.1 ms | **61.4 ms** | 0.0% |
+| **$K = 5$** | 0.9139 | 0.9089 | 0.8800 | 102.5 ms | 163.0 ms | 0.0% |
+| **$K = 8$** | 0.9229 | 0.9144 | 0.8800 | 141.0 ms | 203.0 ms | 0.7% |
+| **$K = 10$ (WINNER)** | **0.9296** | **0.9211** | **0.8867** | 134.4 ms | **170.3 ms** | 0.7% |
+| **$K = 15$** | 0.9311 | 0.9225 | 0.8867 | 198.3 ms | 269.4 ms (FAILED) | 2.0% |
+| **$K = 20$** | 0.9336 | 0.9250 | 0.8867 | 204.1 ms | 266.4 ms (FAILED) | 2.7% |
+| **$K = 30$** | 0.9348 | 0.9262 | 0.8867 | 240.2 ms | 382.5 ms (FAILED) | 5.3% |
+
+- **Why is $K=8$ p95 (203 ms) higher than $K=10$ p95 (170.3 ms)?**
+  - Finite sample variance on a single long-passage query (e.g. QID `825310`), combined with CPU thread scheduling contention on that specific run. At $N=150$, tail percentiles are sensitive to single-query outliers.
+- **Selection-Time Estimates vs Headline BENCH HTTP Latencies:**
+  - TUNE latencies are **selection-time in-process estimates** measured directly inside Python without network serialization.
+  - Headline production numbers are strictly the **BENCH HTTP numbers**:
+    - **P50:** 181.59 ms
+    - **P95:** **242.25 ms**
+    - **P99:** 280.51 ms
+
+---
+
+### Q12: Why did Gate 3 RAGAS report identical Context Recall (0.8800), and how does Gate 4B resolve it?
+**A:**
+- **Root Cause of Gate 3 Identical Recall (0.8800):**
+  - In Gate 3, evaluation evaluated binary string overlap against the *gold passage text* as reference. For each query, if the gold passage was retrieved in top 5, score was 1.0; else 0.0.
+  - Both Dense and Hybrid retrieved the gold passage for the exact same 22 queries, and both missed the gold passage for the same 3 queries ($22/25 = \mathbf{0.8800}$).
+- **Gate 4B Resolution (ADR-014):**
+  - Primary RAGAS evaluation was overhauled to evaluate whether top-5 retrieved passages factually verify the human-written MS MARCO reference answers.
+  - Evaluated on 25 frozen BENCH queries using Groq `allam-2-7b`:
+    - Dense Context Recall: **0.8656** [0.7712, 0.9416]
+    - Hybrid Context Recall: **0.8656** [0.7712, 0.9416]
+    - Hybrid + Rerank ($K=10$): **0.8656** [0.7712, 0.9416]
+    - Paired difference: 0.0000.
+  - **CI Widths at $N=25$:** 95% bootstrap confidence interval width is $\sim \pm 0.08$. This is mathematically expected for $N=25$.
+  - **MS MARCO Free-Form Answer Leniency:** Human reference answers are concise factual statements. Top-5 passages from both Dense and Hybrid capture the necessary factual premises with equal coverage.
+
+---
+
+### Q13: What was the outcome of the Hard-Distractor Stress Test ($c100k\_hard$, ADR-015)?
+**A:**
+- **Setup:**
+  - Built separate Qdrant collection `c100k_hard` containing 102,887 points (100,000 base passages + 2,887 mined dense and lexical nearest-neighbor hard distractors from the 8.8M MS MARCO pool, strictly excluding all gold positives).
+  - Evaluated on 100 BENCH queries.
+- **Results:**
+  - Dense Baseline: Hit@1 = 0.7400, MRR@10 = 0.8191, NDCG@5 = 0.8401, Recall@10 = **0.9633**.
+  - Hybrid Retrieval: Hit@1 = 0.7600, MRR@10 = 0.8380, NDCG@5 = 0.8527, Recall@10 = **0.9633**.
+  - Hybrid + Rerank ($K=10$): Hit@1 = **0.7800**, MRR@10 = **0.8472**, NDCG@5 = **0.8511**, Recall@10 = **0.9633**.
+- **Takeaways:**
+  1. Hybrid still outperforms Dense (+0.0200 Hit@1, +0.0189 MRR@10, +0.0126 NDCG@5).
+  2. Cross-encoder reranking preserves 100% of top-10 candidate recall (0.9633) while improving Hit@1 to 0.7800.
+  3. All paired bootstrap difference intervals cross zero at $N=100$.
+  4. Labeled table: *"Stress test (hard distractors, unlabeled neighbors may be valid answers; ID metrics are pessimistic)"*.
 

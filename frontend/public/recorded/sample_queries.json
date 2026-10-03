@@ -1,0 +1,73 @@
+[
+  {
+    "query_id": "647687",
+    "query": "what does semen consist of",
+    "gold_passage_ids": [
+      "7597903"
+    ]
+  },
+  {
+    "query_id": "74328",
+    "query": "can tennis elbow cause pain in your shoulder?",
+    "gold_passage_ids": [
+      "7777750"
+    ]
+  },
+  {
+    "query_id": "391662",
+    "query": "if meat is bad for you what should you eat",
+    "gold_passage_ids": [
+      "7656119"
+    ]
+  },
+  {
+    "query_id": "530602",
+    "query": "types organizational structure",
+    "gold_passage_ids": [
+      "7603386",
+      "7603394"
+    ]
+  },
+  {
+    "query_id": "61836",
+    "query": "can a 15 year old fly alone domestic flights?",
+    "gold_passage_ids": [
+      "7370781"
+    ]
+  },
+  {
+    "query_id": "653187",
+    "query": "what does the term the age of aquarius mean?",
+    "gold_passage_ids": [
+      "7458238"
+    ]
+  },
+  {
+    "query_id": "1021277",
+    "query": "define atrium",
+    "gold_passage_ids": [
+      "7232021"
+    ]
+  },
+  {
+    "query_id": "946631",
+    "query": "when does harbin ice city end",
+    "gold_passage_ids": [
+      "7889800"
+    ]
+  },
+  {
+    "query_id": "696677",
+    "query": "what is a public health concept",
+    "gold_passage_ids": [
+      "1276700"
+    ]
+  },
+  {
+    "query_id": "978057",
+    "query": "where is berrimah",
+    "gold_passage_ids": [
+      "7731943"
+    ]
+  }
+]

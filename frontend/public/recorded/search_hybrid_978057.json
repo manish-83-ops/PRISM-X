@@ -1,0 +1,82 @@
+{
+  "query": "where is berrimah",
+  "mode": "hybrid",
+  "fusion_used": {
+    "method": "weighted",
+    "alpha": 0.8,
+    "rrf_k": 60
+  },
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "7731943",
+      "text": "[Passage 7731943 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 1.0,
+      "dense_rank": 1,
+      "dense_score": 0.9,
+      "bm25_rank": 1,
+      "bm25_score": 0.3
+    },
+    {
+      "rank": 2,
+      "passage_id": "4304018",
+      "text": "[Passage 4304018 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.197,
+      "dense_rank": 3,
+      "dense_score": 0.1773,
+      "bm25_rank": 2,
+      "bm25_score": 0.0591
+    },
+    {
+      "rank": 3,
+      "passage_id": "3548281",
+      "text": "[Passage 3548281 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.1757,
+      "dense_rank": 4,
+      "dense_score": 0.1581,
+      "bm25_rank": 3,
+      "bm25_score": 0.0527
+    },
+    {
+      "rank": 4,
+      "passage_id": "3881120",
+      "text": "[Passage 3881120 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.166,
+      "dense_rank": 5,
+      "dense_score": 0.1494,
+      "bm25_rank": 4,
+      "bm25_score": 0.0498
+    },
+    {
+      "rank": 5,
+      "passage_id": "4323760",
+      "text": "[Passage 4323760 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.1327,
+      "dense_rank": 6,
+      "dense_score": 0.1194,
+      "bm25_rank": 5,
+      "bm25_score": 0.0398
+    }
+  ],
+  "latency_ms": {
+    "encode": 12.41,
+    "dense": 17.37,
+    "sparse": 7.44,
+    "fusion": 2.48,
+    "fetch_text": 7.44,
+    "total": 49.63
+  },
+  "_recorded": true
+}

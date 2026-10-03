@@ -1,0 +1,82 @@
+{
+  "query": "if meat is bad for you what should you eat",
+  "mode": "hybrid",
+  "fusion_used": {
+    "method": "weighted",
+    "alpha": 0.8,
+    "rrf_k": 60
+  },
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "8057504",
+      "text": "[Passage 8057504 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 1.0,
+      "dense_rank": 1,
+      "dense_score": 0.9,
+      "bm25_rank": 1,
+      "bm25_score": 0.3
+    },
+    {
+      "rank": 2,
+      "passage_id": "8506932",
+      "text": "[Passage 8506932 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7319,
+      "dense_rank": 3,
+      "dense_score": 0.6587,
+      "bm25_rank": 2,
+      "bm25_score": 0.2196
+    },
+    {
+      "rank": 3,
+      "passage_id": "6330787",
+      "text": "[Passage 6330787 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6903,
+      "dense_rank": 4,
+      "dense_score": 0.6213,
+      "bm25_rank": 3,
+      "bm25_score": 0.2071
+    },
+    {
+      "rank": 4,
+      "passage_id": "368247",
+      "text": "[Passage 368247 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.597,
+      "dense_rank": 5,
+      "dense_score": 0.5373,
+      "bm25_rank": 4,
+      "bm25_score": 0.1791
+    },
+    {
+      "rank": 5,
+      "passage_id": "8710677",
+      "text": "[Passage 8710677 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.5393,
+      "dense_rank": 6,
+      "dense_score": 0.4854,
+      "bm25_rank": 5,
+      "bm25_score": 0.1618
+    }
+  ],
+  "latency_ms": {
+    "encode": 16.33,
+    "dense": 22.86,
+    "sparse": 9.8,
+    "fusion": 3.27,
+    "fetch_text": 9.8,
+    "total": 65.32
+  },
+  "_recorded": true
+}

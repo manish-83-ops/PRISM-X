@@ -227,3 +227,24 @@ main_adrosonic/
 ├── scripts/                    # Demonstration scripts (filter, live updates)
 └── results/                    # Persisted benchmark metrics & CSVs
 ```
+
+---
+
+## 7. Corpus and Its Limits
+
+PRISMX indexes a curated 100,000-passage corpus (`data/corpus_100k.jsonl`) derived from the official MS MARCO Passage Ranking dataset. To ensure complete academic and operational honesty, the structural boundaries and limitations of this corpus are disclosed below:
+
+1. **Corpus Composition & Positive Ratio:**
+   - **Total indexed passages:** 100,000.
+   - **Ground truth positive passages:** 1,068 across all evaluation splits (TUNE, TEST, BENCH).
+   - **Positive-to-total ratio:** $\frac{1,068}{100,000} = \mathbf{0.0107}$ (~1.07%).
+   - The remaining 98,932 passages serve as background corpus distractors, reflecting realistic information retrieval density.
+
+2. **Closed-World Benchmark Disclosure:**
+   - Benchmarks are conducted in a **closed-world setting**: gold passages for evaluation queries are guaranteed to exist within the indexed 100,000 passages.
+   - In open-world deployments (e.g., against the full 8.8M MS MARCO corpus or large corporate data lakes), candidate recall naturally faces greater distractor pressure. To stress-test this behavior, PRISMX evaluates an expanded 102,887-point collection (`c100k_hard`, ADR-015) populated with dense and lexical hard distractors.
+
+3. **Sparse Qrels and Under-Counting of Valid Answers:**
+   - MS MARCO passage judgments are notoriously sparse, averaging approximately **1.07 labeled positive passages per query**.
+   - Within 100,000 passages, multiple unannotated passages frequently contain factually accurate, comprehensive answers to the user's question, but are scored as 0.0 (non-relevant) by strict ID-matching metrics (MRR@10, Hit@1, NDCG@10).
+   - Consequently, ID-based ranking metrics represent a **pessimistic lower bound** on actual semantic retrieval quality. To overcome this limitation, PRISMX employs LLM-judged RAGAS evaluation (Context Precision & Context Recall) evaluated against human-authored MS MARCO reference answers.

@@ -1,0 +1,29 @@
+{
+  "benchmark": "NFR-3 / C-05 Hybrid Latency Benchmark",
+  "timestamp": "2026-10-03 16:07:20",
+  "protocol": "D1 Client-side wall clock via HTTP API, D2 Linear interpolation percentiles",
+  "warmup_queries_discarded": 20,
+  "warmup_mean_ms": 57.05,
+  "uncached": {
+    "n_queries": 100,
+    "p50_ms": 53.51,
+    "p90_ms": 63.43,
+    "p95_ms": 71.5,
+    "p99_ms": 75.0,
+    "max_ms": 83.27,
+    "mean_ms": 55.23,
+    "nfr3_pass_under_300ms": true,
+    "internal_target_le_250ms": true,
+    "raw_csv": "C:\\Users\\manis\\OneDrive\\Desktop\\main_adrosonic\\results\\phase2\\latency_hybrid_uncached.csv"
+  },
+  "cached": {
+    "n_queries": 100,
+    "p50_ms": 56.12,
+    "p90_ms": 69.89,
+    "p95_ms": 73.38,
+    "p99_ms": 81.38,
+    "max_ms": 84.03,
+    "mean_ms": 58.31,
+    "raw_csv": "C:\\Users\\manis\\OneDrive\\Desktop\\main_adrosonic\\results\\phase2\\latency_hybrid_cached.csv"
+  }
+}

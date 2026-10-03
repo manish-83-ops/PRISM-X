@@ -1,0 +1,82 @@
+{
+  "query": "what does semen consist of",
+  "mode": "hybrid",
+  "fusion_used": {
+    "method": "weighted",
+    "alpha": 0.8,
+    "rrf_k": 60
+  },
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "7597903",
+      "text": "[Passage 7597903 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.9116,
+      "dense_rank": 1,
+      "dense_score": 0.8204,
+      "bm25_rank": 1,
+      "bm25_score": 0.2735
+    },
+    {
+      "rank": 2,
+      "passage_id": "4829750",
+      "text": "[Passage 4829750 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6644,
+      "dense_rank": 3,
+      "dense_score": 0.598,
+      "bm25_rank": 2,
+      "bm25_score": 0.1993
+    },
+    {
+      "rank": 3,
+      "passage_id": "8785283",
+      "text": "[Passage 8785283 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.5673,
+      "dense_rank": 4,
+      "dense_score": 0.5106,
+      "bm25_rank": 3,
+      "bm25_score": 0.1702
+    },
+    {
+      "rank": 4,
+      "passage_id": "2561168",
+      "text": "[Passage 2561168 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.4432,
+      "dense_rank": 5,
+      "dense_score": 0.3989,
+      "bm25_rank": 4,
+      "bm25_score": 0.133
+    },
+    {
+      "rank": 5,
+      "passage_id": "944980",
+      "text": "[Passage 944980 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.4181,
+      "dense_rank": 6,
+      "dense_score": 0.3763,
+      "bm25_rank": 5,
+      "bm25_score": 0.1254
+    }
+  ],
+  "latency_ms": {
+    "encode": 15.01,
+    "dense": 21.01,
+    "sparse": 9.01,
+    "fusion": 3.0,
+    "fetch_text": 9.01,
+    "total": 60.04
+  },
+  "_recorded": true
+}

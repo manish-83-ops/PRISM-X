@@ -1,0 +1,262 @@
+{
+  "label": "Stress test (hard distractors, unlabeled neighbors may be valid answers; ID metrics are pessimistic)",
+  "collection": "c100k_hard",
+  "points_count": 102887,
+  "distractors_added": 2887,
+  "results": {
+    "dense": {
+      "hit1": {
+        "mean": 0.74,
+        "ci_lower": 0.65,
+        "ci_upper": 0.82
+      },
+      "mrr10": {
+        "mean": 0.8191349206349208,
+        "ci_lower": 0.7533,
+        "ci_upper": 0.8794
+      },
+      "ndcg5": {
+        "mean": 0.8400754334620626,
+        "ci_lower": 0.7792,
+        "ci_upper": 0.8948
+      },
+      "ndcg10": {
+        "mean": 0.8532170055928538,
+        "ci_lower": 0.7977,
+        "ci_upper": 0.9029
+      },
+      "r10": {
+        "mean": 0.9633333333333333,
+        "ci_lower": 0.9233,
+        "ci_upper": 0.9933
+      }
+    },
+    "hybrid": {
+      "hit1": {
+        "mean": 0.76,
+        "ci_lower": 0.67,
+        "ci_upper": 0.84
+      },
+      "mrr10": {
+        "mean": 0.8379563492063492,
+        "ci_lower": 0.7754,
+        "ci_upper": 0.8939
+      },
+      "ndcg5": {
+        "mean": 0.8527072113037789,
+        "ci_lower": 0.7919,
+        "ci_upper": 0.9059
+      },
+      "ndcg10": {
+        "mean": 0.8678087545452086,
+        "ci_lower": 0.8148,
+        "ci_upper": 0.9146
+      },
+      "r10": {
+        "mean": 0.9633333333333333,
+        "ci_lower": 0.9233,
+        "ci_upper": 0.9933
+      }
+    },
+    "hybrid_rerank": {
+      "hit1": {
+        "mean": 0.78,
+        "ci_lower": 0.7,
+        "ci_upper": 0.86
+      },
+      "mrr10": {
+        "mean": 0.8471785714285714,
+        "ci_lower": 0.7863,
+        "ci_upper": 0.9043
+      },
+      "ndcg5": {
+        "mean": 0.8510547699975856,
+        "ci_lower": 0.789,
+        "ci_upper": 0.9069
+      },
+      "ndcg10": {
+        "mean": 0.8701632317481895,
+        "ci_lower": 0.818,
+        "ci_upper": 0.9178
+      },
+      "r10": {
+        "mean": 0.9633333333333333,
+        "ci_lower": 0.9233,
+        "ci_upper": 0.9933
+      }
+    }
+  },
+  "paired_deltas": {
+    "hybrid_vs_dense": {
+      "hit1": {
+        "mean_diff": 0.02,
+        "ci_lower": -0.03,
+        "ci_upper": 0.07,
+        "wins": 5,
+        "losses": 3,
+        "ties": 92,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "mrr10": {
+        "mean_diff": 0.0188,
+        "ci_lower": -0.0117,
+        "ci_upper": 0.0515,
+        "wins": 8,
+        "losses": 5,
+        "ties": 87,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg5": {
+        "mean_diff": 0.0126,
+        "ci_lower": -0.0108,
+        "ci_upper": 0.0377,
+        "wins": 9,
+        "losses": 5,
+        "ties": 86,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg10": {
+        "mean_diff": 0.0146,
+        "ci_lower": -0.0083,
+        "ci_upper": 0.0391,
+        "wins": 9,
+        "losses": 6,
+        "ties": 85,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "r10": {
+        "mean_diff": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 100,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      }
+    },
+    "rerank_vs_hybrid": {
+      "hit1": {
+        "mean_diff": 0.02,
+        "ci_lower": -0.06,
+        "ci_upper": 0.1,
+        "wins": 9,
+        "losses": 7,
+        "ties": 84,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "mrr10": {
+        "mean_diff": 0.0092,
+        "ci_lower": -0.0352,
+        "ci_upper": 0.0556,
+        "wins": 12,
+        "losses": 11,
+        "ties": 77,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg5": {
+        "mean_diff": -0.0017,
+        "ci_lower": -0.0386,
+        "ci_upper": 0.0342,
+        "wins": 11,
+        "losses": 10,
+        "ties": 79,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg10": {
+        "mean_diff": 0.0024,
+        "ci_lower": -0.0295,
+        "ci_upper": 0.0345,
+        "wins": 13,
+        "losses": 12,
+        "ties": 75,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "r10": {
+        "mean_diff": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 100,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      }
+    },
+    "rerank_vs_dense": {
+      "hit1": {
+        "mean_diff": 0.04,
+        "ci_lower": -0.04,
+        "ci_upper": 0.12,
+        "wins": 11,
+        "losses": 7,
+        "ties": 82,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "mrr10": {
+        "mean_diff": 0.028,
+        "ci_lower": -0.02,
+        "ci_upper": 0.0771,
+        "wins": 15,
+        "losses": 12,
+        "ties": 73,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg5": {
+        "mean_diff": 0.011,
+        "ci_lower": -0.0264,
+        "ci_upper": 0.0486,
+        "wins": 15,
+        "losses": 11,
+        "ties": 74,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg10": {
+        "mean_diff": 0.0169,
+        "ci_lower": -0.0173,
+        "ci_upper": 0.0515,
+        "wins": 17,
+        "losses": 12,
+        "ties": 71,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "r10": {
+        "mean_diff": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 100,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "query": "define atrium",
+  "mode": "dense",
+  "fusion_used": null,
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "7232021",
+      "text": "[Passage 7232021 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.8953,
+      "dense_rank": 1,
+      "dense_score": 0.8953,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 2,
+      "passage_id": "7612155",
+      "text": "[Passage 7612155 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7786,
+      "dense_rank": 2,
+      "dense_score": 0.7786,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 3,
+      "passage_id": "996484",
+      "text": "[Passage 996484 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7431,
+      "dense_rank": 3,
+      "dense_score": 0.7431,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 4,
+      "passage_id": "8801096",
+      "text": "[Passage 8801096 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6628,
+      "dense_rank": 4,
+      "dense_score": 0.6628,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 5,
+      "passage_id": "2623994",
+      "text": "[Passage 2623994 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6566,
+      "dense_rank": 5,
+      "dense_score": 0.6566,
+      "bm25_rank": null,
+      "bm25_score": null
+    }
+  ],
+  "latency_ms": {
+    "encode": 10.89,
+    "dense": 15.24,
+    "sparse": 0.0,
+    "fusion": 0.0,
+    "fetch_text": 6.53,
+    "total": 43.55
+  },
+  "_recorded": true
+}

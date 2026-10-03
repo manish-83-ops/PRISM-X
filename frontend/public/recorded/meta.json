@@ -1,0 +1,49 @@
+{
+  "modes": [
+    "dense",
+    "hybrid"
+  ],
+  "fusion_defaults": {
+    "method": "weighted",
+    "alpha": 0.8,
+    "rrf_k": 60
+  },
+  "point_count": 100000,
+  "sqlite_count": 100000,
+  "index_version": 3,
+  "avgdl_ref": 56.43,
+  "true_avgdl": 56.43,
+  "drift": 0.0,
+  "drift_warning": false,
+  "inconsistency_count": 0,
+  "cache_hits": 0,
+  "cache_misses": 0,
+  "cache_hit_rate": 0.0,
+  "categories": [
+    "calories-food",
+    "click-use",
+    "tax-state",
+    "cost-average",
+    "symptoms-pain",
+    "blood-body",
+    "county-city",
+    "meaning-definition",
+    "water-use",
+    "used-data",
+    "new-year",
+    "time-average",
+    "water-cell",
+    "people-health",
+    "states-war"
+  ],
+  "sources": [
+    "msmarco-passage",
+    "manual"
+  ],
+  "models": {
+    "dense": "sentence-transformers/all-MiniLM-L6-v2",
+    "lexical": "qdrant_sparse_bm25_idf"
+  },
+  "config_hash": "recorded",
+  "_recorded": true
+}

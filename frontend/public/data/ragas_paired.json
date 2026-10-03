@@ -1,0 +1,329 @@
+{
+  "completed_queries": {
+    "647687": {
+      "query_id": "647687",
+      "query": "what does semen consist of",
+      "phase1": {
+        "context_precision": 1.0,
+        "context_recall": 0.9
+      },
+      "phase2": {
+        "context_precision": 1.0,
+        "context_recall": 0.9
+      },
+      "timestamp": "2026-10-03 17:14:00"
+    },
+    "74328": {
+      "query_id": "74328",
+      "query": "can tennis elbow cause pain in your shoulder?",
+      "phase1": {
+        "context_precision": 0.7556,
+        "context_recall": 0.9
+      },
+      "phase2": {
+        "context_precision": 0.7556,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:15:02"
+    },
+    "391662": {
+      "query_id": "391662",
+      "query": "if meat is bad for you what should you eat",
+      "phase1": {
+        "context_precision": 1.0,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 0.95,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:16:03"
+    },
+    "530602": {
+      "query_id": "530602",
+      "query": "types organizational structure",
+      "phase1": {
+        "context_precision": 0.3333,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 0.3333,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:17:04"
+    },
+    "61836": {
+      "query_id": "61836",
+      "query": "can a 15 year old fly alone domestic flights?",
+      "phase1": {
+        "context_precision": 0.7,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 0.7,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:18:06"
+    },
+    "1082622": {
+      "query_id": "1082622",
+      "query": "what does the root word tele mean",
+      "phase1": {
+        "context_precision": 0.95,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 1.0,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:19:07"
+    },
+    "321951": {
+      "query_id": "321951",
+      "query": "how much is donald trump jr worth",
+      "phase1": {
+        "context_precision": 0.3667,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 0.7556,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:20:09"
+    },
+    "653187": {
+      "query_id": "653187",
+      "query": "what does the term the age of aquarius mean?",
+      "phase1": {
+        "context_precision": 0.95,
+        "context_recall": 1.0
+      },
+      "phase2": {
+        "context_precision": 0.95,
+        "context_recall": 1.0
+      },
+      "timestamp": "2026-10-03 17:21:10"
+    },
+    "1051211": {
+      "query_id": "1051211",
+      "query": "what is mepap certification",
+      "phase1": {
+        "context_precision": 0.8667,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 0.8667,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:22:12"
+    },
+    "451484": {
+      "query_id": "451484",
+      "query": "medicare eligibility contact number",
+      "phase1": {
+        "context_precision": 0.95,
+        "context_recall": 1.0
+      },
+      "phase2": {
+        "context_precision": 0.95,
+        "context_recall": 1.0
+      },
+      "timestamp": "2026-10-03 17:23:14"
+    },
+    "1021277": {
+      "query_id": "1021277",
+      "query": "define atrium",
+      "phase1": {
+        "context_precision": 0.7,
+        "context_recall": 1.0
+      },
+      "phase2": {
+        "context_precision": 0.95,
+        "context_recall": 0.9
+      },
+      "timestamp": "2026-10-03 17:24:16"
+    },
+    "988745": {
+      "query_id": "988745",
+      "query": "who is the new york county clerk",
+      "phase1": {
+        "context_precision": 0.7,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 0.7,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:25:17"
+    },
+    "1083010": {
+      "query_id": "1083010",
+      "query": "what does simple circuit contain",
+      "phase1": {
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "phase2": {
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "timestamp": "2026-10-03 17:26:18"
+    },
+    "1083598": {
+      "query_id": "1083598",
+      "query": "what does it mean cardholder name?",
+      "phase1": {
+        "context_precision": 0.95,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 0.95,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:27:19"
+    },
+    "549342": {
+      "query_id": "549342",
+      "query": "what about phones in iceland",
+      "phase1": {
+        "context_precision": 0.7556,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 0.7556,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:28:21"
+    },
+    "946631": {
+      "query_id": "946631",
+      "query": "when does harbin ice city end",
+      "phase1": {
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "phase2": {
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "timestamp": "2026-10-03 17:29:22"
+    },
+    "507381": {
+      "query_id": "507381",
+      "query": "symptoms of congenital heart defects",
+      "phase1": {
+        "context_precision": 1.0,
+        "context_recall": 0.9
+      },
+      "phase2": {
+        "context_precision": 1.0,
+        "context_recall": 0.9
+      },
+      "timestamp": "2026-10-03 17:30:23"
+    },
+    "1011021": {
+      "query_id": "1011021",
+      "query": "what year declaration of independence",
+      "phase1": {
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "phase2": {
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "timestamp": "2026-10-03 17:31:24"
+    },
+    "999610": {
+      "query_id": "999610",
+      "query": "where is vista ca",
+      "phase1": {
+        "context_precision": 0.8333,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 0.7556,
+        "context_recall": 1.0
+      },
+      "timestamp": "2026-10-03 17:32:25"
+    },
+    "1094460": {
+      "query_id": "1094460",
+      "query": "inches of mercury meaning",
+      "phase1": {
+        "context_precision": 0.95,
+        "context_recall": 1.0
+      },
+      "phase2": {
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "timestamp": "2026-10-03 17:33:27"
+    },
+    "696677": {
+      "query_id": "696677",
+      "query": "what is a public health concept",
+      "phase1": {
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "phase2": {
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "timestamp": "2026-10-03 17:34:28"
+    },
+    "1074989": {
+      "query_id": "1074989",
+      "query": "what is a cyst on the kidneys do",
+      "phase1": {
+        "context_precision": 1.0,
+        "context_recall": 0.9
+      },
+      "phase2": {
+        "context_precision": 1.0,
+        "context_recall": 0.9
+      },
+      "timestamp": "2026-10-03 17:35:30"
+    },
+    "1063702": {
+      "query_id": "1063702",
+      "query": "what is an advocacy project",
+      "phase1": {
+        "context_precision": 1.0,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 1.0,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:36:31"
+    },
+    "1090701": {
+      "query_id": "1090701",
+      "query": "side effects for diclofenac topical",
+      "phase1": {
+        "context_precision": 0.95,
+        "context_recall": 0.8
+      },
+      "phase2": {
+        "context_precision": 0.95,
+        "context_recall": 0.8
+      },
+      "timestamp": "2026-10-03 17:37:32"
+    },
+    "1081730": {
+      "query_id": "1081730",
+      "query": "what family do squirrels belong to",
+      "phase1": {
+        "context_precision": 0.6792,
+        "context_recall": 0.9
+      },
+      "phase2": {
+        "context_precision": 1.0,
+        "context_recall": 0.9
+      },
+      "timestamp": "2026-10-03 17:38:34"
+    }
+  }
+}

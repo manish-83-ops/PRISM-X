@@ -1,0 +1,41 @@
+{
+  "phase": 2,
+  "mode": "hybrid",
+  "n_queries": 100,
+  "family_a_non_llm": {
+    "context_precision": {
+      "mean": 0.8233320000000001,
+      "ci_lower": 0.7567,
+      "ci_upper": 0.8833
+    },
+    "context_recall": {
+      "mean": 0.9216669999999999,
+      "ci_lower": 0.8667,
+      "ci_upper": 0.97
+    }
+  },
+  "paired_diff_vs_phase1": {
+    "context_precision": {
+      "mean_diff": -0.0198,
+      "ci_lower": -0.053,
+      "ci_upper": 0.0112,
+      "wins": 5,
+      "losses": 9,
+      "ties": 86,
+      "is_statistically_distinguishable": false,
+      "is_improvement": false,
+      "status_label": "not distinguishable"
+    },
+    "context_recall": {
+      "mean_diff": 0.005,
+      "ci_lower": 0.0,
+      "ci_upper": 0.015,
+      "wins": 1,
+      "losses": 0,
+      "ties": 99,
+      "is_statistically_distinguishable": false,
+      "is_improvement": false,
+      "status_label": "not distinguishable"
+    }
+  }
+}

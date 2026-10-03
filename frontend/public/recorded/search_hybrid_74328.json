@@ -1,0 +1,82 @@
+{
+  "query": "can tennis elbow cause pain in your shoulder?",
+  "mode": "hybrid",
+  "fusion_used": {
+    "method": "weighted",
+    "alpha": 0.8,
+    "rrf_k": 60
+  },
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "2538456",
+      "text": "[Passage 2538456 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.9177,
+      "dense_rank": 1,
+      "dense_score": 0.8259,
+      "bm25_rank": 1,
+      "bm25_score": 0.2753
+    },
+    {
+      "rank": 2,
+      "passage_id": "7777750",
+      "text": "[Passage 7777750 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7441,
+      "dense_rank": 3,
+      "dense_score": 0.6697,
+      "bm25_rank": 2,
+      "bm25_score": 0.2232
+    },
+    {
+      "rank": 3,
+      "passage_id": "7777748",
+      "text": "[Passage 7777748 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6746,
+      "dense_rank": 4,
+      "dense_score": 0.6071,
+      "bm25_rank": 3,
+      "bm25_score": 0.2024
+    },
+    {
+      "rank": 4,
+      "passage_id": "5075461",
+      "text": "[Passage 5075461 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.5445,
+      "dense_rank": 5,
+      "dense_score": 0.49,
+      "bm25_rank": 4,
+      "bm25_score": 0.1633
+    },
+    {
+      "rank": 5,
+      "passage_id": "29252",
+      "text": "[Passage 29252 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.5296,
+      "dense_rank": 6,
+      "dense_score": 0.4766,
+      "bm25_rank": 5,
+      "bm25_score": 0.1589
+    }
+  ],
+  "latency_ms": {
+    "encode": 13.92,
+    "dense": 19.49,
+    "sparse": 8.35,
+    "fusion": 2.78,
+    "fetch_text": 8.35,
+    "total": 55.69
+  },
+  "_recorded": true
+}

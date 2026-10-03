@@ -67,3 +67,4 @@ htmlcov/
 *.log
 .qdrant-initialized
 traces.jsonl
+node_modules/

@@ -210,6 +210,20 @@ All architectural and algorithmic decisions are recorded here with context, opti
 
 ---
 
+## ADR-015: Hard-Distractor Stress Test Collection (`c100k_hard`) Construction Rule
+- **Date:** 2026-10-03
+- **Status:** Accepted (Written BEFORE building the stress-test collection)
+- **Context:** The standard 100K index (`prismx_corpus`) is a closed-world benchmark containing guaranteed gold passages for evaluation queries with sparse qrels (~1.07 labeled passages per query). To stress-test retrieval precision and ranking robustness against unjudged semantic competitors, a separate collection `c100k_hard` is constructed. The original `prismx_corpus` collection remains completely untouched.
+- **Construction Rule:**
+  1. **Candidate Pool Extraction:** From the MS MARCO source pool (`data/raw/corpus.jsonl.gz`), sample non-100K passages matching semantic terms across the 150 seeded TUNE queries and 100 BENCH queries (250 total evaluation queries).
+  2. **Strict Exclusions:** Exclude any passage present in `data/corpus_100k.jsonl` (zero overlap with standard corpus) and exclude any passage listed as a positive in `data/raw/dev_qrels.tsv` for any dev query (zero gold leakage).
+  3. **Dense Neighbor Selection:** Encode candidate passages with `BAAI/bge-small-en-v1.5` and compute cosine similarity against each query's dense representation. For each query, select the top-20 dense-nearest passages as hard distractors.
+  4. **Dedicated Collection Isolation:** Clone the 100,000 points of `prismx_corpus` into a new isolated Qdrant collection named `c100k_hard`. Upsert the deduplicated hard distractors (with BGE dense vectors and BM25 sparse vectors) into `c100k_hard`. Hydrate text into `data/text_store_hard.db`.
+  5. **Single-Run Evaluation Policy:** Evaluate Dense, Hybrid, and Hybrid+Rerank ($K=10$) on BENCH queries exactly once, computing 10,000 paired bootstrap resamples. Run RAGAS answer-based evaluation (CP/CR) for Dense vs Hybrid on the frozen 25 queries using Groq `allam-2-7b`.
+  6. **Reporting Discipline:** Report all stress-test metrics under the explicit label: *"Stress test (hard distractors, unlabeled neighbors may be valid answers; ID metrics are pessimistic)"*. Never merge stress-test metrics into headline benchmark tables. Do not use BENCH queries to tune or select parameters.
+
+---
+
 ## Frozen Configurations Registry
 *(Frozen configuration hashes must be written here BEFORE single TEST evaluations)*
 
@@ -219,6 +233,7 @@ All architectural and algorithmic decisions are recorded here with context, opti
 | `phase2_hybrid_optimized`| Phase 2 Hybrid| Gate 3 | `b23eb0d7862be81675e68eb82540f7039dc2cfea1850916833ee44c515ab0018` | 2026-10-03 | Hybrid weighted (alpha=0.8, minmax) frozen from TUNE grid search |
 | `phase3_hybrid_rerank` | Phase 3 Rerank | Gate 4A | `0f106e12f557e9c7440284eaa0582c292a5904273d9b9561dc86dbd31ff78c76` | 2026-10-03 | Unconstrained Hybrid + MiniLM-L6 INT8 reranker (K=30) |
 | `phase3_hybrid_rerank_constrained` | Phase 3 Rerank | Gate 4B | `64e95cabb1a1fd58e1ff021ff16043924b7eef86637d9e4defd1c0b5c7c4d2fd` | 2026-10-03 | Latency-constrained Hybrid + MiniLM-L6 INT8 (K=10, len=128, 200ms governor) |
+| `stress_test_c100k_hard` | Stress Test | Gate 5 | `9f2b84e1837a77d19280d46e39f76a524a87c125d03a58e0787a93df179bc321` | 2026-10-03 | Hard-distractor collection c100k_hard evaluated under standard K=10 config |
 
 
 

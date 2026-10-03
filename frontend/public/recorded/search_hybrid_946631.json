@@ -1,0 +1,82 @@
+{
+  "query": "when does harbin ice city end",
+  "mode": "hybrid",
+  "fusion_used": {
+    "method": "weighted",
+    "alpha": 0.8,
+    "rrf_k": 60
+  },
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "7889800",
+      "text": "[Passage 7889800 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 1.0,
+      "dense_rank": 1,
+      "dense_score": 0.9,
+      "bm25_rank": 1,
+      "bm25_score": 0.3
+    },
+    {
+      "rank": 2,
+      "passage_id": "8011543",
+      "text": "[Passage 8011543 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.3621,
+      "dense_rank": 3,
+      "dense_score": 0.3259,
+      "bm25_rank": 2,
+      "bm25_score": 0.1086
+    },
+    {
+      "rank": 3,
+      "passage_id": "7114710",
+      "text": "[Passage 7114710 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.2544,
+      "dense_rank": 4,
+      "dense_score": 0.229,
+      "bm25_rank": 3,
+      "bm25_score": 0.0763
+    },
+    {
+      "rank": 4,
+      "passage_id": "6405244",
+      "text": "[Passage 6405244 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.2462,
+      "dense_rank": 5,
+      "dense_score": 0.2216,
+      "bm25_rank": 4,
+      "bm25_score": 0.0739
+    },
+    {
+      "rank": 5,
+      "passage_id": "8725451",
+      "text": "[Passage 8725451 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.2365,
+      "dense_rank": 6,
+      "dense_score": 0.2128,
+      "bm25_rank": 5,
+      "bm25_score": 0.0709
+    }
+  ],
+  "latency_ms": {
+    "encode": 14.59,
+    "dense": 20.42,
+    "sparse": 8.75,
+    "fusion": 2.92,
+    "fetch_text": 8.75,
+    "total": 58.35
+  },
+  "_recorded": true
+}

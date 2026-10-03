@@ -1,0 +1,78 @@
+{
+  "query": "what is a public health concept",
+  "mode": "dense",
+  "fusion_used": null,
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "1276700",
+      "text": "[Passage 1276700 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.8546,
+      "dense_rank": 1,
+      "dense_score": 0.8546,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 2,
+      "passage_id": "771424",
+      "text": "[Passage 771424 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.754,
+      "dense_rank": 2,
+      "dense_score": 0.754,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 3,
+      "passage_id": "3805002",
+      "text": "[Passage 3805002 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6988,
+      "dense_rank": 3,
+      "dense_score": 0.6988,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 4,
+      "passage_id": "732799",
+      "text": "[Passage 732799 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6965,
+      "dense_rank": 4,
+      "dense_score": 0.6965,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 5,
+      "passage_id": "5238095",
+      "text": "[Passage 5238095 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6874,
+      "dense_rank": 5,
+      "dense_score": 0.6874,
+      "bm25_rank": null,
+      "bm25_score": null
+    }
+  ],
+  "latency_ms": {
+    "encode": 13.25,
+    "dense": 18.55,
+    "sparse": 0.0,
+    "fusion": 0.0,
+    "fetch_text": 7.95,
+    "total": 53.0
+  },
+  "_recorded": true
+}

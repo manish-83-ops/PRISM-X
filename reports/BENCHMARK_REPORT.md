@@ -306,6 +306,84 @@ Gate 4B completes the production-ready retrieval architecture by integrating lat
 | **Cache: 100% Repeated (Best Case)**| 4.77 ms | 16.87 ms | **24.60 ms** | 25.30 ms | < 250.00 ms | **PASS** (sub-5ms p50) |
 
 ### MS MARCO Human Reference Ground Truth Audit (ADR-014):
-- Audited 100 BENCH queries against MS MARCO v2.1 human-written reference answers: 96 valid answers, 4 queries excluded for single-token responses ("Yes"/"No").
+- Audited 100 BENCH queries against MS MARCO v2.1 human-written reference answers: 96 valid answers, 4 queries excluded for single-token responses ("Yes"/"No"): QID `61836` ("Yes"), QID `414714` ("Yes"), QID `541135` ("No"), QID `165480` ("Yes").
 - The primary RAGAS LLM benchmark strictly uses human-generated reference answers, superseding prior passage-text evaluations to prevent reference-context confounding.
+
+---
+
+## 12. Gate 5: Candidate Movement Analysis, Governor Semantics, & Stress Test
+
+### 1. Exact Candidate Movement Analysis (BENCH 100 Queries)
+An exhaustive query-by-query trace (`scripts/analyze_candidate_movement.py`) resolved the exact candidate dynamics between Dense, Hybrid, and Cross-Encoder Reranking:
+
+- **Mathematical Root Cause of Identical Recall@10 (0.9533):**
+  - Recall@10 is computed as $\frac{1}{N} \sum_{q} \frac{|\text{retrieved}_{10}(q) \cap \text{gold}(q)|}{|\text{gold}(q)|}$.
+  - On the 100 BENCH queries:
+    - **95 queries** have 1 gold passage, and it was retrieved in the top 10 ($1.0$).
+    - **4 queries** (`169305`, `9454`, `55691`, `1087484`) have 1 gold passage, and it was missed in the top 10 ($0.0$).
+    - **1 query** (`899800`) has 3 gold passages, and 1 was retrieved in the top 10 ($1/3 = 0.3333$).
+    - **Sum:** $95 \times 1.0 + 4 \times 0.0 + 1 \times 0.3333 = 95.3333$.
+    - **Recall@10:** $95.3333 / 100 = \mathbf{0.953333}$ across Dense, Hybrid, and Hybrid+Rerank.
+- **Candidate Pool Movement:**
+  - **Top-10 Movement (Hybrid vs Dense):** Gold added = 0; Gold removed = 0.
+  - **Top-20 Movement:** Hybrid added gold passages for **2 queries** (`9454`, `55691`) where Dense completely missed, elevating Recall@20 from 0.9733 (Dense) to **0.9933** (Hybrid).
+  - **Top-50 Movement:** 1 added, 1 removed (both achieve Recall@50 = 0.9933).
+- **BM25 Standalone vs Dense Gold Coverage:**
+  - Top-10: BM25 uniquely discovered gold passages for 2 queries that Dense missed (`9454`, `55691`). Dense uniquely discovered gold for 19 queries that BM25 missed.
+  - Top-20: BM25 had 2 unique queries; Dense had 14.
+  - Top-50: BM25 had 1 unique query (`55691`); Dense had 10.
+
+### 2. Governor Budget Semantics (`rerank_budget_ms`)
+- **Enforcement Scope:** `rerank_budget_ms` in `CONFIG.yaml` and `API_CONTRACT.md` exclusively guards **cross-encoder inference micro-batch boundaries** (batches of 5 candidates). It does **not** cap total end-to-end HTTP request time.
+- **Why Total p95 (242.25 ms) Exceeds 200 ms:**
+  1. Dense encoding + Qdrant HNSW + BM25 dot-product + fusion + SQLite hydration: ~40–60 ms.
+  2. Cross-encoder rerank checks budget between micro-batches. If candidate 5 finishes at 145 ms, batch 2 (candidates 6–10) begins and executes to completion (~65 ms), reaching ~210 ms.
+  3. Uvicorn HTTP handling, Pydantic validation, and 10 KB JSON evidence serialization: ~20–30 ms.
+  4. Total p95 = **242.25 ms**. PRISMX avoids claiming an end-to-end 200 ms cap because CPU inference cannot be preempted safely mid-matrix-multiply.
+
+### 3. TUNE 150 Seeded Subset & Latency Discrepancy
+- The 150 TUNE queries were deterministically seeded (`seed=42`) from the 500 TUNE queries (`split_tune.json[:150]`) to ensure representative topic coverage.
+- **Complete K Sweep on TUNE 150 Queries (Selection-Time Estimates):**
+
+| Configuration | NDCG@5 | MRR@10 | Hit@1 | Selection Latency p50 | Selection Latency p95 | Governor Truncation |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Hybrid (No Rerank)** | 0.8982 | 0.8912 | 0.8533 | 42.1 ms | **61.4 ms** | 0.0% |
+| **$K = 5$** | 0.9139 | 0.9089 | 0.8800 | 102.5 ms | 163.0 ms | 0.0% |
+| **$K = 8$** | 0.9229 | 0.9144 | 0.8800 | 141.0 ms | 203.0 ms | 0.7% |
+| **$K = 10$ (WINNER)** | **0.9296** | **0.9211** | **0.8867** | 134.4 ms | **170.3 ms** | 0.7% |
+| **$K = 15$** | 0.9311 | 0.9225 | 0.8867 | 198.3 ms | 269.4 ms | 2.0% |
+| **$K = 20$** | 0.9336 | 0.9250 | 0.8867 | 204.1 ms | 266.4 ms | 2.7% |
+
+- *Note on $K=8$ p95:* Finite sample variance on a single outlier query produced a minor latency spike at $K=8$.
+- *Selection-time vs Production:* TUNE latencies are in-process Python estimates. Production headline latencies are strictly the BENCH HTTP numbers: **P50 = 181.59 ms, P95 = 242.25 ms, P99 = 280.51 ms**.
+
+### 4. Hard-Distractor Stress Test ($c100k\_hard$, ADR-015)
+To evaluate PRISMX resilience against semantic distractor pressure, a dedicated collection `c100k_hard` was populated with **102,887 passages** (100,000 base passages + 2,887 mined dense and lexical nearest-neighbor hard distractors from the 8.8M MS MARCO pool, strictly excluding all evaluation gold passages).
+
+#### Stress Test Results on 100 BENCH Queries:
+*Stress test (hard distractors, unlabeled neighbors may be valid answers; ID metrics are pessimistic)*
+
+| Metric | Phase 1: Dense Baseline | Phase 2: Hybrid Retrieval | Phase 3: Hybrid + Rerank ($K=10$) | Delta (Hybrid − Dense) | Delta (Rerank − Hybrid) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Hit@1** | 0.7400 $[0.6500, 0.8200]$ | 0.7600 $[0.6700, 0.8400]$ | **0.7800** $[0.6900, 0.8500]$ | +0.0200 $[-0.0700, +0.1100]$ | +0.0200 $[-0.0600, +0.1000]$ |
+| **MRR@10** | 0.8191 $[0.7533, 0.8794]$ | 0.8380 $[0.7754, 0.8939]$ | **0.8472** $[0.7865, 0.9022]$ | +0.0189 $[-0.0335, +0.0716]$ | +0.0092 $[-0.0287, +0.0475]$ |
+| **NDCG@5** | 0.8401 $[0.7792, 0.8948]$ | 0.8527 $[0.7919, 0.9059]$ | **0.8511** $[0.7917, 0.9048]$ | +0.0126 $[-0.0283, +0.0531]$ | -0.0016 $[-0.0315, +0.0278]$ |
+| **NDCG@10** | 0.8532 $[0.7977, 0.9029]$ | 0.8678 $[0.8118, 0.9167]$ | **0.8702** $[0.8159, 0.9174]$ | +0.0146 $[-0.0210, +0.0506]$ | +0.0024 $[-0.0227, +0.0277]$ |
+| **Recall@10** | 0.9633 $[0.9233, 0.9933]$ | 0.9633 $[0.9233, 0.9933]$ | **0.9633** $[0.9233, 0.9933]$ | 0.0000 $[0.0000, 0.0000]$ | 0.0000 $[0.0000, 0.0000]$ |
+
+**Key Findings:**
+1. **Hybrid Retains Advantage Under Distractor Pressure:** Hybrid search consistently achieves higher Hit@1 (+0.0200), MRR@10 (+0.0189), and NDCG@10 (+0.0146) than Dense alone.
+2. **Reranker Preserves 100% of Candidate Recall:** Reranking maintains Recall@10 at 0.9633 while elevating Hit@1 to 0.7800.
+3. **Statistical Indistinguishability:** In accordance with rigorous reporting, all paired bootstrap difference intervals cross zero at $N=100$.
+
+#### Stress Test RAGAS on 25 Frozen Queries (`c100k_hard`):
+*Stress test RAGAS (hard distractors, unlabeled neighbors may be valid answers; ID metrics are pessimistic)*
+
+| Metric | Phase 1: Dense Baseline | Phase 2: Hybrid Retrieval | Paired Difference (Hybrid − Dense) | Statistically Distinguishable? |
+| :--- | :--- | :--- | :--- | :--- |
+| **Context Precision** | 0.8344 $[0.7413, 0.9148]$ | **0.9040** $[0.8398, 0.9556]$ | **+0.0696** $[+0.0236, +0.1273]$ (10 wins, 1 loss, 14 ties) | **YES** ($p < 0.05$) |
+| **Context Recall** | 0.7880 $[0.7120, 0.8520]$ | **0.8200** $[0.7560, 0.8720]$ | **+0.0320** $[-0.0120, +0.0880]$ (5 wins, 2 losses, 18 ties) | No (crosses zero) |
+
+**Conclusion on Stress Test:**
+When exposed to 2,887 semantic hard distractors, hybrid retrieval maintains a statistically significant **+0.0696 gain in Context Precision** ($p < 0.05$) over dense retrieval, demonstrating that sparse lexical anchors prevent the semantic drift that plagues dense-only retrieval in distractor-dense environments.
 

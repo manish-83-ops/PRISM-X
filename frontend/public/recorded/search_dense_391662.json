@@ -1,0 +1,78 @@
+{
+  "query": "if meat is bad for you what should you eat",
+  "mode": "dense",
+  "fusion_used": null,
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "8057504",
+      "text": "[Passage 8057504 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.8181,
+      "dense_rank": 1,
+      "dense_score": 0.8181,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 2,
+      "passage_id": "8506932",
+      "text": "[Passage 8506932 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.8065,
+      "dense_rank": 2,
+      "dense_score": 0.8065,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 3,
+      "passage_id": "368247",
+      "text": "[Passage 368247 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7974,
+      "dense_rank": 3,
+      "dense_score": 0.7974,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 4,
+      "passage_id": "8710677",
+      "text": "[Passage 8710677 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7916,
+      "dense_rank": 4,
+      "dense_score": 0.7916,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 5,
+      "passage_id": "6330787",
+      "text": "[Passage 6330787 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7913,
+      "dense_rank": 5,
+      "dense_score": 0.7913,
+      "bm25_rank": null,
+      "bm25_score": null
+    }
+  ],
+  "latency_ms": {
+    "encode": 13.23,
+    "dense": 18.52,
+    "sparse": 0.0,
+    "fusion": 0.0,
+    "fetch_text": 7.94,
+    "total": 52.92
+  },
+  "_recorded": true
+}

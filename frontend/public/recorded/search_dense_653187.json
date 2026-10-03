@@ -1,0 +1,78 @@
+{
+  "query": "what does the term the age of aquarius mean?",
+  "mode": "dense",
+  "fusion_used": null,
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "7458238",
+      "text": "[Passage 7458238 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.8396,
+      "dense_rank": 1,
+      "dense_score": 0.8396,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 2,
+      "passage_id": "6022991",
+      "text": "[Passage 6022991 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.779,
+      "dense_rank": 2,
+      "dense_score": 0.779,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 3,
+      "passage_id": "8790965",
+      "text": "[Passage 8790965 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7433,
+      "dense_rank": 3,
+      "dense_score": 0.7433,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 4,
+      "passage_id": "4957650",
+      "text": "[Passage 4957650 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.728,
+      "dense_rank": 4,
+      "dense_score": 0.728,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 5,
+      "passage_id": "7044423",
+      "text": "[Passage 7044423 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7091,
+      "dense_rank": 5,
+      "dense_score": 0.7091,
+      "bm25_rank": null,
+      "bm25_score": null
+    }
+  ],
+  "latency_ms": {
+    "encode": 12.33,
+    "dense": 17.26,
+    "sparse": 0.0,
+    "fusion": 0.0,
+    "fetch_text": 7.4,
+    "total": 49.31
+  },
+  "_recorded": true
+}

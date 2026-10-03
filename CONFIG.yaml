@@ -60,7 +60,8 @@ rerank:
   depth: 10
   max_length: 128
   torch_threads: 8
-  deadline_ms: 200.0
+  rerank_budget_ms: 200.0  # Covers rerank stage micro-batch boundaries only (not total request latency)
+  deadline_ms: 200.0  # Backward-compatible alias
 
 server:
   host: "0.0.0.0"

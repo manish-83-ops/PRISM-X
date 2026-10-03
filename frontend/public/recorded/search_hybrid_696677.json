@@ -1,0 +1,82 @@
+{
+  "query": "what is a public health concept",
+  "mode": "hybrid",
+  "fusion_used": {
+    "method": "weighted",
+    "alpha": 0.8,
+    "rrf_k": 60
+  },
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "1276700",
+      "text": "[Passage 1276700 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.9746,
+      "dense_rank": 1,
+      "dense_score": 0.8771,
+      "bm25_rank": 1,
+      "bm25_score": 0.2924
+    },
+    {
+      "rank": 2,
+      "passage_id": "771424",
+      "text": "[Passage 771424 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6048,
+      "dense_rank": 3,
+      "dense_score": 0.5443,
+      "bm25_rank": 2,
+      "bm25_score": 0.1814
+    },
+    {
+      "rank": 3,
+      "passage_id": "732799",
+      "text": "[Passage 732799 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.4764,
+      "dense_rank": 4,
+      "dense_score": 0.4288,
+      "bm25_rank": 3,
+      "bm25_score": 0.1429
+    },
+    {
+      "rank": 4,
+      "passage_id": "4166249",
+      "text": "[Passage 4166249 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.4257,
+      "dense_rank": 5,
+      "dense_score": 0.3831,
+      "bm25_rank": 4,
+      "bm25_score": 0.1277
+    },
+    {
+      "rank": 5,
+      "passage_id": "3805002",
+      "text": "[Passage 3805002 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.4134,
+      "dense_rank": 6,
+      "dense_score": 0.3721,
+      "bm25_rank": 5,
+      "bm25_score": 0.124
+    }
+  ],
+  "latency_ms": {
+    "encode": 14.22,
+    "dense": 19.91,
+    "sparse": 8.54,
+    "fusion": 2.85,
+    "fetch_text": 8.54,
+    "total": 56.9
+  },
+  "_recorded": true
+}

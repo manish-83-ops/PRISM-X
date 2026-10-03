@@ -1,0 +1,78 @@
+{
+  "query": "can a 15 year old fly alone domestic flights?",
+  "mode": "dense",
+  "fusion_used": null,
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "7370781",
+      "text": "[Passage 7370781 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7842,
+      "dense_rank": 1,
+      "dense_score": 0.7842,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 2,
+      "passage_id": "2050750",
+      "text": "[Passage 2050750 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7584,
+      "dense_rank": 2,
+      "dense_score": 0.7584,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 3,
+      "passage_id": "5923114",
+      "text": "[Passage 5923114 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6963,
+      "dense_rank": 3,
+      "dense_score": 0.6963,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 4,
+      "passage_id": "3663762",
+      "text": "[Passage 3663762 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6777,
+      "dense_rank": 4,
+      "dense_score": 0.6777,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 5,
+      "passage_id": "2892641",
+      "text": "[Passage 2892641 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.6776,
+      "dense_rank": 5,
+      "dense_score": 0.6776,
+      "bm25_rank": null,
+      "bm25_score": null
+    }
+  ],
+  "latency_ms": {
+    "encode": 12.51,
+    "dense": 17.51,
+    "sparse": 0.0,
+    "fusion": 0.0,
+    "fetch_text": 7.51,
+    "total": 50.04
+  },
+  "_recorded": true
+}

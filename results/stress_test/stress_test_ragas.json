@@ -1,0 +1,60 @@
+{
+  "label": "Stress test RAGAS (hard distractors, unlabeled neighbors may be valid answers; ID metrics are pessimistic)",
+  "collection": "c100k_hard",
+  "ragas": {
+    "dense": {
+      "context_precision": {
+        "mean": 0.8343960000000001,
+        "ci_lower": 0.7413,
+        "ci_upper": 0.9148
+      },
+      "context_recall": {
+        "mean": 0.7879999999999999,
+        "ci_lower": 0.712,
+        "ci_upper": 0.852
+      }
+    },
+    "hybrid": {
+      "context_precision": {
+        "mean": 0.904004,
+        "ci_lower": 0.8398,
+        "ci_upper": 0.9556
+      },
+      "context_recall": {
+        "mean": 0.82,
+        "ci_lower": 0.756,
+        "ci_upper": 0.872
+      }
+    },
+    "difference_hybrid_vs_dense": {
+      "context_precision": {
+        "mean_diff": 0.0696,
+        "ci_lower": 0.0236,
+        "ci_upper": 0.1273,
+        "wins": 10,
+        "losses": 1,
+        "ties": 14,
+        "is_statistically_distinguishable": true,
+        "is_improvement": true,
+        "status_label": "improvement"
+      },
+      "context_recall": {
+        "mean_diff": 0.032,
+        "ci_lower": -0.012,
+        "ci_upper": 0.088,
+        "wins": 5,
+        "losses": 2,
+        "ties": 18,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      }
+    },
+    "telemetry": {
+      "n_queries": 25,
+      "evaluator_model": "allam-2-7b",
+      "total_tokens": 60976,
+      "elapsed_seconds": 553.1
+    }
+  }
+}

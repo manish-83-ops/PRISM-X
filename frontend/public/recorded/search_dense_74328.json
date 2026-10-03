@@ -1,0 +1,78 @@
+{
+  "query": "can tennis elbow cause pain in your shoulder?",
+  "mode": "dense",
+  "fusion_used": null,
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "2538456",
+      "text": "[Passage 2538456 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.8527,
+      "dense_rank": 1,
+      "dense_score": 0.8527,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 2,
+      "passage_id": "7777750",
+      "text": "[Passage 7777750 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.8031,
+      "dense_rank": 2,
+      "dense_score": 0.8031,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 3,
+      "passage_id": "5075461",
+      "text": "[Passage 5075461 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7967,
+      "dense_rank": 3,
+      "dense_score": 0.7967,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 4,
+      "passage_id": "7777748",
+      "text": "[Passage 7777748 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7947,
+      "dense_rank": 4,
+      "dense_score": 0.7947,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 5,
+      "passage_id": "29252",
+      "text": "[Passage 29252 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7806,
+      "dense_rank": 5,
+      "dense_score": 0.7806,
+      "bm25_rank": null,
+      "bm25_score": null
+    }
+  ],
+  "latency_ms": {
+    "encode": 12.45,
+    "dense": 17.42,
+    "sparse": 0.0,
+    "fusion": 0.0,
+    "fetch_text": 7.47,
+    "total": 49.78
+  },
+  "_recorded": true
+}

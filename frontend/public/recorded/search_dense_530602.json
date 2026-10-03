@@ -1,0 +1,78 @@
+{
+  "query": "types organizational structure",
+  "mode": "dense",
+  "fusion_used": null,
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "3610396",
+      "text": "[Passage 3610396 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.8305,
+      "dense_rank": 1,
+      "dense_score": 0.8305,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 2,
+      "passage_id": "7603394",
+      "text": "[Passage 7603394 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.8247,
+      "dense_rank": 2,
+      "dense_score": 0.8247,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 3,
+      "passage_id": "7603386",
+      "text": "[Passage 7603386 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.778,
+      "dense_rank": 3,
+      "dense_score": 0.778,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 4,
+      "passage_id": "7453106",
+      "text": "[Passage 7453106 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7642,
+      "dense_rank": 4,
+      "dense_score": 0.7642,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 5,
+      "passage_id": "4349713",
+      "text": "[Passage 4349713 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.7506,
+      "dense_rank": 5,
+      "dense_score": 0.7506,
+      "bm25_rank": null,
+      "bm25_score": null
+    }
+  ],
+  "latency_ms": {
+    "encode": 11.61,
+    "dense": 16.25,
+    "sparse": 0.0,
+    "fusion": 0.0,
+    "fetch_text": 6.97,
+    "total": 46.44
+  },
+  "_recorded": true
+}

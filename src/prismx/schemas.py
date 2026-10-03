@@ -19,13 +19,15 @@ class FilterParams(BaseModel):
 
 class SearchRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=512)
-    mode: Literal["dense", "hybrid", "hybrid_rerank", "hybrid+rerank"] = "hybrid"
+    mode: Literal["dense", "hybrid", "prismx", "hybrid_rerank", "hybrid+rerank"] = "hybrid"
     top_k: int = Field(default=5, ge=1, le=50)
     filters: FilterParams | None = None
     fusion: FusionParams | None = None
     rerank: bool = False
     rerank_k: int = Field(default=10, ge=1, le=100)
-    deadline_ms: float | None = Field(default=200.0, ge=10.0, le=5000.0)
+    rerank_budget_ms: float | None = Field(default=200.0, ge=10.0, le=5000.0, description="Covers rerank stage micro-batch boundaries only (not total request latency)")
+    deadline_ms: float | None = Field(default=None, description="Backward-compatible alias for rerank_budget_ms")
+    budget_ms: float | None = Field(default=None, description="Backward-compatible alias for rerank_budget_ms")
     use_cache: bool = True
     cache: bool | None = None  # alias for use_cache
 
@@ -33,6 +35,15 @@ class SearchRequest(BaseModel):
         if self.cache is not None:
             return self.cache
         return self.use_cache
+
+    def get_rerank_budget_ms(self) -> float:
+        if self.deadline_ms is not None:
+            return self.deadline_ms
+        if self.budget_ms is not None:
+            return self.budget_ms
+        if self.rerank_budget_ms is not None:
+            return self.rerank_budget_ms
+        return 200.0
 
 
 class SearchResultItem(BaseModel):

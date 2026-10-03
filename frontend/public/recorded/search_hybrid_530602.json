@@ -1,0 +1,82 @@
+{
+  "query": "types organizational structure",
+  "mode": "hybrid",
+  "fusion_used": {
+    "method": "weighted",
+    "alpha": 0.8,
+    "rrf_k": 60
+  },
+  "filters_applied": null,
+  "index_version": 3,
+  "results": [
+    {
+      "rank": 1,
+      "passage_id": "3610396",
+      "text": "[Passage 3610396 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.9736,
+      "dense_rank": 1,
+      "dense_score": 0.8762,
+      "bm25_rank": 1,
+      "bm25_score": 0.2921
+    },
+    {
+      "rank": 2,
+      "passage_id": "7603394",
+      "text": "[Passage 7603394 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.9693,
+      "dense_rank": 3,
+      "dense_score": 0.8724,
+      "bm25_rank": 2,
+      "bm25_score": 0.2908
+    },
+    {
+      "rank": 3,
+      "passage_id": "7453106",
+      "text": "[Passage 7453106 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.5923,
+      "dense_rank": 4,
+      "dense_score": 0.5331,
+      "bm25_rank": 3,
+      "bm25_score": 0.1777
+    },
+    {
+      "rank": 4,
+      "passage_id": "7603386",
+      "text": "[Passage 7603386 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.5204,
+      "dense_rank": 5,
+      "dense_score": 0.4684,
+      "bm25_rank": 4,
+      "bm25_score": 0.1561
+    },
+    {
+      "rank": 5,
+      "passage_id": "4349713",
+      "text": "[Passage 4349713 text not available in offline mode]",
+      "category": null,
+      "source": "msmarco-passage",
+      "score": 0.3741,
+      "dense_rank": 6,
+      "dense_score": 0.3367,
+      "bm25_rank": 5,
+      "bm25_score": 0.1122
+    }
+  ],
+  "latency_ms": {
+    "encode": 11.77,
+    "dense": 16.47,
+    "sparse": 7.06,
+    "fusion": 2.35,
+    "fetch_text": 7.06,
+    "total": 47.06
+  },
+  "_recorded": true
+}
