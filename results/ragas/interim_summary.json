@@ -1,0 +1,14 @@
+{
+  "model": "allam-2-7b",
+  "n_queries": 25,
+  "total_tokens": 67042,
+  "elapsed_seconds": 1535.6,
+  "phase1": {
+    "context_precision_mean": 0.8556,
+    "context_recall_mean": 0.884
+  },
+  "phase2": {
+    "context_precision_mean": 0.8929,
+    "context_recall_mean": 0.884
+  }
+}

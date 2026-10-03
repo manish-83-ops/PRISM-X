@@ -17,13 +17,18 @@ This benchmark report provides a complete, judge-ready, empirical comparison bet
 
 | Criterion | Target Metric | Measured (Phase 2) | Margin / Status |
 | :--- | :--- | :--- | :--- |
-| **Context Precision** | $\ge 0.75$ | **0.8233** $[0.7567, 0.8833]$ | **PASS** (+0.0733 above threshold) |
-| **Context Recall** | $\ge 0.70$ | **0.9217** $[0.8667, 0.9700]$ | **PASS** (+0.2217 above threshold) |
-| **p95 Retrieval Latency** | $< 300\text{ ms}$ | **71.50 ms** (Uncached) | **PASS** (76.2% faster than ceiling) |
+| **Rank-based Context Precision (qrel-derived)** | $\ge 0.75$ | **0.8233** $[0.7567, 0.8833]$ | **PASS** (+0.0733 above threshold) |
+| **Rank-based Context Recall (qrel-derived)** | $\ge 0.70$ | **0.9533** $[0.9100, 0.9900]$ | **PASS** (+0.2533 above threshold) |
+| **LLM-Judged RAGAS Context Precision (Phase 2)** | $\ge 0.75$ | **0.8929** $[0.8269, 0.9478]$ | **PASS** (+0.1429 above threshold) |
+| **LLM-Judged RAGAS Context Recall (Phase 2)** | $\ge 0.70$ | **0.8840** $[0.8520, 0.9200]$ | **PASS** (+0.1840 above threshold) |
+| **p95 Retrieval Latency** | $< 300\text{ ms}$ | **75.03 ms** (Uncached) | **PASS** (75.0% faster than ceiling) |
 | **Indexed Passages** | $\ge 100,000$ | **100,000 points** | **PASS** (Full corpus indexed) |
 | **Ingestion Time** | $< 2.0\text{ hours}$ | **0.9922 hours** (3,572 s) | **PASS** (50.4% under time budget) |
 
-*Statistical Note:* Under our paired bootstrap test ($N = 100$ queries, 10,000 resamples), metric differences under $0.02$ are treated as statistically negligible noise.
+> [!IMPORTANT]
+> The rank-based Context Precision/Recall metrics above are computed from qrel gold-passage position in the ranked list, **not** from an LLM-as-a-judge (RAGAS) evaluation. NFR-1/NFR-2 acceptance from these metrics alone is provisional until the LLM-judged RAGAS scores are finalized.
+
+*Statistical Note:* Under our paired bootstrap test ($N = 100$ queries, 10,000 resamples), all Phase 2 vs Phase 1 metric differences are **not statistically significant** (all 95% CIs cross zero). No demonstrated improvement can be claimed.
 
 ---
 
@@ -70,21 +75,40 @@ All metrics were evaluated on the **100 BENCH queries** (`data/splits/split_benc
 
 ### Retrieval Quality Metrics Table:
 
-| Metric | Phase 1: Naive Dense (Cosine) | Phase 2: Hybrid (Dense + BM25) | Absolute Delta | 95% Confidence Interval (Phase 2) |
+| Metric | Phase 1: Naive Dense (Cosine) | Phase 2: Hybrid (Dense + BM25) | Absolute Delta | 95% CI (Phase 2) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Hit@1** | 0.7300 | **0.7500** | +0.0200 | $[0.6600, 0.8300]$ |
-| **MRR@10** | 0.8052 | **0.8250** | +0.0198 | $[0.7583, 0.8850]$ |
-| **NDCG@5** | 0.8337 | **0.8470** | +0.0133 | $[0.7869, 0.9009]$ |
-| **Recall@5** | **0.9267** | 0.9217 | -0.0050 | $[0.8667, 0.9700]$ |
-| **Recall@10** | **0.9267** | 0.9217 | -0.0050 | $[0.8667, 0.9700]$ |
+| **Hit@1** | 0.7300 | 0.7500 | +0.0200 | $[0.6400, 0.8100]$ |
+| **MRR@10** | 0.8096 | 0.8292 | +0.0196 | $[0.7650, 0.8871]$ |
+| **NDCG@5** | 0.8337 | 0.8470 | +0.0133 | $[0.7869, 0.9009]$ |
+| **NDCG@10** | 0.8436 | 0.8589 | +0.0153 | $[0.8036, 0.9086]$ |
+| **Recall@5** | 0.9267 | 0.9217 | -0.0050 | $[0.8667, 0.9700]$ |
+| **Recall@10** | 0.9533 | 0.9533 | 0.0000 | $[0.9100, 0.9900]$ |
 | **Success@5** | 0.9300 | 0.9300 | 0.0000 | $[0.8800, 0.9800]$ |
-| **RAGAS Context Precision** | 0.8035 | **0.8233** | +0.0198 | $[0.7567, 0.8833]$ |
-| **RAGAS Context Recall** | **0.9267** | 0.9217 | -0.0050 | $[0.8667, 0.9700]$ |
+| **Success@10** | — | 0.9600 | — | $[0.9200, 0.9900]$ |
+| **Rank-based CP@5 (qrel-derived)** | 0.8035 | 0.8233 | +0.0198 | $[0.7567, 0.8833]$ |
+| **Rank-based CR@5 (qrel-derived)** | 0.9267 | 0.9217 | -0.0050 | $[0.8667, 0.9700]$ |
+| **Rank-based CR@10 (qrel-derived)** | 0.9533 | 0.9533 | 0.0000 | $[0.9100, 0.9900]$ |
+
+> [!NOTE]
+> Recall@10 is computed from a real top-10 retrieval (`top_k: 10`), not by reusing the top-5 list. Recall@5 and Recall@10 are now distinct as expected.
+
+### Paired Bootstrap Significance Test (Phase 2 − Phase 1):
+
+$N = 100$ queries, 10,000 bootstrap resamples. **None of the metric differences are statistically significant at the 95% level:**
+
+| Metric | Mean Δ | 95% CI of Δ | Wins / Losses / Ties | Significant? |
+| :--- | :--- | :--- | :--- | :--- |
+| **Hit@1** | +0.0200 | $[-0.0300, +0.0700]$ | 5 / 3 / 92 | No |
+| **MRR@10** | +0.0196 | $[-0.0110, +0.0525]$ | 12 / 6 / 82 | No |
+| **NDCG@5** | +0.0133 | $[-0.0102, +0.0386]$ | 15 / 8 / 77 | No |
+| **Rank-based CP@5** | +0.0198 | $[-0.0112, +0.0530]$ | 9 / 5 / 86 | No |
+| **Recall@5** | -0.0050 | $[-0.0150, +0.0000]$ | 0 / 2 / 98 | No |
+| **Recall@10** | 0.0000 | $[+0.0000, +0.0000]$ | 1 / 0 / 99 | No |
 
 ### Analysis of Quality Findings:
-1. **Precision Improvement:** Hybrid retrieval lifted Hit@1 from 0.7300 to 0.7500 and MRR@10 from 0.8052 to 0.8250. BM25 sparse lexical matching directly prevented dense semantic drift on queries containing specific acronyms and rare medical/technical nouns.
-2. **Context Precision & Recall:** Both Phase 1 and Phase 2 substantially exceed the problem statement acceptance thresholds ($\text{CP} > 0.75$ and $\text{CR} > 0.70$). Phase 2 achieved **0.8233 Context Precision** (+0.0733 above target) and **0.9217 Context Recall** (+0.2217 above target).
-3. **Statistical Significance:** Paired bootstrap tests reveal that the 0.0198 MRR delta and -0.0050 Recall delta contain 0 within their 95% difference intervals ($[-0.0527, 0.0107]$), confirming that differences under 0.02 represent statistical ties at $N=100$.
+1. **Precision Metrics:** Hybrid retrieval lifted Hit@1 from 0.7300 to 0.7500 and MRR@10 from 0.8096 to 0.8292. BM25 sparse lexical matching reduced dense semantic drift on queries containing acronyms and rare technical nouns.
+2. **Rank-based Context Precision & Recall (qrel-derived):** Both phases exceed the problem statement acceptance thresholds ($\text{CP} > 0.75$ and $\text{CR} > 0.70$). Phase 2 achieved 0.8233 rank-based CP (+0.0733 above target) and 0.9533 rank-based CR@10 (+0.2533 above target). **These are rank-based qrel metrics, not LLM-judged RAGAS scores.**
+3. **Statistical Significance:** All paired bootstrap difference CIs cross zero (see table above). **No statistically significant improvement can be claimed for Phase 2 over Phase 1** at $N=100$. The observed deltas (≤0.02) are within expected sampling noise.
 
 ---
 
@@ -128,12 +152,17 @@ Benchmarking was executed via the end-to-end HTTP API path (`POST /search`) usin
 
 | Metric | Uncached Hybrid (ms) | Cached Hybrid (ms) | Problem Statement Ceiling | Margin to Limit |
 | :--- | :--- | :--- | :--- | :--- |
-| **p50 (Median)** | **53.51 ms** | 56.12 ms | - | - |
-| **p90** | **63.43 ms** | 69.89 ms | - | - |
-| **p95 (NFR-3 Target)** | **71.50 ms** | **73.38 ms** | **< 300.00 ms** | **PASS (-228.5 ms / 76.2% margin)** |
-| **p99** | **75.00 ms** | 81.38 ms | - | - |
-| **Max** | **83.27 ms** | 84.03 ms | - | - |
-| **Mean** | **55.23 ms** | 58.31 ms | - | - |
+| **p50 (Median)** | **55.39 ms** | **6.11 ms** | - | - |
+| **p90** | **71.67 ms** | **27.02 ms** | - | - |
+| **p95 (NFR-3 Target)** | **75.03 ms** | **29.01 ms** | **< 300.00 ms** | **PASS (-224.97 ms / 75.0% margin)** |
+| **p99** | **77.76 ms** | **29.92 ms** | - | - |
+| **Max** | **85.87 ms** | **33.75 ms** | - | - |
+| **Mean** | **51.83 ms** | **12.04 ms** | - | - |
+
+**Query Cache Performance:**
+- **Implementation:** In-memory LRU cache (capacity 2,000 queries) with automatic invalidation on upsert/delete.
+- **Cache hit rate (benchmark):** 100% (100 identical queries replayed).
+- **p95 speedup:** 29.01 ms cached vs 75.03 ms uncached → **61.3% faster**.
 
 *Raw Per-Query Telemetry:* Stored in `results/phase2/latency_hybrid_uncached.csv` and `results/phase2/latency_hybrid_cached.csv`.
 
@@ -190,18 +219,38 @@ Demonstrated end-to-end via `scripts/demo_live_update.py`:
 
 ---
 
-## 9. Groq LLM-as-a-Judge Telemetry & Protocol (Section 2)
+## 9. Groq LLM-as-a-Judge RAGAS Evaluation (NFR-1, NFR-2)
 
-- **Model Selected:** `llama-3.1-8b-instant` (Selected per ADR-010 to fit 100 paired queries within the 500,000 daily token quota without hitting rate limits, compared to the 100k cap of 70B).
-- **Rate Limits:** 30 RPM, 14,400 RPD, 500,000 TPD.
-- **Reference Definition:** Canonical ground truth passage text extracted from MS MARCO corpus.
-- **Paired Execution Protocol:** Phase 1 and Phase 2 run back-to-back in fixed seeded order, checkpointed immediately after each query to `results/ragas/paired_checkpoint.json` with interim summaries written in chunks of 25.
-- **Runner Script:** `src/prismx/eval/paired_groq_runner.py` with 3-query smoke test (`--smoke-test`) and paired runner (`--run`).
+- **Model Used:** `allam-2-7b` via Groq free tier. (`llama-3.1-8b-instant` was disabled on this tier; `qwen/qwen3.8-27b` exhausted its 200K daily token quota mid-run.)
+- **Rate Limits (allam-2-7b):** 7,000 RPD, 6,000 TPM.
+- **Queries Evaluated:** **25 paired queries** (Phase 1 + Phase 2 per query). Spec minimum: ≥20. ✅
+- **Total Tokens Used:** 67,042 (avg 2,682 tokens / paired query, 4 LLM calls per query).
+- **Elapsed Time:** 1,536 s (25.6 minutes). Zero rate-limit errors.
+- **Reference Definition:** Canonical gold passage text from MS MARCO corpus via SQLite text store.
+- **Checkpoint File:** `results/ragas/paired_checkpoint.json` (25 entries, per-query timestamps).
+- **Runner Script:** `scripts/run_ragas_allam.py`.
+
+### Final LLM-Judged RAGAS Results (N=25, 10,000 bootstrap resamples):
+
+| Metric | Phase 1: Naive Dense | Phase 2: Hybrid | Delta | 95% CI of Delta | Significant? |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **RAGAS Context Precision** | 0.8556 $[0.7757, 0.9229]$ | **0.8929** $[0.8269, 0.9478]$ | +0.0373 | $[-0.0002, +0.0837]$ | No (CI touches 0) |
+| **RAGAS Context Recall** | 0.8840 $[0.8520, 0.9200]$ | **0.8840** $[0.8520, 0.9200]$ | 0.0000 | $[-0.0160, +0.0200]$ | No |
+
+**NFR-1 (RAGAS Context Precision ≥ 0.75):** Phase 2 = **0.8929** → **PASS** (+0.1429 above threshold).  
+**NFR-2 (RAGAS Context Recall ≥ 0.70):** Phase 2 = **0.8840** → **PASS** (+0.1840 above threshold).  
+
+> [!NOTE]
+> The +0.0373 CP improvement is not statistically significant at 95% (CI just touches zero at −0.0002). No demonstrated improvement can be claimed for hybrid over dense retrieval on this corpus.
+
+
 
 ---
 
 ## 10. Limitations & Edge Cases
 
-1. **Hardware Environment:** Native Windows binary (`bin/qdrant.exe` v1.19.1) was utilized instead of Docker because Docker CLI is unavailable on this host. Both HTTP (6333) and gRPC (6334) provide genuine client-server network execution identical to containerized deployments (ADR-001).
-2. **BM25 Drift Threshold:** If over 10,000 passages with highly divergent length distributions are added, cumulative length drift could exceed the 10% threshold. The CLI command `python -m prismx reindex-sparse` is provided to recalibrate $avgdl_{ref}$ and rewrite sparse vectors without affecting dense vectors.
-3. **Hardware Acceleration:** Ingestion was executed strictly on CPU (12 threads) without CUDA, achieving 28.8 passages/sec. GPU environments would reduce initial indexing time to under 10 minutes.
+1. **Corpus A Limitation:** The evaluation corpus (100K passages) contains gold passages mixed with random filler from the larger MS MARCO 8.8M collection. Absolute retrieval scores are therefore **higher** than would be observed on the full 8.8M-passage collection, where the retrieval task is substantially harder. Relative Phase 1 vs Phase 2 comparisons remain valid.
+2. **Hardware Environment:** Native Windows binary (`bin/qdrant.exe` v1.19.1) was utilized instead of Docker because Docker CLI is unavailable on this host. Both HTTP (6333) and gRPC (6334) provide genuine client-server network execution identical to containerized deployments (ADR-001).
+3. **BM25 Drift Threshold:** If over 10,000 passages with highly divergent length distributions are added, cumulative length drift could exceed the 10% threshold. The CLI command `python -m prismx reindex-sparse` is provided to recalibrate $avgdl_{ref}$ and rewrite sparse vectors without affecting dense vectors.
+4. **Hardware Acceleration:** Ingestion was executed strictly on CPU (12 threads) without CUDA, achieving 28.8 passages/sec. GPU environments would reduce initial indexing time to under 10 minutes.
+5. **RAGAS Model Substitution:** The spec suggested `llama-3.1-8b-instant` but this model was disabled on the available Groq free tier. `allam-2-7b` (7B Arabic-English bilingual LLM) was substituted. While smaller, it produced clean JSON boolean outputs and calibrated float scores during validation.
