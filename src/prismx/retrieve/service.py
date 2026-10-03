@@ -1,4 +1,4 @@
-"""PRISMX Unified Search and Storage Service implementing PATCH-2 Decoupled Ordering."""
+"""PRISMX Unified Search and Storage Service implementing Gate 4A Reranking, Caching, and Evidence Telemetry."""
 
 from __future__ import annotations
 
@@ -8,23 +8,26 @@ from typing import Any
 
 from prismx.index.encoder import DenseEncoder
 from prismx.index.lexical import BM25Tokenizer
-from prismx.index.text_store import TextStore
 from prismx.index.qdrant_store import QdrantStore, passage_id_to_point_id
+from prismx.index.text_store import TextStore
+from prismx.retrieve.cache import QueryCache
 from prismx.retrieve.dense import DenseRetriever
-from prismx.retrieve.hybrid import HybridRetriever
 from prismx.retrieve.filters import build_qdrant_filter
+from prismx.retrieve.hybrid import HybridRetriever
+from prismx.retrieve.rerank import CrossEncoderReranker
 from prismx.schemas import (
+    DeleteResponse,
+    LatencyBreakdown,
+    MetaResponse,
     SearchRequest,
     SearchResponse,
     SearchResultItem,
-    LatencyBreakdown,
     UpsertRequest,
     UpsertResponse,
-    DeleteResponse,
-    MetaResponse,
 )
 
 logger = logging.getLogger("prismx.service")
+
 
 class SearchService:
     def __init__(
@@ -34,16 +37,43 @@ class SearchService:
         text_store: TextStore,
         qdrant_store: QdrantStore,
         config: dict[str, Any],
+        reranker: CrossEncoderReranker | None = None,
+        cache: QueryCache | None = None,
     ):
         self.dense_retriever = dense_retriever
         self.hybrid_retriever = hybrid_retriever
         self.text_store = text_store
         self.qdrant_store = qdrant_store
         self.config = config
+        self.reranker = reranker
+        self.cache = cache if cache is not None else QueryCache(maxsize=2000)
         self.inconsistency_count = 0
 
     def search(self, request: SearchRequest) -> SearchResponse:
         t_total_start = time.perf_counter()
+
+        # Check Cache if enabled
+        use_cache = request.get_use_cache()
+        cache_key = None
+        if use_cache and self.cache is not None:
+            cache_key = self.cache.make_key(
+                query=request.query,
+                mode=request.mode,
+                top_k=request.top_k,
+                filters=request.filters.dict() if request.filters else None,
+                fusion=request.fusion.dict() if request.fusion else None,
+                rerank=request.rerank or request.mode in ("hybrid_rerank", "hybrid+rerank"),
+                rerank_k=request.rerank_k,
+            )
+            cached_resp: SearchResponse | None = self.cache.get(cache_key)
+            if cached_resp is not None:
+                # Return cached response with cache_hit=True and updated timing
+                t_lookup_ms = round((time.perf_counter() - t_total_start) * 1000.0, 2)
+                resp_copy = cached_resp.model_copy(deep=True)
+                resp_copy.cache_hit = True
+                resp_copy.latency_ms.total = t_lookup_ms
+                return resp_copy
+
         query_filter = build_qdrant_filter(request.filters)
 
         latencies = {
@@ -52,11 +82,19 @@ class SearchService:
             "sparse": 0.0,
             "fusion": 0.0,
             "fetch_text": 0.0,
+            "rerank": 0.0,
             "total": 0.0,
         }
 
-        # 1. Retrieval
-        candidate_depth = max(request.top_k * 4, self.config["retrieval"]["candidate_depth"])
+        should_rerank = (
+            request.mode in ("hybrid_rerank", "hybrid+rerank")
+            or request.rerank
+        ) and (self.reranker is not None)
+
+        # 1. Retrieval Candidate Depth
+        rerank_k = request.rerank_k if should_rerank else request.top_k
+        min_depth = self.config.get("retrieval", {}).get("candidate_depth", 40)
+        candidate_depth = max(request.top_k * 4, rerank_k, min_depth)
 
         if request.mode == "dense":
             candidates, enc_ms, dense_ms = self.dense_retriever.retrieve(
@@ -69,7 +107,7 @@ class SearchService:
             fused_candidates = candidates
             fusion_used = None
         else:
-            # Hybrid mode
+            # Hybrid or Hybrid+Rerank mode
             f_params = request.fusion
             method = f_params.method if f_params else self.config["retrieval"]["fusion"]["method"]
             alpha = f_params.alpha if f_params else self.config["retrieval"]["fusion"]["alpha"]
@@ -92,34 +130,87 @@ class SearchService:
         hydrated_map = self.text_store.get_passages_by_ids(ordered_pids, chunk_size=400)
         latencies["fetch_text"] = round((time.perf_counter() - t_fetch_start) * 1000.0, 2)
 
-        # 3. Assemble final results strictly by candidate ordering
-        results: list[SearchResultItem] = []
-        for cand in fused_candidates:
+        # 3. Assemble Candidate Pool with hydrated text
+        hydrated_candidates: list[dict[str, Any]] = []
+        for rank_idx, cand in enumerate(fused_candidates, start=1):
             pid = cand["passage_id"]
             if pid not in hydrated_map:
-                # Inconsistency detected: ID in Qdrant but missing from SQLite
                 self.inconsistency_count += 1
                 logger.warning(f"Inconsistency: passage {pid} found in vector DB but missing in text store!")
                 continue
 
             doc_info = hydrated_map[pid]
+            retrieved_by = []
+            if cand.get("dense_rank") is not None and cand.get("dense_rank", 0) > 0:
+                retrieved_by.append("dense")
+            if cand.get("bm25_rank") is not None and cand.get("bm25_rank", 0) > 0:
+                retrieved_by.append("sparse")
+            if not retrieved_by:
+                retrieved_by = ["dense"] if request.mode == "dense" else ["hybrid"]
+
+            c_entry = {
+                "passage_id": pid,
+                "text": doc_info["text"],
+                "category": doc_info.get("category"),
+                "source": doc_info.get("source"),
+                "length_chars": len(doc_info["text"]),
+                "score": cand.get("score") if request.mode != "dense" else cand.get("dense_score", 0.0),
+                "dense_rank": cand.get("dense_rank"),
+                "dense_score": cand.get("dense_score"),
+                "bm25_rank": cand.get("bm25_rank"),
+                "bm25_score": cand.get("bm25_score"),
+                "sparse_rank": cand.get("bm25_rank"),
+                "sparse_score": cand.get("bm25_score"),
+                "fused_rank": rank_idx if request.mode != "dense" else None,
+                "fused_score": cand.get("score") if request.mode != "dense" else None,
+                "retrieved_by": retrieved_by,
+                "rerank_rank": None,
+                "rerank_score": None,
+            }
+            hydrated_candidates.append(c_entry)
+
+        # 4. Optional Reranking Stage
+        final_pool = hydrated_candidates
+        if should_rerank and self.reranker is not None:
+            rerank_pool = hydrated_candidates[:rerank_k]
+            reranked, r_ms = self.reranker.rerank(
+                query=request.query,
+                candidates=rerank_pool,
+                top_k=request.top_k,
+            )
+            latencies["rerank"] = round(r_ms, 2)
+            final_pool = reranked
+
+        # 5. Assemble final response items
+        results: list[SearchResultItem] = []
+        for rank_idx, item in enumerate(final_pool[: request.top_k], start=1):
+            final_score = (
+                item.get("rerank_score")
+                if should_rerank and item.get("rerank_score") is not None
+                else item["score"]
+            )
             results.append(
                 SearchResultItem(
-                    rank=len(results) + 1,
-                    passage_id=pid,
-                    text=doc_info["text"],
-                    category=doc_info.get("category"),
-                    source=doc_info.get("source"),
-                    score=cand.get("score") if request.mode == "hybrid" else cand.get("dense_score", 0.0),
-                    dense_rank=cand.get("dense_rank"),
-                    dense_score=cand.get("dense_score"),
-                    bm25_rank=cand.get("bm25_rank"),
-                    bm25_score=cand.get("bm25_score"),
+                    rank=rank_idx,
+                    passage_id=item["passage_id"],
+                    text=item["text"],
+                    category=item.get("category"),
+                    source=item.get("source"),
+                    length_chars=item.get("length_chars"),
+                    score=round(float(final_score), 4),
+                    dense_rank=item.get("dense_rank"),
+                    dense_score=item.get("dense_score"),
+                    bm25_rank=item.get("bm25_rank"),
+                    bm25_score=item.get("bm25_score"),
+                    sparse_rank=item.get("sparse_rank"),
+                    sparse_score=item.get("sparse_score"),
+                    fused_rank=item.get("fused_rank"),
+                    fused_score=item.get("fused_score"),
+                    rerank_rank=item.get("rerank_rank"),
+                    rerank_score=item.get("rerank_score"),
+                    retrieved_by=item.get("retrieved_by", []),
                 )
             )
-
-            if len(results) == request.top_k:
-                break
 
         latencies["total"] = round((time.perf_counter() - t_total_start) * 1000.0, 2)
         index_version = int(self.text_store.get_meta("index_version", 1))
@@ -127,11 +218,12 @@ class SearchService:
         filters_applied = None
         if request.filters:
             filters_applied = {
-                k: v for k, v in [("category", request.filters.category), ("source", request.filters.source)]
+                k: v
+                for k, v in [("category", request.filters.category), ("source", request.filters.source)]
                 if v is not None
             }
 
-        return SearchResponse(
+        response = SearchResponse(
             query=request.query,
             mode=request.mode,
             fusion_used=fusion_used,
@@ -139,12 +231,24 @@ class SearchService:
             index_version=index_version,
             results=results,
             latency_ms=LatencyBreakdown(**latencies),
+            cache_hit=False,
+            governor_state="normal",
         )
 
+        # Store in cache if enabled
+        if use_cache and self.cache is not None and cache_key is not None:
+            self.cache.set(cache_key, response)
+
+        return response
+
     def upsert_passage(self, req: UpsertRequest) -> UpsertResponse:
-        """Live upsert implementing PATCH-1 & Gate 6 atomic update."""
+        """Live upsert implementing PATCH-1 & Gate 6 atomic update with cache invalidation."""
         pid_str = str(req.passage_id)
         pt_id = passage_id_to_point_id(pid_str)
+
+        # Invalidate query cache immediately
+        if self.cache is not None:
+            self.cache.invalidate()
 
         # 1. Compute dense vector
         dense_vec = self.dense_retriever.encoder.encode_queries(req.text)[0].tolist()
@@ -168,6 +272,7 @@ class SearchService:
 
         # 5. Write to Qdrant (wait=True for synchronous confirmation)
         from qdrant_client import models
+
         pt = models.PointStruct(
             id=pt_id,
             vector={
@@ -189,8 +294,13 @@ class SearchService:
         )
 
     def delete_passage(self, passage_id: str) -> DeleteResponse:
-        """Live delete removing from Qdrant and SQLite."""
+        """Live delete removing from Qdrant and SQLite with cache invalidation."""
         pid_str = str(passage_id)
+
+        # Invalidate query cache immediately
+        if self.cache is not None:
+            self.cache.invalidate()
+
         was_deleted, new_version = self.text_store.delete_single(pid_str)
         self.qdrant_store.delete_point(pid_str, wait=True)
 
@@ -204,8 +314,9 @@ class SearchService:
         """Provides system health, drift, index stats, and metadata."""
         stats = self.text_store.get_stats()
         q_count = self.qdrant_store.count()
+        cache_stats = self.cache.stats() if self.cache is not None else None
         return {
-            "modes": ["dense", "hybrid"],
+            "modes": ["dense", "hybrid", "hybrid_rerank"],
             "fusion_defaults": self.config["retrieval"]["fusion"],
             "point_count": q_count,
             "sqlite_count": stats["n_docs"],
@@ -219,5 +330,11 @@ class SearchService:
             "models": {
                 "dense": self.config["encoder"]["model_name"],
                 "lexical": "qdrant_sparse_bm25_idf",
+                "reranker": (
+                    self.reranker.model_name
+                    if self.reranker is not None
+                    else "cross-encoder/ms-marco-MiniLM-L-6-v2 (INT8)"
+                ),
             },
+            "cache_stats": cache_stats,
         }

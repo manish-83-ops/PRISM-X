@@ -1,6 +1,6 @@
-# PRISMX API Contract
+# PRISMX API Contract (Gate 4A)
 
-This document provides the complete, authoritative specification for all HTTP endpoints provided by the PRISMX backend. Frontend and UI teammates can integrate directly against this specification.
+This document provides the complete, authoritative specification for all HTTP endpoints provided by the PRISMX backend. Frontend and UI applications can integrate directly against this specification with full backward compatibility.
 
 ---
 
@@ -8,12 +8,14 @@ This document provides the complete, authoritative specification for all HTTP en
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `POST` | `/search` | Retrieve top-$k$ passages using dense or hybrid mode with optional pre-filtering |
-| `POST` | `/passages/upsert` | Add or update a single passage with atomic index version update |
-| `DELETE` | `/passages/{passage_id}` | Remove a passage from Qdrant and SQLite |
+| `POST` | `/search` | Retrieve top-$k$ passages using dense, hybrid, or hybrid+rerank mode with optional pre-filtering and caching |
+| `POST` | `/answer` | End-to-end RAG answer synthesis grounded strictly in retrieved passages with citation markers |
+| `POST` | `/passages/upsert` | Add or update a single passage with atomic index version update and cache invalidation |
+| `DELETE` | `/passages/{passage_id}` | Remove a passage from Qdrant and SQLite with automatic cache invalidation |
+| `POST` | `/cache/invalidate` | Manually clear all entries in the query result cache |
 | `GET` | `/health` | Healthcheck returning process liveness |
-| `GET` | `/ready` | Readiness check (200 OK only after models and Qdrant are loaded and warmed up) |
-| `GET` | `/meta` | System metadata, available modes, categories, point count, index version |
+| `GET` | `/ready` | Readiness check (200 OK only after models, reranker, and Qdrant are loaded and warmed up) |
+| `GET` | `/meta` | System metadata, available modes, categories, point count, index version, cache statistics |
 | `GET` | `/bench/latest` | Latest benchmark results JSON |
 | `GET` | `/eval/latest` | Latest evaluation results JSON |
 
@@ -27,15 +29,17 @@ This document provides the complete, authoritative specification for all HTTP en
 ```json
 {
   "query": "what is machine learning",
-  "mode": "hybrid",
+  "mode": "hybrid_rerank",
   "top_k": 5,
+  "rerank_k": 30,
+  "use_cache": true,
   "filters": {
     "category": "science-tech",
     "source": "msmarco-passage"
   },
   "fusion": {
     "method": "weighted",
-    "alpha": 0.7,
+    "alpha": 0.8,
     "rrf_k": 60
   },
   "rerank": false
@@ -43,25 +47,27 @@ This document provides the complete, authoritative specification for all HTTP en
 ```
 
 - `query` (string, required): 1 to 512 characters.
-- `mode` (string, optional, default `"hybrid"`): `"dense"` or `"hybrid"`.
-- `top_k` (integer, optional, default `5`): Range 1 to 50.
+- `mode` (string, optional, default `"hybrid"`): Supported modes: `"dense"`, `"hybrid"`, `"hybrid_rerank"`, `"hybrid+rerank"`.
+- `top_k` (integer, optional, default `5`): Range 1 to 50 (number of final passages returned).
+- `rerank_k` (integer, optional, default `30`): Range 1 to 100 (candidate depth evaluated by cross-encoder in rerank modes).
+- `use_cache` (boolean, optional, default `true`): Toggle query result cache lookup and population (alias: `cache`).
 - `filters` (object, optional, nullable):
   - `category` (string, list of strings, or null).
   - `source` (string, list of strings, or null).
 - `fusion` (object, optional, nullable):
   - `method` (string): `"weighted"` or `"rrf"`.
-  - `alpha` (float): Required if method is `"weighted"`.
-  - `rrf_k` (integer): Required if method is `"rrf"`.
-- `rerank` (boolean, optional, default `false`): Applies cross-encoder reranker if enabled.
+  - `alpha` (float): Weight for dense channel if method is `"weighted"` (default: 0.8).
+  - `rrf_k` (integer): Parameter if method is `"rrf"` (default: 60).
+- `rerank` (boolean, optional, default `false`): Enables cross-encoder reranking if `mode` is `"hybrid"`.
 
 #### Response Body (200 OK)
 ```json
 {
   "query": "what is machine learning",
-  "mode": "hybrid",
+  "mode": "hybrid_rerank",
   "fusion_used": {
     "method": "weighted",
-    "alpha": 0.7,
+    "alpha": 0.8,
     "rrf_k": 60
   },
   "filters_applied": {
@@ -69,6 +75,8 @@ This document provides the complete, authoritative specification for all HTTP en
     "source": ["msmarco-passage"]
   },
   "index_version": 1,
+  "cache_hit": false,
+  "governor_state": "normal",
   "results": [
     {
       "rank": 1,
@@ -76,11 +84,19 @@ This document provides the complete, authoritative specification for all HTTP en
       "text": "Machine learning is a field of inquiry devoted to understanding and building methods that 'learn'...",
       "category": "science-tech",
       "source": "msmarco-passage",
-      "score": 0.8842,
+      "length_chars": 348,
+      "score": 8.4125,
       "dense_rank": 1,
       "dense_score": 0.8415,
       "bm25_rank": 2,
-      "bm25_score": 14.23
+      "bm25_score": 14.23,
+      "sparse_rank": 2,
+      "sparse_score": 14.23,
+      "fused_rank": 1,
+      "fused_score": 0.8842,
+      "rerank_rank": 1,
+      "rerank_score": 8.4125,
+      "retrieved_by": ["dense", "sparse"]
     }
   ],
   "latency_ms": {
@@ -89,77 +105,76 @@ This document provides the complete, authoritative specification for all HTTP en
     "sparse": 2.4,
     "fusion": 0.4,
     "fetch_text": 0.9,
-    "total": 13.7
+    "rerank": 42.1,
+    "total": 55.8
   }
 }
 ```
 
-*Notes on dense vs hybrid channel fields:*
-- In `"dense"` mode, `bm25_rank` and `bm25_score` are returned as `null`.
-- In `"hybrid"` mode, if a passage was discovered by only one channel, the opposite channel fields are `null`.
+*Evidence Fields Explanation:*
+- `length_chars`: Character length of hydrated passage text.
+- `score`: Final ranking score (rerank logit in rerank mode, fused score in hybrid mode, cosine similarity in dense mode).
+- `fused_rank`, `fused_score`: Preserved first-stage fusion rank and score before reranking.
+- `rerank_rank`, `rerank_score`: Cross-encoder ranking and logit score.
+- `retrieved_by`: List of channels discovering the passage (`["dense"]`, `["sparse"]`, or `["dense", "sparse"]`).
+- `cache_hit`: `true` if served directly from in-memory LRU cache in sub-millisecond time.
+- `governor_state`: State of deadline governor (`"normal"` in 4A).
 
 ---
 
-### `POST /passages/upsert`
+### `POST /answer`
 
 #### Request Body
 ```json
 {
-  "passage_id": "test_doc_001",
-  "text": "This is a newly ingested live update document for testing.",
-  "category": "science-tech",
-  "source": "manual_ingest"
+  "query": "what is hypertension and its primary risks",
+  "top_k": 5,
+  "mode": "hybrid_rerank",
+  "rerank_k": 30,
+  "use_cache": true,
+  "filters": null
 }
 ```
 
 #### Response Body (200 OK)
 ```json
 {
-  "status": "success",
-  "passage_id": "test_doc_001",
-  "index_version": 2
+  "query": "what is hypertension and its primary risks",
+  "answer": "Hypertension (high blood pressure) is a condition where arterial pressure is chronically elevated [1]. Primary complications include heart attacks, strokes, and renal failure [2].",
+  "citations": [
+    {
+      "citation_id": 1,
+      "passage_id": "1110331",
+      "category": "symptoms-pain",
+      "source": "msmarco-passage",
+      "score": 7.9124
+    },
+    {
+      "citation_id": 2,
+      "passage_id": "8731150",
+      "category": "symptoms-pain",
+      "source": "msmarco-passage",
+      "score": 6.5412
+    }
+  ],
+  "passages": [...],
+  "model": "llama-3.3-70b-versatile",
+  "latency_ms": {
+    "retrieval": 65.2,
+    "llm": 420.5,
+    "total": 485.7
+  },
+  "cache_hit": false
 }
 ```
 
 ---
+
+### `POST /passages/upsert`
+Synchronously upserts passage into SQLite and Qdrant, increments `index_version`, and invalidates the query result cache.
 
 ### `DELETE /passages/{passage_id}`
+Synchronously deletes passage from SQLite and Qdrant, increments `index_version`, and invalidates the query result cache.
 
-#### Response Body (200 OK)
-```json
-{
-  "status": "deleted",
-  "passage_id": "test_doc_001",
-  "index_version": 3
-}
-```
-
----
-
-### `GET /health` & `GET /ready`
-
-#### `GET /health` (200 OK)
-```json
-{ "status": "ok" }
-```
-
-#### `GET /ready` (200 OK)
-```json
-{
-  "status": "ready",
-  "models_loaded": true,
-  "qdrant_connected": true,
-  "warmed_up": true
-}
-```
-
----
-
-### Standard Error Format
-All errors return consistent JSON with semantic HTTP status codes (no raw stack traces):
-```json
-{
-  "error": "BAD_REQUEST",
-  "detail": "query must be between 1 and 512 characters"
-}
-```
+### `POST /cache/invalidate`
+Clears all entries in the in-memory query cache. Returns `{"status": "cleared", "entries_cleared": N}`.

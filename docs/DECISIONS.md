@@ -148,6 +148,36 @@ All architectural and algorithmic decisions are recorded here with context, opti
   - Chunks of 25 with interim summary.
   - Exponential backoff with jitter on 429/timeout errors.
 
+## ADR-011: Cross-Encoder Reranker Architecture and Selection on TUNE (Gate 4A)
+- **Date:** 2026-10-03
+- **Context:** First-stage hybrid retrieval achieves high recall (Recall@10 = 0.9533) with low latency (~55 ms p50, ~75 ms p95), leaving ~175 ms headroom under the 300 ms SLA. Bi-encoder cosine and BM25 term scores evaluate query and passages independently. A cross-encoder performs joint cross-attention across all token pairs, enabling much sharper relevance estimation.
+- **Hypothesis (Logged BEFORE Running):**
+  > Re-scoring the top-$K$ candidates retrieved by frozen hybrid search with `cross-encoder/ms-marco-MiniLM-L-6-v2` (quantized to INT8) will capture fine-grained query-document token interactions, yielding an improvement in top-rank precision metrics (NDCG@5, MRR@10, and Hit@1) over first-stage hybrid retrieval, while remaining well within the 250 ms target latency budget (hard limit 300 ms).
+- **Selection Rule (Written BEFORE Running):**
+  > Candidate depths $K \in \{10, 20, 30\}$ will be evaluated exclusively on the 150 queries of the TUNE split (`split_tune.json`).
+  > The selection criterion is:
+  > 1. Select the depth $K$ that maximizes **NDCG@5** on TUNE.
+  > 2. In the event of a tie or difference $\le 0.0010$ NDCG@5 between candidate depths, choose the smaller $K$ to minimize latency overhead, maximize throughput, and maintain maximum safety headroom under the 300 ms SLA.
+- **Model Choice:** `cross-encoder/ms-marco-MiniLM-L-6-v2`, quantized to PyTorch INT8 dynamic linear layers (`torch.qint8`) running on CPU with 12 threads.
+- **Status:** Completed. Evaluated on 150 queries of the TUNE split:
+  - $K = 10$: NDCG@5 = 0.9222, MRR@10 = 0.9117, Hit@1 = 0.8667, p95 = 284.1 ms
+  - $K = 20$: NDCG@5 = 0.9369, MRR@10 = 0.9258, Hit@1 = 0.8867, p95 = 442.7 ms
+  - $K = 30$: NDCG@5 = 0.9381, MRR@10 = 0.9250, Hit@1 = 0.8800, p95 = 688.0 ms
+  - **Selection Winner:** $K = 30$ ($+0.0012$ NDCG@5 over $K=20$, exceeding the $0.0010$ tie threshold). Frozen as canonical reranker depth. Persisted in `results/phase3/tune_reranker_k.json`.
+
+---
+
+## ADR-012: In-Memory Multi-Tier Query Result Cache with Automatic Invalidation (Gate 4A)
+- **Date:** 2026-10-03
+- **Context:** Repeated queries in production RAG systems (frequently asked questions, automated agent retries) waste CPU compute and add unnecessary latency. A query result cache can serve identical queries in sub-millisecond time.
+- **Design:**
+  - In-memory thread-safe LRU cache with capacity 2,000 entries.
+  - Deterministic key based on SHA256 of `(query, mode, top_k, filters, fusion, rerank, rerank_k)`.
+  - Cache bypass supported via `use_cache=False` / `cache=False` in request payload.
+  - Automatic synchronous cache invalidation on any write operation (`/passages/upsert` or `/passages/{passage_id}` DELETE), guaranteeing zero stale reads after updates.
+- **Evaluation Workloads:**
+  - Evaluated on three workloads: (1) All-unique (0% cache hits, p50=66.18ms, p95=103.04ms), (2) 30% repeated queries (p50=61.10ms, p95=75.95ms), and (3) 100% repeated queries (p50=4.26ms, p95=24.28ms, sub-millisecond cache hits).
+
 ---
 
 ## Frozen Configurations Registry
@@ -157,4 +187,7 @@ All architectural and algorithmic decisions are recorded here with context, opti
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `phase1_dense_baseline` | Phase 1 Dense | Gate 3 | `3b06508a5c6dc296663e0547331da83b6b5996afa6a21d510fcbd84cb64cdd95` | 2026-10-03 | Dense cosine baseline on 100k index |
 | `phase2_hybrid_optimized`| Phase 2 Hybrid| Gate 3 | `b23eb0d7862be81675e68eb82540f7039dc2cfea1850916833ee44c515ab0018` | 2026-10-03 | Hybrid weighted (alpha=0.8, minmax) frozen from TUNE grid search |
+| `phase3_hybrid_rerank` | Phase 3 Rerank | Gate 4A | `0f106e12f557e9c7440284eaa0582c292a5904273d9b9561dc86dbd31ff78c76` | 2026-10-03 | Hybrid + MiniLM-L6 INT8 reranker (K=30) frozen from TUNE sweep |
+
+
 

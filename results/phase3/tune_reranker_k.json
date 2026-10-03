@@ -1,0 +1,36 @@
+{
+  "selection_rule": "Maximize NDCG@5 on TUNE; tie-break (|delta| <= 0.001) to smaller K",
+  "chosen_k": 30,
+  "results": {
+    "10": {
+      "k_candidate": 10,
+      "n_queries": 150,
+      "ndcg5": 0.9221566174561417,
+      "mrr10": 0.9116666666666666,
+      "recall5": 0.9633333333333334,
+      "hit1": 0.8666666666666667,
+      "mean_latency_ms": 200.99262533864626,
+      "p95_latency_ms": 284.1377950331661
+    },
+    "20": {
+      "k_candidate": 20,
+      "n_queries": 150,
+      "ndcg5": 0.9369039461416366,
+      "mrr10": 0.9257777777777778,
+      "recall5": 0.9733333333333334,
+      "hit1": 0.8866666666666667,
+      "mean_latency_ms": 305.6902153370902,
+      "p95_latency_ms": 442.6946900319308
+    },
+    "30": {
+      "k_candidate": 30,
+      "n_queries": 150,
+      "ndcg5": 0.9380689695043721,
+      "mrr10": 0.925,
+      "recall5": 0.98,
+      "hit1": 0.88,
+      "mean_latency_ms": 482.78680199369165,
+      "p95_latency_ms": 688.0230100476183
+    }
+  }
+}

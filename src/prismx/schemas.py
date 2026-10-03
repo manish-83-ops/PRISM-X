@@ -5,22 +5,34 @@ from __future__ import annotations
 from typing import Any, Literal
 from pydantic import BaseModel, Field
 
+
 class FusionParams(BaseModel):
     method: Literal["weighted", "rrf"] = "weighted"
-    alpha: float = Field(default=0.7, ge=0.0, le=1.0)
+    alpha: float = Field(default=0.8, ge=0.0, le=1.0)
     rrf_k: int = Field(default=60, ge=1)
+
 
 class FilterParams(BaseModel):
     category: str | list[str] | None = None
     source: str | list[str] | None = None
 
+
 class SearchRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=512)
-    mode: Literal["dense", "hybrid"] = "hybrid"
+    mode: Literal["dense", "hybrid", "hybrid_rerank", "hybrid+rerank"] = "hybrid"
     top_k: int = Field(default=5, ge=1, le=50)
     filters: FilterParams | None = None
     fusion: FusionParams | None = None
     rerank: bool = False
+    rerank_k: int = Field(default=20, ge=1, le=100)
+    use_cache: bool = True
+    cache: bool | None = None  # alias for use_cache
+
+    def get_use_cache(self) -> bool:
+        if self.cache is not None:
+            return self.cache
+        return self.use_cache
+
 
 class SearchResultItem(BaseModel):
     rank: int
@@ -28,19 +40,30 @@ class SearchResultItem(BaseModel):
     text: str
     category: str | None = None
     source: str | None = None
+    length_chars: int | None = None
     score: float
     dense_rank: int | None = None
     dense_score: float | None = None
     bm25_rank: int | None = None
     bm25_score: float | None = None
+    sparse_rank: int | None = None
+    sparse_score: float | None = None
+    fused_rank: int | None = None
+    fused_score: float | None = None
+    rerank_rank: int | None = None
+    rerank_score: float | None = None
+    retrieved_by: list[str] = Field(default_factory=list)
+
 
 class LatencyBreakdown(BaseModel):
-    encode: float
-    dense: float
-    sparse: float
-    fusion: float
-    fetch_text: float
-    total: float
+    encode: float = 0.0
+    dense: float = 0.0
+    sparse: float = 0.0
+    fusion: float = 0.0
+    fetch_text: float = 0.0
+    rerank: float = 0.0
+    total: float = 0.0
+
 
 class SearchResponse(BaseModel):
     query: str
@@ -50,6 +73,9 @@ class SearchResponse(BaseModel):
     index_version: int
     results: list[SearchResultItem]
     latency_ms: LatencyBreakdown
+    cache_hit: bool = False
+    governor_state: str = "normal"
+
 
 class UpsertRequest(BaseModel):
     passage_id: str
@@ -57,15 +83,18 @@ class UpsertRequest(BaseModel):
     category: str | None = None
     source: str | None = "manual"
 
+
 class UpsertResponse(BaseModel):
     status: str = "success"
     passage_id: str
     index_version: int
 
+
 class DeleteResponse(BaseModel):
     status: str = "deleted"
     passage_id: str
     index_version: int
+
 
 class MetaResponse(BaseModel):
     modes: list[str]
@@ -82,6 +111,35 @@ class MetaResponse(BaseModel):
     sources: list[str] | None = None
     models: dict[str, str]
     config_hash: str
+    cache_stats: dict[str, Any] | None = None
+
+
+class AnswerCitation(BaseModel):
+    citation_id: int
+    passage_id: str
+    category: str | None = None
+    source: str | None = None
+    score: float
+
+
+class AnswerRequest(BaseModel):
+    query: str = Field(..., min_length=1, max_length=512)
+    top_k: int = Field(default=5, ge=1, le=20)
+    mode: Literal["dense", "hybrid", "hybrid_rerank", "hybrid+rerank"] = "hybrid_rerank"
+    rerank_k: int = Field(default=20, ge=1, le=100)
+    filters: FilterParams | None = None
+    use_cache: bool = True
+
+
+class AnswerResponse(BaseModel):
+    query: str
+    answer: str
+    citations: list[AnswerCitation]
+    passages: list[SearchResultItem]
+    model: str
+    latency_ms: dict[str, float]
+    cache_hit: bool = False
+
 
 class ErrorResponse(BaseModel):
     error: str

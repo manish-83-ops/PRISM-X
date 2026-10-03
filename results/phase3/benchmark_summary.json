@@ -1,0 +1,77 @@
+{
+  "benchmark": "Gate 4A Full Latency and Cache Suite",
+  "timestamp": "2026-10-03 18:51:25",
+  "protocol": "D1 Client-side wall clock via HTTP API, D2 Linear interpolation percentiles",
+  "warmup_queries_discarded": 20,
+  "warmup_mean_ms": 74.27,
+  "sla_ceiling_ms": 300.0,
+  "internal_target_ms": 250.0,
+  "modes": {
+    "dense": {
+      "scenario": "dense_uncached",
+      "mode": "dense",
+      "n_queries": 100,
+      "p50_ms": 58.84,
+      "p90_ms": 74.51,
+      "p95_ms": 94.5,
+      "p99_ms": 187.42,
+      "max_ms": 199.16,
+      "mean_ms": 63.76
+    },
+    "hybrid": {
+      "scenario": "hybrid_uncached",
+      "mode": "hybrid",
+      "n_queries": 100,
+      "p50_ms": 66.98,
+      "p90_ms": 96.57,
+      "p95_ms": 104.24,
+      "p99_ms": 143.79,
+      "max_ms": 151.72,
+      "mean_ms": 73.33
+    },
+    "hybrid_rerank": {
+      "scenario": "hybrid_rerank_uncached",
+      "mode": "hybrid_rerank",
+      "n_queries": 100,
+      "p50_ms": 497.55,
+      "p90_ms": 693.81,
+      "p95_ms": 743.53,
+      "p99_ms": 863.13,
+      "max_ms": 878.37,
+      "mean_ms": 520.09
+    },
+    "cache_all_unique": {
+      "scenario": "cache_all_unique",
+      "mode": "hybrid",
+      "n_queries": 100,
+      "p50_ms": 66.18,
+      "p90_ms": 89.25,
+      "p95_ms": 103.04,
+      "p99_ms": 126.39,
+      "max_ms": 238.14,
+      "mean_ms": 71.47
+    },
+    "cache_30pct_repeated": {
+      "scenario": "cache_30_pct_repeated",
+      "mode": "hybrid",
+      "n_queries": 100,
+      "p50_ms": 61.1,
+      "p90_ms": 72.69,
+      "p95_ms": 75.95,
+      "p99_ms": 80.26,
+      "max_ms": 84.27,
+      "mean_ms": 62.43
+    },
+    "cache_100pct_repeated": {
+      "scenario": "cache_100_pct_repeated",
+      "mode": "hybrid",
+      "n_queries": 100,
+      "p50_ms": 4.26,
+      "p90_ms": 20.71,
+      "p95_ms": 24.28,
+      "p99_ms": 28.64,
+      "max_ms": 28.91,
+      "mean_ms": 7.87
+    }
+  }
+}

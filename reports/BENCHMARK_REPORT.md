@@ -150,7 +150,7 @@ Benchmarking was executed via the end-to-end HTTP API path (`POST /search`) usin
 
 ### Latency Percentiles Table (100 Queries):
 
-| Metric | Uncached Hybrid (ms) | Cached Hybrid (ms) | Problem Statement Ceiling | Margin to Limit |
+| Metric | Uncached Hybrid (ms) [Headline] | Cached, repeated queries (best case, 100% hit rate) (ms) | Problem Statement Ceiling | Margin to Limit |
 | :--- | :--- | :--- | :--- | :--- |
 | **p50 (Median)** | **55.39 ms** | **6.11 ms** | - | - |
 | **p90** | **71.67 ms** | **27.02 ms** | - | - |
@@ -160,8 +160,9 @@ Benchmarking was executed via the end-to-end HTTP API path (`POST /search`) usin
 | **Mean** | **51.83 ms** | **12.04 ms** | - | - |
 
 **Query Cache Performance:**
-- **Implementation:** In-memory LRU cache (capacity 2,000 queries) with automatic invalidation on upsert/delete.
-- **Cache hit rate (benchmark):** 100% (100 identical queries replayed).
+- **Headline Latency:** Uncached p95 of **75.03 ms** is the official headline latency under cold/unique queries against the 300 ms SLA.
+- **Implementation:** In-memory LRU cache with automatic invalidation on upsert/delete.
+- **Cache hit rate (benchmark):** 100% (100 identical queries replayed, best-case upper bound).
 - **p95 speedup:** 29.01 ms cached vs 75.03 ms uncached → **61.3% faster**.
 
 *Raw Per-Query Telemetry:* Stored in `results/phase2/latency_hybrid_uncached.csv` and `results/phase2/latency_hybrid_cached.csv`.

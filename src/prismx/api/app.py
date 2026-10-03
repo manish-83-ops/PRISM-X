@@ -1,9 +1,11 @@
-"""PRISMX FastAPI Backend Application."""
+"""PRISMX FastAPI Backend Application with Hybrid Retrieval, Reranking, In-Memory Caching, and RAG /answer Endpoint."""
 
 from __future__ import annotations
 
 import json
 import logging
+import os
+import time
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any, AsyncGenerator
@@ -18,10 +20,15 @@ from prismx.index.encoder import DenseEncoder
 from prismx.index.lexical import BM25Tokenizer
 from prismx.index.qdrant_store import QdrantStore
 from prismx.index.text_store import TextStore
+from prismx.retrieve.cache import QueryCache
 from prismx.retrieve.dense import DenseRetriever
 from prismx.retrieve.hybrid import HybridRetriever
+from prismx.retrieve.rerank import CrossEncoderReranker
 from prismx.retrieve.service import SearchService
 from prismx.schemas import (
+    AnswerCitation,
+    AnswerRequest,
+    AnswerResponse,
     DeleteResponse,
     ErrorResponse,
     MetaResponse,
@@ -40,6 +47,8 @@ _state: dict[str, Any] = {
     "qdrant_store": None,
     "encoder": None,
     "tokenizer": None,
+    "reranker": None,
+    "cache": None,
     "service": None,
     "ready": False,
 }
@@ -82,7 +91,18 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     )
     _state["tokenizer"] = tokenizer
 
-    # 4. Retrievers & SearchService
+    # 4. INT8 Cross-Encoder Reranker
+    reranker = CrossEncoderReranker(
+        model_name="cross-encoder/ms-marco-MiniLM-L-6-v2",
+        torch_threads=cfg["encoder"].get("torch_threads", 12),
+    )
+    _state["reranker"] = reranker
+
+    # 5. Query Cache
+    cache = QueryCache(maxsize=2000)
+    _state["cache"] = cache
+
+    # 6. Retrievers & SearchService
     dense_retriever = DenseRetriever(encoder=encoder, qdrant_store=qdrant_store, config=cfg)
     hybrid_retriever = HybridRetriever(
         dense_retriever=dense_retriever,
@@ -96,13 +116,16 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         text_store=text_store,
         qdrant_store=qdrant_store,
         config=cfg,
+        reranker=reranker,
+        cache=cache,
     )
     _state["service"] = service
 
-    # 5. Warm up pipeline
+    # 7. Warm up pipeline
     try:
         logger.info("Warming up models with test query...")
         encoder.encode_queries(["warmup query"])
+        reranker.rerank("warmup query", [{"passage_id": "warm", "text": "warmup passage", "score": 1.0}], top_k=1)
         _state["ready"] = True
         logger.info("PRISMX backend initialization complete and ready.")
     except Exception as exc:
@@ -121,12 +144,12 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
 app = FastAPI(
     title="PRISMX Vector Database and Hybrid RAG Engine",
-    description="High-performance dual-vector retrieval system with BM25 sparse IDF and dense embeddings.",
-    version="1.0.0",
+    description="High-performance dual-vector retrieval system with BM25 sparse IDF, dense embeddings, INT8 reranking, and LRU cache.",
+    version="2.0.0",
     lifespan=lifespan,
 )
 
-# CORS middleware for teammate UI integration
+# CORS middleware for UI integration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -179,7 +202,7 @@ async def readiness_check() -> dict[str, Any]:
         )
     return {
         "status": "ready",
-        "models_loaded": _state.get("encoder") is not None,
+        "models_loaded": _state.get("encoder") is not None and _state.get("reranker") is not None,
         "qdrant_connected": _state.get("qdrant_store") is not None,
         "warmed_up": True,
     }
@@ -187,7 +210,7 @@ async def readiness_check() -> dict[str, Any]:
 
 @app.get("/meta", response_model=MetaResponse, tags=["System"])
 async def get_meta() -> MetaResponse:
-    """Returns system metadata, index statistics, drift metrics, and categories."""
+    """Returns system metadata, index statistics, drift metrics, cache stats, and categories."""
     service = get_service()
     meta = service.get_meta()
     categories = []
@@ -217,12 +240,13 @@ async def get_meta() -> MetaResponse:
         sources=["msmarco-passage", "manual"],
         models=meta["models"],
         config_hash=meta["config_hash"],
+        cache_stats=meta.get("cache_stats"),
     )
 
 
 @app.post("/search", response_model=SearchResponse, tags=["Retrieval"])
 async def search(req: SearchRequest) -> SearchResponse:
-    """Execute dense or hybrid retrieval with optional metadata pre-filtering."""
+    """Execute dense, hybrid, or hybrid+rerank retrieval with optional metadata pre-filtering and caching."""
     service = get_service()
     try:
         return service.search(req)
@@ -236,7 +260,7 @@ async def search(req: SearchRequest) -> SearchResponse:
 
 @app.post("/passages/upsert", response_model=UpsertResponse, tags=["Ingestion"])
 async def upsert_passage(req: UpsertRequest) -> UpsertResponse:
-    """Atomic upsert of passage into both Qdrant and SQLite with index version bump."""
+    """Atomic upsert of passage into both Qdrant and SQLite with index version bump and cache invalidation."""
     service = get_service()
     try:
         return service.upsert_passage(req)
@@ -250,7 +274,7 @@ async def upsert_passage(req: UpsertRequest) -> UpsertResponse:
 
 @app.delete("/passages/{passage_id}", response_model=DeleteResponse, tags=["Ingestion"])
 async def delete_passage(passage_id: str) -> DeleteResponse:
-    """Delete passage from Qdrant and SQLite."""
+    """Delete passage from Qdrant and SQLite with cache invalidation."""
     service = get_service()
     try:
         return service.delete_passage(passage_id)
@@ -262,30 +286,133 @@ async def delete_passage(passage_id: str) -> DeleteResponse:
         )
 
 
+@app.post("/answer", response_model=AnswerResponse, tags=["RAG"])
+async def answer_query(req: AnswerRequest) -> AnswerResponse:
+    """Execute retrieval and synthesize an answer grounded strictly in retrieved passages (server-side Groq)."""
+    t0 = time.perf_counter()
+    service = get_service()
+
+    # 1. Retrieve passages
+    search_req = SearchRequest(
+        query=req.query,
+        mode=req.mode,
+        top_k=req.top_k,
+        rerank_k=req.rerank_k,
+        filters=req.filters,
+        use_cache=req.use_cache,
+    )
+    s_resp = service.search(search_req)
+    passages = s_resp.results
+    retrieval_ms = round((time.perf_counter() - t0) * 1000.0, 2)
+
+    citations: list[AnswerCitation] = [
+        AnswerCitation(
+            citation_id=idx,
+            passage_id=p.passage_id,
+            category=p.category,
+            source=p.source,
+            score=p.score,
+        )
+        for idx, p in enumerate(passages, start=1)
+    ]
+
+    # 2. Generation using Groq LLM if API key configured
+    groq_api_key = os.environ.get("GROQ_API_KEY")
+    t_llm_start = time.perf_counter()
+    llm_model = "extractive-synthesis"
+    answer_text = ""
+
+    if groq_api_key and passages:
+        try:
+            from groq import Groq
+
+            client = Groq(api_key=groq_api_key)
+            context_blocks = "\n\n".join(
+                [f"[{idx}] (ID: {p.passage_id}): {p.text}" for idx, p in enumerate(passages, start=1)]
+            )
+            prompt = (
+                f"You are PRISMX RAG Assistant. Answer the user query using ONLY the numbered context passages provided below. "
+                f"Every statement in your answer MUST cite the corresponding passage number using brackets like [1] or [2]. "
+                f"If the context does not contain enough information to answer the question, state that clearly.\n\n"
+                f"Context Passages:\n{context_blocks}\n\n"
+                f"User Question: {req.query}\n\n"
+                f"Answer:"
+            )
+
+            # Try llama-3.3-70b-versatile, fallback to allam-2-7b
+            chosen_model = "llama-3.3-70b-versatile"
+            try:
+                chat_resp = client.chat.completions.create(
+                    model=chosen_model,
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.1,
+                    max_tokens=512,
+                )
+            except Exception:
+                chosen_model = "allam-2-7b"
+                chat_resp = client.chat.completions.create(
+                    model=chosen_model,
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.1,
+                    max_tokens=512,
+                )
+
+            answer_text = chat_resp.choices[0].message.content or ""
+            llm_model = chosen_model
+        except Exception as exc:
+            logger.warning(f"Groq synthesis failed, falling back to extractive synthesis: {exc}")
+            answer_text = ""
+
+    if not answer_text:
+        # Extractive fallback synthesis
+        if passages:
+            top_p = passages[0]
+            answer_text = (
+                f"According to retrieved passage [1] (ID: {top_p.passage_id}), {top_p.text[:300].strip()}... "
+                f"[Server-side GROQ_API_KEY is not configured or rate-limited; displaying grounded passage extract]."
+            )
+        else:
+            answer_text = "No relevant passages were found for the query."
+
+    llm_ms = round((time.perf_counter() - t_llm_start) * 1000.0, 2)
+    total_ms = round((time.perf_counter() - t0) * 1000.0, 2)
+
+    return AnswerResponse(
+        query=req.query,
+        answer=answer_text,
+        citations=citations,
+        passages=passages,
+        model=llm_model,
+        latency_ms={"retrieval": retrieval_ms, "llm": llm_ms, "total": total_ms},
+        cache_hit=s_resp.cache_hit,
+    )
+
+
+@app.post("/cache/invalidate", tags=["System"])
+async def invalidate_cache() -> dict[str, Any]:
+    """Manually clear all query cache entries."""
+    service = get_service()
+    cleared = service.cache.invalidate() if service.cache else 0
+    return {"status": "cleared", "entries_cleared": cleared}
+
+
 @app.get("/bench/latest", tags=["Benchmarks"])
 async def get_latest_benchmark() -> dict[str, Any]:
     """Retrieve the latest latency benchmark results."""
-    bench_file = Path("results/phase2/latency_benchmark.json")
-    if not bench_file.exists():
-        # Fallback to phase1 if phase2 not run yet
-        bench_file = Path("results/phase1/latency_benchmark.json")
-
-    if not bench_file.exists():
-        return {"status": "no_benchmark_run_yet", "results": None}
-
-    with open(bench_file, "r", encoding="utf-8") as f:
-        return json.load(f)
+    for p in ["results/phase3/benchmark_summary.json", "results/phase2/benchmark_summary.json", "results/phase1/latency_benchmark.json"]:
+        bench_file = Path(p)
+        if bench_file.exists():
+            with open(bench_file, "r", encoding="utf-8") as f:
+                return json.load(f)
+    return {"status": "no_benchmark_run_yet", "results": None}
 
 
 @app.get("/eval/latest", tags=["Evaluation"])
 async def get_latest_evaluation() -> dict[str, Any]:
     """Retrieve the latest retrieval evaluation metrics."""
-    eval_file = Path("results/phase2/eval_results.json")
-    if not eval_file.exists():
-        eval_file = Path("results/phase1/eval_results.json")
-
-    if not eval_file.exists():
-        return {"status": "no_eval_run_yet", "results": None}
-
-    with open(eval_file, "r", encoding="utf-8") as f:
-        return json.load(f)
+    for p in ["results/phase3/metrics.json", "results/phase2/metrics.json", "results/phase1/metrics.json"]:
+        eval_file = Path(p)
+        if eval_file.exists():
+            with open(eval_file, "r", encoding="utf-8") as f:
+                return json.load(f)
+    return {"status": "no_eval_run_yet", "results": None}

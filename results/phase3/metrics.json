@@ -1,0 +1,425 @@
+{
+  "evaluation_name": "Gate 4A Frozen Configurations Comparison (BENCH 100 queries)",
+  "timestamp": "2026-10-03 18:47:47",
+  "configs": {
+    "dense": {
+      "name": "Phase 1: Naive Dense (bge-small-en-v1.5)",
+      "summary": {
+        "hit_at_1": {
+          "mean": 0.73,
+          "ci_lower": 0.64,
+          "ci_upper": 0.81
+        },
+        "mrr_at_10": {
+          "mean": 0.8096,
+          "ci_lower": 0.7419,
+          "ci_upper": 0.871
+        },
+        "ndcg_at_5": {
+          "mean": 0.8337,
+          "ci_lower": 0.7724,
+          "ci_upper": 0.889
+        },
+        "ndcg_at_10": {
+          "mean": 0.8436,
+          "ci_lower": 0.7863,
+          "ci_upper": 0.8955
+        },
+        "recall_at_5": {
+          "mean": 0.9267,
+          "ci_lower": 0.87,
+          "ci_upper": 0.97
+        },
+        "recall_at_10": {
+          "mean": 0.9533,
+          "ci_lower": 0.91,
+          "ci_upper": 0.99
+        },
+        "success_at_5": {
+          "mean": 0.93,
+          "ci_lower": 0.88,
+          "ci_upper": 0.98
+        },
+        "success_at_10": {
+          "mean": 0.96,
+          "ci_lower": 0.92,
+          "ci_upper": 0.99
+        },
+        "rank_based_cp_at_5": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0
+        },
+        "rank_based_cr_at_5": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0
+        },
+        "rank_based_cr_at_10": {
+          "mean": 0.9533,
+          "ci_lower": 0.91,
+          "ci_upper": 0.99
+        }
+      }
+    },
+    "hybrid": {
+      "name": "Phase 2: Hybrid (Dense + BM25, alpha=0.8, minmax)",
+      "summary": {
+        "hit_at_1": {
+          "mean": 0.75,
+          "ci_lower": 0.66,
+          "ci_upper": 0.83
+        },
+        "mrr_at_10": {
+          "mean": 0.8292,
+          "ci_lower": 0.765,
+          "ci_upper": 0.8871
+        },
+        "ndcg_at_5": {
+          "mean": 0.847,
+          "ci_lower": 0.7869,
+          "ci_upper": 0.9009
+        },
+        "ndcg_at_10": {
+          "mean": 0.8589,
+          "ci_lower": 0.8036,
+          "ci_upper": 0.9086
+        },
+        "recall_at_5": {
+          "mean": 0.9217,
+          "ci_lower": 0.8667,
+          "ci_upper": 0.97
+        },
+        "recall_at_10": {
+          "mean": 0.9533,
+          "ci_lower": 0.91,
+          "ci_upper": 0.99
+        },
+        "success_at_5": {
+          "mean": 0.93,
+          "ci_lower": 0.88,
+          "ci_upper": 0.98
+        },
+        "success_at_10": {
+          "mean": 0.96,
+          "ci_lower": 0.92,
+          "ci_upper": 0.99
+        },
+        "rank_based_cp_at_5": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0
+        },
+        "rank_based_cr_at_5": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0
+        },
+        "rank_based_cr_at_10": {
+          "mean": 0.9533,
+          "ci_lower": 0.91,
+          "ci_upper": 0.99
+        }
+      }
+    },
+    "hybrid_rerank": {
+      "name": "Phase 3: Hybrid + MiniLM-L6 INT8 Rerank (K=30)",
+      "summary": {
+        "hit_at_1": {
+          "mean": 0.76,
+          "ci_lower": 0.67,
+          "ci_upper": 0.84
+        },
+        "mrr_at_10": {
+          "mean": 0.8432,
+          "ci_lower": 0.7834,
+          "ci_upper": 0.8979
+        },
+        "ndcg_at_5": {
+          "mean": 0.8589,
+          "ci_lower": 0.8023,
+          "ci_upper": 0.9104
+        },
+        "ndcg_at_10": {
+          "mean": 0.871,
+          "ci_lower": 0.8204,
+          "ci_upper": 0.9169
+        },
+        "recall_at_5": {
+          "mean": 0.9317,
+          "ci_lower": 0.88,
+          "ci_upper": 0.975
+        },
+        "recall_at_10": {
+          "mean": 0.9667,
+          "ci_lower": 0.93,
+          "ci_upper": 0.9967
+        },
+        "success_at_5": {
+          "mean": 0.94,
+          "ci_lower": 0.89,
+          "ci_upper": 0.98
+        },
+        "success_at_10": {
+          "mean": 0.97,
+          "ci_lower": 0.93,
+          "ci_upper": 1.0
+        },
+        "rank_based_cp_at_5": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0
+        },
+        "rank_based_cr_at_5": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0
+        },
+        "rank_based_cr_at_10": {
+          "mean": 0.9667,
+          "ci_lower": 0.93,
+          "ci_upper": 0.9967
+        }
+      }
+    }
+  },
+  "significance_tests": {
+    "hybrid_vs_dense": {
+      "hit_at_1": {
+        "mean_diff": 0.02,
+        "ci_lower": -0.03,
+        "ci_upper": 0.07,
+        "wins": 5,
+        "losses": 3,
+        "ties": 92,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "mrr_at_10": {
+        "mean_diff": 0.0196,
+        "ci_lower": -0.011,
+        "ci_upper": 0.0525,
+        "wins": 8,
+        "losses": 5,
+        "ties": 87,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg_at_5": {
+        "mean_diff": 0.0133,
+        "ci_lower": -0.0102,
+        "ci_upper": 0.0386,
+        "wins": 9,
+        "losses": 5,
+        "ties": 86,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg_at_10": {
+        "mean_diff": 0.0153,
+        "ci_lower": -0.0079,
+        "ci_upper": 0.04,
+        "wins": 9,
+        "losses": 6,
+        "ties": 85,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "recall_at_5": {
+        "mean_diff": -0.005,
+        "ci_lower": -0.015,
+        "ci_upper": 0.0,
+        "wins": 0,
+        "losses": 1,
+        "ties": 99,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "recall_at_10": {
+        "mean_diff": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 100,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "rank_based_cp_at_5": {
+        "mean_diff": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 100,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      }
+    },
+    "hybrid_rerank_vs_hybrid": {
+      "hit_at_1": {
+        "mean_diff": 0.01,
+        "ci_lower": -0.07,
+        "ci_upper": 0.09,
+        "wins": 8,
+        "losses": 7,
+        "ties": 85,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "mrr_at_10": {
+        "mean_diff": 0.014,
+        "ci_lower": -0.0311,
+        "ci_upper": 0.0623,
+        "wins": 13,
+        "losses": 12,
+        "ties": 75,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg_at_5": {
+        "mean_diff": 0.0119,
+        "ci_lower": -0.0275,
+        "ci_upper": 0.0543,
+        "wins": 13,
+        "losses": 12,
+        "ties": 75,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg_at_10": {
+        "mean_diff": 0.0122,
+        "ci_lower": -0.0251,
+        "ci_upper": 0.0523,
+        "wins": 14,
+        "losses": 13,
+        "ties": 73,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "recall_at_5": {
+        "mean_diff": 0.01,
+        "ci_lower": -0.0333,
+        "ci_upper": 0.0533,
+        "wins": 4,
+        "losses": 2,
+        "ties": 94,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "recall_at_10": {
+        "mean_diff": 0.0133,
+        "ci_lower": -0.02,
+        "ci_upper": 0.05,
+        "wins": 3,
+        "losses": 1,
+        "ties": 96,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "rank_based_cp_at_5": {
+        "mean_diff": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 100,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      }
+    },
+    "hybrid_rerank_vs_dense": {
+      "hit_at_1": {
+        "mean_diff": 0.03,
+        "ci_lower": -0.05,
+        "ci_upper": 0.11,
+        "wins": 10,
+        "losses": 7,
+        "ties": 83,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "mrr_at_10": {
+        "mean_diff": 0.0336,
+        "ci_lower": -0.0154,
+        "ci_upper": 0.0855,
+        "wins": 15,
+        "losses": 12,
+        "ties": 73,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg_at_5": {
+        "mean_diff": 0.0252,
+        "ci_lower": -0.0171,
+        "ci_upper": 0.0701,
+        "wins": 16,
+        "losses": 13,
+        "ties": 71,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "ndcg_at_10": {
+        "mean_diff": 0.0274,
+        "ci_lower": -0.0118,
+        "ci_upper": 0.0705,
+        "wins": 17,
+        "losses": 14,
+        "ties": 69,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "recall_at_5": {
+        "mean_diff": 0.005,
+        "ci_lower": -0.0383,
+        "ci_upper": 0.05,
+        "wins": 4,
+        "losses": 3,
+        "ties": 93,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "recall_at_10": {
+        "mean_diff": 0.0133,
+        "ci_lower": -0.02,
+        "ci_upper": 0.05,
+        "wins": 3,
+        "losses": 1,
+        "ties": 96,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      },
+      "rank_based_cp_at_5": {
+        "mean_diff": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 100,
+        "is_statistically_distinguishable": false,
+        "is_improvement": false,
+        "status_label": "not distinguishable"
+      }
+    }
+  }
+}
