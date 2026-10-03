@@ -1,0 +1,63 @@
+{
+  "mode": "dense",
+  "query_count": 500,
+  "eval_time_seconds": 23.36,
+  "queries_per_second": 21.41,
+  "metrics": {
+    "hit_at_1": {
+      "mean": 0.82,
+      "ci_lower": 0.786,
+      "ci_upper": 0.852
+    },
+    "success_at_5": {
+      "mean": 0.95,
+      "ci_lower": 0.93,
+      "ci_upper": 0.968
+    },
+    "success_at_10": {
+      "mean": 0.964,
+      "ci_lower": 0.946,
+      "ci_upper": 0.98
+    },
+    "recall_at_5": {
+      "mean": 0.9443333333333334,
+      "ci_lower": 0.924,
+      "ci_upper": 0.963
+    },
+    "recall_at_10": {
+      "mean": 0.958,
+      "ci_lower": 0.94,
+      "ci_upper": 0.974
+    },
+    "recall_at_20": {
+      "mean": 0.975,
+      "ci_lower": 0.961,
+      "ci_upper": 0.988
+    },
+    "mrr_at_10": {
+      "mean": 0.8748904761904762,
+      "ci_lower": 0.8506,
+      "ci_upper": 0.8991
+    },
+    "ndcg_at_5": {
+      "mean": 0.8872677600063682,
+      "ci_lower": 0.8649,
+      "ci_upper": 0.9093
+    },
+    "ndcg_at_10": {
+      "mean": 0.8919075694694245,
+      "ci_lower": 0.8706,
+      "ci_upper": 0.9128
+    },
+    "dup_aware_hit_at_1": {
+      "mean": 0.82,
+      "ci_lower": 0.786,
+      "ci_upper": 0.852
+    },
+    "dup_aware_recall_at_5": {
+      "mean": 0.9443333333333334,
+      "ci_lower": 0.924,
+      "ci_upper": 0.963
+    }
+  }
+}

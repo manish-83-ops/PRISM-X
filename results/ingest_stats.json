@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "date": "2026-10-03 15:48:58",
+  "config_hash": "3b06508a5c6dc296663e0547331da83b6b5996afa6a21d510fcbd84cb64cdd95",
+  "corpus_manifest_sha256": "30d5212101e6d5ee12c0f5894e0cc522fd8da526b434ab4c841c34ee1f29e8b2",
+  "point_count": 100000,
+  "sqlite_count": 100000,
+  "avgdl_ref": 33.61446,
+  "total_tokens": 3361446,
+  "token_hash_collisions": 1,
+  "dense_embeddings": {
+    "model_name": "BAAI/bge-small-en-v1.5",
+    "embedding_dim": 384,
+    "sha256": "1a3e8dfe5396b5ff899d34a8b0bf78e7c45f3507037a4f51ffaae7e26c70753b",
+    "path": "C:\\Users\\manis\\AppData\\Local\\prismx_storage\\embedding_cache\\embeddings_100000_dim384.npy"
+  },
+  "stage_timings_seconds": {
+    "tokenize_and_stats_s": 6.93,
+    "encode_s": 3470.12,
+    "kmeans_and_ctfidf_s": 34.65,
+    "sqlite_ingest_s": 2.38,
+    "qdrant_upsert_s": 50.38,
+    "total_ingest_time_s": 3571.99,
+    "total_ingest_time_hours": 0.9922
+  },
+  "dense_sanity_tune_recall20": 0.978,
+  "sparse_bm25_vs_bm25s_validation": {
+    "sample_size": 5000,
+    "queries_evaluated": 100,
+    "top10_mean_overlap": 0.491,
+    "mean_rank_correlation": 0.638,
+    "note": "Documented differences: Qdrant uses collection-level dynamic IDF modifier and term hashing; bm25s uses static BM25-Okapi."
+  },
+  "clustering": {
+    "k": 15,
+    "seed": 42,
+    "labels": {
+      "0": "calories-food",
+      "1": "click-use",
+      "2": "tax-state",
+      "3": "cost-average",
+      "4": "symptoms-pain",
+      "5": "blood-body",
+      "6": "county-city",
+      "7": "meaning-definition",
+      "8": "water-use",
+      "9": "used-data",
+      "10": "new-year",
+      "11": "time-average",
+      "12": "water-cell",
+      "13": "people-health",
+      "14": "states-war"
+    },
+    "cluster_sizes": {
+      "0": 6070,
+      "1": 6196,
+      "2": 7647,
+      "3": 6125,
+      "4": 7505,
+      "5": 7325,
+      "6": 7842,
+      "7": 6655,
+      "8": 6887,
+      "9": 6323,
+      "10": 8264,
+      "11": 4128,
+      "12": 7437,
+      "13": 5366,
+      "14": 6230
+    }
+  }
+}

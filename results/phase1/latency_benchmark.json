@@ -1,0 +1,49 @@
+{
+  "mode": "dense",
+  "runs": {
+    "default_threads": {
+      "mode": "dense",
+      "thread_run": "default_threads",
+      "filters": null,
+      "top_k": 5,
+      "n_queries": 100,
+      "percentile_method": "numpy.percentile, linear interpolation",
+      "p50_ms": 50.4,
+      "p90_ms": 65.48,
+      "p95_ms": 69.7,
+      "p99_ms": 77.66,
+      "max_ms": 123.4,
+      "mean_ms": 53.31,
+      "warmup_mean_ms": 60.86,
+      "nfr3_target_under_300ms": true,
+      "internal_target_le_250ms": true,
+      "flagged_outliers_count": 0,
+      "flagged_outliers": []
+    },
+    "constrained_4_threads": {
+      "mode": "dense",
+      "thread_run": "constrained_4_threads",
+      "filters": null,
+      "top_k": 5,
+      "n_queries": 100,
+      "percentile_method": "numpy.percentile, linear interpolation",
+      "p50_ms": 49.76,
+      "p90_ms": 60.97,
+      "p95_ms": 66.32,
+      "p99_ms": 91.0,
+      "max_ms": 95.96,
+      "mean_ms": 52.34,
+      "warmup_mean_ms": 53.42,
+      "nfr3_target_under_300ms": true,
+      "internal_target_le_250ms": true,
+      "flagged_outliers_count": 0,
+      "flagged_outliers": []
+    }
+  },
+  "d1_client_wall_clock": true,
+  "d2_percentile_linear_interp": true,
+  "d3_thread_comparisons": [
+    "default_threads",
+    "constrained_4_threads"
+  ]
+}

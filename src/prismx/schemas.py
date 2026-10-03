@@ -70,10 +70,16 @@ class DeleteResponse(BaseModel):
 class MetaResponse(BaseModel):
     modes: list[str]
     fusion_defaults: dict[str, Any]
-    categories: list[dict[str, Any]]
-    sources: list[str]
     point_count: int
+    sqlite_count: int | None = None
     index_version: int
+    avgdl_ref: float | None = None
+    true_avgdl: float | None = None
+    drift: float | None = None
+    drift_warning: bool | None = None
+    inconsistency_count: int | None = 0
+    categories: list[Any] | None = None
+    sources: list[str] | None = None
     models: dict[str, str]
     config_hash: str
 

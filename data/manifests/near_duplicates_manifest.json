@@ -1,0 +1,24 @@
+{
+  "method": "exact_normalized OR word_5gram_shingle_jaccard >= 0.8 (inverted index)",
+  "total_gold_checked": 1072,
+  "total_near_duplicates_found": 2,
+  "gold_passages_with_near_duplicates": 2,
+  "queries_affected_count": 2,
+  "queries_affected_pct": 0.2,
+  "near_duplicates_by_gold_id": {
+    "1054505": [
+      {
+        "passage_id": "7302730",
+        "reason": "shingle_jaccard_ge_0.8",
+        "jaccard": 0.9636
+      }
+    ],
+    "3941972": [
+      {
+        "passage_id": "3517542",
+        "reason": "shingle_jaccard_ge_0.8",
+        "jaccard": 0.8056
+      }
+    ]
+  }
+}

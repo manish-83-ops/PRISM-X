@@ -1,0 +1,69 @@
+{
+  "version": "1.0.0",
+  "data": {
+    "hf_dataset_corpus": "Tevatron/msmarco-passage-corpus",
+    "hf_dataset_queries": "Tevatron/msmarco-passage",
+    "corpus_size": 100000,
+    "tune_queries_count": 500,
+    "test_queries_count": 500,
+    "bench_queries_count": 100,
+    "ragas_queries_count": 100,
+    "seed": 42,
+    "hash_algorithm": "sha256"
+  },
+  "clustering": {
+    "n_clusters": 15,
+    "batch_size": 1024,
+    "seed": 42
+  },
+  "encoder": {
+    "model_name": "BAAI/bge-small-en-v1.5",
+    "embedding_dim": 384,
+    "max_seq_length": 128,
+    "normalize_embeddings": true,
+    "query_instruction_prefix": "",
+    "batch_size": 128
+  },
+  "qdrant": {
+    "host": "127.0.0.1",
+    "port": 6333,
+    "grpc_port": 6334,
+    "prefer_grpc": true,
+    "collection_name": "prismx_corpus",
+    "hnsw_m": 16,
+    "hnsw_ef_construct": 100,
+    "search_ef": 64
+  },
+  "sqlite": {
+    "db_path": "data/text_store.db"
+  },
+  "lexical": {
+    "engine": "qdrant_sparse",
+    "k1": 1.2,
+    "b": 0.75,
+    "stemming": false,
+    "hash_bits": 32
+  },
+  "retrieval": {
+    "default_mode": "hybrid",
+    "default_top_k": 5,
+    "candidate_depth": 50,
+    "fusion": {
+      "method": "weighted",
+      "alpha": 0.7,
+      "rrf_k": 60
+    }
+  },
+  "rerank": {
+    "enabled": false,
+    "model_name": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "depth": 10
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "workers": 1,
+    "request_timeout_seconds": 30
+  },
+  "_config_hash": "3b06508a5c6dc296663e0547331da83b6b5996afa6a21d510fcbd84cb64cdd95"
+}

@@ -1,0 +1,17 @@
+{
+  "phase": 1,
+  "mode": "dense",
+  "date": "2026-10-03 15:58:34",
+  "ragas_context_precision": {
+    "mean": 0.803498,
+    "ci_lower": 0.7347,
+    "ci_upper": 0.8662
+  },
+  "ragas_context_recall": {
+    "mean": 0.9266669999999999,
+    "ci_lower": 0.87,
+    "ci_upper": 0.97
+  },
+  "p95_latency_ms": 69.7,
+  "nfr3_pass": true
+}

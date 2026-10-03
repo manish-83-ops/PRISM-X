@@ -1,1 +1,2 @@
 exp_id,date,gate,description,config_hash,corpus_manifest_sha256,split,key_metrics_path,git_commit,status
+exp_001_ingest,2026-10-03,Gate 2,Full 100K Corpus Ingestion,3b06508a5c6dc296663e0547331da83b6b5996afa6a21d510fcbd84cb64cdd95,30d5212101e6d5ee12c0f5894e0cc522fd8da526b434ab4c841c34ee1f29e8b2,TUNE,C:\Users\manis\OneDrive\Desktop\main_adrosonic\results\ingest_stats.json,pending,PASS

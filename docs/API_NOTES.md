@@ -51,7 +51,7 @@ This document records the exact signatures, verified behaviors, and differences 
 - **Sparse Vector Query:** `query=models.SparseVector(indices=[...], values=[...]), using='bm25'`.
 - **Dense Vector Query:** `query=[float, ...], using='dense'`.
 
-### Sparse Vector Configuration & IDF Modifier
+### Sparse Vector Configuration & Dynamic IDF Modifier (Verified [PATCH-1])
 - **Enum Name:** `models.Modifier.IDF` (in Python enum, value is string `'idf'`). Note: `models.Modifier.idf` raises `AttributeError: idf. Did you mean: 'IDF'?`.
 - **Signature:**
   ```python
@@ -60,18 +60,11 @@ This document records the exact signatures, verified behaviors, and differences 
       modifier: Optional[models.Modifier] = None  # e.g. models.Modifier.IDF
   )
   ```
-- **Collection Creation Example:**
-  ```python
-  client.create_collection(
-      collection_name="prismx_corpus",
-      vectors_config={
-          "dense": models.VectorParams(size=384, distance=models.Distance.COSINE)
-      },
-      sparse_vectors_config={
-          "bm25": models.SparseVectorParams(modifier=models.Modifier.IDF)
-      }
-  )
-  ```
+- **Dynamic IDF Empirical Verification (2026-10-03):**
+  - Collection created with `sparse_vectors_config={'bm25': models.SparseVectorParams(modifier=models.Modifier.IDF)}`.
+  - With 1 document indexed containing token 100: sparse query score was **`0.28768`**.
+  - After upserting 9 additional documents containing token 100 (total 10 documents): sparse query score dropped to **`0.04652`**.
+  - **Conclusion:** Qdrant's IDF modifier dynamically adapts using live collection point statistics upon every upsert.
 
 ### Payload Index Creation
 - **Signature:**
@@ -149,7 +142,7 @@ This document records the exact signatures, verified behaviors, and differences 
   client = Groq(api_key=os.environ["GROQ_API_KEY"])
   chat_completion = client.chat.completions.create(
       messages=[{"role": "user", "content": prompt}],
-      model="llama-3.3-70b-versatile",  # Or available free-tier model
+      model="llama-3.3-70b-versatile",
       temperature=0.0
   )
   ```
@@ -161,7 +154,7 @@ This document records the exact signatures, verified behaviors, and differences 
 - **Version:** `0.4.3`
 - **Verification Date:** 2026-10-03
 - **Input Requirements:**
-  - Context Precision: Requires `question` (or `user_input`), `contexts` (or `retrieved_contexts`), `reference` (ground truth string).
+  - Context Precision: Requires `question`, `contexts`, `reference` string.
   - Context Recall: Requires `question`, `contexts`, `reference`.
-  - Non-LLM Family: Non-LLM context precision checks the position of ground truth context in retrieved contexts; Non-LLM context recall checks whether ground truth context was retrieved.
-  - LLM-Based Family: Groq judge prompt evaluates whether the retrieved contexts provide the necessary facts to answer the question compared to the reference context.
+  - Non-LLM Family: Offline rank-based ground truth passage matching.
+  - LLM-Based Family: Groq judge prompt evaluating factual context sufficiency against reference text.

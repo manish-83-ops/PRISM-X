@@ -1,0 +1,101 @@
+idx,query_id,query,client_wall_clock_ms,server_encode_ms,server_dense_ms,server_sparse_ms,server_fusion_ms,server_fetch_text_ms,server_total_ms
+1,647687,what does semen consist of,48.38,32.73,6.64,0.0,0.0,2.93,42.46
+2,74328,can tennis elbow cause pain in your shoulder?,51.17,35.66,6.1,0.0,0.0,3.39,45.32
+3,391662,if meat is bad for you what should you eat,56.65,40.19,6.09,0.0,0.0,3.45,49.92
+4,530602,types organizational structure,49.74,33.53,6.68,0.0,0.0,3.2,43.59
+5,61836,can a 15 year old fly alone domestic flights?,63.33,47.5,6.46,0.0,0.0,3.02,57.17
+6,1082622,what does the root word tele mean,51.21,33.42,6.63,0.0,0.0,2.94,43.15
+7,321951,how much is donald trump jr worth,48.88,29.16,5.76,0.0,0.0,4.51,42.89
+8,653187,what does the term the age of aquarius mean?,50.2,34.5,6.06,0.0,0.0,2.5,43.2
+9,1051211,what is mepap certification,47.25,31.86,6.9,0.0,0.0,2.58,41.49
+10,451484,medicare eligibility contact number,48.12,32.75,6.11,0.0,0.0,2.64,41.66
+11,1021277,define atrium,42.5,27.35,6.2,0.0,0.0,2.99,36.71
+12,988745,who is the new york county clerk,49.53,34.23,6.49,0.0,0.0,3.02,43.92
+13,1083010,what does simple circuit contain,50.83,34.82,7.61,0.0,0.0,2.95,45.59
+14,1083598,what does it mean cardholder name?,53.46,33.37,7.61,0.0,0.0,3.36,47.74
+15,549342,what about phones in iceland,64.47,28.73,5.76,0.0,0.0,2.58,37.23
+16,946631,when does harbin ice city end,47.21,33.19,5.97,0.0,0.0,2.84,42.15
+17,507381,symptoms of congenital heart defects,45.59,30.7,6.16,0.0,0.0,2.76,39.78
+18,1011021,what year declaration of independence,48.16,31.54,7.06,0.0,0.0,2.96,41.72
+19,999610,where is vista ca,52.65,33.8,7.26,0.0,0.0,2.93,44.16
+20,1094460,inches of mercury meaning,47.48,31.59,6.72,0.0,0.0,2.78,41.25
+21,696677,what is a public health concept,90.95,35.96,6.81,0.0,0.0,4.28,84.68
+22,1074989,what is a cyst on the kidneys do,60.71,45.13,6.19,0.0,0.0,2.68,54.17
+23,1063702,what is an advocacy project,75.14,33.24,6.72,0.0,0.0,3.03,43.18
+24,1090701,side effects for diclofenac topical,64.48,47.92,7.7,0.0,0.0,3.24,59.07
+25,1081730,what family do squirrels belong to,95.96,80.32,6.76,0.0,0.0,3.33,90.62
+26,978057,where is berrimah,51.59,36.35,6.3,0.0,0.0,3.58,46.39
+27,1102235,why does ehr downtime happen,66.16,32.62,5.98,0.0,0.0,2.81,41.59
+28,1096045,how much does one roll of duck tape cost,55.93,32.76,6.51,0.0,0.0,3.97,49.91
+29,169305,does motion sensor device have camera,46.53,30.93,6.48,0.0,0.0,2.86,40.45
+30,1051214,what is meningitis.,46.5,31.0,6.22,0.0,0.0,3.41,40.84
+31,1098953,how heavy are road bikes,45.96,31.75,6.04,0.0,0.0,2.84,40.79
+32,534941,usps schedule a delivery,47.72,32.2,5.62,0.0,0.0,2.71,40.69
+33,658372,what event started world war 1,48.43,31.01,7.13,0.0,0.0,2.95,41.27
+34,1070452,what is a mimo receiver,46.63,29.82,7.24,0.0,0.0,2.98,40.25
+35,414714,is it still dangerous to go to the place of where the chernobyl happened,55.57,34.82,7.83,0.0,0.0,3.29,49.11
+36,1036800,who is ovid in greek mythology,46.9,30.75,6.03,0.0,0.0,2.83,39.78
+37,249866,how long does a pa marriage license last,46.26,31.59,6.34,0.0,0.0,2.39,40.48
+38,1011140,what wire is used to mig mild steel,50.09,34.53,7.57,0.0,0.0,2.51,44.75
+39,569555,what are the elements to make air,49.35,33.21,7.63,0.0,0.0,2.71,43.7
+40,1000097,where is whiteville tennessee,49.78,32.66,7.53,0.0,0.0,2.82,43.17
+41,107283,cost of starting a restaurant,47.97,31.13,6.81,0.0,0.0,3.72,41.85
+42,278863,how many career games did paul krause play in the nfl.,69.35,46.05,6.22,0.0,0.0,4.7,63.85
+43,780297,what is orofacial dyskinesia,50.02,34.43,7.7,0.0,0.0,2.58,44.86
+44,9454,a simple definition for the word bias.,47.27,31.31,7.19,0.0,0.0,2.83,41.52
+45,922389,what was the result of pearl harbor attack,59.51,43.89,6.4,0.0,0.0,2.95,53.45
+46,55691,boulangerie pronunciation,63.42,44.89,7.38,0.0,0.0,3.01,55.45
+47,996181,where was the movie true grit filmed at,57.71,39.99,7.2,0.0,0.0,2.8,50.15
+48,991138,where is punta cana eden resort,56.91,29.66,6.57,0.0,0.0,3.54,39.95
+49,1026775,what kind of mixture is rocky road ice cream,57.95,33.29,6.78,0.0,0.0,4.17,50.97
+50,865616,what jedi commands the arc troopers,47.07,31.53,6.6,0.0,0.0,2.7,41.0
+51,602352,"what county is alton bay,nh in?",51.79,33.58,7.8,0.0,0.0,2.85,44.39
+52,282530,how many doctors are in the us,57.79,41.65,7.08,0.0,0.0,2.51,51.39
+53,291248,how many ounces of liquid is in one gallon,55.74,41.03,6.21,0.0,0.0,2.98,50.38
+54,997449,where is the kihei,47.82,31.17,5.77,0.0,0.0,2.66,39.78
+55,1063371,what is an aviation medical examiner?,51.76,35.51,6.43,0.0,0.0,3.08,45.19
+56,1003006,where was napoleon forced to.exile,52.83,30.49,6.6,0.0,0.0,4.37,44.85
+57,531142,typing average words per minute test,50.24,34.19,6.74,0.0,0.0,2.68,43.75
+58,1050695,what is motor dyspraxia,48.4,33.01,6.81,0.0,0.0,2.48,42.45
+59,548099,wellcare mike vice president,48.42,31.66,6.29,0.0,0.0,3.45,41.59
+60,953355,when is the rib cook off in reno,48.22,30.85,6.32,0.0,0.0,3.19,40.56
+61,1096375,how much data analyst makes,48.79,33.47,6.81,0.0,0.0,2.73,43.18
+62,541135,was there a true bagger vance,54.99,38.71,6.7,0.0,0.0,2.78,48.39
+63,812387,what is the correct height for step handrails,58.23,36.94,7.31,0.0,0.0,3.79,51.4
+64,480064,price chopper locations in ct,46.46,30.86,6.14,0.0,0.0,3.0,40.17
+65,442593,longest punt in nfl,46.78,32.19,6.42,0.0,0.0,2.4,41.15
+66,1085288,case can arrive at the supreme court through each of these ways except,54.21,37.88,6.72,0.0,0.0,3.45,48.2
+67,185299,fastest cell phone processor,44.7,28.18,6.91,0.0,0.0,2.85,38.09
+68,798945,what is spotting,46.96,30.69,5.88,0.0,0.0,3.96,40.74
+69,1041159,who is the ninja turtle with the blue mask,52.49,34.75,6.93,0.0,0.0,3.31,45.16
+70,165480,does digoxin affect potassium,57.46,33.3,6.41,0.0,0.0,3.95,51.44
+71,1087484,what are mofongo,46.36,29.41,7.79,0.0,0.0,2.97,40.35
+72,780850,what is oxycodone,50.82,34.61,6.9,0.0,0.0,3.25,44.93
+73,1086675,what are thomas jefferson's kids named,48.29,32.6,7.53,0.0,0.0,2.85,43.15
+74,1052274,what is korean seafood pancake,46.94,32.53,5.52,0.0,0.0,2.4,40.59
+75,1088437,weather in kingston tn,45.18,29.86,5.86,0.0,0.0,2.89,38.78
+76,1090151,systemic response definition,43.53,27.34,6.54,0.0,0.0,2.93,37.01
+77,1047833,cost of hiv/aids yearly treatment,52.69,32.79,5.98,0.0,0.0,3.85,46.82
+78,1091633,phone number irs tax id number,45.7,30.34,6.44,0.0,0.0,2.92,39.86
+79,1095749,how much jake paul merch,47.17,31.35,6.47,0.0,0.0,3.06,41.05
+80,1090077,telephone number for amazon fire stick customer service,45.67,31.69,5.7,0.0,0.0,2.68,40.23
+81,1097449,how many calories in provolone cheese,57.42,40.46,6.31,0.0,0.0,3.3,50.26
+82,457714,most expensive hotels in new york city,47.74,30.73,6.41,0.0,0.0,3.62,40.96
+83,129641,define: morbid obesity,60.36,28.76,5.79,0.0,0.0,2.44,37.13
+84,1086915,what are the observed periodic trends in electron affinity?,53.43,32.16,6.72,0.0,0.0,4.08,46.53
+85,433415,josephine's feast,45.35,27.79,8.06,0.0,0.0,3.01,39.07
+86,902931,what test is for lupus,48.94,31.8,7.04,0.0,0.0,3.14,42.21
+87,147337,difference between ford supercab and crew cab,51.97,36.34,6.52,0.0,0.0,2.77,45.8
+88,66154,can crystals cause dizziness,47.12,30.22,6.28,0.0,0.0,3.01,39.68
+89,842596,what is the purpose of polarized sunglasses,48.77,31.47,7.94,0.0,0.0,3.0,42.58
+90,992950,which super bowl did colin kaepernick play in,49.58,32.62,8.22,0.0,0.0,2.49,43.47
+91,490802,russ simmons net worth,54.03,30.19,7.33,0.0,0.0,3.89,47.46
+92,1026372,who did colton haynes play on arrow,46.1,30.3,5.93,0.0,0.0,2.7,39.12
+93,1098497,how long do resin countertops last,71.55,31.64,5.87,0.0,0.0,2.83,40.52
+94,100616,cost estimate glass shower,44.83,27.53,7.37,0.0,0.0,2.45,37.5
+95,641583,what does it mean when your tongue is all white,49.88,35.02,6.36,0.0,0.0,2.56,44.09
+96,222954,how do you lower hardness in pool water?,47.07,31.64,6.39,0.0,0.0,2.85,41.08
+97,899800,what supplements are antiinflammatory,53.21,35.88,7.76,0.0,0.0,3.03,46.86
+98,548254,wenatchee washington population,49.79,30.22,7.66,0.0,0.0,3.28,44.01
+99,422501,is rhinitis painful,44.61,28.81,6.96,0.0,0.0,2.96,38.91
+100,1093927,is the jaraguay volcanic field dormant?,51.67,36.32,6.54,0.0,0.0,3.22,46.3

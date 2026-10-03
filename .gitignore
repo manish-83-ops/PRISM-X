@@ -44,6 +44,8 @@ data/cache/
 data/qdrant_storage/
 data/*.jsonl
 data/*.db
+data/*.db-shm
+data/*.db-wal
 data/*.sqlite
 !data/manifests/
 !data/manifests/*
