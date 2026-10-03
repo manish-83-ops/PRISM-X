@@ -74,8 +74,8 @@ class CrossEncoderReranker:
             # Check deadline before starting next micro-batch
             if deadline_ms is not None and t_request_start is not None:
                 elapsed_total_ms = (time.perf_counter() - t_request_start) * 1000.0
-                if elapsed_total_ms >= deadline_ms and scored_candidates:
-                    governor_state = "truncated"
+                if elapsed_total_ms >= deadline_ms:
+                    governor_state = "truncated" if scored_candidates else "exhausted_before_first_batch"
                     unscored_candidates.extend(candidates[b_start:])
                     break
 

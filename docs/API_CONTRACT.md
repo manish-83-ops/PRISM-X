@@ -50,7 +50,9 @@ This document provides the complete, authoritative specification for all HTTP en
 - `mode` (string, optional, default `"hybrid"`): Supported modes: `"dense"`, `"hybrid"`, `"hybrid_rerank"`, `"hybrid+rerank"`.
 - `top_k` (integer, optional, default `5`): Range 1 to 50 (number of final passages returned).
 - `rerank_k` (integer, optional, default `10`): Range 1 to 100 (candidate depth evaluated by cross-encoder in rerank modes; Gate 4B frozen default is 10).
-- `deadline_ms` (float, optional, default `200.0`): Range 10.0 to 5000.0 (wall-clock latency budget enforced by the Deadline Governor).
+- `rerank_budget_ms` (float, optional, default `200.0`, alias `deadline_ms`): Range 10.0 to 5000.0 (wall-clock latency budget allocated strictly to the cross-encoder reranking stage).
+- `total_deadline_ms` (float, optional, default `250.0`): Range 10.0 to 10000.0 (end-to-end request latency ceiling). The cross-encoder stage receives `min(rerank_budget_ms, total_deadline_ms - elapsed_pre_rerank - 10.0ms safety)`.
+- `deadline_ms` (float, optional, default `200.0`): Backward-compatible alias for `rerank_budget_ms`.
 - `use_cache` (boolean, optional, default `true`): Toggle query result cache lookup and population (alias: `cache`).
 - `filters` (object, optional, nullable):
   - `category` (string, list of strings, or null).

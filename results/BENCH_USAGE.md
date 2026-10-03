@@ -11,6 +11,7 @@ This document records every execution of the 100-query **BENCH** evaluation spli
 | **BENCH-01** | Gate 3 | 2026-10-03 | `342a639` | `phase1_dense_baseline` & `phase2_hybrid_optimized` | `3b06508...` & `b23eb0d...` | Dense, Hybrid | Phase 2: Hit@1=0.7500, MRR@10=0.8292, NDCG@5=0.8470, Recall@10=0.9533 | 75.03 ms (Hybrid HTTP) | **PASS Gate 3**. Phase 2 directional lift over Phase 1; bootstrap CIs cross zero. |
 | **BENCH-02** | Gate 4A | 2026-10-03 | `a6dd8d6` | `phase3_hybrid_rerank` | `0f106e1...` | Dense, Hybrid, Rerank ($K=30$) | Phase 3: Hit@1=0.7600, MRR@10=0.8354, NDCG@5=0.8497, Recall@10=0.9533 | 460.12 ms (Rerank HTTP) | **FAILED SLA**. Latency exceeded $\le 280$ ms hard ceiling. Config rejected. |
 | **BENCH-03** | Gate 4B | 2026-10-03 | `0f22a3c` | `phase3_hybrid_rerank_constrained` | `64e95cabb1a1fd58e1ff021ff16043924b7eef86637d9e4defd1c0b5c7c4d2fd` | Dense, Hybrid, Rerank ($K=10$, 200ms Gov) | Phase 3: Hit@1=0.7700, MRR@10=0.8380, NDCG@5=0.8488, Recall@10=0.9533 | **242.25 ms** (Rerank HTTP) | **PASS Gate 4B**. Meets $\le 250$ ms target. Directional gain not statistically significant. |
+| **BENCH-04** | Gate 5.4 | 2026-10-03 | `950bc5d` | `c100k_raw_single_run_bench` | `8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf` | Dense, Hybrid, Rerank ($K=10$, Total Gov 250ms) | Rerank: Hit@1=0.4600, MRR@10=0.6532, NDCG@5=0.7236, Recall@10=0.9700 | Pending idle-machine benchmark | **Scored exactly once**. Rerank-Hybrid MRR@10 CI $[+0.0015, +0.1165]$ excludes 0. |
 
 ---
 
@@ -85,3 +86,20 @@ This document records every execution of the 100-query **BENCH** evaluation spli
 2. The BENCH set was evaluated for only two reranker candidate configurations ($K=30$ in Gate 4A, $K=10$ in Gate 4B).
 3. The winner ($K=10$) was chosen on TUNE only.
 4. No threshold or weight was adjusted after viewing BENCH results.
+
+## Run: c100k_raw BENCH Single-Run Evaluation (Gate 5.4)
+- **Date:** 2026-10-03 23:09:35
+- **Git Commit:** `950bc5d6dbec421266e9cd78934dba2cac533224`
+- **Config Hash:** `8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf`
+- **Corpus:** `c100k_raw` (100,008 unique passages, uncurated candidate distribution)
+- **Split:** `data/c100k_raw/bench_raw_100.json` (N=100)
+- **Declaration:** This BENCH set is brand new and has been scored **exactly once**. Zero prior evaluations were executed against this split.
+- **Serving Configuration:** HNSW `search_ef=128`, Fusion $\alpha=0.80$ (min-max, not worse than alternatives), Reranker MiniLM-L-6 INT8 ($K=10$, `total_deadline_ms=250.0`, `rerank_budget_ms=200.0`).
+- **Governor Telemetry:** Truncation rate = 5.0%, Exhausted rate = 0.0%, Mean candidates scored = 9.75 / 10.
+- **Top-1 Non-Gold Sibling Fraction (Unjudged):** Dense = 48.0%, Hybrid = 51.0%, Hybrid+Rerank = 47.0%.
+- **Summary Metrics (Mean [95% Bootstrap CI]):**
+  - Dense Baseline: Hit@1 = 0.4200, MRR@10 = 0.6032, NDCG@5 = 0.6694, NDCG@10 = 0.6946, Recall@10 = 0.9800, Recall@50 = 0.9900
+  - Hybrid Retrieval: Hit@1 = 0.4100, MRR@10 = 0.5949, NDCG@5 = 0.6582, NDCG@10 = 0.6864, Recall@10 = 0.9700, Recall@50 = 0.9800
+  - Hybrid + Rerank: Hit@1 = 0.4600, MRR@10 = 0.6532, NDCG@5 = 0.7236, NDCG@10 = 0.7325, Recall@10 = 0.9700, Recall@50 = 0.9800
+
+- **RAGAS Benchmark Alignment Note (Gate 5.5):** The RAGAS evaluation split (`data/manifests/frozen_ragas_bench_raw_50.json`) uses the first 50 valid-answer queries drawn directly from this same frozen BENCH split, evaluated under the identical canonical configuration hash (`8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf`). Zero new BENCH scorings of any alternative configuration were executed.

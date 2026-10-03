@@ -6,6 +6,7 @@ import { ComparisonPage } from './pages/ComparisonPage';
 import { EvaluationPage } from './pages/EvaluationPage';
 import { LiveUpdatesPage } from './pages/LiveUpdatesPage';
 import { ArchitecturePage } from './pages/ArchitecturePage';
+import { CaseStudiesPage } from './pages/CaseStudiesPage';
 import { RepoPage } from './pages/RepoPage';
 import { DemoGuidePage } from './pages/DemoGuidePage';
 
@@ -20,8 +21,9 @@ export function App() {
               <Route path="/" element={<SearchPage />} />
               <Route path="/comparison" element={<ComparisonPage />} />
               <Route path="/evaluation" element={<EvaluationPage />} />
-              <Route path="/live-updates" element={<LiveUpdatesPage />} />
               <Route path="/architecture" element={<ArchitecturePage />} />
+              <Route path="/case-studies" element={<CaseStudiesPage />} />
+              <Route path="/live-updates" element={<LiveUpdatesPage />} />
               <Route path="/repo" element={<RepoPage />} />
               <Route path="/demo-guide" element={<DemoGuidePage />} />
               <Route path="*" element={<Navigate to="/" replace />} />

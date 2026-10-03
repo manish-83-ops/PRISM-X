@@ -1,0 +1,530 @@
+{
+  "1": {
+    "chip_index": 1,
+    "query_id": 304343,
+    "query": "how much did rogue one make at the box office",
+    "gold_pids": [
+      "raw_9916"
+    ],
+    "candidate_pids": [
+      "raw_9914",
+      "raw_9915",
+      "raw_9916",
+      "raw_9917",
+      "raw_9918",
+      "raw_9919",
+      "raw_9920",
+      "raw_9921",
+      "raw_9922",
+      "raw_9923"
+    ],
+    "modes": {
+      "dense": {
+        "top1_pid": "raw_9916",
+        "top1_score": 0.9049,
+        "classification": "exact_gold",
+        "top5_pids": [
+          "raw_9916",
+          "raw_9919",
+          "raw_9923",
+          "raw_9918",
+          "raw_9917"
+        ],
+        "latency_ms": {
+          "encode": 53.03,
+          "dense": 11.18,
+          "sparse": 0.0,
+          "fusion": 0.0,
+          "fetch_text": 3.42,
+          "rerank": 0.0,
+          "total": 68.08
+        },
+        "cache_hit": false
+      },
+      "hybrid": {
+        "top1_pid": "raw_9919",
+        "top1_score": 0.8556,
+        "classification": "sibling",
+        "top5_pids": [
+          "raw_9919",
+          "raw_9916",
+          "raw_9923",
+          "raw_9918",
+          "raw_9917"
+        ],
+        "latency_ms": {
+          "encode": 49.42,
+          "dense": 10.87,
+          "sparse": 10.33,
+          "fusion": 0.64,
+          "fetch_text": 5.64,
+          "rerank": 0.0,
+          "total": 77.57
+        },
+        "cache_hit": false
+      },
+      "prismx": {
+        "top1_pid": "raw_9916",
+        "top1_score": 9.5603,
+        "classification": "exact_gold",
+        "top5_pids": [
+          "raw_9916",
+          "raw_9923",
+          "raw_9918",
+          "raw_9919",
+          "raw_9917"
+        ],
+        "latency_ms": {
+          "encode": 53.86,
+          "dense": 14.22,
+          "sparse": 11.37,
+          "fusion": 0.62,
+          "fetch_text": 3.73,
+          "rerank": 149.12,
+          "total": 233.69
+        },
+        "cache_hit": false
+      }
+    }
+  },
+  "2": {
+    "chip_index": 2,
+    "query_id": 1096404,
+    "query": "how much can you file for in small claims court?",
+    "gold_pids": [
+      "raw_82491"
+    ],
+    "candidate_pids": [
+      "raw_82490",
+      "raw_82491",
+      "raw_82492",
+      "raw_82493",
+      "raw_82494",
+      "raw_82495",
+      "raw_82496",
+      "raw_82497",
+      "raw_82498",
+      "raw_82499"
+    ],
+    "modes": {
+      "dense": {
+        "top1_pid": "raw_82499",
+        "top1_score": 0.9412,
+        "classification": "sibling",
+        "top5_pids": [
+          "raw_82499",
+          "raw_82493",
+          "raw_82497",
+          "raw_82496",
+          "raw_82491"
+        ],
+        "latency_ms": {
+          "encode": 30.69,
+          "dense": 8.6,
+          "sparse": 0.0,
+          "fusion": 0.0,
+          "fetch_text": 2.18,
+          "rerank": 0.0,
+          "total": 41.77
+        },
+        "cache_hit": false
+      },
+      "hybrid": {
+        "top1_pid": "raw_82499",
+        "top1_score": 0.8,
+        "classification": "sibling",
+        "top5_pids": [
+          "raw_82499",
+          "raw_82493",
+          "raw_82496",
+          "raw_82497",
+          "raw_82491"
+        ],
+        "latency_ms": {
+          "encode": 29.7,
+          "dense": 7.67,
+          "sparse": 6.6,
+          "fusion": 0.47,
+          "fetch_text": 3.34,
+          "rerank": 0.0,
+          "total": 48.34
+        },
+        "cache_hit": false
+      },
+      "prismx": {
+        "top1_pid": "raw_82499",
+        "top1_score": 9.8257,
+        "classification": "sibling",
+        "top5_pids": [
+          "raw_82499",
+          "raw_82493",
+          "raw_82496",
+          "raw_82491",
+          "raw_82497"
+        ],
+        "latency_ms": {
+          "encode": 39.96,
+          "dense": 10.04,
+          "sparse": 9.32,
+          "fusion": 3.97,
+          "fetch_text": 6.07,
+          "rerank": 129.51,
+          "total": 199.85
+        },
+        "cache_hit": false
+      }
+    }
+  },
+  "3": {
+    "chip_index": 3,
+    "query_id": 637720,
+    "query": "what does flourish mean",
+    "gold_pids": [
+      "raw_53267"
+    ],
+    "candidate_pids": [
+      "raw_53263",
+      "raw_53264",
+      "raw_53265",
+      "raw_53266",
+      "raw_53267",
+      "raw_53268",
+      "raw_53269",
+      "raw_53270",
+      "raw_53271",
+      "raw_53272"
+    ],
+    "modes": {
+      "dense": {
+        "top1_pid": "raw_53268",
+        "top1_score": 0.8771,
+        "classification": "sibling",
+        "top5_pids": [
+          "raw_53268",
+          "raw_53269",
+          "raw_53264",
+          "raw_53267",
+          "raw_53270"
+        ],
+        "latency_ms": {
+          "encode": 27.43,
+          "dense": 9.17,
+          "sparse": 0.0,
+          "fusion": 0.0,
+          "fetch_text": 2.05,
+          "rerank": 0.0,
+          "total": 38.93
+        },
+        "cache_hit": false
+      },
+      "hybrid": {
+        "top1_pid": "raw_53268",
+        "top1_score": 0.843,
+        "classification": "sibling",
+        "top5_pids": [
+          "raw_53268",
+          "raw_53264",
+          "raw_53269",
+          "raw_53267",
+          "raw_53270"
+        ],
+        "latency_ms": {
+          "encode": 26.36,
+          "dense": 9.42,
+          "sparse": 6.03,
+          "fusion": 0.44,
+          "fetch_text": 2.94,
+          "rerank": 0.0,
+          "total": 45.73
+        },
+        "cache_hit": false
+      },
+      "prismx": {
+        "top1_pid": "raw_53268",
+        "top1_score": 9.249,
+        "classification": "sibling",
+        "top5_pids": [
+          "raw_53268",
+          "raw_53270",
+          "raw_53264",
+          "raw_53267",
+          "raw_53269"
+        ],
+        "latency_ms": {
+          "encode": 28.0,
+          "dense": 8.94,
+          "sparse": 7.23,
+          "fusion": 0.45,
+          "fetch_text": 3.56,
+          "rerank": 89.51,
+          "total": 138.44
+        },
+        "cache_hit": false
+      }
+    }
+  },
+  "4": {
+    "chip_index": 4,
+    "query_id": 970924,
+    "query": "where do i find nutritional yeast",
+    "gold_pids": [
+      "raw_53226"
+    ],
+    "candidate_pids": [
+      "raw_53223",
+      "raw_53224",
+      "raw_53225",
+      "raw_53226",
+      "raw_53227",
+      "raw_53228",
+      "raw_53229",
+      "raw_53230",
+      "raw_53231",
+      "raw_53232"
+    ],
+    "modes": {
+      "dense": {
+        "top1_pid": "raw_53226",
+        "top1_score": 0.839,
+        "classification": "exact_gold",
+        "top5_pids": [
+          "raw_53226",
+          "raw_24502",
+          "raw_53230",
+          "raw_53227",
+          "raw_53228"
+        ],
+        "latency_ms": {
+          "encode": 38.03,
+          "dense": 10.49,
+          "sparse": 0.0,
+          "fusion": 0.0,
+          "fetch_text": 2.35,
+          "rerank": 0.0,
+          "total": 51.25
+        },
+        "cache_hit": false
+      },
+      "hybrid": {
+        "top1_pid": "raw_53226",
+        "top1_score": 0.9424,
+        "classification": "exact_gold",
+        "top5_pids": [
+          "raw_53226",
+          "raw_24502",
+          "raw_53230",
+          "raw_53224",
+          "raw_53227"
+        ],
+        "latency_ms": {
+          "encode": 32.45,
+          "dense": 8.47,
+          "sparse": 6.1,
+          "fusion": 0.48,
+          "fetch_text": 2.97,
+          "rerank": 0.0,
+          "total": 51.07
+        },
+        "cache_hit": false
+      },
+      "prismx": {
+        "top1_pid": "raw_53226",
+        "top1_score": 8.5637,
+        "classification": "exact_gold",
+        "top5_pids": [
+          "raw_53226",
+          "raw_53230",
+          "raw_53225",
+          "raw_24502",
+          "raw_53228"
+        ],
+        "latency_ms": {
+          "encode": 32.01,
+          "dense": 8.03,
+          "sparse": 7.37,
+          "fusion": 0.49,
+          "fetch_text": 3.05,
+          "rerank": 93.58,
+          "total": 145.26
+        },
+        "cache_hit": false
+      }
+    }
+  },
+  "5": {
+    "chip_index": 5,
+    "query_id": 501994,
+    "query": "square footage price for electrical",
+    "gold_pids": [
+      "raw_53792"
+    ],
+    "candidate_pids": [
+      "raw_53789",
+      "raw_53790",
+      "raw_53791",
+      "raw_53792",
+      "raw_53793",
+      "raw_53794",
+      "raw_53795",
+      "raw_53796",
+      "raw_53797",
+      "raw_53798"
+    ],
+    "modes": {
+      "dense": {
+        "top1_pid": "raw_53793",
+        "top1_score": 0.8227,
+        "classification": "sibling",
+        "top5_pids": [
+          "raw_53793",
+          "raw_53792",
+          "raw_88643",
+          "raw_67448",
+          "raw_67449"
+        ],
+        "latency_ms": {
+          "encode": 30.04,
+          "dense": 8.86,
+          "sparse": 0.0,
+          "fusion": 0.0,
+          "fetch_text": 2.34,
+          "rerank": 0.0,
+          "total": 41.58
+        },
+        "cache_hit": false
+      },
+      "hybrid": {
+        "top1_pid": "raw_53793",
+        "top1_score": 0.8,
+        "classification": "sibling",
+        "top5_pids": [
+          "raw_53793",
+          "raw_53792",
+          "raw_88643",
+          "raw_67449",
+          "raw_67448"
+        ],
+        "latency_ms": {
+          "encode": 39.58,
+          "dense": 8.12,
+          "sparse": 7.89,
+          "fusion": 0.52,
+          "fetch_text": 3.58,
+          "rerank": 0.0,
+          "total": 60.25
+        },
+        "cache_hit": false
+      },
+      "prismx": {
+        "top1_pid": "raw_53792",
+        "top1_score": 2.8216,
+        "classification": "exact_gold",
+        "top5_pids": [
+          "raw_53792",
+          "raw_67449",
+          "raw_67448",
+          "raw_88643",
+          "raw_53793"
+        ],
+        "latency_ms": {
+          "encode": 70.81,
+          "dense": 7.99,
+          "sparse": 6.83,
+          "fusion": 0.48,
+          "fetch_text": 3.36,
+          "rerank": 102.05,
+          "total": 192.21
+        },
+        "cache_hit": false
+      }
+    }
+  },
+  "6": {
+    "chip_index": 6,
+    "query_id": 716132,
+    "query": "what is an mda",
+    "gold_pids": [
+      "raw_27545"
+    ],
+    "candidate_pids": [
+      "raw_27545",
+      "raw_27546",
+      "raw_27547",
+      "raw_27548",
+      "raw_27549",
+      "raw_27550",
+      "raw_27551",
+      "raw_27552",
+      "raw_27553",
+      "raw_27554"
+    ],
+    "modes": {
+      "dense": {
+        "top1_pid": "raw_27554",
+        "top1_score": 0.7977,
+        "classification": "sibling",
+        "top5_pids": [
+          "raw_27554",
+          "raw_27545",
+          "raw_27552",
+          "raw_27553",
+          "raw_97527"
+        ],
+        "latency_ms": {
+          "encode": 41.49,
+          "dense": 8.5,
+          "sparse": 0.0,
+          "fusion": 0.0,
+          "fetch_text": 2.56,
+          "rerank": 0.0,
+          "total": 52.97
+        },
+        "cache_hit": false
+      },
+      "hybrid": {
+        "top1_pid": "raw_27554",
+        "top1_score": 0.8667,
+        "classification": "sibling",
+        "top5_pids": [
+          "raw_27554",
+          "raw_27545",
+          "raw_27552",
+          "raw_27553",
+          "raw_97527"
+        ],
+        "latency_ms": {
+          "encode": 26.17,
+          "dense": 8.24,
+          "sparse": 2.32,
+          "fusion": 0.33,
+          "fetch_text": 2.35,
+          "rerank": 0.0,
+          "total": 39.76
+        },
+        "cache_hit": false
+      },
+      "prismx": {
+        "top1_pid": "raw_27545",
+        "top1_score": 10.3265,
+        "classification": "exact_gold",
+        "top5_pids": [
+          "raw_27545",
+          "raw_27552",
+          "raw_27554",
+          "raw_27553",
+          "raw_27550"
+        ],
+        "latency_ms": {
+          "encode": 25.65,
+          "dense": 8.03,
+          "sparse": 2.35,
+          "fusion": 0.28,
+          "fetch_text": 2.22,
+          "rerank": 97.39,
+          "total": 136.41
+        },
+        "cache_hit": false
+      }
+    }
+  }
+}

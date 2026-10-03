@@ -169,18 +169,27 @@ This document addresses key architectural, empirical, and statistical questions 
 
 ---
 
-### Q13: What was the outcome of the Hard-Distractor Stress Test ($c100k\_hard$, ADR-015)?
+### Q13: What was the outcome of the Mild Stress Test (`c100k_hard`, 2.8% added distractors, ADR-015)?
 **A:**
+- **Status:** **RETIRED: confounded by ANN graph nondeterminism (see Gate 5.2 1c); superseded by c100k_raw**
+  - An audit in Gate 5.2 identified that the apparent metric increase in dense retrieval on `c100k_hard` (Hit@1 0.74 vs 0.73, MRR@10 0.8191 vs 0.8096) was caused by HNSW ANN traversal nondeterminism (graph re-wiring upon insertion of 2,887 nodes altered traversal trajectories for QID 1087484 and QID 1063702, where exact search on the curated corpus already retrieves the gold passage at Rank 1 with score 0.7449). Adding passages cannot mathematically improve true exact retrieval rank. `c100k_hard` is retired from all active benchmarks and headline claims, and superseded by `c100k_raw`.
 - **Setup:**
-  - Built separate Qdrant collection `c100k_hard` containing 102,887 points (100,000 base passages + 2,887 mined dense and lexical nearest-neighbor hard distractors from the 8.8M MS MARCO pool, strictly excluding all gold positives).
+  - Built separate Qdrant collection `c100k_hard` containing 102,887 points (100,000 base passages + 2,887 mined dense and lexical nearest-neighbor hard distractors from the 8.8M MS MARCO pool, strictly excluding all gold positives)—a mild stress test (2.8% added distractors).
   - Evaluated on 100 BENCH queries.
-- **Results:**
+- **Results [Under Review]:**
   - Dense Baseline: Hit@1 = 0.7400, MRR@10 = 0.8191, NDCG@5 = 0.8401, Recall@10 = **0.9633**.
   - Hybrid Retrieval: Hit@1 = 0.7600, MRR@10 = 0.8380, NDCG@5 = 0.8527, Recall@10 = **0.9633**.
   - Hybrid + Rerank ($K=10$): Hit@1 = **0.7800**, MRR@10 = **0.8472**, NDCG@5 = **0.8511**, Recall@10 = **0.9633**.
 - **Takeaways:**
-  1. Hybrid still outperforms Dense (+0.0200 Hit@1, +0.0189 MRR@10, +0.0126 NDCG@5).
+  1. Hybrid performance is consistent with retaining an advantage under distractor pressure (+0.0200 Hit@1, +0.0189 MRR@10, +0.0126 NDCG@5).
   2. Cross-encoder reranking preserves 100% of top-10 candidate recall (0.9633) while improving Hit@1 to 0.7800.
   3. All paired bootstrap difference intervals cross zero at $N=100$.
-  4. Labeled table: *"Stress test (hard distractors, unlabeled neighbors may be valid answers; ID metrics are pessimistic)"*.
+  4. Labeled table: *"Mild stress test (2.8% added distractors, unlabeled neighbors may be valid answers; ID metrics are pessimistic)"*.
+
+---
+
+### Q14: Why was the composite top-20 pool and fixed K10/K5 threshold from the Round 1 slide not implemented?
+**A:**
+The Round 1 slide proposed a composite top-20 pool and fixed K10/K5 thresholds. They were not implemented because candidate-movement analysis showed hybrid recovers no new gold from ranks 11-50 into the top-10 (Recall@10 identical for dense and hybrid), so the pool is the fused top-K and the governor is budget-based.
+
 

@@ -134,5 +134,16 @@
       "is_improvement": false,
       "status_label": "not distinguishable"
     }
-  }
+  },
+  "commit": "950bc5d6dbec421266e9cd78934dba2cac533224",
+  "date": "2026-10-03 18:20:00",
+  "N": 100,
+  "seed": 42,
+  "config": {
+    "mode": "hybrid",
+    "alpha": 0.8,
+    "method": "weighted"
+  },
+  "judge": "deterministic_gold_labels",
+  "path_used": "HTTP API (/search)"
 }

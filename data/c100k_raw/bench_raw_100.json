@@ -1,0 +1,2759 @@
+[
+  {
+    "query_id": 156087,
+    "query": "do earnest money go toward closing",
+    "query_type": "NUMERIC",
+    "answers": [
+      "Yes, it go toward closing."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Yes, it go toward closing.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_95155"
+    ],
+    "candidate_pids": [
+      "raw_95153",
+      "raw_95154",
+      "raw_95155",
+      "raw_95156",
+      "raw_95157",
+      "raw_95158",
+      "raw_95159",
+      "raw_95160",
+      "raw_95161",
+      "raw_95162"
+    ]
+  },
+  {
+    "query_id": 196655,
+    "query": "graphology definition",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Graphology is a study of handwriting especially for the purpose of character analysis."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Graphology is a study of handwriting especially for the purpose of character analysis.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_93379"
+    ],
+    "candidate_pids": [
+      "raw_93371",
+      "raw_93372",
+      "raw_93373",
+      "raw_93374",
+      "raw_93375",
+      "raw_93376",
+      "raw_93377",
+      "raw_93378",
+      "raw_93379",
+      "raw_93380"
+    ]
+  },
+  {
+    "query_id": 947750,
+    "query": "when does summer finish",
+    "query_type": "NUMERIC",
+    "answers": [
+      "In August."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "In August.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_55251"
+    ],
+    "candidate_pids": [
+      "raw_55242",
+      "raw_55243",
+      "raw_55244",
+      "raw_55245",
+      "raw_55246",
+      "raw_55247",
+      "raw_55248",
+      "raw_55249",
+      "raw_55250",
+      "raw_55251"
+    ]
+  },
+  {
+    "query_id": 1086525,
+    "query": "what astronomical bodies exist in our universe?",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Sun, the Moon and the stars are astronomical bodies that exist in our universe."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Sun, the Moon and the stars are astronomical bodies that exist in our universe.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_48541"
+    ],
+    "candidate_pids": [
+      "raw_48538",
+      "raw_48539",
+      "raw_48540",
+      "raw_48541",
+      "raw_48542",
+      "raw_48543",
+      "raw_48544",
+      "raw_48545",
+      "raw_48546",
+      "raw_48547"
+    ]
+  },
+  {
+    "query_id": 528278,
+    "query": "types of iron lines cornea",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Hudson-Stahli line, Fleischer line and Khodadoust Line."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Hudson-Stahli line, Fleischer line and Khodadoust Line.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_9983",
+      "raw_9984"
+    ],
+    "candidate_pids": [
+      "raw_9983",
+      "raw_9984",
+      "raw_9985",
+      "raw_9986",
+      "raw_9987",
+      "raw_9988",
+      "raw_9989",
+      "raw_9990",
+      "raw_9991",
+      "raw_9992"
+    ]
+  },
+  {
+    "query_id": 760440,
+    "query": "what is ionograph cleaning",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "It is the industry standard for ionic contamination testing specified in commonly used cleaning standards."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "It is the industry standard for ionic contamination testing specified in commonly used cleaning standards.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_66319"
+    ],
+    "candidate_pids": [
+      "raw_66313",
+      "raw_66314",
+      "raw_66315",
+      "raw_66316",
+      "raw_66317",
+      "raw_66318",
+      "raw_66319",
+      "raw_66320",
+      "raw_66321",
+      "raw_66322"
+    ]
+  },
+  {
+    "query_id": 125712,
+    "query": "define primary colors",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "A color belonging to any of three groups each of which is regarded as generating all colors, with the groups being a Additive, physiological, or light primaries red, green, and blue."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "A color belonging to any of three groups each of which is regarded as generating all colors, with the groups being a Additive, physiological, or light primaries red, green, and blue.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_83366"
+    ],
+    "candidate_pids": [
+      "raw_1097",
+      "raw_83366",
+      "raw_83367",
+      "raw_83368",
+      "raw_83369",
+      "raw_83370",
+      "raw_83371",
+      "raw_83372",
+      "raw_83373",
+      "raw_83374"
+    ]
+  },
+  {
+    "query_id": 1085902,
+    "query": "what class was uss texas",
+    "query_type": "ENTITY",
+    "answers": [
+      "USS Texas is a Virginia-class submarine."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "USS Texas is a Virginia-class submarine.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_46794"
+    ],
+    "candidate_pids": [
+      "raw_46793",
+      "raw_46794",
+      "raw_46795",
+      "raw_46796",
+      "raw_46797",
+      "raw_46798",
+      "raw_46799",
+      "raw_46800",
+      "raw_46801",
+      "raw_46802"
+    ]
+  },
+  {
+    "query_id": 1097949,
+    "query": "how long is person with the flu contagious",
+    "query_type": "NUMERIC",
+    "answers": [
+      "The contagious period of flu lasts five to seven days into the illness, for children the contagious period for the flu can last up to two weeks after they start feeling sick."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The contagious period of flu lasts five to seven days into the illness, for children the contagious period for the flu can last up to two weeks after they start feeling sick.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_41170"
+    ],
+    "candidate_pids": [
+      "raw_41165",
+      "raw_41166",
+      "raw_41167",
+      "raw_41168",
+      "raw_8002",
+      "raw_41169",
+      "raw_41170",
+      "raw_41171",
+      "raw_41172",
+      "raw_8001"
+    ]
+  },
+  {
+    "query_id": 1090664,
+    "query": "sidvokodvo average weather conditions",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The average weather in Sidvokodvo is growing degree days in Sidvokodvo are rapidly increasing during April, increasing by 601\u00b0Fahrenheit, from 5,742\u00b0Fahrenheit to 6,343\u00b0Fahrenheit."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The average weather in Sidvokodvo is growing degree days in Sidvokodvo are rapidly increasing during April, increasing by 601\u00b0Fahrenheit, from 5,742\u00b0Fahrenheit to 6,343\u00b0Fahrenheit.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_62580"
+    ],
+    "candidate_pids": [
+      "raw_62571",
+      "raw_62572",
+      "raw_62573",
+      "raw_62574",
+      "raw_62575",
+      "raw_62576",
+      "raw_62577",
+      "raw_62578",
+      "raw_62579",
+      "raw_62580"
+    ]
+  },
+  {
+    "query_id": 1091187,
+    "query": "quandary meaning",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Quandary means a state of doubt or uncertainty."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Quandary means a state of doubt or uncertainty.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_56260"
+    ],
+    "candidate_pids": [
+      "raw_56253",
+      "raw_56254",
+      "raw_56255",
+      "raw_56256",
+      "raw_56257",
+      "raw_56258",
+      "raw_56259",
+      "raw_56260",
+      "raw_56261",
+      "raw_56262"
+    ]
+  },
+  {
+    "query_id": 1091924,
+    "query": "outfall definition",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "An outfall is defined as any point where a separate storm sewer system discharges to either Water of the United States or to another MS4."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "An outfall is defined as any point where a separate storm sewer system discharges to either Water of the United States or to another MS4.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_713"
+    ],
+    "candidate_pids": [
+      "raw_710",
+      "raw_711",
+      "raw_712",
+      "raw_713",
+      "raw_714",
+      "raw_715",
+      "raw_716",
+      "raw_717",
+      "raw_718",
+      "raw_719"
+    ]
+  },
+  {
+    "query_id": 702179,
+    "query": "what is a summer salad",
+    "query_type": "ENTITY",
+    "answers": [
+      "Tomatoes, cabbage, carrots , strawberries, blueberries, raspberries, or blackberries ."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Tomatoes, cabbage, carrots , strawberries, blueberries, raspberries, or blackberries .",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_5425",
+      "raw_5426"
+    ],
+    "candidate_pids": [
+      "raw_5424",
+      "raw_5425",
+      "raw_5426",
+      "raw_5427",
+      "raw_5428",
+      "raw_5429",
+      "raw_5430",
+      "raw_5431",
+      "raw_5432",
+      "raw_5433"
+    ]
+  },
+  {
+    "query_id": 550293,
+    "query": "what age can i start giving honey to a child",
+    "query_type": "NUMERIC",
+    "answers": [
+      "Over the age of 12 months."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Over the age of 12 months.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_95220"
+    ],
+    "candidate_pids": [
+      "raw_95212",
+      "raw_95213",
+      "raw_95214",
+      "raw_95215",
+      "raw_95216",
+      "raw_95217",
+      "raw_95218",
+      "raw_95219",
+      "raw_95220",
+      "raw_95221"
+    ]
+  },
+  {
+    "query_id": 1054047,
+    "query": "what is hmc construction",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Huband-Mantor Construction, Inc a custom home builder & general contractor in Boerne, Texas."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Huband-Mantor Construction, Inc a custom home builder & general contractor in Boerne, Texas.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_75675"
+    ],
+    "candidate_pids": [
+      "raw_75670",
+      "raw_75671",
+      "raw_75672",
+      "raw_75673",
+      "raw_75674",
+      "raw_75675",
+      "raw_75676",
+      "raw_75677",
+      "raw_75678",
+      "raw_75679"
+    ]
+  },
+  {
+    "query_id": 1102379,
+    "query": "why do earthquake occur",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Earthquakes are caused by two tectonic plates that push against each other. The internal pressure between the plates increases, which creates friction and heat, and ultimately creates energy. Earthquakes are triggered after rocks break apart, or when the two tectonic plates stick together instead of sliding."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Earthquakes are caused by two tectonic plates that push against each other. The internal pressure between the plates increases, which creates friction and heat, and ultimately creates energy. Earthquakes are triggered after rocks break apart, or when the two tectonic plates stick together instead of sliding.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_78329"
+    ],
+    "candidate_pids": [
+      "raw_78321",
+      "raw_78322",
+      "raw_78323",
+      "raw_78324",
+      "raw_78325",
+      "raw_78326",
+      "raw_78327",
+      "raw_78328",
+      "raw_78329",
+      "raw_78330"
+    ]
+  },
+  {
+    "query_id": 962758,
+    "query": "when was tracy morgan's accident",
+    "query_type": "NUMERIC",
+    "answers": [
+      "June, 2014"
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "June, 2014",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_54274"
+    ],
+    "candidate_pids": [
+      "raw_54274",
+      "raw_54275",
+      "raw_54276",
+      "raw_54277",
+      "raw_54278",
+      "raw_54279",
+      "raw_54280",
+      "raw_54281",
+      "raw_54282",
+      "raw_54283"
+    ]
+  },
+  {
+    "query_id": 513238,
+    "query": "teradata string manipulation functions",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "INDEX, POSITION."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "INDEX, POSITION.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_97440"
+    ],
+    "candidate_pids": [
+      "raw_97434",
+      "raw_97435",
+      "raw_97436",
+      "raw_97437",
+      "raw_97438",
+      "raw_97439",
+      "raw_97440",
+      "raw_97441",
+      "raw_97442",
+      "raw_97443"
+    ]
+  },
+  {
+    "query_id": 837740,
+    "query": "what is the ops stat for baseball",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "On-base plus slugging is a sabermetric baseball statistic calculated as the sum of a player's on-base percentage and slugging average."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "On-base plus slugging is a sabermetric baseball statistic calculated as the sum of a player's on-base percentage and slugging average.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_93136"
+    ],
+    "candidate_pids": [
+      "raw_93134",
+      "raw_93135",
+      "raw_93136",
+      "raw_93137",
+      "raw_93138",
+      "raw_90100",
+      "raw_93139",
+      "raw_93140",
+      "raw_93141",
+      "raw_93142"
+    ]
+  },
+  {
+    "query_id": 918993,
+    "query": "what was one way the renaissance changed society?",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The renaissance changed society by changing their art."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The renaissance changed society by changing their art.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_89879"
+    ],
+    "candidate_pids": [
+      "raw_89877",
+      "raw_89878",
+      "raw_89879",
+      "raw_89880",
+      "raw_89881",
+      "raw_89882",
+      "raw_89883",
+      "raw_89884",
+      "raw_89885",
+      "raw_89886"
+    ]
+  },
+  {
+    "query_id": 789833,
+    "query": "what is real wasabi made of",
+    "query_type": "ENTITY",
+    "answers": [
+      "It is made form a grated root and the fake stuff is horse radish and dye."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "It is made form a grated root and the fake stuff is horse radish and dye.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_94228"
+    ],
+    "candidate_pids": [
+      "raw_94221",
+      "raw_94222",
+      "raw_94223",
+      "raw_94224",
+      "raw_94225",
+      "raw_94226",
+      "raw_94227",
+      "raw_94228",
+      "raw_94229",
+      "raw_94230"
+    ]
+  },
+  {
+    "query_id": 1083574,
+    "query": "what does it mean to say that a population cycles?",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "In zoology, a population cycle is a phenomenon where populations rise and fall over a predictable period of time."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "In zoology, a population cycle is a phenomenon where populations rise and fall over a predictable period of time.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_54513"
+    ],
+    "candidate_pids": [
+      "raw_54513",
+      "raw_54514",
+      "raw_54515",
+      "raw_54516",
+      "raw_54517",
+      "raw_54518",
+      "raw_54519",
+      "raw_54520",
+      "raw_54521",
+      "raw_54522"
+    ]
+  },
+  {
+    "query_id": 442137,
+    "query": "long terms effects of great depression definition",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Definition:\nAn economic slump sparked by the collapse of the New York stock exchange in 1929.\nLong term effect:\nIt devastated the US economy and caused unemployment."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Definition:\nAn economic slump sparked by the collapse of the New York stock exchange in 1929.\nLong term effect:\nIt devastated the US economy and caused unemployment.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_98297"
+    ],
+    "candidate_pids": [
+      "raw_98291",
+      "raw_98292",
+      "raw_98293",
+      "raw_98294",
+      "raw_98295",
+      "raw_98296",
+      "raw_98297",
+      "raw_98298",
+      "raw_98299",
+      "raw_98300"
+    ]
+  },
+  {
+    "query_id": 394244,
+    "query": "in what region of the world was maize domesticated",
+    "query_type": "LOCATION",
+    "answers": [
+      "Mexico"
+    ],
+    "wellFormedAnswers": [
+      "Maize was domesticated in the region of Mexico.",
+      "Maize was domesticated in the Mexico region of the world."
+    ],
+    "valid_reference_answer": "Maize was domesticated in the region of Mexico.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_56082"
+    ],
+    "candidate_pids": [
+      "raw_56076",
+      "raw_56077",
+      "raw_56078",
+      "raw_56079",
+      "raw_56080",
+      "raw_56081",
+      "raw_56082",
+      "raw_56083",
+      "raw_56084",
+      "raw_56085"
+    ]
+  },
+  {
+    "query_id": 520578,
+    "query": "tiger balm uses side effects",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Using this product on damaged skin or on sensitive skin areas will cause either/ or all of the following symptoms; redness, itchiness and swelling."
+    ],
+    "wellFormedAnswers": [
+      "Using tiger balm on damaged skin or on sensitive skin areas will cause redness, itchiness and swelling."
+    ],
+    "valid_reference_answer": "Using tiger balm on damaged skin or on sensitive skin areas will cause redness, itchiness and swelling.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_49432"
+    ],
+    "candidate_pids": [
+      "raw_49431",
+      "raw_49432",
+      "raw_49433",
+      "raw_49434",
+      "raw_49435",
+      "raw_49436",
+      "raw_49437",
+      "raw_49438",
+      "raw_49439",
+      "raw_49440"
+    ]
+  },
+  {
+    "query_id": 20461,
+    "query": "arabic ahmad definition",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "An Arabic baby name. In Arabic the meaning of the name Ahmad is Much praised."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "An Arabic baby name. In Arabic the meaning of the name Ahmad is Much praised.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_89315"
+    ],
+    "candidate_pids": [
+      "raw_89308",
+      "raw_89309",
+      "raw_89310",
+      "raw_89311",
+      "raw_89312",
+      "raw_89313",
+      "raw_89314",
+      "raw_89315",
+      "raw_89316",
+      "raw_89317"
+    ]
+  },
+  {
+    "query_id": 525734,
+    "query": "tv show shane cast",
+    "query_type": "PERSON",
+    "answers": [
+      "David Carradine, Jill Ireland, Tom Tully."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "David Carradine, Jill Ireland, Tom Tully.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_7298"
+    ],
+    "candidate_pids": [
+      "raw_7295",
+      "raw_7296",
+      "raw_7297",
+      "raw_7298",
+      "raw_7299",
+      "raw_7300",
+      "raw_7301",
+      "raw_7302",
+      "raw_7303",
+      "raw_7304"
+    ]
+  },
+  {
+    "query_id": 325195,
+    "query": "how much money does the u.s. give israel 2015",
+    "query_type": "NUMERIC",
+    "answers": [
+      "The U.S. government also gave $619.8 million for joint U.S.-Israel missile defense programs (designed to protect Israeli territory from potential outside threats), bringing total military aid to Israel to $3.7 billion per year. Put another way, American taxpayers give Israel $10.2 million per day (in 2015)."
+    ],
+    "wellFormedAnswers": [
+      "In 2015, the United States government gave $619.8 million for joint United States-Israel missile defense programs and an American taxpayers gave $10.2 million per day to Israel.",
+      "The United States gave $10.2 million per day to Israel in 2015."
+    ],
+    "valid_reference_answer": "In 2015, the United States government gave $619.8 million for joint United States-Israel missile defense programs and an American taxpayers gave $10.2 million per day to Israel.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_34191"
+    ],
+    "candidate_pids": [
+      "raw_34190",
+      "raw_34191",
+      "raw_34192",
+      "raw_34193",
+      "raw_34194",
+      "raw_34195",
+      "raw_34196",
+      "raw_34197",
+      "raw_34198",
+      "raw_34199"
+    ]
+  },
+  {
+    "query_id": 1001279,
+    "query": "where are the most deserts",
+    "query_type": "LOCATION",
+    "answers": [
+      "Most deserts lie between 15\u00b0 and 35\u00b0 north and south of the equator."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Most deserts lie between 15\u00b0 and 35\u00b0 north and south of the equator.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_77423"
+    ],
+    "candidate_pids": [
+      "raw_77419",
+      "raw_77420",
+      "raw_77421",
+      "raw_77422",
+      "raw_77423",
+      "raw_77424",
+      "raw_77425",
+      "raw_77426",
+      "raw_77427",
+      "raw_77428"
+    ]
+  },
+  {
+    "query_id": 1038214,
+    "query": "what is the hypoxic drive theory",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The hypoxic drive is a form of respiratory drive in which the body uses oxygen chemoreceptors instead of carbon dioxide receptors to regulate the respiratory cycle."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The hypoxic drive is a form of respiratory drive in which the body uses oxygen chemoreceptors instead of carbon dioxide receptors to regulate the respiratory cycle.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_95604"
+    ],
+    "candidate_pids": [
+      "raw_95604",
+      "raw_95605",
+      "raw_95606",
+      "raw_95607",
+      "raw_95608",
+      "raw_95609",
+      "raw_95610",
+      "raw_95611",
+      "raw_95612",
+      "raw_95613"
+    ]
+  },
+  {
+    "query_id": 986174,
+    "query": "where is lake james in indiana",
+    "query_type": "LOCATION",
+    "answers": [
+      "In the northeast corner of the state of Indiana in the United States."
+    ],
+    "wellFormedAnswers": [
+      "Lake James is in the the northeast corner of the state of Indiana in the United States.",
+      "The Lake James is in the northeast corner of the state of Indiana in the United States."
+    ],
+    "valid_reference_answer": "Lake James is in the the northeast corner of the state of Indiana in the United States.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_42328"
+    ],
+    "candidate_pids": [
+      "raw_42328",
+      "raw_42329",
+      "raw_42330",
+      "raw_42331",
+      "raw_42332",
+      "raw_42333",
+      "raw_42334",
+      "raw_42335",
+      "raw_42336",
+      "raw_42337"
+    ]
+  },
+  {
+    "query_id": 606138,
+    "query": "what county is franklin wi",
+    "query_type": "LOCATION",
+    "answers": [
+      "Milwaukee County"
+    ],
+    "wellFormedAnswers": [
+      "Franklin is in Milwaukee County, Wisconsin.",
+      "Franklin, Wisconsin is in Milwaukee County."
+    ],
+    "valid_reference_answer": "Franklin is in Milwaukee County, Wisconsin.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_90125"
+    ],
+    "candidate_pids": [
+      "raw_90117",
+      "raw_90118",
+      "raw_90119",
+      "raw_90120",
+      "raw_90121",
+      "raw_90122",
+      "raw_90123",
+      "raw_90124",
+      "raw_90125",
+      "raw_90126"
+    ]
+  },
+  {
+    "query_id": 773352,
+    "query": "what is monosodium chloride",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "It is a sodium salt from an amino acid called glutamic acid."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "It is a sodium salt from an amino acid called glutamic acid.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_62817"
+    ],
+    "candidate_pids": [
+      "raw_62809",
+      "raw_62810",
+      "raw_62811",
+      "raw_62812",
+      "raw_62813",
+      "raw_62814",
+      "raw_62815",
+      "raw_62816",
+      "raw_62817",
+      "raw_62818"
+    ]
+  },
+  {
+    "query_id": 1096170,
+    "query": "how much does a yoga instructor make a year",
+    "query_type": "NUMERIC",
+    "answers": [
+      "The average salary of a Yoga Instructor is $30.53 per hour."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The average salary of a Yoga Instructor is $30.53 per hour.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_7526"
+    ],
+    "candidate_pids": [
+      "raw_7524",
+      "raw_7525",
+      "raw_7526",
+      "raw_7527",
+      "raw_7281",
+      "raw_7528",
+      "raw_7529",
+      "raw_7530",
+      "raw_7531",
+      "raw_7532"
+    ]
+  },
+  {
+    "query_id": 83245,
+    "query": "cast jason bourne",
+    "query_type": "PERSON",
+    "answers": [
+      "Matt Damon, Alicia Vikander, Vincent Cassel, Tommy Lee Jones and Julia Stiles.",
+      "Matt Damon,Alicia Vikander,Vincent Cassel,Tommy Lee Jones,Julia Stiles."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Matt Damon, Alicia Vikander, Vincent Cassel, Tommy Lee Jones and Julia Stiles.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_53512"
+    ],
+    "candidate_pids": [
+      "raw_53509",
+      "raw_53510",
+      "raw_53511",
+      "raw_53512",
+      "raw_53513",
+      "raw_53514",
+      "raw_53515",
+      "raw_53516",
+      "raw_53517",
+      "raw_53518"
+    ]
+  },
+  {
+    "query_id": 835723,
+    "query": "what is the name of the theatre play is considered one of the most important musicals of the golden age of musical theatre.",
+    "query_type": "ENTITY",
+    "answers": [
+      "Broadway Musical Home."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Broadway Musical Home.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_30069",
+      "raw_30070"
+    ],
+    "candidate_pids": [
+      "raw_30066",
+      "raw_30067",
+      "raw_30068",
+      "raw_30069",
+      "raw_30070",
+      "raw_30071",
+      "raw_30072",
+      "raw_30073",
+      "raw_30074",
+      "raw_30075"
+    ]
+  },
+  {
+    "query_id": 1052134,
+    "query": "who sings tomorrow from annie",
+    "query_type": "PERSON",
+    "answers": [
+      "Zach Galifianakis"
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Zach Galifianakis",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_67151"
+    ],
+    "candidate_pids": [
+      "raw_67149",
+      "raw_67150",
+      "raw_67151",
+      "raw_67152",
+      "raw_67153",
+      "raw_67154",
+      "raw_67155",
+      "raw_67156",
+      "raw_67157",
+      "raw_67158"
+    ]
+  },
+  {
+    "query_id": 620643,
+    "query": "what diet for diabetes",
+    "query_type": "ENTITY",
+    "answers": [
+      "Whole grain cereals and breads",
+      "High intake of fiber, especially from whole grain cereals and breads."
+    ],
+    "wellFormedAnswers": [
+      "The diet for diabetes contains whole grains, cereals, and bread.",
+      "A diabetes diet includes whole grain cereals and breads."
+    ],
+    "valid_reference_answer": "The diet for diabetes contains whole grains, cereals, and bread.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_84205"
+    ],
+    "candidate_pids": [
+      "raw_84205",
+      "raw_84206",
+      "raw_84207",
+      "raw_84208",
+      "raw_84209",
+      "raw_84210",
+      "raw_84211",
+      "raw_84212",
+      "raw_84213",
+      "raw_84214"
+    ]
+  },
+  {
+    "query_id": 1095491,
+    "query": "how much should you spend on a wedding dress",
+    "query_type": "NUMERIC",
+    "answers": [
+      "You should spend $500 to $1000 on a wedding dress."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "You should spend $500 to $1000 on a wedding dress.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_68233"
+    ],
+    "candidate_pids": [
+      "raw_68227",
+      "raw_68228",
+      "raw_68229",
+      "raw_68230",
+      "raw_68231",
+      "raw_68232",
+      "raw_68233",
+      "raw_68234",
+      "raw_68235",
+      "raw_68236"
+    ]
+  },
+  {
+    "query_id": 770750,
+    "query": "what is meego os",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "An open source, Linux project which brings together the Moblin project, headed up by Intel, and Maemo, by Nokia, into a single open source activity."
+    ],
+    "wellFormedAnswers": [
+      "MeeGo is an open source, Linux project which brings together the Moblin project, headed up by Intel, and Maemo, by Nokia, into a single open source activity.",
+      "MeeGo operating system is an open source, Linux project which brings together the Moblin project, headed up by Intel, and Maemo, by Nokia, into a single open source activity."
+    ],
+    "valid_reference_answer": "MeeGo is an open source, Linux project which brings together the Moblin project, headed up by Intel, and Maemo, by Nokia, into a single open source activity.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_15917"
+    ],
+    "candidate_pids": [
+      "raw_15910",
+      "raw_15911",
+      "raw_15912",
+      "raw_15913",
+      "raw_15914",
+      "raw_15915",
+      "raw_15916",
+      "raw_15917",
+      "raw_15918",
+      "raw_15919"
+    ]
+  },
+  {
+    "query_id": 608254,
+    "query": "what county is lakeland, fl in",
+    "query_type": "LOCATION",
+    "answers": [
+      "Polk"
+    ],
+    "wellFormedAnswers": [
+      "Lakeland, Florida is in Polk County.",
+      "Lakeland is in Polk County, Florida."
+    ],
+    "valid_reference_answer": "Lakeland, Florida is in Polk County.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_17045"
+    ],
+    "candidate_pids": [
+      "raw_17036",
+      "raw_17037",
+      "raw_17038",
+      "raw_17039",
+      "raw_17040",
+      "raw_17041",
+      "raw_17042",
+      "raw_17043",
+      "raw_17044",
+      "raw_17045"
+    ]
+  },
+  {
+    "query_id": 1089374,
+    "query": "tv scandal cast",
+    "query_type": "PERSON",
+    "answers": [
+      "ABC\u2019s \u201cScandal\u201d stars are Cornelius Smith Jr as Marcus Walker, Portia de Rossi as Elizabeth North, Joshua Malina as David Rosen, Darby Stanchfield as Abby Whelan, Tony Goldwyn as President Fitzgerald Grant, Jeff Perry as Cyrus Beene, Kerry Washington as Olivia Pope, Bellamy Young as Mellie Grant, Scott Foley as Jake Ballard, Joe Morton as Rowan Pope, Katie Lowes as Quinn Perkins and Guillermo Diaz as Huck."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "ABC\u2019s \u201cScandal\u201d stars are Cornelius Smith Jr as Marcus Walker, Portia de Rossi as Elizabeth North, Joshua Malina as David Rosen, Darby Stanchfield as Abby Whelan, Tony Goldwyn as President Fitzgerald Grant, Jeff Perry as Cyrus Beene, Kerry Washington as Olivia Pope, Bellamy Young as Mellie Grant, Scott Foley as Jake Ballard, Joe Morton as Rowan Pope, Katie Lowes as Quinn Perkins and Guillermo Diaz as Huck.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_45034"
+    ],
+    "candidate_pids": [
+      "raw_45031",
+      "raw_45032",
+      "raw_45033",
+      "raw_45034",
+      "raw_45035",
+      "raw_45036",
+      "raw_45037",
+      "raw_45038",
+      "raw_45039",
+      "raw_45040"
+    ]
+  },
+  {
+    "query_id": 585818,
+    "query": "what causes blockage in dog stomach intestines",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Hernias and Crohn's disease."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Hernias and Crohn's disease.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_75917"
+    ],
+    "candidate_pids": [
+      "raw_75914",
+      "raw_75915",
+      "raw_75916",
+      "raw_75917",
+      "raw_75918",
+      "raw_75919",
+      "raw_75920",
+      "raw_75921",
+      "raw_75922",
+      "raw_75923"
+    ]
+  },
+  {
+    "query_id": 991078,
+    "query": "definition of facilitating",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The definition of facilitating is the increasing of the ease or intensity of a response by repeated stimulation."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The definition of facilitating is the increasing of the ease or intensity of a response by repeated stimulation.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_92788"
+    ],
+    "candidate_pids": [
+      "raw_92787",
+      "raw_92788",
+      "raw_92789",
+      "raw_92790",
+      "raw_92791",
+      "raw_92792",
+      "raw_92793",
+      "raw_92794",
+      "raw_92795",
+      "raw_92796"
+    ]
+  },
+  {
+    "query_id": 920671,
+    "query": "what was the first year of the land speed record",
+    "query_type": "NUMERIC",
+    "answers": [
+      "1899"
+    ],
+    "wellFormedAnswers": [
+      "The first year of the land speed record was in 1899."
+    ],
+    "valid_reference_answer": "The first year of the land speed record was in 1899.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_51685"
+    ],
+    "candidate_pids": [
+      "raw_51681",
+      "raw_51682",
+      "raw_51683",
+      "raw_51684",
+      "raw_51685",
+      "raw_51686",
+      "raw_51687",
+      "raw_51688",
+      "raw_51689",
+      "raw_51690"
+    ]
+  },
+  {
+    "query_id": 786502,
+    "query": "what is pressure vessel testing and repair",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Pressure Testing is a non-destructive test performed to ensure the integrity of the pressure shell on new pressure equipment."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Pressure Testing is a non-destructive test performed to ensure the integrity of the pressure shell on new pressure equipment.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_79047"
+    ],
+    "candidate_pids": [
+      "raw_79045",
+      "raw_79046",
+      "raw_79047",
+      "raw_79048",
+      "raw_79049",
+      "raw_79050",
+      "raw_79051",
+      "raw_79052",
+      "raw_79053",
+      "raw_79054"
+    ]
+  },
+  {
+    "query_id": 949869,
+    "query": "when is cinemax free preview",
+    "query_type": "NUMERIC",
+    "answers": [
+      "June 20 for DirectTV and for FreePreviewTV.com, Mediacom, DISH, and Cox Cable will have their free HBO/Cinemax preview weekends starting June 27."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "June 20 for DirectTV and for FreePreviewTV.com, Mediacom, DISH, and Cox Cable will have their free HBO/Cinemax preview weekends starting June 27.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_12211"
+    ],
+    "candidate_pids": [
+      "raw_12207",
+      "raw_12208",
+      "raw_12209",
+      "raw_12210",
+      "raw_12211",
+      "raw_12212",
+      "raw_12213",
+      "raw_12214",
+      "raw_12215",
+      "raw_12216"
+    ]
+  },
+  {
+    "query_id": 987062,
+    "query": "who was a muckraker",
+    "query_type": "PERSON",
+    "answers": [
+      "A muckraker is someone who rakes up or points out, unpleasnt truths, exposed businesses, governments or wrong doing and injustices."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "A muckraker is someone who rakes up or points out, unpleasnt truths, exposed businesses, governments or wrong doing and injustices.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_93101"
+    ],
+    "candidate_pids": [
+      "raw_93094",
+      "raw_93095",
+      "raw_93096",
+      "raw_93097",
+      "raw_93098",
+      "raw_93099",
+      "raw_93100",
+      "raw_93101",
+      "raw_93102",
+      "raw_93103"
+    ]
+  },
+  {
+    "query_id": 355867,
+    "query": "how to do ellipses question",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "A set of three periods ( . . . ) indicating an omission. Each period should have a single space on either side, except when adjacent to a quotation mark, in which case there should be no space."
+    ],
+    "wellFormedAnswers": [
+      "Steps to do ellipses question are a set of three periods indicating an omission. Each period should have a single space on either side, except when adjacent to a quotation mark, in which case there should be no space."
+    ],
+    "valid_reference_answer": "Steps to do ellipses question are a set of three periods indicating an omission. Each period should have a single space on either side, except when adjacent to a quotation mark, in which case there should be no space.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_82331"
+    ],
+    "candidate_pids": [
+      "raw_82330",
+      "raw_82331",
+      "raw_82332",
+      "raw_82333",
+      "raw_82334",
+      "raw_82335",
+      "raw_82336",
+      "raw_82337",
+      "raw_82338",
+      "raw_82339"
+    ]
+  },
+  {
+    "query_id": 1085824,
+    "query": "what companies does sarbanes oxley apply to",
+    "query_type": "PERSON",
+    "answers": [
+      "Sarbanes-Oxley Applies to Private Companies."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Sarbanes-Oxley Applies to Private Companies.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_90772"
+    ],
+    "candidate_pids": [
+      "raw_90765",
+      "raw_90766",
+      "raw_90767",
+      "raw_90768",
+      "raw_90769",
+      "raw_90770",
+      "raw_90771",
+      "raw_90772",
+      "raw_90773",
+      "raw_90774"
+    ]
+  },
+  {
+    "query_id": 328715,
+    "query": "how much tip lyft driver",
+    "query_type": "NUMERIC",
+    "answers": [
+      "$20-$30 a week."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "$20-$30 a week.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_63915"
+    ],
+    "candidate_pids": [
+      "raw_63910",
+      "raw_63911",
+      "raw_63912",
+      "raw_63913",
+      "raw_63914",
+      "raw_63915",
+      "raw_63916",
+      "raw_63912",
+      "raw_63917",
+      "raw_63918"
+    ]
+  },
+  {
+    "query_id": 1089819,
+    "query": "the indigo girl by natasha boyd",
+    "query_type": "PERSON",
+    "answers": [
+      "Indigo Girl by Natasha Boyd is a lively historical novel about Eliza Lucas Pinckney."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Indigo Girl by Natasha Boyd is a lively historical novel about Eliza Lucas Pinckney.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_76529"
+    ],
+    "candidate_pids": [
+      "raw_76525",
+      "raw_76526",
+      "raw_76527",
+      "raw_76528",
+      "raw_76529",
+      "raw_76530",
+      "raw_76531",
+      "raw_76532",
+      "raw_76533",
+      "raw_76534"
+    ]
+  },
+  {
+    "query_id": 1040168,
+    "query": "who is the father of the civil rights movement?????",
+    "query_type": "PERSON",
+    "answers": [
+      "Frederick Douglass."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Frederick Douglass.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_16263"
+    ],
+    "candidate_pids": [
+      "raw_16255",
+      "raw_16256",
+      "raw_16257",
+      "raw_16258",
+      "raw_16259",
+      "raw_16260",
+      "raw_16261",
+      "raw_16262",
+      "raw_16263",
+      "raw_16264"
+    ]
+  },
+  {
+    "query_id": 995564,
+    "query": "which cartoon was boris badenov",
+    "query_type": "ENTITY",
+    "answers": [
+      "Boris Badenov and his companion Natasha Fatale, were bungling spies on the Rocky and Bullwinkle cartoon show."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Boris Badenov and his companion Natasha Fatale, were bungling spies on the Rocky and Bullwinkle cartoon show.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_99774"
+    ],
+    "candidate_pids": [
+      "raw_99773",
+      "raw_99774",
+      "raw_99775",
+      "raw_99776",
+      "raw_99777",
+      "raw_99778",
+      "raw_99779",
+      "raw_99780",
+      "raw_99781",
+      "raw_99782"
+    ]
+  },
+  {
+    "query_id": 990901,
+    "query": "definition of feminism in detail",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The word feminism comes from the French word f\u00e9minisme. This medical term was used to describe masculine women or men with feminized traits."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The word feminism comes from the French word f\u00e9minisme. This medical term was used to describe masculine women or men with feminized traits.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_71513"
+    ],
+    "candidate_pids": [
+      "raw_71513",
+      "raw_71514",
+      "raw_71515",
+      "raw_71516",
+      "raw_71517",
+      "raw_71518",
+      "raw_71519",
+      "raw_71520",
+      "raw_71521",
+      "raw_71522"
+    ]
+  },
+  {
+    "query_id": 1085172,
+    "query": "what currency does aruba use?",
+    "query_type": "ENTITY",
+    "answers": [
+      "Aruban florins and the US dollar are used in Aruba."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Aruban florins and the US dollar are used in Aruba.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_198"
+    ],
+    "candidate_pids": [
+      "raw_191",
+      "raw_192",
+      "raw_193",
+      "raw_194",
+      "raw_195",
+      "raw_196",
+      "raw_197",
+      "raw_198",
+      "raw_199",
+      "raw_200"
+    ]
+  },
+  {
+    "query_id": 288924,
+    "query": "how many miles is alcatraz from land",
+    "query_type": "NUMERIC",
+    "answers": [
+      "Alcatraz Island is located in San Francisco Bay, 1.25 miles  offshore from San Francisco, California."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Alcatraz Island is located in San Francisco Bay, 1.25 miles  offshore from San Francisco, California.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_80068"
+    ],
+    "candidate_pids": [
+      "raw_80068",
+      "raw_80069",
+      "raw_80070",
+      "raw_80071",
+      "raw_80072",
+      "raw_80073",
+      "raw_80074",
+      "raw_80075",
+      "raw_80076",
+      "raw_80077"
+    ]
+  },
+  {
+    "query_id": 701904,
+    "query": "what is a subclassification code",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "It is a the fifth digit code of ICD-9."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "It is a the fifth digit code of ICD-9.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_472"
+    ],
+    "candidate_pids": [
+      "raw_470",
+      "raw_471",
+      "raw_472",
+      "raw_473",
+      "raw_474",
+      "raw_475",
+      "raw_476",
+      "raw_477",
+      "raw_478",
+      "raw_479"
+    ]
+  },
+  {
+    "query_id": 1013030,
+    "query": "what was called the document of free slaves",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The Emancipation Proclamation, or Proclamation 95, was a presidential proclamation and executive order issued by President Abraham Lincoln on January 1, 1863. It changed the federal legal status of more than 3 million enslaved people in the designated areas of the South from slave to free."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The Emancipation Proclamation, or Proclamation 95, was a presidential proclamation and executive order issued by President Abraham Lincoln on January 1, 1863. It changed the federal legal status of more than 3 million enslaved people in the designated areas of the South from slave to free.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_28444"
+    ],
+    "candidate_pids": [
+      "raw_28444",
+      "raw_28445",
+      "raw_28446",
+      "raw_28447",
+      "raw_28448",
+      "raw_28449",
+      "raw_28450",
+      "raw_28451",
+      "raw_28452",
+      "raw_28453"
+    ]
+  },
+  {
+    "query_id": 1086952,
+    "query": "what are the marks for sterling silver",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Sterling means that 925 out of 1000 parts are silver."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Sterling means that 925 out of 1000 parts are silver.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_54255"
+    ],
+    "candidate_pids": [
+      "raw_54254",
+      "raw_54255",
+      "raw_54256",
+      "raw_54257",
+      "raw_54258",
+      "raw_54259",
+      "raw_54260",
+      "raw_54261",
+      "raw_54262",
+      "raw_54263"
+    ]
+  },
+  {
+    "query_id": 686114,
+    "query": "what is a gummed flap",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "One of the first types of adhesive seal."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "One of the first types of adhesive seal.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_83707"
+    ],
+    "candidate_pids": [
+      "raw_83698",
+      "raw_83699",
+      "raw_83700",
+      "raw_83701",
+      "raw_83702",
+      "raw_83703",
+      "raw_83704",
+      "raw_83705",
+      "raw_83706",
+      "raw_83707"
+    ]
+  },
+  {
+    "query_id": 1060324,
+    "query": "why are coral reefs dying",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Because diver surveys based off Cape York, Australia's northeastern tip, found up to 50 percent mortality in the reef from coral bleaching."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Because diver surveys based off Cape York, Australia's northeastern tip, found up to 50 percent mortality in the reef from coral bleaching.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_81592"
+    ],
+    "candidate_pids": [
+      "raw_81585",
+      "raw_81586",
+      "raw_81587",
+      "raw_81588",
+      "raw_81589",
+      "raw_81590",
+      "raw_81591",
+      "raw_81592",
+      "raw_81593",
+      "raw_81594"
+    ]
+  },
+  {
+    "query_id": 1092154,
+    "query": "notary services what do they do",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Notaries are appointed for overseeing and setting standards to maintain public confidence."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Notaries are appointed for overseeing and setting standards to maintain public confidence.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_6268"
+    ],
+    "candidate_pids": [
+      "raw_6266",
+      "raw_6267",
+      "raw_6268",
+      "raw_6269",
+      "raw_6270",
+      "raw_6271",
+      "raw_6272",
+      "raw_6273",
+      "raw_6274",
+      "raw_6275"
+    ]
+  },
+  {
+    "query_id": 1081730,
+    "query": "what family do squirrels belong to",
+    "query_type": "ENTITY",
+    "answers": [
+      "Squirrels belong to a large family of species that include chipmunks, prairie dogs, groundhogs, marmots, and flying squirrels."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Squirrels belong to a large family of species that include chipmunks, prairie dogs, groundhogs, marmots, and flying squirrels.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_36189"
+    ],
+    "candidate_pids": [
+      "raw_36184",
+      "raw_36185",
+      "raw_36186",
+      "raw_36187",
+      "raw_36188",
+      "raw_36189",
+      "raw_36190",
+      "raw_36191",
+      "raw_36192",
+      "raw_36193"
+    ]
+  },
+  {
+    "query_id": 573539,
+    "query": "what are the side effects of zonisamide in dogs?",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The most common side effects of zonisamide include loss of coordination, sedation, vomiting and loss of appetite. Zonisamide may also cause binding of tissues to the eye in rare cases resulting in vision problems. Other less common side effects includes kidney stones, blood disorders and liver problems."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The most common side effects of zonisamide include loss of coordination, sedation, vomiting and loss of appetite. Zonisamide may also cause binding of tissues to the eye in rare cases resulting in vision problems. Other less common side effects includes kidney stones, blood disorders and liver problems.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_29788"
+    ],
+    "candidate_pids": [
+      "raw_29787",
+      "raw_29788",
+      "raw_29789",
+      "raw_29790",
+      "raw_29791",
+      "raw_29792",
+      "raw_29793",
+      "raw_29794",
+      "raw_29795",
+      "raw_29796"
+    ]
+  },
+  {
+    "query_id": 909153,
+    "query": "what treatment for osteoporosis",
+    "query_type": "ENTITY",
+    "answers": [
+      "Alendronate (Fosamax), Ibandronate (Boniva)."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Alendronate (Fosamax), Ibandronate (Boniva).",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_36661"
+    ],
+    "candidate_pids": [
+      "raw_36656",
+      "raw_36657",
+      "raw_36658",
+      "raw_36659",
+      "raw_36660",
+      "raw_36661",
+      "raw_36662",
+      "raw_36663",
+      "raw_36664",
+      "raw_36665"
+    ]
+  },
+  {
+    "query_id": 63467,
+    "query": "can a vegetable smoothie contain a lots of carbs",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "No, Paleo Smoothies contain low carbs."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "No, Paleo Smoothies contain low carbs.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_80770"
+    ],
+    "candidate_pids": [
+      "raw_80767",
+      "raw_80768",
+      "raw_80769",
+      "raw_80770",
+      "raw_80771",
+      "raw_80772",
+      "raw_80773",
+      "raw_80774",
+      "raw_80775",
+      "raw_80776"
+    ]
+  },
+  {
+    "query_id": 916315,
+    "query": "what user does sqlcmd run as",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The sqlcmd utility lets you enter Transact-SQL statements, system procedures, and script files at the command prompt, in Query Editor in SQLCMD mode, in a Windows script file or in an operating system (Cmd.exe) job step of a SQL Server Agent job. This utility uses ODBC to execute Transact-SQL batches."
+    ],
+    "wellFormedAnswers": [
+      "The SQLCMD utility lets you enter Transact-SQL statements, system procedures, and script files at the command prompt, in Query Editor in SQLCMD mode, in a Windows script file or in an operating system job step of a SQL Server Agent job."
+    ],
+    "valid_reference_answer": "The SQLCMD utility lets you enter Transact-SQL statements, system procedures, and script files at the command prompt, in Query Editor in SQLCMD mode, in a Windows script file or in an operating system job step of a SQL Server Agent job.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_50674"
+    ],
+    "candidate_pids": [
+      "raw_50673",
+      "raw_50674",
+      "raw_50675",
+      "raw_50676",
+      "raw_50677",
+      "raw_50678",
+      "raw_50679",
+      "raw_50680",
+      "raw_50681",
+      "raw_50682"
+    ]
+  },
+  {
+    "query_id": 133366,
+    "query": "definition of collaterals",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "A property or other asset that a borrower offers as a way for a lender to secure the loan."
+    ],
+    "wellFormedAnswers": [
+      "A property or other asset that a borrower offers as a way for a lender to secure the loan.",
+      "Collateral is a property or other asset that a borrower offers as a way for a lender to secure the loan."
+    ],
+    "valid_reference_answer": "A property or other asset that a borrower offers as a way for a lender to secure the loan.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_75136"
+    ],
+    "candidate_pids": [
+      "raw_75134",
+      "raw_75135",
+      "raw_75136",
+      "raw_75137",
+      "raw_75138",
+      "raw_75139",
+      "raw_75140",
+      "raw_75141",
+      "raw_75142",
+      "raw_75143"
+    ]
+  },
+  {
+    "query_id": 1100820,
+    "query": "engineered products definition",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Product engineering refers to the process of designing and developing a device, assembly, or system such that it be produced as an item for sale through some production manufacturing process."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Product engineering refers to the process of designing and developing a device, assembly, or system such that it be produced as an item for sale through some production manufacturing process.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_42616"
+    ],
+    "candidate_pids": [
+      "raw_42609",
+      "raw_42610",
+      "raw_42611",
+      "raw_42612",
+      "raw_42613",
+      "raw_42614",
+      "raw_42615",
+      "raw_42616",
+      "raw_42617",
+      "raw_42618"
+    ]
+  },
+  {
+    "query_id": 1044176,
+    "query": "cost to attend oklahoma state",
+    "query_type": "NUMERIC",
+    "answers": [
+      "Residents of Oklahoma pay an annual total price of $23,071 to attend Oklahoma State University Main Campus on a full time basis."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Residents of Oklahoma pay an annual total price of $23,071 to attend Oklahoma State University Main Campus on a full time basis.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_44097"
+    ],
+    "candidate_pids": [
+      "raw_44093",
+      "raw_44094",
+      "raw_44095",
+      "raw_44096",
+      "raw_44097",
+      "raw_44098",
+      "raw_44099",
+      "raw_44100",
+      "raw_44101",
+      "raw_44102"
+    ]
+  },
+  {
+    "query_id": 244393,
+    "query": "how long do bunnies sleep",
+    "query_type": "NUMERIC",
+    "answers": [
+      "A rabbits will sleep 3-4 hours during the day and at night for approximately 6-8 hours."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "A rabbits will sleep 3-4 hours during the day and at night for approximately 6-8 hours.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_30309"
+    ],
+    "candidate_pids": [
+      "raw_30303",
+      "raw_30304",
+      "raw_30305",
+      "raw_30306",
+      "raw_30307",
+      "raw_30308",
+      "raw_30309",
+      "raw_30310",
+      "raw_30311",
+      "raw_30312"
+    ]
+  },
+  {
+    "query_id": 818847,
+    "query": "what is the difference in the fire stick and fire tv box",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Fire TV Stick is the stick fits directly in an HDMI port on your TV. The Fire TV is a hockey puck (like the Apple TV) and needs a (not included) HDMI cable to connect it to the TV."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Fire TV Stick is the stick fits directly in an HDMI port on your TV. The Fire TV is a hockey puck (like the Apple TV) and needs a (not included) HDMI cable to connect it to the TV.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_10142"
+    ],
+    "candidate_pids": [
+      "raw_10133",
+      "raw_10134",
+      "raw_10135",
+      "raw_10136",
+      "raw_10137",
+      "raw_10138",
+      "raw_10139",
+      "raw_10140",
+      "raw_10141",
+      "raw_10142"
+    ]
+  },
+  {
+    "query_id": 175625,
+    "query": "drainage rock average cost",
+    "query_type": "NUMERIC",
+    "answers": [
+      "Washed 1 1/2 Drain Rock: $17.80/yd or $19.30/ton.\nWashed 3/4 Rock: $25.40/yd or $24.00/ton."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Washed 1 1/2 Drain Rock: $17.80/yd or $19.30/ton.\nWashed 3/4 Rock: $25.40/yd or $24.00/ton.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_26568"
+    ],
+    "candidate_pids": [
+      "raw_26559",
+      "raw_26560",
+      "raw_26561",
+      "raw_26562",
+      "raw_26563",
+      "raw_26564",
+      "raw_26565",
+      "raw_26566",
+      "raw_26567",
+      "raw_26568"
+    ]
+  },
+  {
+    "query_id": 1025300,
+    "query": "who coined the term  survival of the fittest?",
+    "query_type": "PERSON",
+    "answers": [
+      "Herbert Spencer"
+    ],
+    "wellFormedAnswers": [
+      "Herbert Spencer coined the term survival of the fittest.  "
+    ],
+    "valid_reference_answer": "Herbert Spencer coined the term survival of the fittest.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_81986"
+    ],
+    "candidate_pids": [
+      "raw_81980",
+      "raw_81981",
+      "raw_81982",
+      "raw_81983",
+      "raw_81984",
+      "raw_81985",
+      "raw_81986",
+      "raw_81987",
+      "raw_81988",
+      "raw_81989"
+    ]
+  },
+  {
+    "query_id": 834173,
+    "query": "what is the mra?",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The magnetic resonance angiogram, is a noninvasive test that has demonstrated usefulness in defining the anatomy of blood vessels of certain size in the head and neck."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The magnetic resonance angiogram, is a noninvasive test that has demonstrated usefulness in defining the anatomy of blood vessels of certain size in the head and neck.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_32531"
+    ],
+    "candidate_pids": [
+      "raw_32530",
+      "raw_32531",
+      "raw_32532",
+      "raw_32533",
+      "raw_32534",
+      "raw_32535",
+      "raw_32536",
+      "raw_32537",
+      "raw_32538",
+      "raw_32539"
+    ]
+  },
+  {
+    "query_id": 473039,
+    "query": "pep talk definition",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "A short speech intended to encourage people to work harder or try to win a game or competition."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "A short speech intended to encourage people to work harder or try to win a game or competition.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_83534"
+    ],
+    "candidate_pids": [
+      "raw_83533",
+      "raw_83534",
+      "raw_83535",
+      "raw_83536",
+      "raw_83537",
+      "raw_83538",
+      "raw_83539",
+      "raw_83540",
+      "raw_83541",
+      "raw_83542"
+    ]
+  },
+  {
+    "query_id": 955361,
+    "query": "when to do double mastectomy",
+    "query_type": "NUMERIC",
+    "answers": [
+      "If a mastectomy is done on both breasts, it is called a double (or bilateral) mastectomy."
+    ],
+    "wellFormedAnswers": [
+      "If a mastectomy is done on both breasts, it is called a double or bilateral mastectomy."
+    ],
+    "valid_reference_answer": "If a mastectomy is done on both breasts, it is called a double or bilateral mastectomy.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_11585"
+    ],
+    "candidate_pids": [
+      "raw_11582",
+      "raw_11583",
+      "raw_11584",
+      "raw_11585",
+      "raw_11586",
+      "raw_11587",
+      "raw_11588",
+      "raw_11589",
+      "raw_11590",
+      "raw_11591"
+    ]
+  },
+  {
+    "query_id": 393503,
+    "query": "in medical terms what does bolus mean",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "A large dose of a substance given by injection for the purpose of rapidly achieving the needed therapeutic concentration in the bloodstream."
+    ],
+    "wellFormedAnswers": [
+      "In medical, a bolus means a large dose of a substance given by injection for the purpose of rapidly achieving the needed therapeutic concentration in the bloodstream.",
+      "A bolus is a large dose of a substance given by injection for the purpose of rapidly achieving the needed therapeutic concentration in the bloodstream."
+    ],
+    "valid_reference_answer": "In medical, a bolus means a large dose of a substance given by injection for the purpose of rapidly achieving the needed therapeutic concentration in the bloodstream.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_33350"
+    ],
+    "candidate_pids": [
+      "raw_33344",
+      "raw_33345",
+      "raw_33346",
+      "raw_33347",
+      "raw_33348",
+      "raw_33349",
+      "raw_33350",
+      "raw_33351",
+      "raw_33352",
+      "raw_33353"
+    ]
+  },
+  {
+    "query_id": 866036,
+    "query": "what kind exercise can i do after bypass surgery",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Walking is an excellent exercise."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Walking is an excellent exercise.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_25545"
+    ],
+    "candidate_pids": [
+      "raw_25544",
+      "raw_25545",
+      "raw_25546",
+      "raw_25547",
+      "raw_25548",
+      "raw_25549",
+      "raw_25550",
+      "raw_25551",
+      "raw_25552",
+      "raw_25553"
+    ]
+  },
+  {
+    "query_id": 1066526,
+    "query": "what is a temporary structure",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "A temporary structure is defined as \u201ca structure erected to aid in the construction of a permanent project\u201d."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "A temporary structure is defined as \u201ca structure erected to aid in the construction of a permanent project\u201d.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_16347"
+    ],
+    "candidate_pids": [
+      "raw_16345",
+      "raw_16346",
+      "raw_16347",
+      "raw_16348",
+      "raw_16349",
+      "raw_16350",
+      "raw_16351",
+      "raw_16352",
+      "raw_16353",
+      "raw_16354"
+    ]
+  },
+  {
+    "query_id": 1097486,
+    "query": "how many calories does macaroni and cheese have",
+    "query_type": "NUMERIC",
+    "answers": [
+      "One cup of macaroni and cheese made from a boxed mix contains about 376 calories per cup."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "One cup of macaroni and cheese made from a boxed mix contains about 376 calories per cup.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_89440"
+    ],
+    "candidate_pids": [
+      "raw_89438",
+      "raw_89439",
+      "raw_89440",
+      "raw_89441",
+      "raw_89442",
+      "raw_89443",
+      "raw_89444",
+      "raw_89445",
+      "raw_89446",
+      "raw_89447"
+    ]
+  },
+  {
+    "query_id": 706215,
+    "query": "what is a wheel offset mean",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The distance from its hub mounting surface to the centerline of the wheel."
+    ],
+    "wellFormedAnswers": [
+      "A wheel offset is the distance from its hub mounting surface to the centerline of the wheel.",
+      "The offset of a wheel is the distance from its hub mounting surface to the centerline of the wheel."
+    ],
+    "valid_reference_answer": "A wheel offset is the distance from its hub mounting surface to the centerline of the wheel.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_97636"
+    ],
+    "candidate_pids": [
+      "raw_97635",
+      "raw_97636",
+      "raw_97637",
+      "raw_97638",
+      "raw_97639",
+      "raw_97640",
+      "raw_97641",
+      "raw_97642",
+      "raw_97643",
+      "raw_97644"
+    ]
+  },
+  {
+    "query_id": 807562,
+    "query": "what is the average wpm typing",
+    "query_type": "NUMERIC",
+    "answers": [
+      "38 to 40 words per minute"
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "38 to 40 words per minute",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_53298"
+    ],
+    "candidate_pids": [
+      "raw_53293",
+      "raw_53294",
+      "raw_53295",
+      "raw_53296",
+      "raw_53297",
+      "raw_53298",
+      "raw_53299",
+      "raw_53300",
+      "raw_53301",
+      "raw_53302"
+    ]
+  },
+  {
+    "query_id": 1097651,
+    "query": "how long was the executor star destroyer",
+    "query_type": "NUMERIC",
+    "answers": [
+      "The executor star destroyer was 19,000 meters long, or roughly 12 miles."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The executor star destroyer was 19,000 meters long, or roughly 12 miles.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_52120"
+    ],
+    "candidate_pids": [
+      "raw_52113",
+      "raw_52114",
+      "raw_52115",
+      "raw_52116",
+      "raw_52117",
+      "raw_52118",
+      "raw_52119",
+      "raw_52120",
+      "raw_52121",
+      "raw_52122"
+    ]
+  },
+  {
+    "query_id": 988197,
+    "query": "definition of load in electric",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The Electrical Load is The part or component in a circuit that converts electricity into light, heat, or mechanical motion."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The Electrical Load is The part or component in a circuit that converts electricity into light, heat, or mechanical motion.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_2783"
+    ],
+    "candidate_pids": [
+      "raw_2783",
+      "raw_2784",
+      "raw_2785",
+      "raw_2786",
+      "raw_2787",
+      "raw_2788",
+      "raw_2789",
+      "raw_2790",
+      "raw_2791",
+      "raw_2792"
+    ]
+  },
+  {
+    "query_id": 1043956,
+    "query": "what is the best riding lawn mower for hills",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Troy Bilt TB30R is the best riding lawn mower for hills."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Troy Bilt TB30R is the best riding lawn mower for hills.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_34877"
+    ],
+    "candidate_pids": [
+      "raw_34872",
+      "raw_34873",
+      "raw_34874",
+      "raw_34875",
+      "raw_34876",
+      "raw_34877",
+      "raw_34878",
+      "raw_34879",
+      "raw_34880",
+      "raw_34881"
+    ]
+  },
+  {
+    "query_id": 1041922,
+    "query": "what is the definition alexandria",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Alexandria is the second largest city and a major economic centre in Egypt, extending about 32 km along the coast of the Mediterranean Sea in the north central part of the country."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Alexandria is the second largest city and a major economic centre in Egypt, extending about 32 km along the coast of the Mediterranean Sea in the north central part of the country.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_6077"
+    ],
+    "candidate_pids": [
+      "raw_6076",
+      "raw_6077",
+      "raw_6078",
+      "raw_6079",
+      "raw_6080",
+      "raw_6081",
+      "raw_6082",
+      "raw_6083",
+      "raw_6084",
+      "raw_6085"
+    ]
+  },
+  {
+    "query_id": 62704,
+    "query": "can a miniature horse be ridden",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "No, miniature horses are not meant to be ridden,they are cart horses."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "No, miniature horses are not meant to be ridden,they are cart horses.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_74635"
+    ],
+    "candidate_pids": [
+      "raw_74626",
+      "raw_74627",
+      "raw_74628",
+      "raw_74629",
+      "raw_74630",
+      "raw_74631",
+      "raw_74632",
+      "raw_74633",
+      "raw_74634",
+      "raw_74635"
+    ]
+  },
+  {
+    "query_id": 265467,
+    "query": "how long is venison good in fridge",
+    "query_type": "NUMERIC",
+    "answers": [
+      "5 to 7 days"
+    ],
+    "wellFormedAnswers": [
+      "Venison is good for 5 to 7 days in fridge."
+    ],
+    "valid_reference_answer": "Venison is good for 5 to 7 days in fridge.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_63666"
+    ],
+    "candidate_pids": [
+      "raw_63660",
+      "raw_63661",
+      "raw_63662",
+      "raw_63663",
+      "raw_63664",
+      "raw_63665",
+      "raw_63666",
+      "raw_63667",
+      "raw_63668",
+      "raw_63669"
+    ]
+  },
+  {
+    "query_id": 420390,
+    "query": "is parent and subsidiary related party?",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Yes, parent and subsidiary are related party."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Yes, parent and subsidiary are related party.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_80428"
+    ],
+    "candidate_pids": [
+      "raw_80424",
+      "raw_80425",
+      "raw_80426",
+      "raw_80427",
+      "raw_80428",
+      "raw_80429",
+      "raw_80430",
+      "raw_80431",
+      "raw_80432",
+      "raw_80433"
+    ]
+  },
+  {
+    "query_id": 316762,
+    "query": "how much does it cost to replace window seals",
+    "query_type": "NUMERIC",
+    "answers": [
+      "Cost to replace window seals is between $30.08 - $63.60 per seal."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Cost to replace window seals is between $30.08 - $63.60 per seal.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_8245"
+    ],
+    "candidate_pids": [
+      "raw_8238",
+      "raw_8239",
+      "raw_8240",
+      "raw_8241",
+      "raw_8242",
+      "raw_8243",
+      "raw_8244",
+      "raw_8245",
+      "raw_8246",
+      "raw_8247"
+    ]
+  },
+  {
+    "query_id": 279097,
+    "query": "how many championship wins did sugar ray rob win",
+    "query_type": "NUMERIC",
+    "answers": [
+      "Five times"
+    ],
+    "wellFormedAnswers": [
+      "Sugar Ray Robinson won five championships.",
+      "Sugar Ray Rob has won the Championship five times."
+    ],
+    "valid_reference_answer": "Sugar Ray Robinson won five championships.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_24140"
+    ],
+    "candidate_pids": [
+      "raw_24136",
+      "raw_24137",
+      "raw_24138",
+      "raw_24139",
+      "raw_24140",
+      "raw_24141",
+      "raw_24142",
+      "raw_24143",
+      "raw_24144",
+      "raw_24145"
+    ]
+  },
+  {
+    "query_id": 237341,
+    "query": "how is shingles spread to someone else",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The varicella zoster virus can be spread from a person with shingles to someone who has never had chicken pox."
+    ],
+    "wellFormedAnswers": [
+      "The varicella zoster virus can be spread from a person with shingles to someone who has never had chicken pox."
+    ],
+    "valid_reference_answer": "The varicella zoster virus can be spread from a person with shingles to someone who has never had chicken pox.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_68021"
+    ],
+    "candidate_pids": [
+      "raw_68018",
+      "raw_68019",
+      "raw_68020",
+      "raw_68021",
+      "raw_68022",
+      "raw_68023",
+      "raw_68024",
+      "raw_68025",
+      "raw_68026",
+      "raw_68027"
+    ]
+  },
+  {
+    "query_id": 545599,
+    "query": "weather in portland oregon fahrenheit",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "Portland averages 6 days in December when the thermometer reaches into the 50s \u00b0F and Temperatures above 60 \u00b0F occur in December just once a decade."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "Portland averages 6 days in December when the thermometer reaches into the 50s \u00b0F and Temperatures above 60 \u00b0F occur in December just once a decade.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_49022"
+    ],
+    "candidate_pids": [
+      "raw_10177",
+      "raw_49018",
+      "raw_49019",
+      "raw_49020",
+      "raw_49021",
+      "raw_49022",
+      "raw_49023",
+      "raw_49024",
+      "raw_11866",
+      "raw_10177"
+    ]
+  },
+  {
+    "query_id": 191423,
+    "query": "frame rail flange definition",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "A frame rail and the flange is the horizontal section of a frame rail, located at the top and/or bottom of the rail."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "A frame rail and the flange is the horizontal section of a frame rail, located at the top and/or bottom of the rail.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_34100"
+    ],
+    "candidate_pids": [
+      "raw_34100",
+      "raw_34101",
+      "raw_34102",
+      "raw_34103",
+      "raw_34104",
+      "raw_34105",
+      "raw_34106",
+      "raw_34107",
+      "raw_34108",
+      "raw_34109"
+    ]
+  },
+  {
+    "query_id": 453220,
+    "query": "mexico population policy life expectancy",
+    "query_type": "NUMERIC",
+    "answers": [
+      "According to the latest WHO data published in 2015 life expectancy in Mexico is: Male 73.9, female 79.5 and total life expectancy is 76.7."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "According to the latest WHO data published in 2015 life expectancy in Mexico is: Male 73.9, female 79.5 and total life expectancy is 76.7.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_17671"
+    ],
+    "candidate_pids": [
+      "raw_17663",
+      "raw_17664",
+      "raw_17665",
+      "raw_17666",
+      "raw_17667",
+      "raw_17668",
+      "raw_17669",
+      "raw_17670",
+      "raw_17671",
+      "raw_17672"
+    ]
+  },
+  {
+    "query_id": 1083257,
+    "query": "what does perm means in a labor certification?",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "PERM is the process for labor certification. The employer must perform the necessary recruitment to show that they were unable to find a qualified U.S. worker to fill a certain position."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "PERM is the process for labor certification. The employer must perform the necessary recruitment to show that they were unable to find a qualified U.S. worker to fill a certain position.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_45254"
+    ],
+    "candidate_pids": [
+      "raw_45251",
+      "raw_45252",
+      "raw_45253",
+      "raw_45254",
+      "raw_45255",
+      "raw_45256",
+      "raw_45257",
+      "raw_45258",
+      "raw_45259",
+      "raw_45260"
+    ]
+  },
+  {
+    "query_id": 746489,
+    "query": "what is fauteuil?",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "A style of open-arm chair with a primarily exposed wooden frame originating in France in the early 17th century."
+    ],
+    "wellFormedAnswers": [
+      "A fauteuil is a style of open-arm chair with a primarily exposed wooden frame originating in France in the early 17th century.",
+      "The Fauteuil is a style of open-arm chair with a primarily exposed wooden frame originating in France in the early 17th century."
+    ],
+    "valid_reference_answer": "A fauteuil is a style of open-arm chair with a primarily exposed wooden frame originating in France in the early 17th century.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_68278"
+    ],
+    "candidate_pids": [
+      "raw_68277",
+      "raw_68278",
+      "raw_68279",
+      "raw_68280",
+      "raw_68281",
+      "raw_68282",
+      "raw_68283",
+      "raw_68284",
+      "raw_68285",
+      "raw_68286"
+    ]
+  },
+  {
+    "query_id": 1088420,
+    "query": "weather in leicester, ma",
+    "query_type": "DESCRIPTION",
+    "answers": [
+      "The Leicester, Massachusetts weather forecast for August 03 is 83 degrees and Patchy rain possible and 57 percentage chance of rain and 6 mph winds from the South-Southwest."
+    ],
+    "wellFormedAnswers": [],
+    "valid_reference_answer": "The Leicester, Massachusetts weather forecast for August 03 is 83 degrees and Patchy rain possible and 57 percentage chance of rain and 6 mph winds from the South-Southwest.",
+    "has_gold": true,
+    "is_eligible": true,
+    "gold_pids": [
+      "raw_38744"
+    ],
+    "candidate_pids": [
+      "raw_38741",
+      "raw_2611",
+      "raw_37099",
+      "raw_38742",
+      "raw_18944",
+      "raw_38743",
+      "raw_38744",
+      "raw_38745",
+      "raw_38746",
+      "raw_38747"
+    ]
+  }
+]

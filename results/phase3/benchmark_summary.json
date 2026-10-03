@@ -73,5 +73,15 @@
       "max_ms": 28.91,
       "mean_ms": 7.87
     }
-  }
+  },
+  "commit": "950bc5d6dbec421266e9cd78934dba2cac533224",
+  "date": "2026-10-03 18:51:25",
+  "N": 100,
+  "seed": 42,
+  "config": {
+    "rerank_k": 10,
+    "deadline_ms": 200.0
+  },
+  "judge": "none",
+  "path_used": "HTTP API (/search)"
 }

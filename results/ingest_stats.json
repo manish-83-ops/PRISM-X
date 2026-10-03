@@ -68,5 +68,13 @@
       "13": 5366,
       "14": 6230
     }
-  }
+  },
+  "commit": "950bc5d6dbec421266e9cd78934dba2cac533224",
+  "N": 100000,
+  "seed": 42,
+  "config": {
+    "config_hash": "3b06508a5c6dc296663e0547331da83b6b5996afa6a21d510fcbd84cb64cdd95"
+  },
+  "judge": "none",
+  "path_used": "offline_ingest"
 }

@@ -1533,5 +1533,15 @@
       "sparse_hits_50": 1,
       "hybrid_hits_50": 1
     }
-  ]
+  ],
+  "commit": "950bc5d6dbec421266e9cd78934dba2cac533224",
+  "date": "2026-10-03 19:46:00",
+  "N": 100,
+  "seed": 42,
+  "config": {
+    "depth": 10,
+    "alpha": 0.8
+  },
+  "judge": "none",
+  "path_used": "HTTP API (/search)"
 }

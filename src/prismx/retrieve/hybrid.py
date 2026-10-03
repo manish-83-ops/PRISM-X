@@ -50,6 +50,7 @@ class HybridRetriever:
         rrf_k: int | None = None,
         norm_method: NormalizationType = "minmax",
         prefix: str = "",
+        search_ef: int | None = None,
     ) -> tuple[list[dict[str, Any]], dict[str, float]]:
         """Executes dual-channel retrieval (dense + BM25 sparse) with client-side fusion.
         
@@ -70,6 +71,7 @@ class HybridRetriever:
             limit=k,
             query_filter=query_filter,
             prefix=prefix,
+            search_ef=search_ef,
         )
         latencies["encode"] = round(encode_ms, 2)
         latencies["dense"] = round(dense_ms, 2)
@@ -80,10 +82,21 @@ class HybridRetriever:
         sparse_cands = []
 
         if sparse_indices:
+            # Auto-detect sparse vector name from collection params ('bm25' or 'sparse')
+            sparse_name = getattr(self, "_sparse_vector_name", None)
+            if sparse_name is None:
+                try:
+                    c_info = self.qdrant_store.client.get_collection(self.qdrant_store.collection_name)
+                    s_vecs = c_info.config.params.sparse_vectors or {}
+                    sparse_name = "bm25" if "bm25" in s_vecs else ("sparse" if "sparse" in s_vecs else "bm25")
+                except Exception:
+                    sparse_name = "bm25"
+                self._sparse_vector_name = sparse_name
+
             resp = self.qdrant_store.client.query_points(
                 collection_name=self.qdrant_store.collection_name,
                 query=models.SparseVector(indices=sparse_indices, values=sparse_values),
-                using="bm25",
+                using=sparse_name,
                 query_filter=query_filter,
                 limit=k,
                 with_payload=True,

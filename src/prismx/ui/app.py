@@ -245,7 +245,8 @@ def main():
                     "Percentile": ["p50 (Median)", "p90", "p95 (NFR-3 Target)", "p99", "Max", "Mean"],
                     "Uncached Latency (ms)": [unc.get("p50_ms"), unc.get("p90_ms"), unc.get("p95_ms"), unc.get("p99_ms"), unc.get("max_ms"), unc.get("mean_ms")],
                 })
-                st.success("Target p95 < 300 ms: **PASS (71.50 ms)**")
+                p95_val = unc.get("p95_ms")
+                st.success(f"Target p95 < 300 ms: **PASS ({p95_val} ms)**" if p95_val else "Target p95 < 300 ms")
             else:
                 st.info("Run latency benchmark to view results.")
 

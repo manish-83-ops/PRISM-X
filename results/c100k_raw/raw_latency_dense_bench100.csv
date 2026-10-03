@@ -1,0 +1,101 @@
+idx,query_id,query,mode,scenario,cache_hit,governor_state,client_wall_clock_ms,server_encode_ms,server_dense_ms,server_sparse_ms,server_fusion_ms,server_fetch_text_ms,server_rerank_ms,server_total_ms
+1,156087,do earnest money go toward closing,dense,dense_uncached,False,normal,53.68,34.07,7.9,0.0,0.0,6.13,0.0,48.44
+2,196655,graphology definition,dense,dense_uncached,False,normal,53.7,32.43,7.49,0.0,0.0,7.76,0.0,48.12
+3,947750,when does summer finish,dense,dense_uncached,False,normal,52.77,29.76,10.69,0.0,0.0,6.11,0.0,46.92
+4,1086525,what astronomical bodies exist in our universe?,dense,dense_uncached,False,normal,64.52,43.64,7.37,0.0,0.0,7.06,0.0,58.53
+5,528278,types of iron lines cornea,dense,dense_uncached,False,normal,59.02,36.87,11.49,0.0,0.0,4.9,0.0,53.73
+6,760440,what is ionograph cleaning,dense,dense_uncached,False,normal,50.87,34.71,8.06,0.0,0.0,2.55,0.0,45.68
+7,125712,define primary colors,dense,dense_uncached,False,normal,45.28,30.27,7.35,0.0,0.0,2.85,0.0,40.78
+8,1085902,what class was uss texas,dense,dense_uncached,False,normal,44.27,28.81,7.46,0.0,0.0,2.31,0.0,38.9
+9,1097949,how long is person with the flu contagious,dense,dense_uncached,False,normal,52.1,35.48,8.78,0.0,0.0,2.34,0.0,46.95
+10,1090664,sidvokodvo average weather conditions,dense,dense_uncached,False,normal,53.0,38.63,6.44,0.0,0.0,2.4,0.0,47.78
+11,1091187,quandary meaning,dense,dense_uncached,False,normal,49.67,33.96,6.74,0.0,0.0,2.7,0.0,43.71
+12,1091924,outfall definition,dense,dense_uncached,False,normal,49.37,26.93,13.58,0.0,0.0,3.06,0.0,43.92
+13,702179,what is a summer salad,dense,dense_uncached,False,normal,47.24,31.18,8.9,0.0,0.0,2.08,0.0,42.47
+14,550293,what age can i start giving honey to a child,dense,dense_uncached,False,normal,51.96,37.55,7.36,0.0,0.0,1.94,0.0,47.13
+15,1054047,what is hmc construction,dense,dense_uncached,False,normal,46.45,30.7,8.08,0.0,0.0,2.26,0.0,41.35
+16,1102379,why do earthquake occur,dense,dense_uncached,False,normal,45.81,29.45,7.8,0.0,0.0,2.29,0.0,39.92
+17,962758,when was tracy morgan's accident,dense,dense_uncached,False,normal,53.83,35.83,8.94,0.0,0.0,2.57,0.0,47.69
+18,513238,teradata string manipulation functions,dense,dense_uncached,False,normal,51.51,32.09,8.01,0.0,0.0,3.04,0.0,46.72
+19,837740,what is the ops stat for baseball,dense,dense_uncached,False,normal,50.23,34.55,8.1,0.0,0.0,2.1,0.0,45.12
+20,918993,what was one way the renaissance changed society?,dense,dense_uncached,False,normal,63.53,46.11,9.07,0.0,0.0,2.32,0.0,57.91
+21,789833,what is real wasabi made of,dense,dense_uncached,False,normal,79.12,55.45,8.68,0.0,0.0,8.27,0.0,72.85
+22,1083574,what does it mean to say that a population cycles?,dense,dense_uncached,False,normal,54.42,33.85,8.85,0.0,0.0,6.5,0.0,49.56
+23,442137,long terms effects of great depression definition,dense,dense_uncached,False,normal,104.41,84.0,7.89,0.0,0.0,6.76,0.0,99.04
+24,394244,in what region of the world was maize domesticated,dense,dense_uncached,False,normal,69.98,43.44,8.9,0.0,0.0,8.15,0.0,63.81
+25,520578,tiger balm uses side effects,dense,dense_uncached,False,normal,51.49,31.91,7.24,0.0,0.0,6.02,0.0,45.56
+26,20461,arabic ahmad definition,dense,dense_uncached,False,normal,52.9,32.51,7.61,0.0,0.0,6.83,0.0,47.36
+27,525734,tv show shane cast,dense,dense_uncached,False,normal,51.42,30.27,6.99,0.0,0.0,7.47,0.0,45.11
+28,325195,how much money does the u.s. give israel 2015,dense,dense_uncached,False,normal,68.42,46.82,8.36,0.0,0.0,6.37,0.0,61.9
+29,1001279,where are the most deserts,dense,dense_uncached,False,normal,56.56,38.36,7.74,0.0,0.0,4.83,0.0,51.31
+30,1038214,what is the hypoxic drive theory,dense,dense_uncached,False,normal,69.67,47.88,7.34,0.0,0.0,7.51,0.0,63.06
+31,986174,where is lake james in indiana,dense,dense_uncached,False,normal,56.7,30.95,10.7,0.0,0.0,8.93,0.0,51.06
+32,606138,what county is franklin wi,dense,dense_uncached,False,normal,51.77,33.18,8.21,0.0,0.0,4.91,0.0,46.62
+33,773352,what is monosodium chloride,dense,dense_uncached,False,normal,52.64,32.27,8.0,0.0,0.0,6.78,0.0,47.47
+34,1096170,how much does a yoga instructor make a year,dense,dense_uncached,False,normal,69.56,46.35,8.7,0.0,0.0,6.0,0.0,61.48
+35,83245,cast jason bourne,dense,dense_uncached,False,normal,54.79,35.63,6.93,0.0,0.0,6.77,0.0,49.7
+36,835723,what is the name of the theatre play is considered one of the most important musicals of the golden age of musical theatre.,dense,dense_uncached,False,normal,61.01,42.35,8.44,0.0,0.0,5.4,0.0,56.52
+37,1052134,who sings tomorrow from annie,dense,dense_uncached,False,normal,57.78,32.72,7.48,0.0,0.0,7.3,0.0,52.73
+38,620643,what diet for diabetes,dense,dense_uncached,False,normal,50.97,32.23,7.42,0.0,0.0,6.28,0.0,46.37
+39,1095491,how much should you spend on a wedding dress,dense,dense_uncached,False,normal,50.01,33.66,7.9,0.0,0.0,3.56,0.0,45.43
+40,770750,what is meego os,dense,dense_uncached,False,normal,53.19,33.23,7.79,0.0,0.0,6.86,0.0,48.29
+41,608254,"what county is lakeland, fl in",dense,dense_uncached,False,normal,52.38,33.01,7.91,0.0,0.0,5.86,0.0,47.16
+42,1089374,tv scandal cast,dense,dense_uncached,False,normal,113.99,93.28,8.35,0.0,0.0,6.04,0.0,108.11
+43,585818,what causes blockage in dog stomach intestines,dense,dense_uncached,False,normal,74.04,44.24,7.68,0.0,0.0,10.66,0.0,68.19
+44,991078,definition of facilitating,dense,dense_uncached,False,normal,59.41,37.04,8.17,0.0,0.0,7.96,0.0,53.66
+45,920671,what was the first year of the land speed record,dense,dense_uncached,False,normal,72.67,50.37,9.21,0.0,0.0,6.33,0.0,66.3
+46,786502,what is pressure vessel testing and repair,dense,dense_uncached,False,normal,110.05,75.39,9.72,0.0,0.0,16.06,0.0,101.62
+47,949869,when is cinemax free preview,dense,dense_uncached,False,normal,80.17,50.6,8.67,0.0,0.0,14.45,0.0,74.08
+48,987062,who was a muckraker,dense,dense_uncached,False,normal,80.99,49.99,8.6,0.0,0.0,15.29,0.0,74.3
+49,355867,how to do ellipses question,dense,dense_uncached,False,normal,114.25,66.99,15.29,0.0,0.0,23.66,0.0,106.4
+50,1085824,what companies does sarbanes oxley apply to,dense,dense_uncached,False,normal,188.56,152.53,12.55,0.0,0.0,15.92,0.0,181.55
+51,328715,how much tip lyft driver,dense,dense_uncached,False,normal,55.21,33.61,9.19,0.0,0.0,7.03,0.0,50.19
+52,1089819,the indigo girl by natasha boyd,dense,dense_uncached,False,normal,61.61,38.46,7.79,0.0,0.0,9.54,0.0,56.15
+53,1040168,who is the father of the civil rights movement?????,dense,dense_uncached,False,normal,63.28,38.82,9.24,0.0,0.0,9.91,0.0,58.36
+54,995564,which cartoon was boris badenov,dense,dense_uncached,False,normal,58.9,37.59,8.07,0.0,0.0,8.0,0.0,54.0
+55,990901,definition of feminism in detail,dense,dense_uncached,False,normal,51.87,30.4,7.98,0.0,0.0,7.26,0.0,46.01
+56,1085172,what currency does aruba use?,dense,dense_uncached,False,normal,60.71,35.05,7.32,0.0,0.0,7.5,0.0,55.28
+57,288924,how many miles is alcatraz from land,dense,dense_uncached,False,normal,56.81,34.68,8.68,0.0,0.0,8.15,0.0,51.81
+58,701904,what is a subclassification code,dense,dense_uncached,False,normal,57.43,32.17,7.6,0.0,0.0,10.87,0.0,51.11
+59,1013030,what was called the document of free slaves,dense,dense_uncached,False,normal,70.31,47.52,10.58,0.0,0.0,6.2,0.0,64.77
+60,1086952,what are the marks for sterling silver,dense,dense_uncached,False,normal,52.42,33.31,7.97,0.0,0.0,5.25,0.0,46.89
+61,686114,what is a gummed flap,dense,dense_uncached,False,normal,48.35,27.58,7.88,0.0,0.0,6.46,0.0,42.21
+62,1060324,why are coral reefs dying,dense,dense_uncached,False,normal,55.08,30.72,7.75,0.0,0.0,5.39,0.0,49.17
+63,1092154,notary services what do they do,dense,dense_uncached,False,normal,54.46,32.4,7.67,0.0,0.0,8.25,0.0,48.66
+64,1081730,what family do squirrels belong to,dense,dense_uncached,False,normal,54.92,34.6,7.95,0.0,0.0,7.51,0.0,50.36
+65,573539,what are the side effects of zonisamide in dogs?,dense,dense_uncached,False,normal,50.85,29.69,7.6,0.0,0.0,8.51,0.0,46.17
+66,909153,what treatment for osteoporosis,dense,dense_uncached,False,normal,54.09,32.54,8.92,0.0,0.0,7.39,0.0,49.2
+67,63467,can a vegetable smoothie contain a lots of carbs,dense,dense_uncached,False,normal,62.57,41.1,8.65,0.0,0.0,6.8,0.0,56.92
+68,916315,what user does sqlcmd run as,dense,dense_uncached,False,normal,88.82,58.99,10.0,0.0,0.0,9.84,0.0,82.29
+69,133366,definition of collaterals,dense,dense_uncached,False,normal,65.37,42.41,8.66,0.0,0.0,7.48,0.0,58.98
+70,1100820,engineered products definition,dense,dense_uncached,False,normal,52.06,30.51,7.63,0.0,0.0,7.22,0.0,45.81
+71,1044176,cost to attend oklahoma state,dense,dense_uncached,False,normal,55.36,33.07,7.48,0.0,0.0,9.18,0.0,50.13
+72,244393,how long do bunnies sleep,dense,dense_uncached,False,normal,63.52,38.44,11.34,0.0,0.0,7.13,0.0,57.36
+73,818847,what is the difference in the fire stick and fire tv box,dense,dense_uncached,False,normal,68.91,47.82,8.31,0.0,0.0,6.79,0.0,63.34
+74,175625,drainage rock average cost,dense,dense_uncached,False,normal,63.2,35.46,8.63,0.0,0.0,8.73,0.0,56.14
+75,1025300,who coined the term  survival of the fittest?,dense,dense_uncached,False,normal,73.02,49.5,8.61,0.0,0.0,8.36,0.0,66.9
+76,834173,what is the mra?,dense,dense_uncached,False,normal,75.47,48.72,8.78,0.0,0.0,9.2,0.0,67.21
+77,473039,pep talk definition,dense,dense_uncached,False,normal,60.3,39.2,8.96,0.0,0.0,5.88,0.0,54.41
+78,955361,when to do double mastectomy,dense,dense_uncached,False,normal,52.29,32.22,7.36,0.0,0.0,6.02,0.0,45.91
+79,393503,in medical terms what does bolus mean,dense,dense_uncached,False,normal,53.69,34.44,6.74,0.0,0.0,6.34,0.0,47.88
+80,866036,what kind exercise can i do after bypass surgery,dense,dense_uncached,False,normal,61.69,36.44,7.46,0.0,0.0,6.67,0.0,56.58
+81,1066526,what is a temporary structure,dense,dense_uncached,False,normal,62.45,40.23,9.1,0.0,0.0,6.93,0.0,56.67
+82,1097486,how many calories does macaroni and cheese have,dense,dense_uncached,False,normal,64.91,41.17,9.62,0.0,0.0,7.46,0.0,58.7
+83,706215,what is a wheel offset mean,dense,dense_uncached,False,normal,66.18,44.43,7.82,0.0,0.0,6.96,0.0,59.59
+84,807562,what is the average wpm typing,dense,dense_uncached,False,normal,59.22,37.89,8.54,0.0,0.0,6.61,0.0,53.44
+85,1097651,how long was the executor star destroyer,dense,dense_uncached,False,normal,62.09,40.0,8.84,0.0,0.0,7.7,0.0,56.94
+86,988197,definition of load in electric,dense,dense_uncached,False,normal,58.27,33.26,8.09,0.0,0.0,8.02,0.0,52.66
+87,1043956,what is the best riding lawn mower for hills,dense,dense_uncached,False,normal,67.66,45.41,8.13,0.0,0.0,8.38,0.0,62.35
+88,1041922,what is the definition alexandria,dense,dense_uncached,False,normal,65.8,43.9,8.71,0.0,0.0,6.85,0.0,59.9
+89,62704,can a miniature horse be ridden,dense,dense_uncached,False,normal,59.56,39.29,8.26,0.0,0.0,6.48,0.0,54.41
+90,265467,how long is venison good in fridge,dense,dense_uncached,False,normal,63.47,39.17,8.24,0.0,0.0,9.93,0.0,57.8
+91,420390,is parent and subsidiary related party?,dense,dense_uncached,False,normal,70.15,47.77,8.21,0.0,0.0,7.39,0.0,63.75
+92,316762,how much does it cost to replace window seals,dense,dense_uncached,False,normal,70.57,44.91,8.27,0.0,0.0,6.69,0.0,63.62
+93,279097,how many championship wins did sugar ray rob win,dense,dense_uncached,False,normal,61.42,40.42,8.34,0.0,0.0,6.41,0.0,55.56
+94,237341,how is shingles spread to someone else,dense,dense_uncached,False,normal,55.66,36.31,6.66,0.0,0.0,6.0,0.0,49.36
+95,545599,weather in portland oregon fahrenheit,dense,dense_uncached,False,normal,58.53,37.96,8.88,0.0,0.0,6.7,0.0,53.91
+96,191423,frame rail flange definition,dense,dense_uncached,False,normal,50.54,31.94,7.6,0.0,0.0,5.0,0.0,44.9
+97,453220,mexico population policy life expectancy,dense,dense_uncached,False,normal,52.25,31.39,8.19,0.0,0.0,6.39,0.0,46.34
+98,1083257,what does perm means in a labor certification?,dense,dense_uncached,False,normal,138.11,59.59,12.61,0.0,0.0,11.96,0.0,131.91
+99,746489,what is fauteuil?,dense,dense_uncached,False,normal,107.06,81.25,9.56,0.0,0.0,10.24,0.0,101.44
+100,1088420,"weather in leicester, ma",dense,dense_uncached,False,normal,77.65,57.07,7.27,0.0,0.0,6.81,0.0,71.55

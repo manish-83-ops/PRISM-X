@@ -176,7 +176,7 @@ All architectural and algorithmic decisions are recorded here with context, opti
   - Cache bypass supported via `use_cache=False` / `cache=False` in request payload.
   - Automatic synchronous cache invalidation on any write operation (`/passages/upsert` or `/passages/{passage_id}` DELETE), guaranteeing zero stale reads after updates.
 - **Evaluation Workloads:**
-  - Evaluated on three workloads: (1) All-unique (0% cache hits, p50=66.18ms, p95=103.04ms), (2) 30% repeated queries (p50=61.10ms, p95=75.95ms), and (3) 100% repeated queries (p50=4.26ms, p95=24.28ms, sub-millisecond cache hits).
+  - Evaluated on three workloads: (1) All-unique in PRISM-X mode (0% cache hits, p50=66.18ms, p95=103.04ms on curated; p50=176.66ms, p95=250.50ms on raw), (2) 30% repeated queries: marked *invalid, cache not reset, re-run pending* (the initial Gate 5.5 script omitted cache invalidation before Workload 2, causing artificial 100% pre-warmed hits; script has been corrected, re-run pending idle machine authorization), and (3) 100% repeated queries (sub-millisecond cache hits, p50=3.93ms).
 
 ## ADR-013: Latency-Constrained Reranker Selection and Deadline Governor (Gate 4B)
 - **Date:** 2026-10-03
@@ -227,13 +227,150 @@ All architectural and algorithmic decisions are recorded here with context, opti
 ## Frozen Configurations Registry
 *(Frozen configuration hashes must be written here BEFORE single TEST evaluations)*
 
-| Config Name | Phase | Gate | Config Hash (SHA-256 canonical JSON) | Date Frozen | Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `phase1_dense_baseline` | Phase 1 Dense | Gate 3 | `3b06508a5c6dc296663e0547331da83b6b5996afa6a21d510fcbd84cb64cdd95` | 2026-10-03 | Dense cosine baseline on 100k index |
-| `phase2_hybrid_optimized`| Phase 2 Hybrid| Gate 3 | `b23eb0d7862be81675e68eb82540f7039dc2cfea1850916833ee44c515ab0018` | 2026-10-03 | Hybrid weighted (alpha=0.8, minmax) frozen from TUNE grid search |
-| `phase3_hybrid_rerank` | Phase 3 Rerank | Gate 4A | `0f106e12f557e9c7440284eaa0582c292a5904273d9b9561dc86dbd31ff78c76` | 2026-10-03 | Unconstrained Hybrid + MiniLM-L6 INT8 reranker (K=30) |
-| `phase3_hybrid_rerank_constrained` | Phase 3 Rerank | Gate 4B | `64e95cabb1a1fd58e1ff021ff16043924b7eef86637d9e4defd1c0b5c7c4d2fd` | 2026-10-03 | Latency-constrained Hybrid + MiniLM-L6 INT8 (K=10, len=128, 200ms governor) |
-| `stress_test_c100k_hard` | Stress Test | Gate 5 | `9f2b84e1837a77d19280d46e39f76a524a87c125d03a58e0787a93df179bc321` | 2026-10-03 | Hard-distractor collection c100k_hard evaluated under standard K=10 config |
+---
+
+## ADR-016: Raw Query-Centric Corpus (`c100k_raw`) Construction and Pre-Registration Rules
+- **Date:** 2026-10-03
+- **Status:** Accepted (Pre-registered and written BEFORE construction or evaluation)
+- **Context:** The original corpus was constructed from the Tevatron MS MARCO corpus partition. To evaluate PRISMX on an uncurated, authentic multi-candidate distribution directly reflecting the query-centric nature of real-world search, a new collection `c100k_raw` is constructed directly from the raw MS MARCO v2.1 validation split (`microsoft/ms_marco`, configuration `v2.1`, validation split: 101,093 queries).
+- **Construction Rule (B2):**
+  1. **Source Dataset:** `microsoft/ms_marco` configuration `v2.1`, split `validation` (size: 101,093 queries).
+  2. **Deterministic Sampling:** Queries are sampled sequentially with a fixed seed (`seed = 42`).
+  3. **Candidate Ingestion:** For each sampled query, ingest all of its candidate passages (`sample["passages"]`).
+  4. **Strict Deduplication:** Passages are deduplicated by normalized text (case-folded, whitespace-normalized).
+  5. **Stopping Condition:** Add queries until the total unique passage count reaches $\ge 100,000$. Zero hand-inserted passages, zero synthetic fill, zero random text.
+  6. **Passage Metadata:**
+     - `passage_id`: Deterministic integer string ID.
+     - `source`: Candidate URL (`url` from passage record).
+     - `category`: `query_type` of the originating query (used for metadata filtering).
+     - `originating_query_ids`: List of query IDs that brought this passage into the corpus.
+- **Split Extraction & Gold Ground Truth (B3):**
+  1. From the set of queries whose passages form `c100k_raw`, draw:
+     - **TUNE Split:** 500 queries (fixed seed: `seed = 42`, disjoint from BENCH).
+     - **BENCH Split:** 100 queries (fixed seed: `seed = 1337`, disjoint from TUNE).
+  2. **Gold Labels:** Ground truth passages are defined strictly as candidates where `is_selected == 1`. The exact count of gold passages per query is recorded in evaluation manifests.
+  3. **Reference Answers (ADR-014):** Evaluated against human reference answers (`wellFormedAnswers[0]` if valid, else `answers[0]`). Queries without valid human reference answers are excluded from primary RAGAS aggregates.
+  4. **Caveat on Unselected Sibling Passages:** In MS MARCO, multiple candidate passages for a query may contain the correct answer even if annotators selected only one (`is_selected == 1`). Therefore, ID metrics (Hit@1, MRR@10, NDCG) on `c100k_raw` are inherently conservative/pessimistic estimates of true semantic relevance.
+- **Pre-Registered Reporting Protocol (B4):**
+  1. **Headline Corpus Policy:** The HEADLINE corpus for all final reporting and presentation is `c100k_raw`, regardless of whether scores are higher or lower than the curated corpus.
+  2. **Curated Corpus Reporting:** The original `prismx_corpus` is reported strictly as a secondary comparison labeled *"Curated Corpus Baseline"*.
+- **Frozen Models & Parameters Carryover (Deliberate Choice):**
+  - Dense Model: `BAAI/bge-small-en-v1.5` (dim=384, normalize=True).
+  - Sparse Lexical: Qdrant sparse vectors with dynamic BM25 IDF modifier ($k_1=1.2, b=0.75$).
+  - Vector Index: Qdrant HNSW ($M=16, \text{ef\_construct}=100, \text{search\_ef}=64$).
+  - Fusion: Weighted linear combination ($\alpha = 0.80$ dense, $0.20$ BM25 sparse, min-max normalized).
+  - Reranker: `cross-encoder/ms-marco-MiniLM-L-6-v2` with dynamic INT8 quantization, `max_length = 128`, 8 torch threads, candidate depth $K = 10$.
+  - **Deliberate Non-Retuning Choice:** As a deliberate methodology choice, parameters ($\alpha=0.80$, $K=10$, MiniLM-L6 INT8, `max_length=128`, rerank budget 200 ms) are carried over directly from the curated TUNE evaluation. We DO NOT re-tune $\alpha$ on `c100k_raw` and DO NOT re-select $K$. An $\alpha$ sensitivity table on $\{0.6, 0.7, 0.8, 0.9, 1.0\}$ is reported for informational purposes only and explicitly labeled "not used for selection".
+- **Governor Update & Config Hash Invalidation (Gate 5.2):**
+  - Introduced `total_deadline_ms = 250.0` (end-to-end request latency ceiling).
+  - Cross-encoder stage receives `min(rerank_budget_ms=200.0, total_deadline_ms - elapsed_pre_rerank - 10.0ms safety)`.
+  - This parameter addition updates the configuration schema and configuration hash.
+  - **Latency Numbers Status:** All prior latency benchmark figures (e.g. 181.59 ms hybrid, 242.25 ms rerank K=10) are now categorized as *"curated corpus, previous governor"*. All headline latency numbers will be re-measured on `c100k_raw` when an idle-machine benchmark is authorized.
+- **Evaluation Discipline:**
+---
+
+## ADR-017: Pre-Registered ANN Fidelity and Search-ef Selection Rule (Gate 5.3)
+- **Date:** 2026-10-03
+- **Status:** Accepted (Pre-registered and written BEFORE running ANN fidelity experiment)
+- **Context:** An audit in Gate 5.2 (item 1c) revealed that apparent metric variations between curated and expanded collections were confounded by HNSW graph traversal nondeterminism at default `hnsw_ef = 64`. To guarantee retrieval fidelity and eliminate graph traversal truncation artifacts, PRISMX evaluates dense retrieval fidelity across candidate `hnsw_ef` values on the 500 TUNE queries on `c100k_raw`.
+- **Pre-Registered Protocol & Selection Rule (Written BEFORE running):**
+  1. **Candidate Set:** `hnsw_ef` $\in \{64, 128, 256\}$.
+  2. **Ground Truth Baseline:** Exact brute-force dense cosine search (`exact = True` in Qdrant) over all 100,008 vectors.
+  3. **Metrics Evaluated on 500 TUNE Queries:**
+     - (a) Mean overlap of dense top-50 vs exact top-50: $\frac{1}{N}\sum_{q}\frac{|\text{top50}_{\text{ANN}}(q) \cap \text{top50}_{\text{exact}}(q)|}{50}$.
+     - (b) Mean overlap of dense top-10 vs exact top-10: $\frac{1}{N}\sum_{q}\frac{|\text{top10}_{\text{ANN}}(q) \cap \text{top10}_{\text{exact}}(q)|}{10}$.
+     - (c) Gold passage presence fraction in top-10 and top-50.
+     - (d) Count of TUNE queries that lose their gold passage at `ef = 64` but retain it at the candidate `ef`.
+  4. **Pre-Registered Decision Rule:**
+     - **Choose the SMALLEST `ef` whose top-50 overlap vs exact is $\ge 0.99$ (99.0%).**
+     - **If none of the candidates reaches $0.99$, choose `ef = 256` and state this explicitly.**
+  5. **Serving Parameter Alignment:** If the chosen `ef` differs from current default (64), update `CONFIG.yaml`, schemas, and docs, record the resulting config hash change, and run the serving TUNE evaluation (Dense, Hybrid $\alpha=0.8$, Hybrid+Rerank $K=10$) at the chosen `ef`.
+  6. **Zero BENCH Peeking:** BENCH queries are strictly excluded from the fidelity evaluation.
+  7. **BM25 Channel Exactness Verification:** Qdrant sparse vectors with dynamic BM25 IDF modifier execute exact postings list traversal with inverted index dot-product scoring; sparse retrieval has zero graph approximation error.
+- **Empirical Execution & Results (500 TUNE queries):**
+  - **Exact Brute-Force Baseline:** Gold in Top-10 = 0.9540 (95.40%), Gold in Top-50 = 0.9900 (99.00%).
+  - **`ef = 64`:** Top-50 Overlap = 0.9869 (98.69%), Top-10 Overlap = 0.9950 (99.50%), Gold Top-10 = 0.9540, Gold Top-50 = 0.9900. Status: `< 0.99` threshold.
+  - **`ef = 128`:** Top-50 Overlap = 0.9954 (99.54%), Top-10 Overlap = 0.9978 (99.78%), Gold Top-10 = 0.9540, Gold Top-50 = 0.9900. Status: **$\ge 0.99$ (SELECTED per pre-registered rule)**.
+  - **`ef = 256`:** Top-50 Overlap = 0.9986 (99.86%), Top-10 Overlap = 0.9992 (99.92%), Gold Top-10 = 0.9540, Gold Top-50 = 0.9900.
+  - **Gold Loss Analysis:** 0 queries lost gold at `ef=64` vs exact search; `ef=128` provides 99.54% rank list overlap fidelity with exact search.
+  - **Decision:** `chosen_ef = 128` (Smallest candidate with mean top-50 overlap $\ge 0.99$).
+  - **Configuration Update:** `search_ef` updated from 64 to 128 in `CONFIG.yaml`, `src/prismx/schemas.py`, and `src/prismx/retrieve/service.py`.
+  - **Config Hash Update:**
+    - Prior hash: `508e053a1db7d271e068fb7f2c8815e05c02eb42d6e8a3d8f35f91c561e9961a`
+    - Updated hash: `8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf`
+
+---
+
+## ADR-018: Pre-Registered Serving Default Mode Rule, Phase Naming, and Scientific Reporting Protocol (Gate 5.4)
+- **Date:** 2026-10-03
+- **Status:** Accepted (Pre-registered and written BEFORE executing single-run BENCH evaluation)
+- **Context:** Following index build and ANN fidelity calibration (`chosen_ef = 128`, config hash `8e1000d5...`), the final 100-query BENCH split (`data/c100k_raw/bench_raw_100.json`) must be evaluated exactly once. To eliminate any possibility of post-hoc rationalization, all decision criteria, phase definitions, and reporting rules are pre-registered here.
+
+### 1. Default-Mode Decision Rule (Written BEFORE running BENCH):
+- The system default mode (`retrieval.default_mode` in `CONFIG.yaml` and serving endpoints) shall be set to **`"prismx"`** (hybrid + rerank $K=10$, `total_deadline_ms = 250.0`) IF AND ONLY IF:
+  1. The single-run BENCH paired-bootstrap 95% confidence interval of (Rerank minus Hybrid) on **MRR@10** strictly excludes $0$ ($\Delta\text{MRR@10} > 0$ with $p < 0.05$); **AND**
+  2. The idle-machine 100-query HTTP $p95$ end-to-end latency of `prismx` is $\le 250.0\text{ ms}$ (to be measured on an authorized idle-machine benchmark).
+- **Fallback Rule:** If either condition fails, the system default mode shall remain **`"hybrid"`** ($\alpha = 0.8$), and `prismx` will be reported and presented in the UI as the highlighted optional high-precision rerank mode.
+
+### 2. Phase Naming for Reports and UI:
+- **Phase 1:** Dense Retrieval (`BAAI/bge-small-en-v1.5`, `dim=384`, `search_ef=128`).
+- **Phase 2:** The selected serving default mode established under Rule 1 above.
+- **Hybrid-Only Retrieval:** Explicitly presented as an ablation / first-stage fusion baseline row when Phase 2 is `prismx`.
+
+### 3. Scientific Wording and Methodological Caveats:
+- **Improvement Criterion:** A performance delta $\Delta$ may only be characterized as an "improvement" if the 95% bootstrap confidence interval of the paired difference strictly excludes $0$. If the interval includes $0$, the delta must strictly be characterized as *"directional, not significant"*.
+- **Fusion Weight Characterization:** Parameter $\alpha = 0.80$ carried over from curated evaluation must NEVER be described as "validated" on `c100k_raw`; it must be described as *"not worse than alternatives"* based on the informational sensitivity sweep.
+- **Unselected Sibling Passages:** Unselected sibling passages from the same MS MARCO originating query must NEVER be asserted to "contain relevant content". They are formally characterized as *"unjudged passages that may or may not be valid answers"*, reflecting MS MARCO sparse labeling where annotators stopped after marking one passage.
+- **Cross-Encoder Annotator Preference Caveat:** Because `cross-encoder/ms-marco-MiniLM-L-6-v2` was trained on MS MARCO train labels, ID-metric gains (MRR@10, NDCG) on MS MARCO validation queries may partly reflect learned annotator-style selection preferences in addition to semantic relevance.
+
+### 4. Groq Free-Tier API Rate Limits (Official Console Specification):
+- **Model:** `llama-3.3-70b-versatile`
+- **Requests Per Minute (RPM):** **30 RPM**
+- **Requests Per Day (RPD):** **1,000 RPD**
+- **Tokens Per Minute (TPM):** **12,000 TPM** (12k)
+- **Tokens Per Day (TPD):** **100,000 tokens/day** (100k)
+- **Rate Limit Safeguards:**
+  - Automated runner must throttle requests to $\le 20\text{ RPM}$ to prevent bursts exceeding 12k TPM.
+  - Daily automatic safety cutoff initially set at 90% of daily tokens (**90,000 tokens/day**).
+  - **Gate 5.5 Daily Token Cap Adjustment:** Adjusted daily cutoff from 90,000 to **96,000 tokens/day** (reason: with empirical consumption of ~1,215 tokens per evaluation, the 90,000 cap yielded 24 complete paired queries, strictly below the pre-registered minimum primary target of $N=25$; a 96,000 cap ensures at least 25-26 complete paired queries fit on Day 1 while remaining safely below the 100,000 free-tier daily ceiling).
+  - Explicit exponential backoff handling HTTP 429 response codes.
+
+### 5. ADR-018 Evaluation Outcome (Gate 5.5 Idle-Machine Latency Benchmark):
+- **Condition (i) [Quality]:** $\Delta\text{MRR@10} = +0.0583$, 95% CI $[+0.0015, +0.1165]$ (excludes $0$, statistically significant at $p < 0.05$) $\rightarrow$ **MET**.
+- **Condition (ii) [Latency]:** Idle-machine 100-query HTTP $p95 = 306.39\text{ ms} > 250.0\text{ ms}$ SLA target ceiling $\rightarrow$ **NOT MET**.
+- **Mechanical Decision:** Per Fallback Rule, system default mode remains **`"hybrid"`** ($\alpha = 0.80$). `prismx` is designated as the highlighted optional high-precision rerank mode.
+- **Config Hash:** Unchanged at `8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf`.
+
+---
+
+## ADR-020: Post-Freeze Serving Governor Hard Boundary (PROPOSED, NOT APPLIED)
+- **Date:** 2026-10-04
+- **Status:** **PROPOSED, NOT APPLIED**
+- **Context:** Diagnostic analysis of live UI queries (Gate 5.8) revealed that when the cross-encoder runs on a non-idle machine, a single micro-batch of size 5 can consume $>250\text{ ms}$ of CPU time. Because the deadline governor checks elapsed time only *between* batches, the request overshoots the 250 ms target ceiling before truncation can occur.
+- **Proposed Technical Solution:**
+  1. Reduce reranker micro-batch size from 5 to 2 (or 1), allowing fine-grained preemption every ~35-45 ms.
+  2. Pass true total request start timestamp (`t_total_start`) directly into `rerank()`, bounding total end-to-end request duration rather than rerank stage elapsed time.
+  3. Include query encoding, dense search, sparse search, and SQLite fetch time explicitly in the deadline check:
+     $$\text{if } (t_{\text{now}} - t_{\text{total\_start}}) \ge (\text{total\_deadline\_ms} - 15.0\text{ ms}): \text{break}$$
+- **Reason Not Applied:**
+  - Config hash `8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf` is strictly frozen.
+  - Applying this change post-freeze would alter the serving governor behavior that produced the benchmarked numbers on BENCH.
+  - Under ADR-018, PRISM-X is designated as the **optional** high-precision mode, while Hybrid ($p95 = 89.02\text{ ms}$) is the SLA-compliant serving default.
+  - If approved for future deployment, this change requires an offline parity audit (rank correlation $\rho \ge 0.999$, Top-5 agreement = 100%) and truncation-rate verification before activation.
+
+---
+
+## Proposal B Disposition: Runtime Speedups (FUTURE WORK, NOT APPLIED)
+- **Status:** **RECORDED AS FUTURE WORK, NOT APPLIED**
+- **Evaluated Candidates:**
+  1. **ONNX Runtime INT8 Reranker:** Exporting `ms-marco-MiniLM-L-6-v2` with dynamic INT8 quantization and ORT graph optimizations (estimated 1.8x–2.4x speedup on x86 CPU).
+  2. **Thread Affinity / Execution Pool Tuning:** Binding PyTorch intra-op threads to physical cores (6 threads) to prevent hyperthreading contention.
+  3. **OS Power Scheme Optimization:** Enforcing high-performance CPU governor to prevent idle frequency drops.
+- **Disposition Policy:** Any runtime acceleration that modifies the inference engine or threading model requires a verified ranking-parity check against the PyTorch baseline (Spearman rank correlation $\ge 0.999$, 100% Top-5 agreement on 500 TUNE queries) and formal ADR approval before use. Config remains frozen.
+
+
+
+
 
 
 

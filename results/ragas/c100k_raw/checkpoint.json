@@ -1,0 +1,13 @@
+{
+  "benchmark": "c100k_raw RAGAS",
+  "judge_model": "llama-3.3-70b-versatile",
+  "token_accounting": {
+    "total_tokens": 0,
+    "tokens_today": 0,
+    "calls": 0,
+    "date": "2026-10-03"
+  },
+  "completed_queries": {
+    "156087": {}
+  }
+}

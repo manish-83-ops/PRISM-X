@@ -1,0 +1,101 @@
+idx,query_id,query,mode,scenario,cache_hit,governor_state,client_wall_clock_ms,server_encode_ms,server_dense_ms,server_sparse_ms,server_fusion_ms,server_fetch_text_ms,server_rerank_ms,server_total_ms
+1,156087,do earnest money go toward closing,prismx,cache_all_unique,False,normal,276.41,88.23,12.11,8.12,0.52,14.79,145.31,270.04
+2,196655,graphology definition,prismx,cache_all_unique,False,normal,168.53,36.29,8.06,6.74,0.41,7.16,101.22,160.7
+3,947750,when does summer finish,prismx,cache_all_unique,False,normal,192.8,28.57,7.55,6.09,0.52,12.55,130.77,186.86
+4,1086525,what astronomical bodies exist in our universe?,prismx,cache_all_unique,False,normal,198.0,32.78,8.14,5.84,0.56,11.99,130.6,190.75
+5,528278,types of iron lines cornea,prismx,cache_all_unique,False,normal,201.42,35.99,8.72,5.98,0.52,11.76,131.89,195.66
+6,760440,what is ionograph cleaning,prismx,cache_all_unique,False,normal,222.8,40.23,7.13,6.11,0.57,11.75,147.46,214.09
+7,125712,define primary colors,prismx,cache_all_unique,False,normal,155.73,27.99,7.71,5.74,0.56,9.58,97.67,150.03
+8,1085902,what class was uss texas,prismx,cache_all_unique,False,normal,177.68,31.42,7.59,7.7,0.41,9.57,113.79,171.24
+9,1097949,how long is person with the flu contagious,prismx,cache_all_unique,False,normal,195.6,37.9,7.37,7.17,0.46,6.53,129.02,189.12
+10,1090664,sidvokodvo average weather conditions,prismx,cache_all_unique,False,normal,192.48,52.07,8.0,7.11,0.77,6.6,108.07,183.53
+11,1091187,quandary meaning,prismx,cache_all_unique,False,normal,255.74,44.2,8.51,8.75,0.61,12.08,174.39,249.55
+12,1091924,outfall definition,prismx,cache_all_unique,False,normal,174.79,29.95,7.42,6.35,0.73,7.75,114.99,168.01
+13,702179,what is a summer salad,prismx,cache_all_unique,False,normal,181.31,34.69,8.55,5.69,0.5,7.87,118.25,176.19
+14,550293,what age can i start giving honey to a child,prismx,cache_all_unique,False,normal,198.23,51.35,8.25,6.14,0.61,10.04,115.32,192.4
+15,1054047,what is hmc construction,prismx,cache_all_unique,False,normal,200.88,42.29,8.01,7.74,0.57,9.57,126.93,195.93
+16,1102379,why do earthquake occur,prismx,cache_all_unique,False,normal,186.31,37.0,8.24,5.77,0.55,9.32,118.44,180.06
+17,962758,when was tracy morgan's accident,prismx,cache_all_unique,False,normal,173.04,33.56,9.54,6.77,0.58,12.56,101.09,164.93
+18,513238,teradata string manipulation functions,prismx,cache_all_unique,False,normal,173.01,40.22,8.62,5.92,0.58,9.5,100.93,166.61
+19,837740,what is the ops stat for baseball,prismx,cache_all_unique,False,normal,194.31,34.76,8.0,6.24,2.88,10.07,125.04,187.8
+20,918993,what was one way the renaissance changed society?,prismx,cache_all_unique,False,normal,206.94,37.68,9.08,5.81,0.5,9.4,136.86,200.13
+21,789833,what is real wasabi made of,prismx,cache_all_unique,False,normal,234.14,43.68,7.11,4.99,0.48,11.37,158.75,227.3
+22,1083574,what does it mean to say that a population cycles?,prismx,cache_all_unique,False,normal,200.4,58.3,7.81,7.64,0.61,8.85,111.01,195.07
+23,442137,long terms effects of great depression definition,prismx,cache_all_unique,False,normal,249.74,31.03,7.72,10.19,0.56,63.73,128.5,242.58
+24,394244,in what region of the world was maize domesticated,prismx,cache_all_unique,False,normal,184.27,36.4,8.95,5.77,0.57,10.42,115.94,178.85
+25,520578,tiger balm uses side effects,prismx,cache_all_unique,False,normal,186.58,42.05,6.62,6.8,0.58,10.18,112.61,179.66
+26,20461,arabic ahmad definition,prismx,cache_all_unique,False,normal,190.43,32.34,8.98,5.77,0.53,8.66,126.34,183.52
+27,525734,tv show shane cast,prismx,cache_all_unique,False,normal,181.54,51.69,7.33,6.99,0.45,9.48,97.46,174.24
+28,325195,how much money does the u.s. give israel 2015,prismx,cache_all_unique,False,normal,205.69,45.01,7.87,5.51,0.59,10.82,128.37,199.12
+29,1001279,where are the most deserts,prismx,cache_all_unique,False,normal,202.28,37.48,9.65,5.09,0.52,7.84,135.3,196.63
+30,1038214,what is the hypoxic drive theory,prismx,cache_all_unique,False,normal,191.13,53.94,8.72,5.43,2.73,10.22,103.9,185.82
+31,986174,where is lake james in indiana,prismx,cache_all_unique,False,normal,183.23,52.24,8.16,9.68,0.44,9.61,94.72,175.78
+32,606138,what county is franklin wi,prismx,cache_all_unique,False,normal,171.28,33.02,7.07,5.42,0.51,9.92,105.33,162.21
+33,773352,what is monosodium chloride,prismx,cache_all_unique,False,normal,180.37,39.95,8.41,5.82,0.56,10.59,108.09,174.33
+34,1096170,how much does a yoga instructor make a year,prismx,cache_all_unique,False,normal,190.7,35.57,6.99,5.88,0.62,7.79,124.87,182.53
+35,83245,cast jason bourne,prismx,cache_all_unique,False,normal,179.15,33.69,7.41,5.82,0.56,7.23,117.45,172.91
+36,835723,what is the name of the theatre play is considered one of the most important musicals of the golden age of musical theatre.,prismx,cache_all_unique,False,normal,198.22,43.34,7.34,5.74,0.53,9.21,123.54,190.49
+37,1052134,who sings tomorrow from annie,prismx,cache_all_unique,False,normal,181.61,35.19,7.38,6.33,0.61,9.8,114.71,174.81
+38,620643,what diet for diabetes,prismx,cache_all_unique,False,normal,164.66,27.96,8.16,6.07,0.43,10.17,102.12,155.7
+39,1095491,how much should you spend on a wedding dress,prismx,cache_all_unique,False,normal,196.94,55.8,7.75,6.29,0.69,7.4,111.73,190.56
+40,770750,what is meego os,prismx,cache_all_unique,False,normal,135.81,30.28,7.69,6.38,0.57,10.05,73.37,129.11
+41,608254,"what county is lakeland, fl in",prismx,cache_all_unique,False,normal,170.33,31.53,7.48,4.9,0.38,4.98,113.84,163.78
+42,1089374,tv scandal cast,prismx,cache_all_unique,False,normal,175.61,29.7,7.02,5.97,0.53,6.71,116.57,167.27
+43,585818,what causes blockage in dog stomach intestines,prismx,cache_all_unique,False,normal,186.63,35.01,7.77,6.11,0.56,10.14,120.4,180.72
+44,991078,definition of facilitating,prismx,cache_all_unique,False,normal,153.77,26.01,7.23,4.41,0.39,7.81,100.11,146.67
+45,920671,what was the first year of the land speed record,prismx,cache_all_unique,False,normal,144.2,33.03,8.32,5.02,0.39,7.09,82.99,137.63
+46,786502,what is pressure vessel testing and repair,prismx,cache_all_unique,False,normal,216.77,52.49,7.58,6.63,0.46,10.58,131.39,209.87
+47,949869,when is cinemax free preview,prismx,cache_all_unique,False,normal,192.97,42.04,7.99,5.37,0.5,10.25,120.33,187.24
+48,987062,who was a muckraker,prismx,cache_all_unique,False,normal,200.83,51.01,9.43,2.82,0.4,12.03,118.73,195.12
+49,355867,how to do ellipses question,prismx,cache_all_unique,False,normal,172.98,47.79,8.48,7.03,2.63,17.1,83.73,167.59
+50,1085824,what companies does sarbanes oxley apply to,prismx,cache_all_unique,False,normal,147.27,35.07,7.6,5.09,0.45,13.09,79.7,141.69
+51,328715,how much tip lyft driver,prismx,cache_all_unique,False,normal,156.53,30.44,7.51,4.74,0.4,9.25,95.37,148.47
+52,1089819,the indigo girl by natasha boyd,prismx,cache_all_unique,False,normal,153.07,30.47,8.62,7.32,0.5,9.4,90.29,147.45
+53,1040168,who is the father of the civil rights movement?????,prismx,cache_all_unique,False,normal,146.54,33.56,7.12,4.35,0.37,11.53,80.64,138.41
+54,995564,which cartoon was boris badenov,prismx,cache_all_unique,False,normal,188.54,31.0,6.97,5.61,0.57,41.58,96.59,183.01
+55,990901,definition of feminism in detail,prismx,cache_all_unique,False,normal,150.7,29.89,7.51,4.94,0.4,9.05,91.62,144.14
+56,1085172,what currency does aruba use?,prismx,cache_all_unique,False,normal,147.85,26.39,6.9,5.4,0.47,7.58,95.13,142.52
+57,288924,how many miles is alcatraz from land,prismx,cache_all_unique,False,normal,164.77,32.06,8.52,5.93,0.58,10.09,99.98,157.95
+58,701904,what is a subclassification code,prismx,cache_all_unique,False,normal,161.18,28.04,8.06,7.27,0.52,9.89,100.86,155.45
+59,1013030,what was called the document of free slaves,prismx,cache_all_unique,False,normal,157.8,28.29,7.74,5.05,0.49,8.78,87.54,138.6
+60,1086952,what are the marks for sterling silver,prismx,cache_all_unique,False,normal,167.81,29.3,7.04,5.37,0.38,6.54,112.96,162.3
+61,686114,what is a gummed flap,prismx,cache_all_unique,False,normal,153.14,30.84,7.93,4.14,0.45,8.32,95.49,147.88
+62,1060324,why are coral reefs dying,prismx,cache_all_unique,False,normal,130.16,31.18,7.25,4.57,5.34,8.02,66.96,124.09
+63,1092154,notary services what do they do,prismx,cache_all_unique,False,normal,145.55,29.66,7.41,5.44,0.43,7.59,88.8,139.98
+64,1081730,what family do squirrels belong to,prismx,cache_all_unique,False,normal,152.21,29.7,6.88,5.76,0.46,9.35,93.02,145.76
+65,573539,what are the side effects of zonisamide in dogs?,prismx,cache_all_unique,False,normal,165.3,37.65,7.35,5.52,0.55,11.16,96.19,159.19
+66,909153,what treatment for osteoporosis,prismx,cache_all_unique,False,normal,143.68,27.53,6.65,6.04,0.47,12.78,82.63,136.9
+67,63467,can a vegetable smoothie contain a lots of carbs,prismx,cache_all_unique,False,normal,189.92,61.63,7.51,6.74,0.68,11.42,95.1,183.88
+68,916315,what user does sqlcmd run as,prismx,cache_all_unique,False,normal,259.32,36.16,7.7,6.47,0.59,12.66,185.05,249.5
+69,133366,definition of collaterals,prismx,cache_all_unique,False,exhausted_before_first_batch,375.01,338.94,10.83,6.74,0.6,10.69,0.02,368.63
+70,1100820,engineered products definition,prismx,cache_all_unique,False,normal,173.31,44.22,7.21,6.36,0.56,13.18,94.39,166.66
+71,1044176,cost to attend oklahoma state,prismx,cache_all_unique,False,normal,164.33,36.97,7.22,6.16,0.43,7.87,99.36,158.7
+72,244393,how long do bunnies sleep,prismx,cache_all_unique,False,normal,175.64,34.17,7.15,4.86,0.49,10.5,110.77,168.75
+73,818847,what is the difference in the fire stick and fire tv box,prismx,cache_all_unique,False,normal,155.64,35.63,9.15,4.87,0.46,6.63,92.88,150.31
+74,175625,drainage rock average cost,prismx,cache_all_unique,False,normal,162.38,27.57,7.11,5.05,0.43,8.52,104.51,154.11
+75,1025300,who coined the term  survival of the fittest?,prismx,cache_all_unique,False,normal,143.79,30.33,7.89,5.65,0.44,9.88,82.79,137.75
+76,834173,what is the mra?,prismx,cache_all_unique,False,normal,148.34,32.15,7.39,1.73,0.3,6.51,93.04,141.65
+77,473039,pep talk definition,prismx,cache_all_unique,False,normal,127.62,26.03,7.22,4.85,5.01,7.62,70.4,121.82
+78,955361,when to do double mastectomy,prismx,cache_all_unique,False,normal,147.66,36.57,7.42,5.24,0.47,9.59,82.49,142.45
+79,393503,in medical terms what does bolus mean,prismx,cache_all_unique,False,normal,170.08,34.26,8.08,5.64,0.56,11.14,101.88,162.31
+80,866036,what kind exercise can i do after bypass surgery,prismx,cache_all_unique,False,normal,140.95,33.83,8.24,5.73,0.5,8.52,76.79,134.28
+81,1066526,what is a temporary structure,prismx,cache_all_unique,False,normal,167.7,29.92,8.67,5.7,0.5,8.95,106.34,160.79
+82,1097486,how many calories does macaroni and cheese have,prismx,cache_all_unique,False,normal,208.42,41.99,7.38,5.85,0.5,9.69,135.54,201.73
+83,706215,what is a wheel offset mean,prismx,cache_all_unique,False,normal,188.11,34.75,7.54,6.23,0.47,6.6,124.4,180.7
+84,807562,what is the average wpm typing,prismx,cache_all_unique,False,normal,188.62,41.96,8.39,6.26,4.19,9.85,110.83,182.45
+85,1097651,how long was the executor star destroyer,prismx,cache_all_unique,False,normal,190.85,47.58,8.66,5.91,0.54,13.02,108.53,185.05
+86,988197,definition of load in electric,prismx,cache_all_unique,False,normal,179.05,28.34,7.71,5.19,0.42,14.56,115.36,172.29
+87,1043956,what is the best riding lawn mower for hills,prismx,cache_all_unique,False,normal,205.09,52.57,8.4,7.63,3.07,21.76,105.06,199.29
+88,1041922,what is the definition alexandria,prismx,cache_all_unique,False,normal,164.34,32.15,7.26,6.58,0.49,15.1,95.57,157.96
+89,62704,can a miniature horse be ridden,prismx,cache_all_unique,False,normal,161.48,26.65,7.52,4.48,0.36,10.76,87.16,137.53
+90,265467,how long is venison good in fridge,prismx,cache_all_unique,False,normal,170.04,34.13,7.26,5.93,2.45,15.8,98.32,164.63
+91,420390,is parent and subsidiary related party?,prismx,cache_all_unique,False,normal,250.23,38.23,7.81,6.3,0.61,20.21,170.29,244.18
+92,316762,how much does it cost to replace window seals,prismx,cache_all_unique,False,normal,223.98,64.85,9.08,6.41,0.84,15.6,118.26,215.84
+93,279097,how many championship wins did sugar ray rob win,prismx,cache_all_unique,False,normal,314.99,56.07,10.11,6.54,0.52,18.63,216.3,308.95
+94,237341,how is shingles spread to someone else,prismx,cache_all_unique,False,normal,197.64,51.83,7.86,5.8,0.42,13.85,109.65,190.26
+95,545599,weather in portland oregon fahrenheit,prismx,cache_all_unique,False,normal,168.94,34.1,7.7,6.01,0.51,15.92,96.28,161.91
+96,191423,frame rail flange definition,prismx,cache_all_unique,False,normal,145.15,29.42,6.84,5.09,0.41,10.16,86.75,139.41
+97,453220,mexico population policy life expectancy,prismx,cache_all_unique,False,normal,165.13,28.9,7.4,6.03,2.18,13.55,100.57,159.33
+98,1083257,what does perm means in a labor certification?,prismx,cache_all_unique,False,normal,150.28,36.94,7.55,5.52,0.45,11.38,81.25,143.82
+99,746489,what is fauteuil?,prismx,cache_all_unique,False,normal,135.04,31.86,7.5,2.28,0.32,8.01,78.06,128.57
+100,1088420,"weather in leicester, ma",prismx,cache_all_unique,False,normal,144.76,33.07,6.19,5.36,2.76,7.47,84.02,139.57

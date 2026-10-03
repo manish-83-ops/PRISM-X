@@ -1,5 +1,5 @@
 {
-  "label": "Stress test RAGAS (hard distractors, unlabeled neighbors may be valid answers; ID metrics are pessimistic)",
+  "label": "retired: confounded by ANN graph nondeterminism (see Gate 5.2 1c); superseded by c100k_raw",
   "collection": "c100k_hard",
   "ragas": {
     "dense": {
@@ -56,5 +56,15 @@
       "total_tokens": 60976,
       "elapsed_seconds": 553.1
     }
-  }
+  },
+  "commit": "950bc5d6dbec421266e9cd78934dba2cac533224",
+  "date": "2026-10-03 20:21:00",
+  "N": 25,
+  "seed": 42,
+  "config": {
+    "collection": "c100k_hard"
+  },
+  "judge": "allam-2-7b",
+  "path_used": "HTTP API (/search) + LLM Judge",
+  "status": "retired: confounded by ANN graph nondeterminism (see Gate 5.2 1c); superseded by c100k_raw"
 }

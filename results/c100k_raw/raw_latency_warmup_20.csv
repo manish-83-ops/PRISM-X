@@ -1,0 +1,21 @@
+idx,query_id,query,mode,scenario,cache_hit,governor_state,client_wall_clock_ms,server_encode_ms,server_dense_ms,server_sparse_ms,server_fusion_ms,server_fetch_text_ms,server_rerank_ms,server_total_ms
+1,156087,do earnest money go toward closing,prismx,warmup_20_discarded,False,normal,327.42,38.77,28.06,17.3,0.81,21.56,212.41,319.92
+2,196655,graphology definition,prismx,warmup_20_discarded,False,truncated,342.34,45.97,11.44,12.82,0.59,26.69,223.84,322.41
+3,947750,when does summer finish,prismx,warmup_20_discarded,False,truncated,365.11,116.53,12.56,27.6,0.75,37.54,157.65,357.47
+4,1086525,what astronomical bodies exist in our universe?,prismx,warmup_20_discarded,False,normal,358.36,60.33,14.24,19.64,0.46,20.97,210.37,327.48
+5,528278,types of iron lines cornea,prismx,warmup_20_discarded,False,normal,300.58,65.68,10.55,13.35,0.81,18.01,184.82,294.14
+6,760440,what is ionograph cleaning,prismx,warmup_20_discarded,False,normal,253.57,61.42,13.14,9.57,0.74,17.39,143.86,247.11
+7,125712,define primary colors,prismx,warmup_20_discarded,False,normal,235.84,65.27,9.68,16.67,0.55,13.41,122.03,228.29
+8,1085902,what class was uss texas,prismx,warmup_20_discarded,False,normal,198.03,33.13,8.63,12.78,0.52,13.27,122.37,191.34
+9,1097949,how long is person with the flu contagious,prismx,warmup_20_discarded,False,normal,248.45,48.61,8.69,14.74,0.63,13.47,154.85,241.69
+10,1090664,sidvokodvo average weather conditions,prismx,warmup_20_discarded,False,normal,192.05,38.02,7.65,10.09,0.52,14.23,112.74,183.91
+11,1091187,quandary meaning,prismx,warmup_20_discarded,False,normal,186.35,37.44,8.37,7.68,0.5,13.71,112.15,180.55
+12,1091924,outfall definition,prismx,warmup_20_discarded,False,normal,195.61,35.26,8.76,6.93,0.46,9.67,127.64,189.42
+13,702179,what is a summer salad,prismx,warmup_20_discarded,False,normal,208.82,37.32,9.0,9.75,0.69,8.43,125.3,191.15
+14,550293,what age can i start giving honey to a child,prismx,warmup_20_discarded,False,normal,184.82,38.63,8.25,14.03,0.47,10.79,106.18,179.08
+15,1054047,what is hmc construction,prismx,warmup_20_discarded,False,normal,197.91,27.59,7.61,8.35,0.39,12.3,117.05,173.92
+16,1102379,why do earthquake occur,prismx,warmup_20_discarded,False,normal,179.6,32.46,9.11,8.1,0.58,9.99,112.22,173.15
+17,962758,when was tracy morgan's accident,prismx,warmup_20_discarded,False,normal,232.41,69.95,9.05,10.6,0.55,12.89,123.27,226.98
+18,513238,teradata string manipulation functions,prismx,warmup_20_discarded,False,normal,206.98,49.63,10.28,13.94,0.65,10.9,114.91,201.02
+19,837740,what is the ops stat for baseball,prismx,warmup_20_discarded,False,normal,182.78,38.18,7.48,8.24,0.5,9.31,110.65,175.05
+20,918993,what was one way the renaissance changed society?,prismx,warmup_20_discarded,False,normal,172.18,33.28,7.47,9.36,0.55,10.4,104.61,166.25

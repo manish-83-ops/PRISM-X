@@ -72,6 +72,10 @@ class QueryCache:
             logger.info(f"Query cache invalidated: {count} entries cleared.")
             return count
 
+    def clear(self) -> int:
+        """Alias for invalidate."""
+        return self.invalidate()
+
     def stats(self) -> dict[str, Any]:
         """Return cache health and hit rate statistics."""
         with self._lock:

@@ -91,5 +91,16 @@
     "hybrid_rerank_p95_ms": 242.25,
     "within_250ms_target": true,
     "within_280ms_hard_limit": true
-  }
+  },
+  "commit": "950bc5d6dbec421266e9cd78934dba2cac533224",
+  "date": "2026-10-03 19:18:27",
+  "N": 100,
+  "seed": 42,
+  "config": {
+    "rerank_k": 10,
+    "deadline_ms": 200.0,
+    "torch_threads": 8
+  },
+  "judge": "none",
+  "path_used": "HTTP API (/search)"
 }

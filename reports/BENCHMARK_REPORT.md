@@ -357,10 +357,14 @@ An exhaustive query-by-query trace (`scripts/analyze_candidate_movement.py`) res
 - *Note on $K=8$ p95:* Finite sample variance on a single outlier query produced a minor latency spike at $K=8$.
 - *Selection-time vs Production:* TUNE latencies are in-process Python estimates. Production headline latencies are strictly the BENCH HTTP numbers: **P50 = 181.59 ms, P95 = 242.25 ms, P99 = 280.51 ms**.
 
-### 4. Hard-Distractor Stress Test ($c100k\_hard$, ADR-015)
+### 4. Retired Stress Test (`c100k_hard`, ADR-015)
+> [!NOTE]
+> **STATUS: RETIRED**
+> retired: confounded by ANN graph nondeterminism (see Gate 5.2 1c); superseded by c100k_raw. Results remain preserved below for transparency and provenance only, but are completely removed from headline claims and operational benchmarks.
+
 To evaluate PRISMX resilience against semantic distractor pressure, a dedicated collection `c100k_hard` was populated with **102,887 passages** (100,000 base passages + 2,887 mined dense and lexical nearest-neighbor hard distractors from the 8.8M MS MARCO pool, strictly excluding all evaluation gold passages).
 
-#### Stress Test Results on 100 BENCH Queries:
+#### Stress Test Results on 100 BENCH Queries [UNDER REVIEW]:
 *Stress test (hard distractors, unlabeled neighbors may be valid answers; ID metrics are pessimistic)*
 
 | Metric | Phase 1: Dense Baseline | Phase 2: Hybrid Retrieval | Phase 3: Hybrid + Rerank ($K=10$) | Delta (Hybrid − Dense) | Delta (Rerank − Hybrid) |

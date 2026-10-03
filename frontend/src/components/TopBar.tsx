@@ -1,96 +1,129 @@
 import { NavLink } from 'react-router-dom';
-import { Search, BarChart3, FlaskConical, RefreshCw, Boxes, BookOpen, Compass } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { useApp } from '../hooks/useApp';
 
-const NAV_ITEMS = [
-  { to: '/', label: 'Search', icon: Search },
-  { to: '/comparison', label: 'Comparison', icon: BarChart3 },
-  { to: '/evaluation', label: 'Evaluation', icon: FlaskConical },
-  { to: '/live-updates', label: 'Live Updates', icon: RefreshCw },
-  { to: '/architecture', label: 'Architecture', icon: Boxes },
-  { to: '/repo', label: 'Repo & Setup', icon: BookOpen },
-  { to: '/demo-guide', label: 'Demo', icon: Compass },
+const MAIN_NAV = [
+  { to: '/', label: 'Search' },
+  { to: '/comparison', label: 'Comparison' },
+  { to: '/evaluation', label: 'Evaluation' },
+  { to: '/architecture', label: 'Architecture' },
+  { to: '/case-studies', label: 'Case Studies' },
 ];
 
 export function TopBar() {
   const { recordedMode, meta } = useApp();
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/60">
-      <div className="max-w-[1400px] mx-auto px-4 h-14 flex items-center justify-between gap-4">
-        {/* Logo */}
-        <NavLink to="/" className="flex items-center gap-2 shrink-0 group" aria-label="PRISM-X Home">
-          <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
-              <line x1="12" y1="22" x2="12" y2="15.5" />
-              <polyline points="22 8.5 12 15.5 2 8.5" />
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xs">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        {/* Brand Logo */}
+        <NavLink to="/" className="flex items-center gap-3 shrink-0 group" aria-label="PRISM-X Home">
+          <div className="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-sm shadow-indigo-500/25 group-hover:scale-105 transition-transform">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+              <rect x="5" y="5" width="14" height="14" rx="2" transform="rotate(45 12 12)" />
             </svg>
           </div>
-          <span className="text-lg font-bold tracking-tight text-slate-900">
+          <span className="text-xl font-bold tracking-tight text-slate-900">
             PRISM<span className="text-indigo-600">-X</span>
           </span>
         </NavLink>
 
-        {/* Centered pill navigation */}
-        <nav className="hidden md:flex items-center bg-slate-100/80 rounded-full p-1 gap-0.5" aria-label="Main navigation">
-          {NAV_ITEMS.map(({ to, label, icon: Icon }) => (
+        {/* Center Navigation Capsule */}
+        <nav className="hidden md:flex items-center bg-slate-100/80 rounded-2xl p-1 gap-1" aria-label="Main navigation">
+          {MAIN_NAV.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
               end={to === '/'}
               className={({ isActive }) =>
-                `flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium transition-all ${
+                `px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-150 ${
                   isActive
-                    ? 'bg-white text-indigo-700 shadow-sm'
-                    : 'text-slate-500 hover:text-slate-700 hover:bg-white/50'
+                    ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/30'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50'
                 }`
               }
             >
-              <Icon className="w-3.5 h-3.5" />
-              <span className="hidden lg:inline">{label}</span>
+              {label}
             </NavLink>
           ))}
         </nav>
 
-        {/* Status pills */}
-        <div className="flex items-center gap-2 shrink-0">
-          {/* Live/Recorded status */}
+        {/* Right Status Section */}
+        <div className="flex items-center gap-2.5 shrink-0">
+          {/* Download PDF Button */}
+          <a
+            href="/PRISMX_SYSTEM_ARCHITECTURE_AND_EVALUATION_REPORT.pdf"
+            download="PRISMX_SYSTEM_ARCHITECTURE_AND_EVALUATION_REPORT.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs transition-colors cursor-pointer"
+            title="Download Complete 9-Page Architecture & Evaluation PDF Report"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Download PDF</span>
+            <span className="sm:hidden">PDF</span>
+          </a>
+
+          {/* Live / Offline Status */}
           <span
-            className={`pill text-xs ${recordedMode ? 'pill-warning' : 'pill-success'}`}
+            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${
+              recordedMode
+                ? 'bg-amber-50 text-amber-700 border-amber-200/80'
+                : 'bg-emerald-50 text-emerald-700 border-emerald-200/60'
+            }`}
             aria-label={recordedMode ? 'Using recorded responses' : 'Connected to live backend'}
           >
-            <span className={`w-1.5 h-1.5 rounded-full ${recordedMode ? 'bg-amber-500' : 'bg-emerald-500 animate-pulse'}`} />
+            <span className={`w-2 h-2 rounded-full ${recordedMode ? 'bg-amber-500' : 'bg-emerald-500 animate-pulse'}`} />
             {recordedMode ? 'Recorded' : 'Live'}
           </span>
 
-          {/* Dataset chip */}
-          <span className="pill pill-neutral text-xs">
-            <span className="mono">{meta?.point_count ? `${(meta.point_count / 1000).toFixed(0)}K` : '100K'}</span>
+          {/* Dataset Pill */}
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
+            <span className="font-mono font-semibold mr-1">
+              {meta?.point_count ? `${Math.round(meta.point_count / 1000)}K` : '100K'}
+            </span>
             MS MARCO
           </span>
+
+          {/* Index Version */}
+          <NavLink
+            to="/live-updates"
+            title="Index updates & real-time synchronization"
+            className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-indigo-50 text-indigo-700 border border-indigo-100 hover:bg-indigo-100 transition-colors"
+          >
+            v{meta?.index_version ?? 1}
+          </NavLink>
         </div>
       </div>
 
-      {/* Mobile nav */}
-      <nav className="md:hidden flex overflow-x-auto px-4 pb-2 gap-1 scrollbar-hide" aria-label="Mobile navigation">
-        {NAV_ITEMS.map(({ to, label, icon: Icon }) => (
+      {/* Mobile navigation row */}
+      <nav className="md:hidden flex overflow-x-auto px-4 py-2 gap-1.5 border-t border-slate-100 scrollbar-none" aria-label="Mobile navigation">
+        {MAIN_NAV.map(({ to, label }) => (
           <NavLink
             key={to}
             to={to}
             end={to === '/'}
             className={({ isActive }) =>
-              `flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+              `px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
                 isActive
-                  ? 'bg-indigo-50 text-indigo-700'
-                  : 'text-slate-500 hover:text-slate-700'
+                  ? 'bg-indigo-600 text-white'
+                  : 'text-slate-600 hover:bg-slate-100'
               }`
             }
           >
-            <Icon className="w-3 h-3" />
             {label}
           </NavLink>
         ))}
+        <NavLink
+          to="/live-updates"
+          className={({ isActive }) =>
+            `px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
+              isActive ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100'
+            }`
+          }
+        >
+          Live Updates
+        </NavLink>
       </nav>
     </header>
   );

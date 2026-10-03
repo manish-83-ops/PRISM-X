@@ -12,7 +12,9 @@ For a query $q$ and a candidate passage $d$ appearing in the candidate set retri
 $$\text{Score}_{\text{weighted}}(d) = \alpha \cdot \bar{s}_{\text{dense}}(d) + (1 - \alpha) \cdot \bar{s}_{\text{sparse}}(d)$$
 
 where:
-- $\alpha \in [0.0, 1.0]$ is the dense channel weight (default $\alpha = 0.7$).
+- $\alpha \in [0.0, 1.0]$ is the dense channel weight (production frozen default: $\alpha = 0.80$, as specified in `CONFIG.yaml`).
+  > **Dataset & Tuning Provenance:** The grid search across fusion weights was conducted on the **Phase 2 Curated Partition** (150 seeded TUNE queries, `results/phase2/fusion_tuning_tune.json`), which established $\alpha = 0.80$ dense + $0.20$ BM25 sparse as the optimal trade-off (+0.0458 NDCG@5 over RRF). Informational sensitivity results on the full 100K raw MS MARCO corpus (`c100k_raw`, 500 TUNE queries across $\alpha \in \{0.6, 0.7, 0.8, 0.9, 1.0\}$) are stored in `results/c100k_raw/tune_eval_results.json` under `alpha_sensitivity_informational` (labeled *"not used for selection"*). On `c100k_raw` BENCH (N=100), hybrid search ($\alpha = 0.80$) showed no measurable retrieval quality gain over dense search ($\Delta\text{MRR@10} = -0.0083\ [-0.0466, +0.0300]$, crossing zero). ADR-018 governed the serving default mode decision based on latency, not alpha selection.
+  > **Note on Z-Score Normalization:** Z-Score score normalization was considered theoretically during initial system design, but was not implemented or benchmarked (documented as considered, not run). `CONFIG.yaml`, the UI, API, and all evaluation files use $\alpha = 0.80$ min-max weighted linear fusion.
 - $\bar{s}_{c}(d)$ is the min-max normalized score of passage $d$ within the channel's candidate list.
 - If document $d$ was not retrieved by channel $c$, its normalized score for that channel is defined as:
   $$\bar{s}_{c}(d) = 0.0$$

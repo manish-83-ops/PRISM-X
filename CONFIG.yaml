@@ -33,7 +33,7 @@ qdrant:
   collection_name: "prismx_corpus"
   hnsw_m: 16
   hnsw_ef_construct: 100
-  search_ef: 64
+  search_ef: 128  # ADR-017 / Gate 5.3: Updated from 64 based on ANN fidelity audit (top-50 overlap 0.9954 >= 0.99)
 
 sqlite:
   db_path: "data/text_store.db"
@@ -60,7 +60,8 @@ rerank:
   depth: 10
   max_length: 128
   torch_threads: 8
-  rerank_budget_ms: 200.0  # Covers rerank stage micro-batch boundaries only (not total request latency)
+  total_deadline_ms: 250.0  # End-to-end request latency ceiling
+  rerank_budget_ms: 200.0  # Max cross-encoder budget (stage gets min(rerank_budget_ms, total_deadline_ms - elapsed - 10ms))
   deadline_ms: 200.0  # Backward-compatible alias
 
 server:

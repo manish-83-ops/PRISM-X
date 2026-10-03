@@ -1,0 +1,58 @@
+{
+  "benchmark": "c100k_raw ANN Fidelity Audit",
+  "split": "tune_raw_500",
+  "n_queries": 500,
+  "timestamp": "2026-10-03 22:53:59",
+  "exact_baseline": {
+    "gold_in_top10_fraction": 0.954,
+    "gold_in_top50_fraction": 0.99
+  },
+  "ann_results": {
+    "64": {
+      "hnsw_ef": 64,
+      "mean_top50_overlap": 0.9869,
+      "mean_top10_overlap": 0.995,
+      "gold_in_top10_fraction": 0.954,
+      "gold_in_top50_fraction": 0.99,
+      "eval_time_seconds": 5.76
+    },
+    "128": {
+      "hnsw_ef": 128,
+      "mean_top50_overlap": 0.9954,
+      "mean_top10_overlap": 0.9978,
+      "gold_in_top10_fraction": 0.954,
+      "gold_in_top50_fraction": 0.99,
+      "eval_time_seconds": 5.67
+    },
+    "256": {
+      "hnsw_ef": 256,
+      "mean_top50_overlap": 0.9986,
+      "mean_top10_overlap": 0.9992,
+      "gold_in_top10_fraction": 0.954,
+      "gold_in_top50_fraction": 0.99,
+      "eval_time_seconds": 6.15
+    }
+  },
+  "loss_vs_ef64": {
+    "ef_128_vs_ef_64": {
+      "recovered_gold_top10": 0,
+      "recovered_gold_top50": 0
+    },
+    "ef_256_vs_ef_64": {
+      "recovered_gold_top10": 0,
+      "recovered_gold_top50": 0
+    }
+  },
+  "decision": {
+    "chosen_ef": 128,
+    "rule": "Smallest ef with top-50 overlap >= 0.99; else 256",
+    "reason": "Smallest ef with mean top-50 overlap >= 0.99 (0.9954)",
+    "differs_from_serving_default": true
+  },
+  "bm25_exactness": {
+    "engine": "qdrant_sparse with modifier=IDF",
+    "is_exact": true,
+    "approximation_type": "None (exact inverted index postings list traversal and dot-product scoring)",
+    "confirmation": "BM25 sparse channel does not use graph approximation or beam pruning; retrieval is 100% exact."
+  }
+}

@@ -1,0 +1,514 @@
+{
+  "benchmark": "c100k_raw RAGAS Re-freeze",
+  "corpus": "c100k_raw",
+  "source_split": "bench_raw_100.json",
+  "freeze_date": "2026-10-03",
+  "n_queries": 50,
+  "target_n": 50,
+  "answer_selection_rule": "Use wellFormedAnswers[0] if present and valid (>1 word, non-empty, != No Answer Present); otherwise use answers[0] if present and valid. Exclude queries with empty, non-informative, or single-token answers. Ground truth reference is strictly the human reference answer.",
+  "queries": [
+    {
+      "order_index": 1,
+      "query_id": 156087,
+      "query": "do earnest money go toward closing",
+      "query_type": "NUMERIC",
+      "reference_answer": "Yes, it go toward closing.",
+      "gold_pids": [
+        "raw_95155"
+      ]
+    },
+    {
+      "order_index": 2,
+      "query_id": 196655,
+      "query": "graphology definition",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "Graphology is a study of handwriting especially for the purpose of character analysis.",
+      "gold_pids": [
+        "raw_93379"
+      ]
+    },
+    {
+      "order_index": 3,
+      "query_id": 947750,
+      "query": "when does summer finish",
+      "query_type": "NUMERIC",
+      "reference_answer": "In August.",
+      "gold_pids": [
+        "raw_55251"
+      ]
+    },
+    {
+      "order_index": 4,
+      "query_id": 1086525,
+      "query": "what astronomical bodies exist in our universe?",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "Sun, the Moon and the stars are astronomical bodies that exist in our universe.",
+      "gold_pids": [
+        "raw_48541"
+      ]
+    },
+    {
+      "order_index": 5,
+      "query_id": 528278,
+      "query": "types of iron lines cornea",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "Hudson-Stahli line, Fleischer line and Khodadoust Line.",
+      "gold_pids": [
+        "raw_9983",
+        "raw_9984"
+      ]
+    },
+    {
+      "order_index": 6,
+      "query_id": 760440,
+      "query": "what is ionograph cleaning",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "It is the industry standard for ionic contamination testing specified in commonly used cleaning standards.",
+      "gold_pids": [
+        "raw_66319"
+      ]
+    },
+    {
+      "order_index": 7,
+      "query_id": 125712,
+      "query": "define primary colors",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "A color belonging to any of three groups each of which is regarded as generating all colors, with the groups being a Additive, physiological, or light primaries red, green, and blue.",
+      "gold_pids": [
+        "raw_83366"
+      ]
+    },
+    {
+      "order_index": 8,
+      "query_id": 1085902,
+      "query": "what class was uss texas",
+      "query_type": "ENTITY",
+      "reference_answer": "USS Texas is a Virginia-class submarine.",
+      "gold_pids": [
+        "raw_46794"
+      ]
+    },
+    {
+      "order_index": 9,
+      "query_id": 1097949,
+      "query": "how long is person with the flu contagious",
+      "query_type": "NUMERIC",
+      "reference_answer": "The contagious period of flu lasts five to seven days into the illness, for children the contagious period for the flu can last up to two weeks after they start feeling sick.",
+      "gold_pids": [
+        "raw_41170"
+      ]
+    },
+    {
+      "order_index": 10,
+      "query_id": 1090664,
+      "query": "sidvokodvo average weather conditions",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "The average weather in Sidvokodvo is growing degree days in Sidvokodvo are rapidly increasing during April, increasing by 601\u00b0Fahrenheit, from 5,742\u00b0Fahrenheit to 6,343\u00b0Fahrenheit.",
+      "gold_pids": [
+        "raw_62580"
+      ]
+    },
+    {
+      "order_index": 11,
+      "query_id": 1091187,
+      "query": "quandary meaning",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "Quandary means a state of doubt or uncertainty.",
+      "gold_pids": [
+        "raw_56260"
+      ]
+    },
+    {
+      "order_index": 12,
+      "query_id": 1091924,
+      "query": "outfall definition",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "An outfall is defined as any point where a separate storm sewer system discharges to either Water of the United States or to another MS4.",
+      "gold_pids": [
+        "raw_713"
+      ]
+    },
+    {
+      "order_index": 13,
+      "query_id": 702179,
+      "query": "what is a summer salad",
+      "query_type": "ENTITY",
+      "reference_answer": "Tomatoes, cabbage, carrots , strawberries, blueberries, raspberries, or blackberries .",
+      "gold_pids": [
+        "raw_5425",
+        "raw_5426"
+      ]
+    },
+    {
+      "order_index": 14,
+      "query_id": 550293,
+      "query": "what age can i start giving honey to a child",
+      "query_type": "NUMERIC",
+      "reference_answer": "Over the age of 12 months.",
+      "gold_pids": [
+        "raw_95220"
+      ]
+    },
+    {
+      "order_index": 15,
+      "query_id": 1054047,
+      "query": "what is hmc construction",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "Huband-Mantor Construction, Inc a custom home builder & general contractor in Boerne, Texas.",
+      "gold_pids": [
+        "raw_75675"
+      ]
+    },
+    {
+      "order_index": 16,
+      "query_id": 1102379,
+      "query": "why do earthquake occur",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "Earthquakes are caused by two tectonic plates that push against each other. The internal pressure between the plates increases, which creates friction and heat, and ultimately creates energy. Earthquakes are triggered after rocks break apart, or when the two tectonic plates stick together instead of sliding.",
+      "gold_pids": [
+        "raw_78329"
+      ]
+    },
+    {
+      "order_index": 17,
+      "query_id": 962758,
+      "query": "when was tracy morgan's accident",
+      "query_type": "NUMERIC",
+      "reference_answer": "June, 2014",
+      "gold_pids": [
+        "raw_54274"
+      ]
+    },
+    {
+      "order_index": 18,
+      "query_id": 513238,
+      "query": "teradata string manipulation functions",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "INDEX, POSITION.",
+      "gold_pids": [
+        "raw_97440"
+      ]
+    },
+    {
+      "order_index": 19,
+      "query_id": 837740,
+      "query": "what is the ops stat for baseball",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "On-base plus slugging is a sabermetric baseball statistic calculated as the sum of a player's on-base percentage and slugging average.",
+      "gold_pids": [
+        "raw_93136"
+      ]
+    },
+    {
+      "order_index": 20,
+      "query_id": 918993,
+      "query": "what was one way the renaissance changed society?",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "The renaissance changed society by changing their art.",
+      "gold_pids": [
+        "raw_89879"
+      ]
+    },
+    {
+      "order_index": 21,
+      "query_id": 789833,
+      "query": "what is real wasabi made of",
+      "query_type": "ENTITY",
+      "reference_answer": "It is made form a grated root and the fake stuff is horse radish and dye.",
+      "gold_pids": [
+        "raw_94228"
+      ]
+    },
+    {
+      "order_index": 22,
+      "query_id": 1083574,
+      "query": "what does it mean to say that a population cycles?",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "In zoology, a population cycle is a phenomenon where populations rise and fall over a predictable period of time.",
+      "gold_pids": [
+        "raw_54513"
+      ]
+    },
+    {
+      "order_index": 23,
+      "query_id": 442137,
+      "query": "long terms effects of great depression definition",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "Definition:\nAn economic slump sparked by the collapse of the New York stock exchange in 1929.\nLong term effect:\nIt devastated the US economy and caused unemployment.",
+      "gold_pids": [
+        "raw_98297"
+      ]
+    },
+    {
+      "order_index": 24,
+      "query_id": 394244,
+      "query": "in what region of the world was maize domesticated",
+      "query_type": "LOCATION",
+      "reference_answer": "Maize was domesticated in the region of Mexico.",
+      "gold_pids": [
+        "raw_56082"
+      ]
+    },
+    {
+      "order_index": 25,
+      "query_id": 520578,
+      "query": "tiger balm uses side effects",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "Using tiger balm on damaged skin or on sensitive skin areas will cause redness, itchiness and swelling.",
+      "gold_pids": [
+        "raw_49432"
+      ]
+    },
+    {
+      "order_index": 26,
+      "query_id": 20461,
+      "query": "arabic ahmad definition",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "An Arabic baby name. In Arabic the meaning of the name Ahmad is Much praised.",
+      "gold_pids": [
+        "raw_89315"
+      ]
+    },
+    {
+      "order_index": 27,
+      "query_id": 525734,
+      "query": "tv show shane cast",
+      "query_type": "PERSON",
+      "reference_answer": "David Carradine, Jill Ireland, Tom Tully.",
+      "gold_pids": [
+        "raw_7298"
+      ]
+    },
+    {
+      "order_index": 28,
+      "query_id": 325195,
+      "query": "how much money does the u.s. give israel 2015",
+      "query_type": "NUMERIC",
+      "reference_answer": "In 2015, the United States government gave $619.8 million for joint United States-Israel missile defense programs and an American taxpayers gave $10.2 million per day to Israel.",
+      "gold_pids": [
+        "raw_34191"
+      ]
+    },
+    {
+      "order_index": 29,
+      "query_id": 1001279,
+      "query": "where are the most deserts",
+      "query_type": "LOCATION",
+      "reference_answer": "Most deserts lie between 15\u00b0 and 35\u00b0 north and south of the equator.",
+      "gold_pids": [
+        "raw_77423"
+      ]
+    },
+    {
+      "order_index": 30,
+      "query_id": 1038214,
+      "query": "what is the hypoxic drive theory",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "The hypoxic drive is a form of respiratory drive in which the body uses oxygen chemoreceptors instead of carbon dioxide receptors to regulate the respiratory cycle.",
+      "gold_pids": [
+        "raw_95604"
+      ]
+    },
+    {
+      "order_index": 31,
+      "query_id": 986174,
+      "query": "where is lake james in indiana",
+      "query_type": "LOCATION",
+      "reference_answer": "Lake James is in the the northeast corner of the state of Indiana in the United States.",
+      "gold_pids": [
+        "raw_42328"
+      ]
+    },
+    {
+      "order_index": 32,
+      "query_id": 606138,
+      "query": "what county is franklin wi",
+      "query_type": "LOCATION",
+      "reference_answer": "Franklin is in Milwaukee County, Wisconsin.",
+      "gold_pids": [
+        "raw_90125"
+      ]
+    },
+    {
+      "order_index": 33,
+      "query_id": 773352,
+      "query": "what is monosodium chloride",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "It is a sodium salt from an amino acid called glutamic acid.",
+      "gold_pids": [
+        "raw_62817"
+      ]
+    },
+    {
+      "order_index": 34,
+      "query_id": 1096170,
+      "query": "how much does a yoga instructor make a year",
+      "query_type": "NUMERIC",
+      "reference_answer": "The average salary of a Yoga Instructor is $30.53 per hour.",
+      "gold_pids": [
+        "raw_7526"
+      ]
+    },
+    {
+      "order_index": 35,
+      "query_id": 83245,
+      "query": "cast jason bourne",
+      "query_type": "PERSON",
+      "reference_answer": "Matt Damon, Alicia Vikander, Vincent Cassel, Tommy Lee Jones and Julia Stiles.",
+      "gold_pids": [
+        "raw_53512"
+      ]
+    },
+    {
+      "order_index": 36,
+      "query_id": 835723,
+      "query": "what is the name of the theatre play is considered one of the most important musicals of the golden age of musical theatre.",
+      "query_type": "ENTITY",
+      "reference_answer": "Broadway Musical Home.",
+      "gold_pids": [
+        "raw_30069",
+        "raw_30070"
+      ]
+    },
+    {
+      "order_index": 37,
+      "query_id": 1052134,
+      "query": "who sings tomorrow from annie",
+      "query_type": "PERSON",
+      "reference_answer": "Zach Galifianakis",
+      "gold_pids": [
+        "raw_67151"
+      ]
+    },
+    {
+      "order_index": 38,
+      "query_id": 620643,
+      "query": "what diet for diabetes",
+      "query_type": "ENTITY",
+      "reference_answer": "The diet for diabetes contains whole grains, cereals, and bread.",
+      "gold_pids": [
+        "raw_84205"
+      ]
+    },
+    {
+      "order_index": 39,
+      "query_id": 1095491,
+      "query": "how much should you spend on a wedding dress",
+      "query_type": "NUMERIC",
+      "reference_answer": "You should spend $500 to $1000 on a wedding dress.",
+      "gold_pids": [
+        "raw_68233"
+      ]
+    },
+    {
+      "order_index": 40,
+      "query_id": 770750,
+      "query": "what is meego os",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "MeeGo is an open source, Linux project which brings together the Moblin project, headed up by Intel, and Maemo, by Nokia, into a single open source activity.",
+      "gold_pids": [
+        "raw_15917"
+      ]
+    },
+    {
+      "order_index": 41,
+      "query_id": 608254,
+      "query": "what county is lakeland, fl in",
+      "query_type": "LOCATION",
+      "reference_answer": "Lakeland, Florida is in Polk County.",
+      "gold_pids": [
+        "raw_17045"
+      ]
+    },
+    {
+      "order_index": 42,
+      "query_id": 1089374,
+      "query": "tv scandal cast",
+      "query_type": "PERSON",
+      "reference_answer": "ABC\u2019s \u201cScandal\u201d stars are Cornelius Smith Jr as Marcus Walker, Portia de Rossi as Elizabeth North, Joshua Malina as David Rosen, Darby Stanchfield as Abby Whelan, Tony Goldwyn as President Fitzgerald Grant, Jeff Perry as Cyrus Beene, Kerry Washington as Olivia Pope, Bellamy Young as Mellie Grant, Scott Foley as Jake Ballard, Joe Morton as Rowan Pope, Katie Lowes as Quinn Perkins and Guillermo Diaz as Huck.",
+      "gold_pids": [
+        "raw_45034"
+      ]
+    },
+    {
+      "order_index": 43,
+      "query_id": 585818,
+      "query": "what causes blockage in dog stomach intestines",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "Hernias and Crohn's disease.",
+      "gold_pids": [
+        "raw_75917"
+      ]
+    },
+    {
+      "order_index": 44,
+      "query_id": 991078,
+      "query": "definition of facilitating",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "The definition of facilitating is the increasing of the ease or intensity of a response by repeated stimulation.",
+      "gold_pids": [
+        "raw_92788"
+      ]
+    },
+    {
+      "order_index": 45,
+      "query_id": 920671,
+      "query": "what was the first year of the land speed record",
+      "query_type": "NUMERIC",
+      "reference_answer": "The first year of the land speed record was in 1899.",
+      "gold_pids": [
+        "raw_51685"
+      ]
+    },
+    {
+      "order_index": 46,
+      "query_id": 786502,
+      "query": "what is pressure vessel testing and repair",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "Pressure Testing is a non-destructive test performed to ensure the integrity of the pressure shell on new pressure equipment.",
+      "gold_pids": [
+        "raw_79047"
+      ]
+    },
+    {
+      "order_index": 47,
+      "query_id": 949869,
+      "query": "when is cinemax free preview",
+      "query_type": "NUMERIC",
+      "reference_answer": "June 20 for DirectTV and for FreePreviewTV.com, Mediacom, DISH, and Cox Cable will have their free HBO/Cinemax preview weekends starting June 27.",
+      "gold_pids": [
+        "raw_12211"
+      ]
+    },
+    {
+      "order_index": 48,
+      "query_id": 987062,
+      "query": "who was a muckraker",
+      "query_type": "PERSON",
+      "reference_answer": "A muckraker is someone who rakes up or points out, unpleasnt truths, exposed businesses, governments or wrong doing and injustices.",
+      "gold_pids": [
+        "raw_93101"
+      ]
+    },
+    {
+      "order_index": 49,
+      "query_id": 355867,
+      "query": "how to do ellipses question",
+      "query_type": "DESCRIPTION",
+      "reference_answer": "Steps to do ellipses question are a set of three periods indicating an omission. Each period should have a single space on either side, except when adjacent to a quotation mark, in which case there should be no space.",
+      "gold_pids": [
+        "raw_82331"
+      ]
+    },
+    {
+      "order_index": 50,
+      "query_id": 1085824,
+      "query": "what companies does sarbanes oxley apply to",
+      "query_type": "PERSON",
+      "reference_answer": "Sarbanes-Oxley Applies to Private Companies.",
+      "gold_pids": [
+        "raw_90772"
+      ]
+    }
+  ]
+}

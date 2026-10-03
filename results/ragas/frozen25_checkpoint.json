@@ -478,5 +478,16 @@
       },
       "timestamp": "2026-10-03 19:30:40"
     }
-  }
+  },
+  "commit": "950bc5d6dbec421266e9cd78934dba2cac533224",
+  "date": "2026-10-03 19:30:00",
+  "N": 25,
+  "seed": 42,
+  "config": {
+    "rule": "ADR-014 MS MARCO reference answers"
+  },
+  "judge": "allam-2-7b",
+  "path_used": "HTTP API (/search) + LLM Judge",
+  "status": "superseded by c100k_raw",
+  "note": "Curated corpus run; superseded by c100k_raw"
 }

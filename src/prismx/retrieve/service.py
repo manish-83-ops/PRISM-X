@@ -96,11 +96,14 @@ class SearchService:
         min_depth = self.config.get("retrieval", {}).get("candidate_depth", 40)
         candidate_depth = max(request.top_k * 4, rerank_k, min_depth)
 
+        search_ef = getattr(request, "search_ef", None)
+
         if request.mode == "dense":
             candidates, enc_ms, dense_ms = self.dense_retriever.retrieve(
                 query=request.query,
                 limit=candidate_depth,
                 query_filter=query_filter,
+                search_ef=search_ef,
             )
             latencies["encode"] = round(enc_ms, 2)
             latencies["dense"] = round(dense_ms, 2)
@@ -120,6 +123,7 @@ class SearchService:
                 fusion_method=method,
                 alpha=alpha,
                 rrf_k=rrf_k,
+                search_ef=search_ef,
             )
             latencies.update(h_lats)
             fusion_used = {"method": method, "alpha": alpha, "rrf_k": rrf_k}
@@ -175,13 +179,20 @@ class SearchService:
         if should_rerank and self.reranker is not None:
             rerank_pool = hydrated_candidates[:rerank_k]
             rerank_budget = request.get_rerank_budget_ms()
+            elapsed_pre_rerank = (time.perf_counter() - t_total_start) * 1000.0
+            total_deadline = getattr(request, "total_deadline_ms", 250.0) or 250.0
+            # Gate 5.2 (1f): Cross-encoder uses min(rerank_budget_ms, total_deadline_ms - elapsed - 10ms safety)
+            remaining_for_rerank = total_deadline - elapsed_pre_rerank - 10.0
+            effective_deadline = min(rerank_budget, max(0.0, remaining_for_rerank))
+
+            t_rerank_stage_start = time.perf_counter()
             reranked, r_ms, gov_state = self.reranker.rerank(
                 query=request.query,
                 candidates=rerank_pool,
                 top_k=request.top_k,
                 max_length=128,
-                deadline_ms=rerank_budget,
-                t_request_start=t_total_start,
+                deadline_ms=effective_deadline,
+                t_request_start=t_rerank_stage_start,
                 batch_size=5,
             )
             latencies["rerank"] = round(r_ms, 2)
@@ -280,11 +291,19 @@ class SearchService:
         # 5. Write to Qdrant (wait=True for synchronous confirmation)
         from qdrant_client import models
 
+        sparse_name = "sparse"
+        try:
+            c_info = self.qdrant_store.client.get_collection(self.qdrant_store.collection_name)
+            s_vecs = c_info.config.params.sparse_vectors or {}
+            sparse_name = "bm25" if "bm25" in s_vecs else "sparse"
+        except Exception:
+            sparse_name = "sparse"
+
         pt = models.PointStruct(
             id=pt_id,
             vector={
                 "dense": dense_vec,
-                "bm25": models.SparseVector(indices=sparse_indices, values=sparse_values),
+                sparse_name: models.SparseVector(indices=sparse_indices, values=sparse_values),
             },
             payload={
                 "passage_id": pid_str,

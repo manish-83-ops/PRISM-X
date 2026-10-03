@@ -1,0 +1,121 @@
+{
+  "benchmark": "Gate 5.5 Official Idle-Machine HTTP Latency Benchmark (c100k_raw)",
+  "timestamp": "2026-10-03 23:44:25",
+  "git_commit": "950bc5d6dbec421266e9cd78934dba2cac533224",
+  "config_hash": "8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf",
+  "dataset": "c100k_raw",
+  "n_bench_queries": 100,
+  "machine_state": {
+    "power_plugged": true,
+    "battery_percent": 100.0,
+    "power_plan": "Power Scheme GUID: fb5220ff-7e1a-47aa-9a42-50ffbf45c673  (HP Optimized (Modern Standby))"
+  },
+  "environment": {
+    "python": "3.11.9",
+    "torch": "2.10.0+cpu",
+    "transformers": "4.57.6",
+    "sentence_transformers": "5.7.0",
+    "qdrant_client": "1.19.1",
+    "fastapi": "0.138.2",
+    "uvicorn": "0.49.0",
+    "numpy": "2.3.5",
+    "psutil": "7.2.2",
+    "torch_num_threads": 6,
+    "cpu_count_logical": 12,
+    "cpu_count_physical": 6,
+    "os": "win32"
+  },
+  "warmup_discarded_20": {
+    "scenario": "warmup_20_discarded",
+    "mode": "prismx",
+    "n_queries": 20,
+    "p50_ms": 207.9,
+    "p90_ms": 343.94,
+    "p95_ms": 358.7,
+    "p99_ms": 363.83,
+    "max_ms": 365.11,
+    "min_ms": 172.18,
+    "mean_ms": 238.46,
+    "outlier_5x_p95_threshold_ms": 1793.5,
+    "outliers_count": 0,
+    "outliers": []
+  },
+  "modes_uncached": {
+    "dense": {
+      "scenario": "dense_uncached",
+      "mode": "dense",
+      "n_queries": 100,
+      "p50_ms": 58.4,
+      "p90_ms": 79.22,
+      "p95_ms": 107.21,
+      "p99_ms": 138.62,
+      "max_ms": 188.56,
+      "min_ms": 44.27,
+      "mean_ms": 63.76,
+      "outlier_5x_p95_threshold_ms": 536.05,
+      "outliers_count": 0,
+      "outliers": []
+    },
+    "hybrid": {
+      "scenario": "hybrid_uncached",
+      "mode": "hybrid",
+      "n_queries": 100,
+      "p50_ms": 67.43,
+      "p90_ms": 80.99,
+      "p95_ms": 89.02,
+      "p99_ms": 102.32,
+      "max_ms": 149.16,
+      "min_ms": 49.66,
+      "mean_ms": 68.82,
+      "outlier_5x_p95_threshold_ms": 445.1,
+      "outliers_count": 0,
+      "outliers": []
+    },
+    "prismx": {
+      "scenario": "prismx_uncached",
+      "mode": "prismx",
+      "n_queries": 100,
+      "p50_ms": 203.22,
+      "p90_ms": 285.54,
+      "p95_ms": 306.39,
+      "p99_ms": 476.55,
+      "max_ms": 1239.35,
+      "min_ms": 144.12,
+      "mean_ms": 228.44,
+      "outlier_5x_p95_threshold_ms": 1531.95,
+      "outliers_count": 0,
+      "outliers": []
+    }
+  },
+  "cache_scenarios": {
+    "all_unique": {
+      "scenario": "cache_all_unique",
+      "mode": "prismx",
+      "n_queries": 100,
+      "p50_ms": 176.66,
+      "p90_ms": 217.37,
+      "p95_ms": 250.5,
+      "p99_ms": 315.59,
+      "max_ms": 375.01,
+      "min_ms": 127.62,
+      "mean_ms": 182.34,
+      "outlier_5x_p95_threshold_ms": 1252.5,
+      "outliers_count": 0,
+      "outliers": []
+    },
+    "repeated_30pct": {
+      "scenario": "cache_30pct_repeated",
+      "mode": "prismx",
+      "status": "invalid, cache not reset, re-run pending",
+      "note": "Cache was not invalidated after all_unique run, resulting in artificial 100% pre-warmed hit rate instead of realistic 30% repeated distribution. Script fixed; re-run pending idle machine."
+    }
+  },
+  "adr018_rule_evaluation": {
+    "condition_i_quality_stat_sig": true,
+    "condition_i_detail": "BENCH paired-bootstrap CI of Rerank minus Hybrid on MRR@10 excludes 0 (+0.0583 [+0.0015, +0.1165])",
+    "condition_ii_p95_target_ms": 250.0,
+    "prismx_uncached_p95_ms": 306.39,
+    "condition_ii_met": false,
+    "mechanical_decision": "hybrid"
+  }
+}

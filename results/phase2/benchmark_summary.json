@@ -25,5 +25,15 @@
     "max_ms": 84.03,
     "mean_ms": 58.31,
     "raw_csv": "C:\\Users\\manis\\OneDrive\\Desktop\\main_adrosonic\\results\\phase2\\latency_hybrid_cached.csv"
-  }
+  },
+  "commit": "950bc5d6dbec421266e9cd78934dba2cac533224",
+  "date": "2026-10-03 18:20:00",
+  "N": 100,
+  "seed": 42,
+  "config": {
+    "mode": "hybrid",
+    "alpha": 0.8
+  },
+  "judge": "none",
+  "path_used": "HTTP API (/search)"
 }

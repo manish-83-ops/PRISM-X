@@ -24,12 +24,17 @@ class DenseRetriever:
         else:
             self.default_candidate_depth = default_candidate_depth
 
+        self.search_ef = None
+        if "qdrant" in self.config:
+            self.search_ef = self.config["qdrant"].get("search_ef")
+
     def retrieve(
         self,
         query: str,
         limit: int | None = None,
         query_filter: models.Filter | None = None,
         prefix: str = "",
+        search_ef: int | None = None,
     ) -> tuple[list[dict[str, Any]], float, float]:
         """Executes dense vector search against Qdrant HNSW index.
         
@@ -39,6 +44,8 @@ class DenseRetriever:
             search_time_ms: latency of Qdrant HNSW search in ms
         """
         k = limit if limit is not None else self.default_candidate_depth
+        ef_val = search_ef if search_ef is not None else self.search_ef
+        search_params = models.SearchParams(hnsw_ef=ef_val) if ef_val is not None else None
 
         t0 = time.perf_counter()
         q_emb = self.encoder.encode_queries(query, prefix=prefix)[0]
@@ -50,6 +57,7 @@ class DenseRetriever:
             query=q_emb.tolist(),
             using="dense",
             query_filter=query_filter,
+            search_params=search_params,
             limit=k,
             with_payload=True,
             with_vectors=False,

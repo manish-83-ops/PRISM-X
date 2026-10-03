@@ -25,6 +25,8 @@ class SearchRequest(BaseModel):
     fusion: FusionParams | None = None
     rerank: bool = False
     rerank_k: int = Field(default=10, ge=1, le=100)
+    search_ef: int | None = Field(default=128, ge=1, le=1000, description="HNSW search_ef (defaults to CONFIG.yaml qdrant.search_ef=128)")
+    total_deadline_ms: float = Field(default=250.0, ge=10.0, le=10000.0, description="Total request deadline in ms")
     rerank_budget_ms: float | None = Field(default=200.0, ge=10.0, le=5000.0, description="Covers rerank stage micro-batch boundaries only (not total request latency)")
     deadline_ms: float | None = Field(default=None, description="Backward-compatible alias for rerank_budget_ms")
     budget_ms: float | None = Field(default=None, description="Backward-compatible alias for rerank_budget_ms")

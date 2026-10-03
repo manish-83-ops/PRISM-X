@@ -11,6 +11,8 @@ import type {
   UpsertRequest,
   UpsertResponse,
   DeleteResponse,
+  AnswerRequest,
+  AnswerResponse,
 } from './types';
 
 const API_BASE = import.meta.env.VITE_API_BASE !== undefined && import.meta.env.VITE_API_BASE !== ''
@@ -83,7 +85,17 @@ export async function getMeta(): Promise<MetaResponse> {
 }
 
 export async function search(req: SearchRequest): Promise<SearchResponse> {
-  return request('/search', {
+  const t0 = performance.now();
+  const resp = await request<SearchResponse>('/search', {
+    method: 'POST',
+    body: JSON.stringify(req),
+  });
+  resp.http_ms = Math.round((performance.now() - t0) * 10) / 10;
+  return resp;
+}
+
+export async function answerQuery(req: AnswerRequest): Promise<AnswerResponse> {
+  return request('/answer', {
     method: 'POST',
     body: JSON.stringify(req),
   });

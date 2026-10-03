@@ -1,5 +1,5 @@
 {
-  "label": "Stress test (hard distractors, unlabeled neighbors may be valid answers; ID metrics are pessimistic)",
+  "label": "retired: confounded by ANN graph nondeterminism (see Gate 5.2 1c); superseded by c100k_raw",
   "collection": "c100k_hard",
   "points_count": 102887,
   "distractors_added": 2887,
@@ -258,5 +258,16 @@
         "status_label": "not distinguishable"
       }
     }
-  }
+  },
+  "commit": "950bc5d6dbec421266e9cd78934dba2cac533224",
+  "date": "2026-10-03 20:21:00",
+  "N": 100,
+  "seed": 42,
+  "config": {
+    "collection": "c100k_hard",
+    "distractors": 2887
+  },
+  "judge": "deterministic_gold_labels",
+  "path_used": "HTTP API (/search)",
+  "status": "retired: confounded by ANN graph nondeterminism (see Gate 5.2 1c); superseded by c100k_raw"
 }

@@ -45,5 +45,14 @@
   "d3_thread_comparisons": [
     "default_threads",
     "constrained_4_threads"
-  ]
+  ],
+  "commit": "950bc5d6dbec421266e9cd78934dba2cac533224",
+  "date": "2026-10-03 18:20:00",
+  "N": 100,
+  "seed": 42,
+  "config": {
+    "mode": "dense"
+  },
+  "judge": "none",
+  "path_used": "HTTP API (/search)"
 }
