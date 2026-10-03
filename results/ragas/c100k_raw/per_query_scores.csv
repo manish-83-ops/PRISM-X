@@ -1,0 +1,54 @@
+query_id,query,reference_answer,dense_cp,dense_cr,hybrid_cp,hybrid_cr,prismx_cp,prismx_cr,dense_tokens,hybrid_tokens,prismx_tokens
+156087,do earnest money go toward closing,"Yes, it go toward closing.",0.9167,1.0,0.9167,1.0,1.0,1.0,1104,1104,1123
+196655,graphology definition,Graphology is a study of handwriting especially for the purpose of character analysis.,1.0,1.0,1.0,1.0,1.0,1.0,1053,1031,1168
+947750,when does summer finish,In August.,1.0,1.0,1.0,0.9,0.5,0.6,1422,1526,1474
+1086525,what astronomical bodies exist in our universe?,"Sun, the Moon and the stars are astronomical bodies that exist in our universe.",1.0,1.0,0.8667,1.0,1.0,1.0,1260,1388,1259
+528278,types of iron lines cornea,"Hudson-Stahli line, Fleischer line and Khodadoust Line.",1.0,1.0,1.0,1.0,0.0,1.0,1647,1670,1646
+760440,what is ionograph cleaning,It is the industry standard for ionic contamination testing specified in commonly used cleaning standards.,1.0,1.0,0.8056,1.0,1.0,1.0,1393,1336,1404
+125712,define primary colors,"A color belonging to any of three groups each of which is regarded as generating all colors, with the groups being a Additive, physiological, or light primaries red, green, and blue.",0.325,1.0,0.5889,0.3,0.3333,1.0,1189,1295,1075
+1085902,what class was uss texas,USS Texas is a Virginia-class submarine.,0.95,1.0,1.0,1.0,1.0,1.0,1278,1389,1225
+1097949,how long is person with the flu contagious,"The contagious period of flu lasts five to seven days into the illness, for children the contagious period for the flu can last up to two weeks after they start feeling sick.",1.0,0.96,1.0,0.95,1.0,0.95,1297,1429,1467
+1090664,sidvokodvo average weather conditions,"The average weather in Sidvokodvo is growing degree days in Sidvokodvo are rapidly increasing during April, increasing by 601°Fahrenheit, from 5,742°Fahrenheit to 6,343°Fahrenheit.",0.3333,1.0,0.3333,1.0,1.0,1.0,1222,1395,1312
+1091187,quandary meaning,Quandary means a state of doubt or uncertainty.,1.0,0.99,1.0,1.0,1.0,1.0,909,1218,889
+1091924,outfall definition,An outfall is defined as any point where a separate storm sewer system discharges to either Water of the United States or to another MS4.,0.4778,1.0,0.3333,1.0,0.4778,1.0,1211,1124,1211
+702179,what is a summer salad,"Tomatoes, cabbage, carrots , strawberries, blueberries, raspberries, or blackberries .",1.0,0.4,0.8667,0.55,0.325,1.0,1247,1221,1257
+550293,what age can i start giving honey to a child,Over the age of 12 months.,1.0,1.0,1.0,1.0,1.0,1.0,1185,1570,1163
+1054047,what is hmc construction,"Huband-Mantor Construction, Inc a custom home builder & general contractor in Boerne, Texas.",0.3333,1.0,0.3333,1.0,0.3333,1.0,1283,1438,1218
+1102379,why do earthquake occur,"Earthquakes are caused by two tectonic plates that push against each other. The internal pressure between the plates increases, which creates friction and heat, and ultimately creates energy. Earthquakes are triggered after rocks break apart, or when the two tectonic plates stick together instead of sliding.",1.0,0.95,1.0,1.0,0.5889,0.95,1486,1560,1491
+962758,when was tracy morgan's accident,"June, 2014",0.5,1.0,0.5,1.0,1.0,1.0,1200,1232,1096
+513238,teradata string manipulation functions,"INDEX, POSITION.",1.0,1.0,1.0,1.0,0.5,0.97,1112,1103,1145
+837740,what is the ops stat for baseball,On-base plus slugging is a sabermetric baseball statistic calculated as the sum of a player's on-base percentage and slugging average.,1.0,1.0,0.9167,1.0,1.0,1.0,1154,1274,1208
+918993,what was one way the renaissance changed society?,The renaissance changed society by changing their art.,1.0,1.0,0.9167,1.0,0.9167,1.0,1010,1114,1166
+789833,what is real wasabi made of,It is made form a grated root and the fake stuff is horse radish and dye.,0.8667,1.0,1.0,1.0,1.0,1.0,1225,1270,1384
+1083574,what does it mean to say that a population cycles?,"In zoology, a population cycle is a phenomenon where populations rise and fall over a predictable period of time.",1.0,1.0,1.0,1.0,1.0,1.0,1147,2013,1217
+442137,long terms effects of great depression definition,"Definition:
+An economic slump sparked by the collapse of the New York stock exchange in 1929.
+Long term effect:
+It devastated the US economy and caused unemployment.",1.0,1.0,0.7,0.9,0.45,1.0,1515,1754,1420
+394244,in what region of the world was maize domesticated,Maize was domesticated in the region of Mexico.,0.5,0.2,0.5,0.9,0.25,0.1,1198,1196,1260
+520578,tiger balm uses side effects,"Using tiger balm on damaged skin or on sensitive skin areas will cause redness, itchiness and swelling.",1.0,1.0,1.0,1.0,1.0,1.0,1304,1494,1294
+20461,arabic ahmad definition,An Arabic baby name. In Arabic the meaning of the name Ahmad is Much praised.,1.0,1.0,1.0,1.0,1.0,1.0,1118,1283,1463
+525734,tv show shane cast,"David Carradine, Jill Ireland, Tom Tully.",1.0,1.0,1.0,1.0,1.0,1.0,1165,1367,1177
+325195,how much money does the u.s. give israel 2015,"In 2015, the United States government gave $619.8 million for joint United States-Israel missile defense programs and an American taxpayers gave $10.2 million per day to Israel.",1.0,1.0,1.0,1.0,1.0,1.0,1794,1901,1752
+1001279,where are the most deserts,Most deserts lie between 15° and 35° north and south of the equator.,0.8333,1.0,0.8667,1.0,0.4778,1.0,1449,1696,1713
+1038214,what is the hypoxic drive theory,The hypoxic drive is a form of respiratory drive in which the body uses oxygen chemoreceptors instead of carbon dioxide receptors to regulate the respiratory cycle.,0.5,1.0,0.5,1.0,1.0,1.0,1279,1426,1347
+986174,where is lake james in indiana,Lake James is in the the northeast corner of the state of Indiana in the United States.,1.0,1.0,1.0,1.0,0.95,1.0,1000,1131,1274
+606138,what county is franklin wi,"Franklin is in Milwaukee County, Wisconsin.",1.0,1.0,1.0,1.0,1.0,1.0,1108,1113,1108
+773352,what is monosodium chloride,It is a sodium salt from an amino acid called glutamic acid.,0.0,0.0,0.0,0.0,0.0,0.0,1246,1358,1167
+1096170,how much does a yoga instructor make a year,The average salary of a Yoga Instructor is $30.53 per hour.,0.8042,1.0,0.75,1.0,0.8042,1.0,1324,1397,1372
+83245,cast jason bourne,"Matt Damon, Alicia Vikander, Vincent Cassel, Tommy Lee Jones and Julia Stiles.",1.0,1.0,1.0,1.0,1.0,1.0,1441,1454,1389
+835723,what is the name of the theatre play is considered one of the most important musicals of the golden age of musical theatre.,Broadway Musical Home.,1.0,0.0,1.0,0.2,0.3333,0.1,1304,1361,1294
+1052134,who sings tomorrow from annie,Zach Galifianakis,0.5,0.9,0.5,0.9,1.0,1.0,1366,1439,1336
+620643,what diet for diabetes,"The diet for diabetes contains whole grains, cereals, and bread.",0.9167,1.0,0.9167,1.0,0.8667,0.3,1113,1122,1162
+1095491,how much should you spend on a wedding dress,You should spend $500 to $1000 on a wedding dress.,1.0,1.0,1.0,1.0,1.0,1.0,1418,1554,1373
+770750,what is meego os,"MeeGo is an open source, Linux project which brings together the Moblin project, headed up by Intel, and Maemo, by Nokia, into a single open source activity.",1.0,1.0,1.0,1.0,1.0,1.0,1143,1165,1090
+608254,"what county is lakeland, fl in","Lakeland, Florida is in Polk County.",1.0,1.0,1.0,1.0,1.0,1.0,1190,1447,1196
+1089374,tv scandal cast,"ABC’s “Scandal” stars are Cornelius Smith Jr as Marcus Walker, Portia de Rossi as Elizabeth North, Joshua Malina as David Rosen, Darby Stanchfield as Abby Whelan, Tony Goldwyn as President Fitzgerald Grant, Jeff Perry as Cyrus Beene, Kerry Washington as Olivia Pope, Bellamy Young as Mellie Grant, Scott Foley as Jake Ballard, Joe Morton as Rowan Pope, Katie Lowes as Quinn Perkins and Guillermo Diaz as Huck.",1.0,1.0,1.0,1.0,1.0,0.97,1326,1796,1394
+585818,what causes blockage in dog stomach intestines,Hernias and Crohn's disease.,0.25,1.0,0.25,1.0,0.2,1.0,1229,1457,1281
+991078,definition of facilitating,The definition of facilitating is the increasing of the ease or intensity of a response by repeated stimulation.,0.75,1.0,0.75,1.0,1.0,1.0,1218,1157,1192
+920671,what was the first year of the land speed record,The first year of the land speed record was in 1899.,0.4167,1.0,0.4167,1.0,1.0,1.0,1258,1462,1240
+786502,what is pressure vessel testing and repair,Pressure Testing is a non-destructive test performed to ensure the integrity of the pressure shell on new pressure equipment.,0.95,1.0,1.0,1.0,0.95,1.0,1189,1513,1186
+949869,when is cinemax free preview,"June 20 for DirectTV and for FreePreviewTV.com, Mediacom, DISH, and Cox Cable will have their free HBO/Cinemax preview weekends starting June 27.",1.0,1.0,1.0,1.0,1.0,1.0,1492,1374,1524
+987062,who was a muckraker,"A muckraker is someone who rakes up or points out, unpleasnt truths, exposed businesses, governments or wrong doing and injustices.",0.95,1.0,0.95,1.0,1.0,1.0,1425,1419,1403
+355867,how to do ellipses question,"Steps to do ellipses question are a set of three periods indicating an omission. Each period should have a single space on either side, except when adjacent to a quotation mark, in which case there should be no space.",1.0,1.0,1.0,1.0,0.5,1.0,1399,1704,1430
+1085824,what companies does sarbanes oxley apply to,Sarbanes-Oxley Applies to Private Companies.,1.0,1.0,1.0,1.0,1.0,0.9,1559,1526,1519

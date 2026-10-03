@@ -1,0 +1,18 @@
+{
+  "n_queries": 50,
+  "hybrid_vs_dense": {
+    "top5_differ_fraction": 0.96,
+    "top1_differ_fraction": 0.0,
+    "mean_jaccard": 0.6014
+  },
+  "prismx_vs_hybrid": {
+    "top5_differ_fraction": 0.98,
+    "top1_differ_fraction": 0.44,
+    "mean_jaccard": 0.5412
+  },
+  "prismx_vs_dense": {
+    "top5_differ_fraction": 0.64,
+    "top1_differ_fraction": 0.44,
+    "mean_jaccard": 0.7271
+  }
+}

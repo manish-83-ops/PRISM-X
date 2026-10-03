@@ -1,13 +1,862 @@
 {
   "benchmark": "c100k_raw RAGAS",
-  "judge_model": "llama-3.3-70b-versatile",
+  "judge_model": "openai/gpt-oss-120b",
   "token_accounting": {
-    "total_tokens": 0,
-    "tokens_today": 0,
-    "calls": 0,
-    "date": "2026-10-03"
+    "total_tokens": 198324,
+    "tokens_today": 198324,
+    "calls": 300,
+    "date": "2026-10-04"
   },
   "completed_queries": {
-    "156087": {}
+    "156087": {
+      "phase1_dense": {
+        "context_precision": 0.9167,
+        "context_recall": 1.0,
+        "tokens_consumed": 1104
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.9167,
+        "context_recall": 1.0,
+        "tokens_consumed": 1104
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1123
+      }
+    },
+    "196655": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1053
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1031
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1168
+      }
+    },
+    "947750": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1422
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 0.9,
+        "tokens_consumed": 1526
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.5,
+        "context_recall": 0.6,
+        "tokens_consumed": 1474
+      }
+    },
+    "1086525": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1260
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.8667,
+        "context_recall": 1.0,
+        "tokens_consumed": 1388
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1259
+      }
+    },
+    "528278": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1647
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1670
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1646
+      }
+    },
+    "760440": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1393
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.8056,
+        "context_recall": 1.0,
+        "tokens_consumed": 1336
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1404
+      }
+    },
+    "125712": {
+      "phase1_dense": {
+        "context_precision": 0.325,
+        "context_recall": 1.0,
+        "tokens_consumed": 1189
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.5889,
+        "context_recall": 0.3,
+        "tokens_consumed": 1295
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.3333,
+        "context_recall": 1.0,
+        "tokens_consumed": 1075
+      }
+    },
+    "1085902": {
+      "phase1_dense": {
+        "context_precision": 0.95,
+        "context_recall": 1.0,
+        "tokens_consumed": 1278
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1389
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1225
+      }
+    },
+    "1097949": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 0.96,
+        "tokens_consumed": 1297
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 0.95,
+        "tokens_consumed": 1429
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 0.95,
+        "tokens_consumed": 1467
+      }
+    },
+    "1090664": {
+      "phase1_dense": {
+        "context_precision": 0.3333,
+        "context_recall": 1.0,
+        "tokens_consumed": 1222
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.3333,
+        "context_recall": 1.0,
+        "tokens_consumed": 1395
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1312
+      }
+    },
+    "1091187": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 0.99,
+        "tokens_consumed": 909
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1218
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 889
+      }
+    },
+    "1091924": {
+      "phase1_dense": {
+        "context_precision": 0.4778,
+        "context_recall": 1.0,
+        "tokens_consumed": 1211
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.3333,
+        "context_recall": 1.0,
+        "tokens_consumed": 1124
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.4778,
+        "context_recall": 1.0,
+        "tokens_consumed": 1211
+      }
+    },
+    "702179": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 0.4,
+        "tokens_consumed": 1247
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.8667,
+        "context_recall": 0.55,
+        "tokens_consumed": 1221
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.325,
+        "context_recall": 1.0,
+        "tokens_consumed": 1257
+      }
+    },
+    "550293": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1185
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1570
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1163
+      }
+    },
+    "1054047": {
+      "phase1_dense": {
+        "context_precision": 0.3333,
+        "context_recall": 1.0,
+        "tokens_consumed": 1283
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.3333,
+        "context_recall": 1.0,
+        "tokens_consumed": 1438
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.3333,
+        "context_recall": 1.0,
+        "tokens_consumed": 1218
+      }
+    },
+    "1102379": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 0.95,
+        "tokens_consumed": 1486
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1560
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.5889,
+        "context_recall": 0.95,
+        "tokens_consumed": 1491
+      }
+    },
+    "962758": {
+      "phase1_dense": {
+        "context_precision": 0.5,
+        "context_recall": 1.0,
+        "tokens_consumed": 1200
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.5,
+        "context_recall": 1.0,
+        "tokens_consumed": 1232
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1096
+      }
+    },
+    "513238": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1112
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1103
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.5,
+        "context_recall": 0.97,
+        "tokens_consumed": 1145
+      }
+    },
+    "837740": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1154
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.9167,
+        "context_recall": 1.0,
+        "tokens_consumed": 1274
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1208
+      }
+    },
+    "918993": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1010
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.9167,
+        "context_recall": 1.0,
+        "tokens_consumed": 1114
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.9167,
+        "context_recall": 1.0,
+        "tokens_consumed": 1166
+      }
+    },
+    "789833": {
+      "phase1_dense": {
+        "context_precision": 0.8667,
+        "context_recall": 1.0,
+        "tokens_consumed": 1225
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1270
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1384
+      }
+    },
+    "1083574": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1147
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 2013
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1217
+      }
+    },
+    "442137": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1515
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.7,
+        "context_recall": 0.9,
+        "tokens_consumed": 1754
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.45,
+        "context_recall": 1.0,
+        "tokens_consumed": 1420
+      }
+    },
+    "394244": {
+      "phase1_dense": {
+        "context_precision": 0.5,
+        "context_recall": 0.2,
+        "tokens_consumed": 1198
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.5,
+        "context_recall": 0.9,
+        "tokens_consumed": 1196
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.25,
+        "context_recall": 0.1,
+        "tokens_consumed": 1260
+      }
+    },
+    "520578": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1304
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1494
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1294
+      }
+    },
+    "20461": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1118
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1283
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1463
+      }
+    },
+    "525734": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1165
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1367
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1177
+      }
+    },
+    "325195": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1794
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1901
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1752
+      }
+    },
+    "1001279": {
+      "phase1_dense": {
+        "context_precision": 0.8333,
+        "context_recall": 1.0,
+        "tokens_consumed": 1449
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.8667,
+        "context_recall": 1.0,
+        "tokens_consumed": 1696
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.4778,
+        "context_recall": 1.0,
+        "tokens_consumed": 1713
+      }
+    },
+    "1038214": {
+      "phase1_dense": {
+        "context_precision": 0.5,
+        "context_recall": 1.0,
+        "tokens_consumed": 1279
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.5,
+        "context_recall": 1.0,
+        "tokens_consumed": 1426
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1347
+      }
+    },
+    "986174": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1000
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1131
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.95,
+        "context_recall": 1.0,
+        "tokens_consumed": 1274
+      }
+    },
+    "606138": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1108
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1113
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1108
+      }
+    },
+    "773352": {
+      "phase1_dense": {
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "tokens_consumed": 1246
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "tokens_consumed": 1358
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "tokens_consumed": 1167
+      }
+    },
+    "1096170": {
+      "phase1_dense": {
+        "context_precision": 0.8042,
+        "context_recall": 1.0,
+        "tokens_consumed": 1324
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.75,
+        "context_recall": 1.0,
+        "tokens_consumed": 1397
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.8042,
+        "context_recall": 1.0,
+        "tokens_consumed": 1372
+      }
+    },
+    "83245": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1441
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1454
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1389
+      }
+    },
+    "835723": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 0.0,
+        "tokens_consumed": 1304
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 0.2,
+        "tokens_consumed": 1361
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.3333,
+        "context_recall": 0.1,
+        "tokens_consumed": 1294
+      }
+    },
+    "1052134": {
+      "phase1_dense": {
+        "context_precision": 0.5,
+        "context_recall": 0.9,
+        "tokens_consumed": 1366
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.5,
+        "context_recall": 0.9,
+        "tokens_consumed": 1439
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1336
+      }
+    },
+    "620643": {
+      "phase1_dense": {
+        "context_precision": 0.9167,
+        "context_recall": 1.0,
+        "tokens_consumed": 1113
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.9167,
+        "context_recall": 1.0,
+        "tokens_consumed": 1122
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.8667,
+        "context_recall": 0.3,
+        "tokens_consumed": 1162
+      }
+    },
+    "1095491": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1418
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1554
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1373
+      }
+    },
+    "770750": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1143
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1165
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1090
+      }
+    },
+    "608254": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1190
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1447
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1196
+      }
+    },
+    "1089374": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1326
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1796
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 0.97,
+        "tokens_consumed": 1394
+      }
+    },
+    "585818": {
+      "phase1_dense": {
+        "context_precision": 0.25,
+        "context_recall": 1.0,
+        "tokens_consumed": 1229
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.25,
+        "context_recall": 1.0,
+        "tokens_consumed": 1457
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.2,
+        "context_recall": 1.0,
+        "tokens_consumed": 1281
+      }
+    },
+    "991078": {
+      "phase1_dense": {
+        "context_precision": 0.75,
+        "context_recall": 1.0,
+        "tokens_consumed": 1218
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.75,
+        "context_recall": 1.0,
+        "tokens_consumed": 1157
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1192
+      }
+    },
+    "920671": {
+      "phase1_dense": {
+        "context_precision": 0.4167,
+        "context_recall": 1.0,
+        "tokens_consumed": 1258
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.4167,
+        "context_recall": 1.0,
+        "tokens_consumed": 1462
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1240
+      }
+    },
+    "786502": {
+      "phase1_dense": {
+        "context_precision": 0.95,
+        "context_recall": 1.0,
+        "tokens_consumed": 1189
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1513
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.95,
+        "context_recall": 1.0,
+        "tokens_consumed": 1186
+      }
+    },
+    "949869": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1492
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1374
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1524
+      }
+    },
+    "987062": {
+      "phase1_dense": {
+        "context_precision": 0.95,
+        "context_recall": 1.0,
+        "tokens_consumed": 1425
+      },
+      "phase2_hybrid": {
+        "context_precision": 0.95,
+        "context_recall": 1.0,
+        "tokens_consumed": 1419
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1403
+      }
+    },
+    "355867": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1399
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1704
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 0.5,
+        "context_recall": 1.0,
+        "tokens_consumed": 1430
+      }
+    },
+    "1085824": {
+      "phase1_dense": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1559
+      },
+      "phase2_hybrid": {
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "tokens_consumed": 1526
+      },
+      "phase3_prismx_rerank": {
+        "context_precision": 1.0,
+        "context_recall": 0.9,
+        "tokens_consumed": 1519
+      }
+    }
   }
 }

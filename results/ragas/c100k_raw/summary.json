@@ -1,0 +1,121 @@
+{
+  "benchmark": "c100k_raw RAGAS LLM Evaluation",
+  "judge_model": "openai/gpt-oss-120b",
+  "judge_temperature": 0.0,
+  "primary_n_complete_queries": 50,
+  "target_n": 50,
+  "minimum_target_n": 25,
+  "selection_bias_caveat": "Queries drawn strictly from MS MARCO validation queries with valid human answers (>1 word, != No Answer Present). RAGAS aggregates exclude queries without human answers.",
+  "token_accounting": {
+    "total_tokens": 198324,
+    "tokens_today": 198324,
+    "calls": 300,
+    "date": "2026-10-04"
+  },
+  "metrics": {
+    "phase1_dense": {
+      "context_precision": {
+        "mean": 0.8415,
+        "ci_lower": 0.7631,
+        "ci_upper": 0.9106
+      },
+      "context_recall": {
+        "mean": 0.928,
+        "ci_lower": 0.853,
+        "ci_upper": 0.9842
+      }
+    },
+    "phase2_hybrid": {
+      "context_precision": {
+        "mean": 0.8296,
+        "ci_lower": 0.7532,
+        "ci_upper": 0.8979
+      },
+      "context_recall": {
+        "mean": 0.932,
+        "ci_lower": 0.866,
+        "ci_upper": 0.982
+      }
+    },
+    "phase3_prismx_rerank": {
+      "context_precision": {
+        "mean": 0.7951,
+        "ci_lower": 0.7072,
+        "ci_upper": 0.876
+      },
+      "context_recall": {
+        "mean": 0.9168,
+        "ci_lower": 0.8404,
+        "ci_upper": 0.9772
+      }
+    }
+  },
+  "paired_differences": {
+    "hybrid_minus_dense": {
+      "context_precision": {
+        "mean_diff": -0.0119,
+        "ci_lower": -0.0333,
+        "ci_upper": 0.0087,
+        "wins": 5,
+        "losses": 8,
+        "ties": 37,
+        "ci_excludes_zero": false,
+        "verdict": "no measurable difference"
+      },
+      "context_recall": {
+        "mean_diff": 0.004,
+        "ci_lower": -0.0372,
+        "ci_upper": 0.045,
+        "wins": 5,
+        "losses": 4,
+        "ties": 41,
+        "ci_excludes_zero": false,
+        "verdict": "no measurable difference"
+      }
+    },
+    "rerank_minus_hybrid": {
+      "context_precision": {
+        "mean_diff": -0.0344,
+        "ci_lower": -0.1216,
+        "ci_upper": 0.05,
+        "wins": 13,
+        "losses": 15,
+        "ties": 22,
+        "ci_excludes_zero": false,
+        "verdict": "no measurable difference"
+      },
+      "context_recall": {
+        "mean_diff": -0.0152,
+        "ci_lower": -0.0708,
+        "ci_upper": 0.0388,
+        "wins": 4,
+        "losses": 8,
+        "ties": 38,
+        "ci_excludes_zero": false,
+        "verdict": "no measurable difference"
+      }
+    },
+    "rerank_minus_dense": {
+      "context_precision": {
+        "mean_diff": -0.0463,
+        "ci_lower": -0.1356,
+        "ci_upper": 0.0392,
+        "wins": 11,
+        "losses": 14,
+        "ties": 25,
+        "ci_excludes_zero": false,
+        "verdict": "no measurable difference"
+      },
+      "context_recall": {
+        "mean_diff": -0.0112,
+        "ci_lower": -0.0526,
+        "ci_upper": 0.0286,
+        "wins": 4,
+        "losses": 7,
+        "ties": 39,
+        "ci_excludes_zero": false,
+        "verdict": "no measurable difference"
+      }
+    }
+  }
+}

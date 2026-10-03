@@ -41,6 +41,7 @@ logging.basicConfig(
 logger = logging.getLogger("ragas_c100k_raw")
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO_ROOT / "src"))
 MANIFEST_PATH = REPO_ROOT / "data" / "manifests" / "frozen_ragas_bench_raw_50.json"
 RESULTS_DIR = REPO_ROOT / "results" / "ragas" / "c100k_raw"
 CHECKPOINT_PATH = RESULTS_DIR / "checkpoint.json"
@@ -49,8 +50,29 @@ DB_PATH = REPO_ROOT / "data" / "c100k_raw" / "text_store_raw.db"
 COLLECTION_NAME = "c100k_raw"
 
 JUDGE_MODEL = "llama-3.3-70b-versatile"
-DEFAULT_DAILY_TOKEN_CAP = 96000  # Updated to 96,000 per Gate 5.5 so >=25 complete queries fit
-CALL_INTERVAL_SECONDS = 2.5      # Max 24 calls/min (< 30 RPM limit)
+DEFAULT_DAILY_TOKEN_CAP = 250000  # Set so N >= 25 fits with 4,000 margin per measured tokens/query (ADR-019)
+CALL_INTERVAL_SECONDS = 2.5       # Max 24 calls/min (< 30 RPM limit)
+
+
+def select_judge_model(client) -> tuple[str, dict[str, Any]]:
+    """Select judge model per ADR-019 hierarchy:
+    1. llama-3.3-70b-versatile
+    2. openai/gpt-oss-120b (with reasoning_effort='low')
+    3. Else stop immediately and display available models.
+    """
+    models_resp = client.models.list()
+    available_ids = [m.id for m in models_resp.data]
+    logger.info(f"Retrieved {len(available_ids)} model IDs from Groq API.")
+
+    if "llama-3.3-70b-versatile" in available_ids:
+        logger.info("Selected primary judge model: llama-3.3-70b-versatile")
+        return "llama-3.3-70b-versatile", {}
+    elif "openai/gpt-oss-120b" in available_ids:
+        logger.info("llama-3.3-70b-versatile not found. Selected ADR-019 fallback judge: openai/gpt-oss-120b (reasoning_effort=low)")
+        return "openai/gpt-oss-120b", {"reasoning_effort": "low"}
+    else:
+        logger.error(f"HARD STOP: Neither llama-3.3-70b-versatile nor openai/gpt-oss-120b available in Groq account. Available models:\n{available_ids}")
+        raise RuntimeError(f"ADR-019 violation: Judge model not available. Available IDs: {available_ids}")
 
 
 def bootstrap_ci(arr: list[float] | np.ndarray, n_resamples: int = 10000, seed: int = 42) -> dict[str, float]:
@@ -90,6 +112,9 @@ def paired_bootstrap_diff(a: list[float], b: list[float], n_resamples: int = 100
     mean_diff = float(np.mean(diffs))
     wlt = count_win_loss_tie(a, b)
     excludes_zero = bool(lo > 0.0 or hi < 0.0)
+    verdict = "no measurable difference"
+    if excludes_zero:
+        verdict = "improvement" if mean_diff > 0 else "degradation"
     return {
         "mean_diff": round(mean_diff, 4),
         "ci_lower": round(lo, 4),
@@ -98,62 +123,27 @@ def paired_bootstrap_diff(a: list[float], b: list[float], n_resamples: int = 100
         "losses": wlt["losses"],
         "ties": wlt["ties"],
         "ci_excludes_zero": excludes_zero,
-        "verdict": "Statistically Significant Improvement" if excludes_zero and mean_diff > 0 else ("Statistically Significant Degradation" if excludes_zero and mean_diff < 0 else "Directional, not significant (crosses zero)")
+        "verdict": verdict
     }
 
 
-def print_estimate_report():
-    print("=================================================================")
-    print("REVISED RAGAS LLM EVALUATION ESTIMATE (c100k_raw Frozen 50)")
-    print("=================================================================")
-    print(f"Judge Model: {JUDGE_MODEL} (Temperature=0.0)")
-    print("Target Set: 50 Valid-Answer BENCH Queries (Seed-frozen order)")
-    print("Metrics: Context Precision and Context Recall (Reference = Human Answer)")
-    print("Phases per Query: 3 (Phase 1 Dense, Phase 2 Hybrid, Phase 3 Hybrid+Rerank)")
-    print("\n[Empirical Token Measurement]")
-    print("  Measured earlier: 91,157 tokens consumed across 75 evaluations")
-    print("  Empirical consumption rate: ~1,215.4 tokens per evaluation")
-    print("\n[Official Groq Free-Tier Rate Limits for llama-3.3-70b-versatile]")
-    print("  Requests Per Minute (RPM): 30 RPM")
-    print("  Requests Per Day (RPD):    1,000 RPD")
-    print("  Tokens Per Minute (TPM):   12,000 TPM (12k)")
-    print("  Tokens Per Day (TPD):      100,000 tokens/day (100k)")
-    print("  Automated Safety Cap:      90,000 tokens/day (90% cutoff)")
-    print("\n[Total Workload Estimation]")
-    total_evals_50 = 50 * 3
-    tokens_50 = total_evals_50 * 1215.426
-    days_50 = tokens_50 / 90000.0
-
-    target_evals_25 = 25 * 3
-    tokens_25 = target_evals_25 * 1215.426
-    days_25 = tokens_25 / 90000.0
-
-    print(f"  Target N=50 Complete Queries (150 evaluations total):")
-    print(f"    Expected Total Tokens: ~{tokens_50:,.0f} tokens")
-    print(f"    Expected API Calls:    ~300 calls (2 calls per evaluation)")
-    print(f"    Expected Days (Free Tier @ 90k/day): {days_50:.2f} days (~2 calendar days)")
-    print(f"      Day 1: 24 paired queries (72 evaluations, ~87,510 tokens) -> Auto-stop at 90k cap")
-    print(f"      Day 2: 26 paired queries (78 evaluations, ~94,800 tokens) -> Complete 50 queries")
-    print(f"\n  Target N=25 Minimum Primary Set (75 evaluations total):")
-    print(f"    Expected Total Tokens: ~{tokens_25:,.0f} tokens")
-    print(f"    Expected API Calls:    ~150 calls")
-    print(f"    Expected Days (Free Tier @ 90k/day): {days_25:.2f} days (~1-2 days)")
-    print("=================================================================")
-
-
-def call_llm(client, prompt: str, token_tracker: dict[str, int], daily_token_cap: int, max_retries: int = 15) -> tuple[str, int]:
+def call_llm(client, prompt: str, token_tracker: dict[str, int], daily_token_cap: int, judge_model: str, extra_kwargs: dict[str, Any], max_retries: int = 3) -> tuple[str, int]:
     """Call Groq API with rate limit parsing, backoff, and daily token cap tracking."""
     if token_tracker["tokens_today"] >= daily_token_cap:
         raise ResourceWarning(f"Daily token safety cap reached ({token_tracker['tokens_today']:,} / {daily_token_cap:,} tokens). Pausing runner.")
 
+    call_params: dict[str, Any] = {
+        "messages": [{"role": "user", "content": prompt}],
+        "model": judge_model,
+        "temperature": 0.0,
+    }
+    if extra_kwargs:
+        call_params["extra_body"] = extra_kwargs
+
     for attempt in range(max_retries):
         try:
             time.sleep(CALL_INTERVAL_SECONDS)
-            chat = client.chat.completions.create(
-                messages=[{"role": "user", "content": prompt}],
-                model=JUDGE_MODEL,
-                temperature=0.0,
-            )
+            chat = client.chat.completions.create(**call_params)
             text = chat.choices[0].message.content.strip()
             usage = getattr(chat, "usage", None)
             tokens = (usage.prompt_tokens + usage.completion_tokens) if usage else 0
@@ -165,9 +155,9 @@ def call_llm(client, prompt: str, token_tracker: dict[str, int], daily_token_cap
         except Exception as exc:
             err = str(exc).lower()
             if "not_found" in err or "model_not_found" in err or "does not exist" in err:
-                logger.error(f"[Groq Model Access Error] Model '{JUDGE_MODEL}' is not available on this API key: {exc}")
+                logger.error(f"[Groq Model Access Error] Model '{judge_model}' is not available on this API key: {exc}")
                 raise
-            if "429" in err or "rate limit" in err or "resource_exhausted" in err:
+            if "429" in err or "rate limit" in err or "resource_exhausted" in err or "500" in err or "502" in err or "503" in err or "504" in err:
                 sleep_t = 15.0
                 m1 = re.search(r"try again in (\d+)m([\d.]+)s", err)
                 m2 = re.search(r"try again in ([\d.]+)s", err)
@@ -176,19 +166,19 @@ def call_llm(client, prompt: str, token_tracker: dict[str, int], daily_token_cap
                 elif m2:
                     sleep_t = float(m2.group(1)) + 2.0
                 else:
-                    sleep_t = min(60.0, 5.0 * (2.0 ** min(attempt, 4))) + random.uniform(1.0, 3.0)
-                logger.warning(f"[Groq 429 Rate Limit] Pacing backoff {sleep_t:.1f}s (attempt {attempt+1}/{max_retries})...")
+                    sleep_t = min(60.0, 5.0 * (2.0 ** min(attempt, 3))) + random.uniform(1.0, 3.0)
+                logger.warning(f"[Groq Retryable Error {err[:30]}] Backoff {sleep_t:.1f}s (attempt {attempt+1}/{max_retries})...")
                 time.sleep(sleep_t)
             else:
                 if attempt == max_retries - 1:
                     raise
-                logger.warning(f"[Groq API Error] {exc} — retrying in 5s...")
+                logger.warning(f"[Groq API Error] {exc} — retrying in 5s (attempt {attempt+1}/{max_retries})...")
                 time.sleep(5.0)
 
-    raise RuntimeError("Max retries exceeded calling Groq API.")
+    raise RuntimeError(f"Max retries ({max_retries}) exceeded calling Groq API for identical prompt.")
 
 
-def eval_context_precision(client, question: str, contexts: list[str], reference_answer: str, token_tracker: dict, daily_cap: int) -> tuple[float, int]:
+def eval_context_precision(client, question: str, contexts: list[str], reference_answer: str, token_tracker: dict, daily_cap: int, judge_model: str, extra_kwargs: dict[str, Any]) -> tuple[float, int]:
     top5 = contexts[:5]
     if not top5:
         return 0.0, 0
@@ -202,7 +192,7 @@ def eval_context_precision(client, question: str, contexts: list[str], reference
         f"Respond with ONLY a JSON list of {len(top5)} booleans, e.g. [true, false, true, false, false]. Nothing else.\n"
         f"JSON:"
     )
-    resp, tokens = call_llm(client, prompt, token_tracker, daily_cap)
+    resp, tokens = call_llm(client, prompt, token_tracker, daily_cap, judge_model, extra_kwargs)
     match = re.search(r"\[.*?\]", resp, re.DOTALL)
     verdicts = []
     if match:
@@ -225,7 +215,7 @@ def eval_context_precision(client, question: str, contexts: list[str], reference
     return round(cp, 4), tokens
 
 
-def eval_context_recall(client, question: str, contexts: list[str], reference_answer: str, token_tracker: dict, daily_cap: int) -> tuple[float, int]:
+def eval_context_recall(client, question: str, contexts: list[str], reference_answer: str, token_tracker: dict, daily_cap: int, judge_model: str, extra_kwargs: dict[str, Any]) -> tuple[float, int]:
     top5 = contexts[:5]
     if not top5:
         return 0.0, 0
@@ -239,7 +229,7 @@ def eval_context_recall(client, question: str, contexts: list[str], reference_an
         f"Reply with a single float score between 0.0 (none covered) and 1.0 (fully covered), followed by nothing else.\n"
         f"Score:"
     )
-    resp, tokens = call_llm(client, prompt, token_tracker, daily_cap)
+    resp, tokens = call_llm(client, prompt, token_tracker, daily_cap, judge_model, extra_kwargs)
     try:
         val = float(resp.split()[0].strip())
         score = max(0.0, min(1.0, val))
@@ -291,6 +281,97 @@ def run_ragas(
 
     with open(MANIFEST_PATH, "r", encoding="utf-8") as f:
         manifest = json.load(f)
+def compute_retrieval_overlap(queries: list[dict], dense_retriever, hybrid_retriever, reranker, text_store) -> dict[str, Any]:
+    """Compute (no LLM) how often top-5 contexts differ between dense/hybrid/prismx."""
+    total_q = len(queries)
+    dh_diff_top5, dh_diff_top1, dh_jaccards = 0, 0, []
+    ph_diff_top5, ph_diff_top1, ph_jaccards = 0, 0, []
+    pd_diff_top5, pd_diff_top1, pd_jaccards = 0, 0, []
+
+    for q_item in queries:
+        q_text = q_item["query"]
+        d_cands, _, _ = dense_retriever.retrieve(query=q_text, limit=5, search_ef=128)
+        d_pids = [c["passage_id"] for c in d_cands]
+
+        h_cands, _ = hybrid_retriever.retrieve(query=q_text, limit=5, alpha=0.8, norm_method="minmax", search_ef=128)
+        h_pids = [c["passage_id"] for c in h_cands]
+
+        h10_cands, _ = hybrid_retriever.retrieve(query=q_text, limit=10, alpha=0.8, norm_method="minmax", search_ef=128)
+        h10_pids = [c["passage_id"] for c in h10_cands]
+        h10_map = text_store.get_passages_by_ids(h10_pids)
+        rerank_in = [{"passage_id": p, "text": h10_map.get(p, {}).get("text", ""), "score": c["score"]} for p, c in zip(h10_pids, h10_cands)]
+
+        t_rerank_start = time.perf_counter()
+        r_top10, _, _ = reranker.rerank(
+            query=q_text,
+            candidates=rerank_in,
+            top_k=5,
+            max_length=128,
+            deadline_ms=200.0,
+            t_request_start=t_rerank_start,
+            batch_size=5
+        )
+        p_pids = [c["passage_id"] for c in r_top10[:5]]
+
+        # Compare Hybrid vs Dense
+        s_d, s_h, s_p = set(d_pids[:5]), set(h_pids[:5]), set(p_pids[:5])
+        if s_d != s_h:
+            dh_diff_top5 += 1
+        if d_pids and h_pids and d_pids[0] != h_pids[0]:
+            dh_diff_top1 += 1
+        dh_jaccards.append(len(s_d & s_h) / len(s_d | s_h) if (s_d | s_h) else 1.0)
+
+        # Compare PRISMX vs Hybrid
+        if s_p != s_h:
+            ph_diff_top5 += 1
+        if p_pids and h_pids and p_pids[0] != h_pids[0]:
+            ph_diff_top1 += 1
+        ph_jaccards.append(len(s_p & s_h) / len(s_p | s_h) if (s_p | s_h) else 1.0)
+
+        # Compare PRISMX vs Dense
+        if s_p != s_d:
+            pd_diff_top5 += 1
+        if p_pids and d_pids and p_pids[0] != d_pids[0]:
+            pd_diff_top1 += 1
+        pd_jaccards.append(len(s_p & s_d) / len(s_p | s_d) if (s_p | s_d) else 1.0)
+
+    overlap_stats = {
+        "n_queries": total_q,
+        "hybrid_vs_dense": {
+            "top5_differ_fraction": round(dh_diff_top5 / total_q, 4),
+            "top1_differ_fraction": round(dh_diff_top1 / total_q, 4),
+            "mean_jaccard": round(float(np.mean(dh_jaccards)), 4)
+        },
+        "prismx_vs_hybrid": {
+            "top5_differ_fraction": round(ph_diff_top5 / total_q, 4),
+            "top1_differ_fraction": round(ph_diff_top1 / total_q, 4),
+            "mean_jaccard": round(float(np.mean(ph_jaccards)), 4)
+        },
+        "prismx_vs_dense": {
+            "top5_differ_fraction": round(pd_diff_top5 / total_q, 4),
+            "top1_differ_fraction": round(pd_diff_top1 / total_q, 4),
+            "mean_jaccard": round(float(np.mean(pd_jaccards)), 4)
+        }
+    }
+    return overlap_stats
+
+
+def run_ragas(
+    resume: bool = True,
+    dry_run: bool = False,
+    max_queries: int = 50,
+    daily_token_cap: int = DEFAULT_DAILY_TOKEN_CAP
+):
+    print("=================================================================")
+    print("STARTING C100K_RAW RAGAS BENCHMARK RUNNER (ADR-019 / GATE 6)")
+    print(f"Manifest: {MANIFEST_PATH}")
+    print(f"Order: Query-Major (Phase 1, Phase 2, Phase 3 per query)")
+    print(f"Dry-run: {dry_run} | Resume: {resume} | Max Queries: {max_queries}")
+    print(f"Daily Token Cap: {daily_token_cap:,} tokens")
+    print("=================================================================")
+
+    with open(MANIFEST_PATH, "r", encoding="utf-8") as f:
+        manifest = json.load(f)
     queries = manifest["queries"][:max_queries]
     n_queries = len(queries)
     print(f"Loaded {n_queries} frozen queries.")
@@ -313,13 +394,39 @@ def run_ragas(
     hybrid_retriever = HybridRetriever(dense_retriever=dense_retriever, tokenizer=tokenizer, qdrant_store=qdrant_store, default_candidate_depth=50, default_alpha=0.8)
     reranker = CrossEncoderReranker(model_name="cross-encoder/ms-marco-MiniLM-L-6-v2", torch_threads=8)
 
-    # 2. Checkpoint management
+    # 2. Compute retrieval overlap (no LLM) before scoring
+    print("\n[Pre-Scoring Retrieval Overlap Check (no LLM)]...")
+    overlap_stats = compute_retrieval_overlap(queries, dense_retriever, hybrid_retriever, reranker, text_store)
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    with open(RESULTS_DIR / "retrieval_overlap.json", "w", encoding="utf-8") as f:
+        json.dump(overlap_stats, f, indent=2)
+    print(f"  Hybrid vs Dense: Top-5 diff={overlap_stats['hybrid_vs_dense']['top5_differ_fraction']:.2%}, Jaccard={overlap_stats['hybrid_vs_dense']['mean_jaccard']:.4f}, Top-1 diff={overlap_stats['hybrid_vs_dense']['top1_differ_fraction']:.2%}")
+    print(f"  PRISMX vs Hybrid: Top-5 diff={overlap_stats['prismx_vs_hybrid']['top5_differ_fraction']:.2%}, Jaccard={overlap_stats['prismx_vs_hybrid']['mean_jaccard']:.4f}, Top-1 diff={overlap_stats['prismx_vs_hybrid']['top1_differ_fraction']:.2%}")
+    print(f"  PRISMX vs Dense:  Top-5 diff={overlap_stats['prismx_vs_dense']['top5_differ_fraction']:.2%}, Jaccard={overlap_stats['prismx_vs_dense']['mean_jaccard']:.4f}, Top-1 diff={overlap_stats['prismx_vs_dense']['top1_differ_fraction']:.2%}")
+
+    # 3. Judge model selection per ADR-019
+    judge_model = "llama-3.3-70b-versatile"
+    extra_kwargs = {}
+    client = None
+    if not dry_run:
+        from groq import Groq
+        from dotenv import load_dotenv
+        load_dotenv()
+        api_key = os.environ.get("GROQ_API_KEY")
+        if not api_key:
+            raise EnvironmentError("GROQ_API_KEY environment variable is required to run RAGAS benchmark.")
+        client = Groq(api_key=api_key)
+        judge_model, extra_kwargs = select_judge_model(client)
+        print(f"Active Judge Model: {judge_model} (extra_kwargs={extra_kwargs})")
+
+    # 4. Checkpoint management
     chk = load_checkpoint() if resume else {
         "benchmark": "c100k_raw RAGAS",
-        "judge_model": JUDGE_MODEL,
+        "judge_model": judge_model,
         "token_accounting": {"total_tokens": 0, "tokens_today": 0, "calls": 0, "date": time.strftime("%Y-%m-%d")},
         "completed_queries": {}
     }
+    chk["judge_model"] = judge_model
 
     # Reset tokens_today if new calendar day
     today_str = time.strftime("%Y-%m-%d")
@@ -329,18 +436,13 @@ def run_ragas(
 
     token_tracker = chk["token_accounting"]
 
-    client = None
-    if not dry_run:
-        from groq import Groq
-        api_key = os.environ.get("GROQ_API_KEY")
-        if not api_key:
-            raise EnvironmentError("GROQ_API_KEY environment variable is required to run RAGAS benchmark.")
-        client = Groq(api_key=api_key)
-
     phases = ["phase1_dense", "phase2_hybrid", "phase3_prismx_rerank"]
 
     print(f"\nResumed state: {len(chk['completed_queries'])}/{n_queries} queries completed so far.")
     print(f"Token tracker: {token_tracker['tokens_today']:,}/{daily_token_cap:,} tokens today ({token_tracker['total_tokens']:,} total).\n")
+
+    # Tracking tokens for calibration on first 2 evaluated queries
+    calibration_tokens: list[int] = []
 
     try:
         for idx, q_item in enumerate(queries):
@@ -392,6 +494,7 @@ def run_ragas(
                 "phase3_prismx_rerank": rerank_contexts
             }
 
+            query_tokens_spent = 0
             # Evaluate phases in query-major order
             for phase_name in phases:
                 if phase_name in chk["completed_queries"][qid]:
@@ -409,9 +512,10 @@ def run_ragas(
                     print(f"  [DRY-RUN] Query {idx+1}/{n_queries} (QID {qid}) | {phase_name} verified ({len(ctxs)} contexts).")
                 else:
                     logger.info(f"Evaluating Query {idx+1}/{n_queries} (QID {qid}) | Phase: {phase_name}...")
-                    cp, t_cp = eval_context_precision(client, q_text, ctxs, ref_ans, token_tracker, daily_token_cap)
-                    cr, t_cr = eval_context_recall(client, q_text, ctxs, ref_ans, token_tracker, daily_token_cap)
+                    cp, t_cp = eval_context_precision(client, q_text, ctxs, ref_ans, token_tracker, daily_token_cap, judge_model, extra_kwargs)
+                    cr, t_cr = eval_context_recall(client, q_text, ctxs, ref_ans, token_tracker, daily_token_cap, judge_model, extra_kwargs)
 
+                    query_tokens_spent += (t_cp + t_cr)
                     chk["completed_queries"][qid][phase_name] = {
                         "context_precision": cp,
                         "context_recall": cr,
@@ -420,6 +524,25 @@ def run_ragas(
                     save_checkpoint(chk)
                     logger.info(f"  CP: {cp:.4f} | CR: {cr:.4f} | Tokens: {t_cp+t_cr} (Today: {token_tracker['tokens_today']:,}/{daily_token_cap:,})")
 
+            if not dry_run and query_tokens_spent > 0 and len(calibration_tokens) < 2:
+                calibration_tokens.append(query_tokens_spent)
+                if len(calibration_tokens) == 2:
+                    avg_tokens_per_query = float(np.mean(calibration_tokens))
+                    completed_so_far = len(chk["completed_queries"])
+                    needed_to_reach_25 = max(0, 25 - completed_so_far)
+                    projected_additional_tokens = avg_tokens_per_query * needed_to_reach_25
+                    remaining_today = daily_token_cap - token_tracker["tokens_today"]
+                    logger.info(f"[ADR-019 Token Calibration] Measured {avg_tokens_per_query:.1f} tokens/query across first 2 queries.")
+                    logger.info(f"[ADR-019 Token Calibration] To reach N=25 (completed {completed_so_far}), projected {needed_to_reach_25} more queries require {projected_additional_tokens:.0f} tokens.")
+                    logger.info(f"[ADR-019 Token Calibration] Remaining quota today: {remaining_today:,} tokens (Safety margin required: 4,000).")
+                    if projected_additional_tokens > (remaining_today - 4000):
+                        raise ResourceWarning(f"Token calibration check failed: Reaching N=25 requires {projected_additional_tokens:.0f} tokens, but only {remaining_today - 4000} margin tokens available today. Pausing per ADR-019.")
+                    else:
+                        logger.info("[ADR-019 Token Calibration] PASSED: Account quota is fully sufficient for >= 25 complete queries.")
+
+            # Write updated CSV after every query
+            _write_per_query_csv(chk, queries)
+
     except ResourceWarning as rw:
         logger.warning(f"Execution safely paused: {rw}")
         save_checkpoint(chk)
@@ -427,7 +550,7 @@ def run_ragas(
         logger.error(f"Execution paused/halted: {e}")
         save_checkpoint(chk)
 
-    # 3. Assemble Primary Complete Paired Queries
+    # 5. Assemble Primary Complete Paired Queries
     complete_qids = [
         qid for qid, p_map in chk["completed_queries"].items()
         if all(p in p_map for p in phases)
@@ -454,7 +577,7 @@ def run_ragas(
 
         summary = {
             "benchmark": "c100k_raw RAGAS LLM Evaluation",
-            "judge_model": JUDGE_MODEL,
+            "judge_model": judge_model,
             "judge_temperature": 0.0,
             "primary_n_complete_queries": N,
             "target_n": 50,
@@ -495,7 +618,9 @@ def run_ragas(
         with open(SUMMARY_PATH, "w", encoding="utf-8") as f:
             json.dump(summary, f, indent=2)
 
-        print("\n### RAGAS SUMMARY TABLE (Primary N = %d, Judge = %s)" % (N, JUDGE_MODEL))
+        _write_per_query_csv(chk, queries)
+
+        print("\n### RAGAS SUMMARY TABLE (Primary N = %d, Judge = %s)" % (N, judge_model))
         print("| Metric | Phase 1 (Dense) | Phase 2 (Hybrid) | Phase 3 (PRISMX Rerank) | Delta (Hybrid - Dense) [95% CI] (W/L/T) | Delta (Rerank - Hybrid) [95% CI] (W/L/T) | Delta (Rerank - Dense) [95% CI] (W/L/T) |")
         print("| :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
         for m_key, m_name in [("context_precision", "Context Precision"), ("context_recall", "Context Recall")]:
@@ -504,17 +629,47 @@ def run_ragas(
             v3 = f"{summary['metrics']['phase3_prismx_rerank'][m_key]['mean']:.4f} [{summary['metrics']['phase3_prismx_rerank'][m_key]['ci_lower']:.4f}, {summary['metrics']['phase3_prismx_rerank'][m_key]['ci_upper']:.4f}]"
 
             d_hd = summary["paired_differences"]["hybrid_minus_dense"][m_key]
-            d_hd_str = f"{d_hd['mean_diff']:+.4f} [{d_hd['ci_lower']:+.4f}, {d_hd['ci_upper']:+.4f}] ({d_hd['wins']}/{d_hd['losses']}/{d_hd['ties']})"
+            d_hd_str = f"{d_hd['mean_diff']:+.4f} [{d_hd['ci_lower']:+.4f}, {d_hd['ci_upper']:+.4f}] ({d_hd['wins']}/{d_hd['losses']}/{d_hd['ties']}) - {d_hd['verdict']}"
 
             d_rh = summary["paired_differences"]["rerank_minus_hybrid"][m_key]
-            d_rh_str = f"{d_rh['mean_diff']:+.4f} [{d_rh['ci_lower']:+.4f}, {d_rh['ci_upper']:+.4f}] ({d_rh['wins']}/{d_rh['losses']}/{d_rh['ties']})"
+            d_rh_str = f"{d_rh['mean_diff']:+.4f} [{d_rh['ci_lower']:+.4f}, {d_rh['ci_upper']:+.4f}] ({d_rh['wins']}/{d_rh['losses']}/{d_rh['ties']}) - {d_rh['verdict']}"
 
             d_rd = summary["paired_differences"]["rerank_minus_dense"][m_key]
-            d_rd_str = f"{d_rd['mean_diff']:+.4f} [{d_rd['ci_lower']:+.4f}, {d_rd['ci_upper']:+.4f}] ({d_rd['wins']}/{d_rd['losses']}/{d_rd['ties']})"
+            d_rd_str = f"{d_rd['mean_diff']:+.4f} [{d_rd['ci_lower']:+.4f}, {d_rd['ci_upper']:+.4f}] ({d_rd['wins']}/{d_rd['losses']}/{d_rd['ties']}) - {d_rd['verdict']}"
 
             print(f"| **{m_name}** | {v1} | {v2} | {v3} | {d_hd_str} | {d_rh_str} | {d_rd_str} |")
 
     return chk
+
+
+def _write_per_query_csv(chk: dict[str, Any], queries: list[dict]):
+    """Write per-query scores CSV."""
+    import csv
+    csv_path = RESULTS_DIR / "per_query_scores.csv"
+    q_map = {str(q["query_id"]): q for q in queries}
+    rows = []
+    for qid, phases_data in chk.get("completed_queries", {}).items():
+        if all(p in phases_data for p in ["phase1_dense", "phase2_hybrid", "phase3_prismx_rerank"]):
+            q_info = q_map.get(qid, {})
+            rows.append({
+                "query_id": qid,
+                "query": q_info.get("query", ""),
+                "reference_answer": q_info.get("reference_answer", ""),
+                "dense_cp": phases_data["phase1_dense"]["context_precision"],
+                "dense_cr": phases_data["phase1_dense"]["context_recall"],
+                "hybrid_cp": phases_data["phase2_hybrid"]["context_precision"],
+                "hybrid_cr": phases_data["phase2_hybrid"]["context_recall"],
+                "prismx_cp": phases_data["phase3_prismx_rerank"]["context_precision"],
+                "prismx_cr": phases_data["phase3_prismx_rerank"]["context_recall"],
+                "dense_tokens": phases_data["phase1_dense"]["tokens_consumed"],
+                "hybrid_tokens": phases_data["phase2_hybrid"]["tokens_consumed"],
+                "prismx_tokens": phases_data["phase3_prismx_rerank"]["tokens_consumed"]
+            })
+    if rows:
+        with open(csv_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+            writer.writeheader()
+            writer.writerows(rows)
 
 
 if __name__ == "__main__":
