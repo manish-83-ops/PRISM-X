@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=65.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prismx"
+version = "0.1.0"
+description = "PRISMX: High-Precision Hybrid RAG Vector Database and Retrieval Engine"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0.0",
+    "sentence-transformers>=3.0.0",
+    "qdrant-client>=1.19.0",
+    "fastapi>=0.110.0",
+    "uvicorn>=0.30.0",
+    "pydantic>=2.0.0",
+    "bm25s>=0.3.0",
+    "scikit-learn>=1.4.0",
+    "datasets>=3.0.0",
+    "pyyaml>=6.0.0",
+    "groq>=0.10.0",
+    "requests>=2.30.0",
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "pytest>=8.0.0",
+    "tqdm>=4.66.0",
+    "psutil>=5.9.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+markers = [
+    "integration: marks tests as integration tests requiring Qdrant or external service",
+    "unit: marks tests as pure unit tests"
+]

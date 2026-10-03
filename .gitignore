@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Secrets & Environment
+.env
+*.env.local
+
+# Qdrant & Binary & Cache
+bin/
+data/raw/
+data/cache/
+data/qdrant_storage/
+!data/manifests/
+!data/manifests/*
+model_cache/
+.cache/
+*.npy
+*.npz
+*.sqlite3-journal
+
+# Temporary / Scratch
+scratch/
+extracted_pdf.txt
+Vector_Database_Design_for_RAG_System.pdf
+
+# Testing & Logs
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+.qdrant-initialized
+traces.jsonl
