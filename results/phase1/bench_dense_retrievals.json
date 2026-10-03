@@ -1,0 +1,2811 @@
+[
+  {
+    "idx": 1,
+    "query_id": "647687",
+    "query": "what does semen consist of",
+    "latency_ms": 60.14,
+    "retrieved_ids": [
+      "7597903",
+      "8785283",
+      "4829750",
+      "2561168",
+      "8785287"
+    ],
+    "retrieved_scores": [
+      0.8115,
+      0.7737,
+      0.757,
+      0.7535,
+      0.7446
+    ],
+    "gold_passage_ids": [
+      "7597903"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 2,
+    "query_id": "74328",
+    "query": "can tennis elbow cause pain in your shoulder?",
+    "latency_ms": 49.78,
+    "retrieved_ids": [
+      "2538456",
+      "7777750",
+      "5075461",
+      "7777748",
+      "29252"
+    ],
+    "retrieved_scores": [
+      0.8527,
+      0.8031,
+      0.7967,
+      0.7947,
+      0.7806
+    ],
+    "gold_passage_ids": [
+      "7777750"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.5,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.5,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 3,
+    "query_id": "391662",
+    "query": "if meat is bad for you what should you eat",
+    "latency_ms": 52.92,
+    "retrieved_ids": [
+      "8057504",
+      "8506932",
+      "368247",
+      "8710677",
+      "6330787"
+    ],
+    "retrieved_scores": [
+      0.8181,
+      0.8065,
+      0.7974,
+      0.7916,
+      0.7913
+    ],
+    "gold_passage_ids": [
+      "7656119"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.0,
+    "recall_at_5": 0.0,
+    "ragas_cp": 0.0,
+    "ragas_cr": 0.0
+  },
+  {
+    "idx": 4,
+    "query_id": "530602",
+    "query": "types organizational structure",
+    "latency_ms": 46.44,
+    "retrieved_ids": [
+      "3610396",
+      "7603394",
+      "7603386",
+      "7453106",
+      "4349713"
+    ],
+    "retrieved_scores": [
+      0.8305,
+      0.8247,
+      0.778,
+      0.7642,
+      0.7506
+    ],
+    "gold_passage_ids": [
+      "7603386",
+      "7603394"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.5,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.5833,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 5,
+    "query_id": "61836",
+    "query": "can a 15 year old fly alone domestic flights?",
+    "latency_ms": 50.04,
+    "retrieved_ids": [
+      "7370781",
+      "2050750",
+      "5923114",
+      "3663762",
+      "2892641"
+    ],
+    "retrieved_scores": [
+      0.7842,
+      0.7584,
+      0.6963,
+      0.6777,
+      0.6776
+    ],
+    "gold_passage_ids": [
+      "7370781"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 6,
+    "query_id": "1082622",
+    "query": "what does the root word tele mean",
+    "latency_ms": 48.26,
+    "retrieved_ids": [
+      "7144010",
+      "1446240",
+      "1846201",
+      "505430",
+      "3516477"
+    ],
+    "retrieved_scores": [
+      0.7966,
+      0.7027,
+      0.6935,
+      0.6891,
+      0.6884
+    ],
+    "gold_passage_ids": [
+      "7144010"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 7,
+    "query_id": "321951",
+    "query": "how much is donald trump jr worth",
+    "latency_ms": 55.25,
+    "retrieved_ids": [
+      "4631011",
+      "2513151",
+      "8462214",
+      "749580",
+      "6164706"
+    ],
+    "retrieved_scores": [
+      0.8159,
+      0.8073,
+      0.8072,
+      0.804,
+      0.7942
+    ],
+    "gold_passage_ids": [
+      "6164706"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.2,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.2,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 8,
+    "query_id": "653187",
+    "query": "what does the term the age of aquarius mean?",
+    "latency_ms": 49.31,
+    "retrieved_ids": [
+      "7458238",
+      "6022991",
+      "8790965",
+      "4957650",
+      "7044423"
+    ],
+    "retrieved_scores": [
+      0.8396,
+      0.779,
+      0.7433,
+      0.728,
+      0.7091
+    ],
+    "gold_passage_ids": [
+      "7458238"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 9,
+    "query_id": "1051211",
+    "query": "what is mepap certification",
+    "latency_ms": 47.33,
+    "retrieved_ids": [
+      "7183753",
+      "497834",
+      "3302730",
+      "3003344",
+      "855780"
+    ],
+    "retrieved_scores": [
+      0.8034,
+      0.6715,
+      0.656,
+      0.655,
+      0.6532
+    ],
+    "gold_passage_ids": [
+      "7183753"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 10,
+    "query_id": "451484",
+    "query": "medicare eligibility contact number",
+    "latency_ms": 46.82,
+    "retrieved_ids": [
+      "329164",
+      "3950731",
+      "2756074",
+      "620171",
+      "7160464"
+    ],
+    "retrieved_scores": [
+      0.8075,
+      0.7731,
+      0.7515,
+      0.7365,
+      0.7348
+    ],
+    "gold_passage_ids": [
+      "329164"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 11,
+    "query_id": "1021277",
+    "query": "define atrium",
+    "latency_ms": 43.55,
+    "retrieved_ids": [
+      "7232021",
+      "7612155",
+      "996484",
+      "8801096",
+      "2623994"
+    ],
+    "retrieved_scores": [
+      0.8953,
+      0.7786,
+      0.7431,
+      0.6628,
+      0.6566
+    ],
+    "gold_passage_ids": [
+      "7232021"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 12,
+    "query_id": "988745",
+    "query": "who is the new york county clerk",
+    "latency_ms": 49.3,
+    "retrieved_ids": [
+      "7287868",
+      "701365",
+      "5178557",
+      "1190500",
+      "2877324"
+    ],
+    "retrieved_scores": [
+      0.7695,
+      0.698,
+      0.6968,
+      0.6953,
+      0.6949
+    ],
+    "gold_passage_ids": [
+      "7287868"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 13,
+    "query_id": "1083010",
+    "query": "what does simple circuit contain",
+    "latency_ms": 43.99,
+    "retrieved_ids": [
+      "7141335",
+      "627904",
+      "7141337",
+      "3233978",
+      "2118214"
+    ],
+    "retrieved_scores": [
+      0.78,
+      0.7658,
+      0.7543,
+      0.701,
+      0.6953
+    ],
+    "gold_passage_ids": [
+      "7141335",
+      "7141337"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.8333,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 14,
+    "query_id": "1083598",
+    "query": "what does it mean cardholder name?",
+    "latency_ms": 59.68,
+    "retrieved_ids": [
+      "7135949",
+      "7151528",
+      "176927",
+      "7374724",
+      "7165842"
+    ],
+    "retrieved_scores": [
+      0.7883,
+      0.7267,
+      0.711,
+      0.7104,
+      0.6982
+    ],
+    "gold_passage_ids": [
+      "7135949"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 15,
+    "query_id": "549342",
+    "query": "what about phones in iceland",
+    "latency_ms": 44.64,
+    "retrieved_ids": [
+      "7708995",
+      "7404580",
+      "8711585",
+      "6026681",
+      "5191511"
+    ],
+    "retrieved_scores": [
+      0.8323,
+      0.7114,
+      0.6706,
+      0.6642,
+      0.6531
+    ],
+    "gold_passage_ids": [
+      "7708995"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 16,
+    "query_id": "946631",
+    "query": "when does harbin ice city end",
+    "latency_ms": 46.22,
+    "retrieved_ids": [
+      "7889800",
+      "8011543",
+      "7114710",
+      "6405244",
+      "8725451"
+    ],
+    "retrieved_scores": [
+      0.7852,
+      0.6851,
+      0.6605,
+      0.6586,
+      0.6564
+    ],
+    "gold_passage_ids": [
+      "7889800"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 17,
+    "query_id": "507381",
+    "query": "symptoms of congenital heart defects",
+    "latency_ms": 46.93,
+    "retrieved_ids": [
+      "7454713",
+      "7454709",
+      "6548273",
+      "6844415",
+      "5668398"
+    ],
+    "retrieved_scores": [
+      0.9385,
+      0.908,
+      0.7971,
+      0.7829,
+      0.7415
+    ],
+    "gold_passage_ids": [
+      "7454709"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.5,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.5,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 18,
+    "query_id": "1011021",
+    "query": "what year declaration of independence",
+    "latency_ms": 44.65,
+    "retrieved_ids": [
+      "4418656",
+      "1462914",
+      "6267336",
+      "7246712",
+      "2826174"
+    ],
+    "retrieved_scores": [
+      0.8408,
+      0.8155,
+      0.8131,
+      0.8128,
+      0.8006
+    ],
+    "gold_passage_ids": [
+      "7246712"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.25,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.25,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 19,
+    "query_id": "999610",
+    "query": "where is vista ca",
+    "latency_ms": 46.79,
+    "retrieved_ids": [
+      "1389277",
+      "3537053",
+      "1956580",
+      "1962533",
+      "4186786"
+    ],
+    "retrieved_scores": [
+      0.8487,
+      0.7428,
+      0.706,
+      0.6919,
+      0.6667
+    ],
+    "gold_passage_ids": [
+      "1389277"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 20,
+    "query_id": "1094460",
+    "query": "inches of mercury meaning",
+    "latency_ms": 40.78,
+    "retrieved_ids": [
+      "7668615",
+      "7168618",
+      "3212875",
+      "7391602",
+      "6963161"
+    ],
+    "retrieved_scores": [
+      0.8851,
+      0.7394,
+      0.7224,
+      0.7148,
+      0.7137
+    ],
+    "gold_passage_ids": [
+      "7668615"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 21,
+    "query_id": "696677",
+    "query": "what is a public health concept",
+    "latency_ms": 53.0,
+    "retrieved_ids": [
+      "1276700",
+      "771424",
+      "3805002",
+      "732799",
+      "5238095"
+    ],
+    "retrieved_scores": [
+      0.8546,
+      0.754,
+      0.6988,
+      0.6965,
+      0.6874
+    ],
+    "gold_passage_ids": [
+      "1276700"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 22,
+    "query_id": "1074989",
+    "query": "what is a cyst on the kidneys do",
+    "latency_ms": 52.31,
+    "retrieved_ids": [
+      "2015319",
+      "1173767",
+      "7154451",
+      "7154444",
+      "1771483"
+    ],
+    "retrieved_scores": [
+      0.8516,
+      0.8243,
+      0.8014,
+      0.7865,
+      0.7853
+    ],
+    "gold_passage_ids": [
+      "7154451",
+      "7154444"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.3333,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.4167,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 23,
+    "query_id": "1063702",
+    "query": "what is an advocacy project",
+    "latency_ms": 48.82,
+    "retrieved_ids": [
+      "6454097",
+      "1764920",
+      "6448353",
+      "7164845",
+      "771424"
+    ],
+    "retrieved_scores": [
+      0.7283,
+      0.6915,
+      0.6835,
+      0.6801,
+      0.6757
+    ],
+    "gold_passage_ids": [
+      "7164845"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.25,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.25,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 24,
+    "query_id": "1090701",
+    "query": "side effects for diclofenac topical",
+    "latency_ms": 53.21,
+    "retrieved_ids": [
+      "7084177",
+      "7975396",
+      "7827813",
+      "8604375",
+      "6063339"
+    ],
+    "retrieved_scores": [
+      0.8144,
+      0.7846,
+      0.7704,
+      0.7703,
+      0.7568
+    ],
+    "gold_passage_ids": [
+      "7975396"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.5,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.5,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 25,
+    "query_id": "1081730",
+    "query": "what family do squirrels belong to",
+    "latency_ms": 49.62,
+    "retrieved_ids": [
+      "2664315",
+      "7891477",
+      "6790502",
+      "7003965",
+      "7147941"
+    ],
+    "retrieved_scores": [
+      0.7458,
+      0.7231,
+      0.7102,
+      0.7022,
+      0.7008
+    ],
+    "gold_passage_ids": [
+      "7147941"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.2,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.2,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 26,
+    "query_id": "978057",
+    "query": "where is berrimah",
+    "latency_ms": 45.11,
+    "retrieved_ids": [
+      "7731943",
+      "4304018",
+      "3548281",
+      "3881120",
+      "4323760"
+    ],
+    "retrieved_scores": [
+      0.8208,
+      0.6227,
+      0.6157,
+      0.6125,
+      0.6015
+    ],
+    "gold_passage_ids": [
+      "7731943"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 27,
+    "query_id": "1102235",
+    "query": "why does ehr downtime happen",
+    "latency_ms": 46.56,
+    "retrieved_ids": [
+      "7155089",
+      "6056887",
+      "5059712",
+      "2437194",
+      "188629"
+    ],
+    "retrieved_scores": [
+      0.7672,
+      0.685,
+      0.6842,
+      0.6791,
+      0.6642
+    ],
+    "gold_passage_ids": [
+      "7155089"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 28,
+    "query_id": "1096045",
+    "query": "how much does one roll of duck tape cost",
+    "latency_ms": 148.39,
+    "retrieved_ids": [
+      "7539951",
+      "3858955",
+      "3499237",
+      "6434411",
+      "8162085"
+    ],
+    "retrieved_scores": [
+      0.8076,
+      0.7785,
+      0.7559,
+      0.7164,
+      0.6888
+    ],
+    "gold_passage_ids": [
+      "7539951"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 29,
+    "query_id": "169305",
+    "query": "does motion sensor device have camera",
+    "latency_ms": 46.31,
+    "retrieved_ids": [
+      "7005160",
+      "5802802",
+      "1792293",
+      "188982",
+      "3152408"
+    ],
+    "retrieved_scores": [
+      0.7008,
+      0.6942,
+      0.6931,
+      0.6751,
+      0.6727
+    ],
+    "gold_passage_ids": [
+      "7994286"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.0,
+    "recall_at_5": 0.0,
+    "ragas_cp": 0.0,
+    "ragas_cr": 0.0
+  },
+  {
+    "idx": 30,
+    "query_id": "1051214",
+    "query": "what is meningitis.",
+    "latency_ms": 44.12,
+    "retrieved_ids": [
+      "470449",
+      "7036417",
+      "1590950",
+      "838050",
+      "5814926"
+    ],
+    "retrieved_scores": [
+      0.8682,
+      0.858,
+      0.8554,
+      0.8234,
+      0.8233
+    ],
+    "gold_passage_ids": [
+      "1590950"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.3333,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.3333,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 31,
+    "query_id": "1098953",
+    "query": "how heavy are road bikes",
+    "latency_ms": 43.02,
+    "retrieved_ids": [
+      "7300375",
+      "4667143",
+      "4060247",
+      "4675307",
+      "5530905"
+    ],
+    "retrieved_scores": [
+      0.8907,
+      0.7446,
+      0.7346,
+      0.7288,
+      0.7233
+    ],
+    "gold_passage_ids": [
+      "7300375"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 32,
+    "query_id": "534941",
+    "query": "usps schedule a delivery",
+    "latency_ms": 41.47,
+    "retrieved_ids": [
+      "2363663",
+      "7428163",
+      "7492091",
+      "5849343",
+      "8784493"
+    ],
+    "retrieved_scores": [
+      0.7958,
+      0.7817,
+      0.7811,
+      0.7784,
+      0.7728
+    ],
+    "gold_passage_ids": [
+      "7492091"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.3333,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.3333,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 33,
+    "query_id": "658372",
+    "query": "what event started world war 1",
+    "latency_ms": 43.06,
+    "retrieved_ids": [
+      "92958",
+      "3821827",
+      "6127382",
+      "8757213",
+      "2713332"
+    ],
+    "retrieved_scores": [
+      0.8244,
+      0.7805,
+      0.7783,
+      0.7731,
+      0.7723
+    ],
+    "gold_passage_ids": [
+      "7580404"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.0,
+    "recall_at_5": 0.0,
+    "ragas_cp": 0.0,
+    "ragas_cr": 0.0
+  },
+  {
+    "idx": 34,
+    "query_id": "1070452",
+    "query": "what is a mimo receiver",
+    "latency_ms": 41.68,
+    "retrieved_ids": [
+      "7158303",
+      "6074819",
+      "6074814",
+      "6652794",
+      "1606110"
+    ],
+    "retrieved_scores": [
+      0.8147,
+      0.7527,
+      0.731,
+      0.6763,
+      0.665
+    ],
+    "gold_passage_ids": [
+      "7158303"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 35,
+    "query_id": "414714",
+    "query": "is it still dangerous to go to the place of where the chernobyl happened",
+    "latency_ms": 55.28,
+    "retrieved_ids": [
+      "7522719",
+      "4421489",
+      "2099750",
+      "2787113",
+      "8262750"
+    ],
+    "retrieved_scores": [
+      0.7579,
+      0.7468,
+      0.7334,
+      0.7304,
+      0.7261
+    ],
+    "gold_passage_ids": [
+      "7522719"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 36,
+    "query_id": "1036800",
+    "query": "who is ovid in greek mythology",
+    "latency_ms": 50.37,
+    "retrieved_ids": [
+      "7933154",
+      "1954504",
+      "3507535",
+      "3971117",
+      "2812067"
+    ],
+    "retrieved_scores": [
+      0.7835,
+      0.7212,
+      0.7,
+      0.6604,
+      0.6578
+    ],
+    "gold_passage_ids": [
+      "7933154"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 37,
+    "query_id": "249866",
+    "query": "how long does a pa marriage license last",
+    "latency_ms": 50.14,
+    "retrieved_ids": [
+      "7570414",
+      "827461",
+      "7507478",
+      "1199884",
+      "7392644"
+    ],
+    "retrieved_scores": [
+      0.8699,
+      0.8136,
+      0.8001,
+      0.7515,
+      0.7401
+    ],
+    "gold_passage_ids": [
+      "7570414"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 38,
+    "query_id": "1011140",
+    "query": "what wire is used to mig mild steel",
+    "latency_ms": 58.25,
+    "retrieved_ids": [
+      "7246357",
+      "5193084",
+      "6758212",
+      "4728646",
+      "1189779"
+    ],
+    "retrieved_scores": [
+      0.8471,
+      0.7688,
+      0.7186,
+      0.7182,
+      0.6887
+    ],
+    "gold_passage_ids": [
+      "7246357"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 39,
+    "query_id": "569555",
+    "query": "what are the elements to make air",
+    "latency_ms": 65.79,
+    "retrieved_ids": [
+      "7670556",
+      "480538",
+      "8373739",
+      "4455149",
+      "3785559"
+    ],
+    "retrieved_scores": [
+      0.7768,
+      0.7745,
+      0.7679,
+      0.7617,
+      0.7313
+    ],
+    "gold_passage_ids": [
+      "7670556"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 40,
+    "query_id": "1000097",
+    "query": "where is whiteville tennessee",
+    "latency_ms": 45.84,
+    "retrieved_ids": [
+      "7844847",
+      "7975107",
+      "4437036",
+      "1869974",
+      "1518305"
+    ],
+    "retrieved_scores": [
+      0.8646,
+      0.7505,
+      0.6862,
+      0.6776,
+      0.6526
+    ],
+    "gold_passage_ids": [
+      "7844847"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 41,
+    "query_id": "107283",
+    "query": "cost of starting a restaurant",
+    "latency_ms": 60.25,
+    "retrieved_ids": [
+      "7383919",
+      "6020538",
+      "6600450",
+      "5620172",
+      "1773186"
+    ],
+    "retrieved_scores": [
+      0.8725,
+      0.8126,
+      0.7973,
+      0.7732,
+      0.77
+    ],
+    "gold_passage_ids": [
+      "7383919"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 42,
+    "query_id": "278863",
+    "query": "how many career games did paul krause play in the nfl.",
+    "latency_ms": 54.7,
+    "retrieved_ids": [
+      "7341285",
+      "5951707",
+      "674317",
+      "145121",
+      "7724678"
+    ],
+    "retrieved_scores": [
+      0.8364,
+      0.7061,
+      0.6968,
+      0.6945,
+      0.6942
+    ],
+    "gold_passage_ids": [
+      "7341285"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 43,
+    "query_id": "780297",
+    "query": "what is orofacial dyskinesia",
+    "latency_ms": 44.87,
+    "retrieved_ids": [
+      "1321129",
+      "3184723",
+      "7184656",
+      "2851725",
+      "5049396"
+    ],
+    "retrieved_scores": [
+      0.7783,
+      0.7455,
+      0.7057,
+      0.7032,
+      0.6986
+    ],
+    "gold_passage_ids": [
+      "1321129"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 44,
+    "query_id": "9454",
+    "query": "a simple definition for the word bias.",
+    "latency_ms": 45.03,
+    "retrieved_ids": [
+      "5493492",
+      "3454908",
+      "6282677",
+      "6899912",
+      "1945780"
+    ],
+    "retrieved_scores": [
+      0.8244,
+      0.8021,
+      0.7367,
+      0.7348,
+      0.7286
+    ],
+    "gold_passage_ids": [
+      "7368996"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.0,
+    "recall_at_5": 0.0,
+    "ragas_cp": 0.0,
+    "ragas_cr": 0.0
+  },
+  {
+    "idx": 45,
+    "query_id": "922389",
+    "query": "what was the result of pearl harbor attack",
+    "latency_ms": 45.3,
+    "retrieved_ids": [
+      "3135995",
+      "654413",
+      "2132617",
+      "7607277",
+      "4469196"
+    ],
+    "retrieved_scores": [
+      0.8226,
+      0.8094,
+      0.8009,
+      0.7958,
+      0.7688
+    ],
+    "gold_passage_ids": [
+      "3135995"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 46,
+    "query_id": "55691",
+    "query": "boulangerie pronunciation",
+    "latency_ms": 43.22,
+    "retrieved_ids": [
+      "8000691",
+      "7624298",
+      "8666796",
+      "5006112",
+      "8345367"
+    ],
+    "retrieved_scores": [
+      0.7305,
+      0.6662,
+      0.6654,
+      0.6615,
+      0.6575
+    ],
+    "gold_passage_ids": [
+      "7355625"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.0,
+    "recall_at_5": 0.0,
+    "ragas_cp": 0.0,
+    "ragas_cr": 0.0
+  },
+  {
+    "idx": 47,
+    "query_id": "996181",
+    "query": "where was the movie true grit filmed at",
+    "latency_ms": 45.72,
+    "retrieved_ids": [
+      "7272355",
+      "7272351",
+      "5370880",
+      "752425",
+      "2768768"
+    ],
+    "retrieved_scores": [
+      0.8502,
+      0.7866,
+      0.6884,
+      0.6849,
+      0.6838
+    ],
+    "gold_passage_ids": [
+      "7272351"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.5,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.5,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 48,
+    "query_id": "991138",
+    "query": "where is punta cana eden resort",
+    "latency_ms": 44.59,
+    "retrieved_ids": [
+      "7748425",
+      "7196310",
+      "3867278",
+      "2915726",
+      "6764916"
+    ],
+    "retrieved_scores": [
+      0.8437,
+      0.7155,
+      0.6776,
+      0.6606,
+      0.653
+    ],
+    "gold_passage_ids": [
+      "7748425"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 49,
+    "query_id": "1026775",
+    "query": "what kind of mixture is rocky road ice cream",
+    "latency_ms": 54.44,
+    "retrieved_ids": [
+      "7223855",
+      "3245678",
+      "8595455",
+      "8225291",
+      "5586951"
+    ],
+    "retrieved_scores": [
+      0.7304,
+      0.6948,
+      0.692,
+      0.6854,
+      0.6842
+    ],
+    "gold_passage_ids": [
+      "7223855"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 50,
+    "query_id": "865616",
+    "query": "what jedi commands the arc troopers",
+    "latency_ms": 46.27,
+    "retrieved_ids": [
+      "7729077",
+      "3419142",
+      "7729083",
+      "7666511",
+      "4240994"
+    ],
+    "retrieved_scores": [
+      0.773,
+      0.7093,
+      0.702,
+      0.6765,
+      0.6764
+    ],
+    "gold_passage_ids": [
+      "7729077",
+      "7729083"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.8333,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 51,
+    "query_id": "602352",
+    "query": "what county is alton bay,nh in?",
+    "latency_ms": 47.68,
+    "retrieved_ids": [
+      "7676449",
+      "5639124",
+      "4846981",
+      "7748617",
+      "6040841"
+    ],
+    "retrieved_scores": [
+      0.8786,
+      0.6794,
+      0.6565,
+      0.6562,
+      0.65
+    ],
+    "gold_passage_ids": [
+      "7676449"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 52,
+    "query_id": "282530",
+    "query": "how many doctors are in the us",
+    "latency_ms": 47.88,
+    "retrieved_ids": [
+      "173764",
+      "7306944",
+      "2486317",
+      "5310719",
+      "902804"
+    ],
+    "retrieved_scores": [
+      0.8589,
+      0.8039,
+      0.7361,
+      0.736,
+      0.7356
+    ],
+    "gold_passage_ids": [
+      "173764"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 53,
+    "query_id": "291248",
+    "query": "how many ounces of liquid is in one gallon",
+    "latency_ms": 62.51,
+    "retrieved_ids": [
+      "8003933",
+      "3884368",
+      "996180",
+      "6502796",
+      "3019851"
+    ],
+    "retrieved_scores": [
+      0.9187,
+      0.8851,
+      0.8747,
+      0.8585,
+      0.8212
+    ],
+    "gold_passage_ids": [
+      "8003933"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 54,
+    "query_id": "997449",
+    "query": "where is the kihei",
+    "latency_ms": 44.46,
+    "retrieved_ids": [
+      "7270152",
+      "1602893",
+      "7812162",
+      "3236640",
+      "5518319"
+    ],
+    "retrieved_scores": [
+      0.6904,
+      0.6139,
+      0.6139,
+      0.612,
+      0.6099
+    ],
+    "gold_passage_ids": [
+      "7270152"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 55,
+    "query_id": "1063371",
+    "query": "what is an aviation medical examiner?",
+    "latency_ms": 45.32,
+    "retrieved_ids": [
+      "7165375",
+      "7159133",
+      "7160860",
+      "479500",
+      "5301217"
+    ],
+    "retrieved_scores": [
+      0.8459,
+      0.7194,
+      0.6848,
+      0.6794,
+      0.6708
+    ],
+    "gold_passage_ids": [
+      "7165375"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 56,
+    "query_id": "1003006",
+    "query": "where was napoleon forced to.exile",
+    "latency_ms": 50.1,
+    "retrieved_ids": [
+      "7809192",
+      "2527294",
+      "7122921",
+      "4527947",
+      "8263981"
+    ],
+    "retrieved_scores": [
+      0.8204,
+      0.7653,
+      0.7122,
+      0.6958,
+      0.6918
+    ],
+    "gold_passage_ids": [
+      "7809192"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 57,
+    "query_id": "531142",
+    "query": "typing average words per minute test",
+    "latency_ms": 59.02,
+    "retrieved_ids": [
+      "2730772",
+      "1196769",
+      "5096771",
+      "4221858",
+      "4235623"
+    ],
+    "retrieved_scores": [
+      0.8198,
+      0.8095,
+      0.7872,
+      0.7733,
+      0.765
+    ],
+    "gold_passage_ids": [
+      "2730772"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 58,
+    "query_id": "1050695",
+    "query": "what is motor dyspraxia",
+    "latency_ms": 45.11,
+    "retrieved_ids": [
+      "7184656",
+      "3013681",
+      "3348138",
+      "1321129",
+      "5784968"
+    ],
+    "retrieved_scores": [
+      0.8333,
+      0.7347,
+      0.7132,
+      0.7058,
+      0.679
+    ],
+    "gold_passage_ids": [
+      "7184656"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 59,
+    "query_id": "548099",
+    "query": "wellcare mike vice president",
+    "latency_ms": 43.15,
+    "retrieved_ids": [
+      "7538554",
+      "7756944",
+      "4987460",
+      "7374729",
+      "3601975"
+    ],
+    "retrieved_scores": [
+      0.8757,
+      0.746,
+      0.6617,
+      0.6377,
+      0.6368
+    ],
+    "gold_passage_ids": [
+      "7538554"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 60,
+    "query_id": "953355",
+    "query": "when is the rib cook off in reno",
+    "latency_ms": 43.36,
+    "retrieved_ids": [
+      "7925126",
+      "8011543",
+      "7936161",
+      "2410275",
+      "646627"
+    ],
+    "retrieved_scores": [
+      0.791,
+      0.6893,
+      0.6877,
+      0.6783,
+      0.6714
+    ],
+    "gold_passage_ids": [
+      "7925126"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 61,
+    "query_id": "1096375",
+    "query": "how much data analyst makes",
+    "latency_ms": 42.89,
+    "retrieved_ids": [
+      "7518243",
+      "5121263",
+      "7905801",
+      "7508495",
+      "6005643"
+    ],
+    "retrieved_scores": [
+      0.8073,
+      0.7816,
+      0.7783,
+      0.7759,
+      0.7498
+    ],
+    "gold_passage_ids": [
+      "7508495"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.25,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.25,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 62,
+    "query_id": "541135",
+    "query": "was there a true bagger vance",
+    "latency_ms": 42.74,
+    "retrieved_ids": [
+      "7477283",
+      "121850",
+      "3279172",
+      "762458",
+      "8226664"
+    ],
+    "retrieved_scores": [
+      0.7843,
+      0.6292,
+      0.6114,
+      0.6111,
+      0.6107
+    ],
+    "gold_passage_ids": [
+      "7477283"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 63,
+    "query_id": "812387",
+    "query": "what is the correct height for step handrails",
+    "latency_ms": 54.99,
+    "retrieved_ids": [
+      "6245802",
+      "4556709",
+      "354286",
+      "522704",
+      "7776665"
+    ],
+    "retrieved_scores": [
+      0.844,
+      0.8134,
+      0.7912,
+      0.7545,
+      0.7517
+    ],
+    "gold_passage_ids": [
+      "7776665"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.2,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.2,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 64,
+    "query_id": "480064",
+    "query": "price chopper locations in ct",
+    "latency_ms": 43.05,
+    "retrieved_ids": [
+      "7478541",
+      "1117085",
+      "7633745",
+      "3439210",
+      "3072631"
+    ],
+    "retrieved_scores": [
+      0.8317,
+      0.7615,
+      0.7081,
+      0.6974,
+      0.6795
+    ],
+    "gold_passage_ids": [
+      "7478541"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 65,
+    "query_id": "442593",
+    "query": "longest punt in nfl",
+    "latency_ms": 43.12,
+    "retrieved_ids": [
+      "7543541",
+      "7400448",
+      "3778649",
+      "7427370",
+      "2608577"
+    ],
+    "retrieved_scores": [
+      0.9007,
+      0.7437,
+      0.7254,
+      0.7184,
+      0.713
+    ],
+    "gold_passage_ids": [
+      "7543541"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 66,
+    "query_id": "1085288",
+    "query": "case can arrive at the supreme court through each of these ways except",
+    "latency_ms": 49.17,
+    "retrieved_ids": [
+      "7120332",
+      "7120331",
+      "4077178",
+      "1918107",
+      "2897037"
+    ],
+    "retrieved_scores": [
+      0.9032,
+      0.8248,
+      0.7781,
+      0.7338,
+      0.7273
+    ],
+    "gold_passage_ids": [
+      "7120331"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.5,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.5,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 67,
+    "query_id": "185299",
+    "query": "fastest cell phone processor",
+    "latency_ms": 44.49,
+    "retrieved_ids": [
+      "2459032",
+      "1159392",
+      "411364",
+      "3753982",
+      "2809920"
+    ],
+    "retrieved_scores": [
+      0.8357,
+      0.6989,
+      0.6771,
+      0.6671,
+      0.6624
+    ],
+    "gold_passage_ids": [
+      "2459032"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 68,
+    "query_id": "798945",
+    "query": "what is spotting",
+    "latency_ms": 45.46,
+    "retrieved_ids": [
+      "2652138",
+      "1307273",
+      "778441",
+      "664135",
+      "4505324"
+    ],
+    "retrieved_scores": [
+      0.732,
+      0.721,
+      0.6996,
+      0.6866,
+      0.6813
+    ],
+    "gold_passage_ids": [
+      "2652138"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 69,
+    "query_id": "1041159",
+    "query": "who is the ninja turtle with the blue mask",
+    "latency_ms": 47.28,
+    "retrieved_ids": [
+      "7771115",
+      "6323421",
+      "6737299",
+      "8155791",
+      "3419142"
+    ],
+    "retrieved_scores": [
+      0.7087,
+      0.6423,
+      0.6163,
+      0.6048,
+      0.6032
+    ],
+    "gold_passage_ids": [
+      "7771115"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 70,
+    "query_id": "165480",
+    "query": "does digoxin affect potassium",
+    "latency_ms": 49.56,
+    "retrieved_ids": [
+      "420668",
+      "5034699",
+      "3888490",
+      "2249460",
+      "5572105"
+    ],
+    "retrieved_scores": [
+      0.7849,
+      0.7826,
+      0.7481,
+      0.7367,
+      0.734
+    ],
+    "gold_passage_ids": [
+      "5034699"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.5,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.5,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 71,
+    "query_id": "1087484",
+    "query": "what are mofongo",
+    "latency_ms": 46.09,
+    "retrieved_ids": [
+      "1221383",
+      "289801",
+      "7032757",
+      "2112259",
+      "2305862"
+    ],
+    "retrieved_scores": [
+      0.6292,
+      0.621,
+      0.6194,
+      0.5981,
+      0.5802
+    ],
+    "gold_passage_ids": [
+      "7101742"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.0,
+    "recall_at_5": 0.0,
+    "ragas_cp": 0.0,
+    "ragas_cr": 0.0
+  },
+  {
+    "idx": 72,
+    "query_id": "780850",
+    "query": "what is oxycodone",
+    "latency_ms": 44.93,
+    "retrieved_ids": [
+      "7962609",
+      "3147515",
+      "4002205",
+      "2040457",
+      "5816697"
+    ],
+    "retrieved_scores": [
+      0.8664,
+      0.8532,
+      0.8305,
+      0.7996,
+      0.798
+    ],
+    "gold_passage_ids": [
+      "7962609"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 73,
+    "query_id": "1086675",
+    "query": "what are thomas jefferson's kids named",
+    "latency_ms": 47.38,
+    "retrieved_ids": [
+      "7108284",
+      "4481891",
+      "4329656",
+      "6698865",
+      "3209695"
+    ],
+    "retrieved_scores": [
+      0.8544,
+      0.6994,
+      0.6895,
+      0.6828,
+      0.6754
+    ],
+    "gold_passage_ids": [
+      "7108284"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 74,
+    "query_id": "1052274",
+    "query": "what is korean seafood pancake",
+    "latency_ms": 45.29,
+    "retrieved_ids": [
+      "7181518",
+      "7003214",
+      "4245419",
+      "2069834",
+      "6942319"
+    ],
+    "retrieved_scores": [
+      0.8121,
+      0.7592,
+      0.7172,
+      0.6698,
+      0.668
+    ],
+    "gold_passage_ids": [
+      "7181518"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 75,
+    "query_id": "1088437",
+    "query": "weather in kingston tn",
+    "latency_ms": 64.14,
+    "retrieved_ids": [
+      "7093592",
+      "5654675",
+      "4489298",
+      "5990946",
+      "7095147"
+    ],
+    "retrieved_scores": [
+      0.8485,
+      0.703,
+      0.692,
+      0.6887,
+      0.6816
+    ],
+    "gold_passage_ids": [
+      "7093592"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 76,
+    "query_id": "1090151",
+    "query": "systemic response definition",
+    "latency_ms": 44.89,
+    "retrieved_ids": [
+      "3624309",
+      "565065",
+      "2977154",
+      "3994936",
+      "2286651"
+    ],
+    "retrieved_scores": [
+      0.7787,
+      0.7206,
+      0.6869,
+      0.6834,
+      0.6817
+    ],
+    "gold_passage_ids": [
+      "3624309"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 77,
+    "query_id": "1047833",
+    "query": "cost of hiv/aids yearly treatment",
+    "latency_ms": 60.16,
+    "retrieved_ids": [
+      "7188670",
+      "4173806",
+      "1191821",
+      "4647995",
+      "3315596"
+    ],
+    "retrieved_scores": [
+      0.8587,
+      0.8181,
+      0.7435,
+      0.7319,
+      0.7312
+    ],
+    "gold_passage_ids": [
+      "7188670"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 78,
+    "query_id": "1091633",
+    "query": "phone number irs tax id number",
+    "latency_ms": 44.49,
+    "retrieved_ids": [
+      "7036127",
+      "1427639",
+      "7856506",
+      "2698622",
+      "2259579"
+    ],
+    "retrieved_scores": [
+      0.8396,
+      0.8308,
+      0.8257,
+      0.8217,
+      0.8186
+    ],
+    "gold_passage_ids": [
+      "7856506"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.3333,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.3333,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 79,
+    "query_id": "1095749",
+    "query": "how much jake paul merch",
+    "latency_ms": 58.37,
+    "retrieved_ids": [
+      "7566269",
+      "6998356",
+      "2436623",
+      "6975743",
+      "4667795"
+    ],
+    "retrieved_scores": [
+      0.8228,
+      0.6636,
+      0.6602,
+      0.6578,
+      0.6511
+    ],
+    "gold_passage_ids": [
+      "7566269"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 80,
+    "query_id": "1090077",
+    "query": "telephone number for amazon fire stick customer service",
+    "latency_ms": 45.78,
+    "retrieved_ids": [
+      "7078615",
+      "4226078",
+      "1825805",
+      "8539524",
+      "1305709"
+    ],
+    "retrieved_scores": [
+      0.8624,
+      0.7407,
+      0.7282,
+      0.7058,
+      0.7002
+    ],
+    "gold_passage_ids": [
+      "7078615"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 81,
+    "query_id": "1097449",
+    "query": "how many calories in provolone cheese",
+    "latency_ms": 45.26,
+    "retrieved_ids": [
+      "7413603",
+      "2461776",
+      "1013624",
+      "6502340",
+      "1205838"
+    ],
+    "retrieved_scores": [
+      0.9214,
+      0.7688,
+      0.7648,
+      0.7518,
+      0.739
+    ],
+    "gold_passage_ids": [
+      "7413603"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 82,
+    "query_id": "457714",
+    "query": "most expensive hotels in new york city",
+    "latency_ms": 45.91,
+    "retrieved_ids": [
+      "7714162",
+      "7714160",
+      "7052182",
+      "6031489",
+      "7321351"
+    ],
+    "retrieved_scores": [
+      0.8368,
+      0.7296,
+      0.6924,
+      0.689,
+      0.671
+    ],
+    "gold_passage_ids": [
+      "7714162",
+      "7714160"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 83,
+    "query_id": "129641",
+    "query": "define: morbid obesity",
+    "latency_ms": 44.49,
+    "retrieved_ids": [
+      "7071642",
+      "5546045",
+      "7416464",
+      "3160123",
+      "5527047"
+    ],
+    "retrieved_scores": [
+      0.7822,
+      0.7606,
+      0.7557,
+      0.7494,
+      0.7174
+    ],
+    "gold_passage_ids": [
+      "7416464"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.3333,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.3333,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 84,
+    "query_id": "1086915",
+    "query": "what are the observed periodic trends in electron affinity?",
+    "latency_ms": 55.37,
+    "retrieved_ids": [
+      "7106361",
+      "3599292",
+      "8837893",
+      "5485794",
+      "1124541"
+    ],
+    "retrieved_scores": [
+      0.8013,
+      0.7492,
+      0.7074,
+      0.6997,
+      0.6941
+    ],
+    "gold_passage_ids": [
+      "7106361"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 85,
+    "query_id": "433415",
+    "query": "josephine's feast",
+    "latency_ms": 54.5,
+    "retrieved_ids": [
+      "7538122",
+      "8717665",
+      "5364614",
+      "3431532",
+      "31203"
+    ],
+    "retrieved_scores": [
+      0.6977,
+      0.646,
+      0.6382,
+      0.6353,
+      0.6213
+    ],
+    "gold_passage_ids": [
+      "7538122"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 86,
+    "query_id": "902931",
+    "query": "what test is for lupus",
+    "latency_ms": 43.95,
+    "retrieved_ids": [
+      "4123683",
+      "2332829",
+      "8175363",
+      "1943142",
+      "3297783"
+    ],
+    "retrieved_scores": [
+      0.8317,
+      0.7974,
+      0.7612,
+      0.7569,
+      0.7296
+    ],
+    "gold_passage_ids": [
+      "4123683"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 87,
+    "query_id": "147337",
+    "query": "difference between ford supercab and crew cab",
+    "latency_ms": 46.59,
+    "retrieved_ids": [
+      "7510754",
+      "7749362",
+      "3128300",
+      "3743427",
+      "8435108"
+    ],
+    "retrieved_scores": [
+      0.8742,
+      0.8584,
+      0.7552,
+      0.7441,
+      0.7334
+    ],
+    "gold_passage_ids": [
+      "7749359",
+      "7510754",
+      "7749362"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 0.6667,
+    "ragas_cp": 1.0,
+    "ragas_cr": 0.6667
+  },
+  {
+    "idx": 88,
+    "query_id": "66154",
+    "query": "can crystals cause dizziness",
+    "latency_ms": 43.13,
+    "retrieved_ids": [
+      "7396173",
+      "24603",
+      "5056332",
+      "478607",
+      "14454"
+    ],
+    "retrieved_scores": [
+      0.8388,
+      0.7549,
+      0.7543,
+      0.7531,
+      0.7505
+    ],
+    "gold_passage_ids": [
+      "7396173"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 89,
+    "query_id": "842596",
+    "query": "what is the purpose of polarized sunglasses",
+    "latency_ms": 46.75,
+    "retrieved_ids": [
+      "7889349",
+      "6700699",
+      "2780335",
+      "3059830",
+      "7426180"
+    ],
+    "retrieved_scores": [
+      0.9158,
+      0.7573,
+      0.7567,
+      0.7556,
+      0.735
+    ],
+    "gold_passage_ids": [
+      "7889349"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 90,
+    "query_id": "992950",
+    "query": "which super bowl did colin kaepernick play in",
+    "latency_ms": 46.05,
+    "retrieved_ids": [
+      "7020329",
+      "7278548",
+      "7400448",
+      "5121159",
+      "7072222"
+    ],
+    "retrieved_scores": [
+      0.7528,
+      0.7344,
+      0.7294,
+      0.728,
+      0.7153
+    ],
+    "gold_passage_ids": [
+      "7278548"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.5,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.5,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 91,
+    "query_id": "490802",
+    "query": "russ simmons net worth",
+    "latency_ms": 48.36,
+    "retrieved_ids": [
+      "7638465",
+      "6874013",
+      "3455792",
+      "2908382",
+      "7500323"
+    ],
+    "retrieved_scores": [
+      0.8505,
+      0.6616,
+      0.6552,
+      0.6333,
+      0.6291
+    ],
+    "gold_passage_ids": [
+      "7638465"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 92,
+    "query_id": "1026372",
+    "query": "who did colton haynes play on arrow",
+    "latency_ms": 43.97,
+    "retrieved_ids": [
+      "7818007",
+      "7818006",
+      "6773283",
+      "7947948",
+      "8827481"
+    ],
+    "retrieved_scores": [
+      0.7443,
+      0.7206,
+      0.7171,
+      0.6869,
+      0.6778
+    ],
+    "gold_passage_ids": [
+      "7818007"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 93,
+    "query_id": "1098497",
+    "query": "how long do resin countertops last",
+    "latency_ms": 44.1,
+    "retrieved_ids": [
+      "7334501",
+      "7355451",
+      "3726286",
+      "7333389",
+      "6369955"
+    ],
+    "retrieved_scores": [
+      0.8263,
+      0.7844,
+      0.7361,
+      0.716,
+      0.7129
+    ],
+    "gold_passage_ids": [
+      "7334501"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 94,
+    "query_id": "100616",
+    "query": "cost estimate glass shower",
+    "latency_ms": 43.34,
+    "retrieved_ids": [
+      "7326072",
+      "6263815",
+      "8129817",
+      "1298638",
+      "7430853"
+    ],
+    "retrieved_scores": [
+      0.8519,
+      0.8303,
+      0.8016,
+      0.7456,
+      0.7369
+    ],
+    "gold_passage_ids": [
+      "7326072"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 95,
+    "query_id": "641583",
+    "query": "what does it mean when your tongue is all white",
+    "latency_ms": 46.75,
+    "retrieved_ids": [
+      "165039",
+      "850886",
+      "5881661",
+      "7971161",
+      "3591788"
+    ],
+    "retrieved_scores": [
+      0.8502,
+      0.8358,
+      0.8077,
+      0.8039,
+      0.7986
+    ],
+    "gold_passage_ids": [
+      "850886"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.5,
+    "recall_at_5": 1.0,
+    "ragas_cp": 0.5,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 96,
+    "query_id": "222954",
+    "query": "how do you lower hardness in pool water?",
+    "latency_ms": 47.6,
+    "retrieved_ids": [
+      "7313953",
+      "2218803",
+      "3209987",
+      "6973702",
+      "551274"
+    ],
+    "retrieved_scores": [
+      0.8712,
+      0.7983,
+      0.7519,
+      0.7392,
+      0.7311
+    ],
+    "gold_passage_ids": [
+      "7313953"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 97,
+    "query_id": "899800",
+    "query": "what supplements are antiinflammatory",
+    "latency_ms": 45.15,
+    "retrieved_ids": [
+      "4254777",
+      "7242354",
+      "886478",
+      "4251310",
+      "7355109"
+    ],
+    "retrieved_scores": [
+      0.72,
+      0.7111,
+      0.7027,
+      0.7026,
+      0.7013
+    ],
+    "gold_passage_ids": [
+      "7731522",
+      "7731519",
+      "7731523"
+    ],
+    "hit_at_1": 0.0,
+    "mrr_at_10": 0.0,
+    "recall_at_5": 0.0,
+    "ragas_cp": 0.0,
+    "ragas_cr": 0.0
+  },
+  {
+    "idx": 98,
+    "query_id": "548254",
+    "query": "wenatchee washington population",
+    "latency_ms": 49.48,
+    "retrieved_ids": [
+      "7439342",
+      "1245516",
+      "7913013",
+      "1578928",
+      "4090799"
+    ],
+    "retrieved_scores": [
+      0.9239,
+      0.6755,
+      0.6753,
+      0.6703,
+      0.6575
+    ],
+    "gold_passage_ids": [
+      "7439342"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 99,
+    "query_id": "422501",
+    "query": "is rhinitis painful",
+    "latency_ms": 43.96,
+    "retrieved_ids": [
+      "7490616",
+      "6056534",
+      "7980247",
+      "8766560",
+      "2559628"
+    ],
+    "retrieved_scores": [
+      0.8235,
+      0.7528,
+      0.7519,
+      0.7447,
+      0.7444
+    ],
+    "gold_passage_ids": [
+      "7490616"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  },
+  {
+    "idx": 100,
+    "query_id": "1093927",
+    "query": "is the jaraguay volcanic field dormant?",
+    "latency_ms": 47.67,
+    "retrieved_ids": [
+      "7711203",
+      "4964969",
+      "4520164",
+      "3709117",
+      "2643889"
+    ],
+    "retrieved_scores": [
+      0.8227,
+      0.6819,
+      0.6743,
+      0.6724,
+      0.6705
+    ],
+    "gold_passage_ids": [
+      "7711203"
+    ],
+    "hit_at_1": 1.0,
+    "mrr_at_10": 1.0,
+    "recall_at_5": 1.0,
+    "ragas_cp": 1.0,
+    "ragas_cr": 1.0
+  }
+]

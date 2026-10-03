@@ -130,10 +130,31 @@ All architectural and algorithmic decisions are recorded here with context, opti
 
 ---
 
+## ADR-010: Groq Free-Tier Model Selection and Token Budget
+- **Date:** 2026-10-03
+- **Context:** RAGAS LLM-as-a-judge requires evaluating Context Precision and Context Recall across the benchmark set using only Groq free-tier without exceeding rate limits or daily token quotas.
+- **Official Groq Free-Tier Limits (verified 2026-10-03):**
+  - `llama-3.1-8b-instant`: 30 RPM, 14,400 RPD, 500,000 Tokens/Day (TPD).
+  - `llama-3.3-70b-versatile`: 30 RPM, 1,000 RPD, 100,000 Tokens/Day (TPD).
+- **Workload Estimation:**
+  - 100 queries * 2 calls/query (Precision + Recall) * 2 phases (Phase 1 + Phase 2) = 400 LLM calls.
+  - At ~700–800 tokens per prompt (question + 5 passage contexts + reference), total workload is ~280,000–320,000 tokens.
+  - `llama-3.3-70b-versatile` has a strict 100,000 TPD ceiling and would throttle after ~30 queries, requiring 3–4 days.
+  - `llama-3.1-8b-instant` has a 500,000 TPD ceiling, allowing all 100 paired queries to execute within a single day while respecting 30 RPM.
+- **Choice:** `llama-3.1-8b-instant` as primary judge model.
+- **Protocol:**
+  - 3-query smoke test to measure exact empirical token consumption per query.
+  - Paired query execution (Phase 1 and Phase 2 run back-to-back with immediate checkpointing per query).
+  - Chunks of 25 with interim summary.
+  - Exponential backoff with jitter on 429/timeout errors.
+
+---
+
 ## Frozen Configurations Registry
 *(Frozen configuration hashes must be written here BEFORE single TEST evaluations)*
 
 | Config Name | Phase | Gate | Config Hash (SHA-256 canonical JSON) | Date Frozen | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| *Pending Gate 3* | Phase 1 Dense | Gate 3 | *Pending* | - | Single TEST evaluation |
-| *Pending Gate 4* | Phase 2 Hybrid| Gate 4 | *Pending* | - | Single TEST evaluation |
+| `phase1_dense_baseline` | Phase 1 Dense | Gate 3 | `3b06508a5c6dc296663e0547331da83b6b5996afa6a21d510fcbd84cb64cdd95` | 2026-10-03 | Dense cosine baseline on 100k index |
+| *Pending Phase 2* | Phase 2 Hybrid| Gate 3 | *Pending* | - | Single TEST evaluation |
+
