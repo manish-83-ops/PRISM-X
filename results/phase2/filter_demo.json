@@ -1,0 +1,166 @@
+{
+  "query": "what causes high blood pressure",
+  "unfiltered_results": [
+    {
+      "rank": 1,
+      "passage_id": "933189",
+      "text": "The causes of high blood pressure in kids can differ, depending on a child's age. The younger the child, the more likely the high blood pressure is linked to an illness. In babies, it's usually caused by prematurity or problems with the kidneys (this is most common), lungs, or heart.",
+      "category": "symptoms-pain",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 1.0,
+      "dense_rank": 1,
+      "dense_score": 0.8717706203460693,
+      "bm25_rank": 1,
+      "bm25_score": 21.336822509765625
+    },
+    {
+      "rank": 2,
+      "passage_id": "8731150",
+      "text": "It works by causing the kidneys to get rid of unneeded water and salt from the body into the urine. High blood pressure is a common condition and when not treated, can cause damage to the brain, heart, blood vessels, kidneys and other parts of the body. Damage to these organs may cause heart disease, a heart attack, heart failure, stroke, kidney failure, loss of vision, and other problems.",
+      "category": "symptoms-pain",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 0.7874410728564767,
+      "dense_rank": 2,
+      "dense_score": 0.8699907660484314,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 3,
+      "passage_id": "2138485",
+      "text": "High Blood Pressure. High blood pressure is a major risk factor for heart disease. It is a medical condition that occurs when the pressure of the blood in your arteries and other blood vessels is too high.The high pressure, if not controlled, can affect your heart and other major organs of your body, including your kidneys and brain.igh Blood Pressure. High blood pressure is a major risk factor for heart disease. It is a medical condition that occurs when the pressure of the blood in your arteries and other blood vessels is too high.",
+      "category": "symptoms-pain",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 0.7068784129265512,
+      "dense_rank": 4,
+      "dense_score": 0.8345980644226074,
+      "bm25_rank": 4,
+      "bm25_score": 20.4274845123291
+    },
+    {
+      "rank": 4,
+      "passage_id": "1110331",
+      "text": "High blood pressure is a common condition in which the long-term force of the blood against your artery walls is high enough that it may eventually cause health problems, such as heart disease.lood pressure is determined both by the amount of blood your heart pumps and the amount of resistance to blood flow in your arteries. The more blood your heart pumps and the narrower your arteries, the higher your blood pressure.",
+      "category": "symptoms-pain",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 0.6188589283549588,
+      "dense_rank": 3,
+      "dense_score": 0.834932804107666,
+      "bm25_rank": 18,
+      "bm25_score": 17.761341094970703
+    },
+    {
+      "rank": 5,
+      "passage_id": "1477064",
+      "text": "You may have to take high blood pressure medicine for the rest of your life. If high blood pressure is not treated, it can cause serious problems such as heart failure, blood vessel disease, stroke, or kidney disease.ou may have to take high blood pressure medicine for the rest of your life. If high blood pressure is not treated, it can cause serious problems such as heart failure, blood vessel disease, stroke, or kidney disease.",
+      "category": "symptoms-pain",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 0.555669049358306,
+      "dense_rank": 6,
+      "dense_score": 0.8214356303215027,
+      "bm25_rank": 9,
+      "bm25_score": 18.70672607421875
+    }
+  ],
+  "filtered_symptoms_pain_results": [
+    {
+      "rank": 1,
+      "passage_id": "933189",
+      "text": "The causes of high blood pressure in kids can differ, depending on a child's age. The younger the child, the more likely the high blood pressure is linked to an illness. In babies, it's usually caused by prematurity or problems with the kidneys (this is most common), lungs, or heart.",
+      "category": "symptoms-pain",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 1.0,
+      "dense_rank": 1,
+      "dense_score": 0.8717706203460693,
+      "bm25_rank": 1,
+      "bm25_score": 21.336822509765625
+    },
+    {
+      "rank": 2,
+      "passage_id": "8731150",
+      "text": "It works by causing the kidneys to get rid of unneeded water and salt from the body into the urine. High blood pressure is a common condition and when not treated, can cause damage to the brain, heart, blood vessels, kidneys and other parts of the body. Damage to these organs may cause heart disease, a heart attack, heart failure, stroke, kidney failure, loss of vision, and other problems.",
+      "category": "symptoms-pain",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 0.7876377305686826,
+      "dense_rank": 2,
+      "dense_score": 0.8699907660484314,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 3,
+      "passage_id": "2138485",
+      "text": "High Blood Pressure. High blood pressure is a major risk factor for heart disease. It is a medical condition that occurs when the pressure of the blood in your arteries and other blood vessels is too high.The high pressure, if not controlled, can affect your heart and other major organs of your body, including your kidneys and brain.igh Blood Pressure. High blood pressure is a major risk factor for heart disease. It is a medical condition that occurs when the pressure of the blood in your arteries and other blood vessels is too high.",
+      "category": "symptoms-pain",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 0.711879359860257,
+      "dense_rank": 4,
+      "dense_score": 0.8345980644226074,
+      "bm25_rank": 4,
+      "bm25_score": 20.4274845123291
+    },
+    {
+      "rank": 4,
+      "passage_id": "1110331",
+      "text": "High blood pressure is a common condition in which the long-term force of the blood against your artery walls is high enough that it may eventually cause health problems, such as heart disease.lood pressure is determined both by the amount of blood your heart pumps and the amount of resistance to blood flow in your arteries. The more blood your heart pumps and the narrower your arteries, the higher your blood pressure.",
+      "category": "symptoms-pain",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 0.626443234582194,
+      "dense_rank": 3,
+      "dense_score": 0.834932804107666,
+      "bm25_rank": 17,
+      "bm25_score": 17.761341094970703
+    },
+    {
+      "rank": 5,
+      "passage_id": "1477064",
+      "text": "You may have to take high blood pressure medicine for the rest of your life. If high blood pressure is not treated, it can cause serious problems such as heart failure, blood vessel disease, stroke, or kidney disease.ou may have to take high blood pressure medicine for the rest of your life. If high blood pressure is not treated, it can cause serious problems such as heart failure, blood vessel disease, stroke, or kidney disease.",
+      "category": "symptoms-pain",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 0.5638155251715894,
+      "dense_rank": 6,
+      "dense_score": 0.8214356303215027,
+      "bm25_rank": 9,
+      "bm25_score": 18.70672607421875
+    }
+  ],
+  "filtered_tax_state_results": [
+    {
+      "rank": 1,
+      "passage_id": "2398761",
+      "text": "Why Is My Interest Rate So High? If you have a higher interest rate on your credit card than most people, it is most likely due to your credit score. Low credit scores often lead to higher interest rates. There is a higher risk to the credit card company in giving you that unsecured loan.",
+      "category": "tax-state",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 0.8,
+      "dense_rank": 1,
+      "dense_score": 0.6553105115890503,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 2,
+      "passage_id": "1586805",
+      "text": "The most common reasons why most people borrow against their life insurance policy are losing their primary source of income when they still need to pay bills, their mortgage or rent, and other living expenses, or a medical catastrophe such as a life-threatening, advanced-stage illness.",
+      "category": "tax-state",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 0.45710348224102443,
+      "dense_rank": 2,
+      "dense_score": 0.6080012321472168,
+      "bm25_rank": null,
+      "bm25_score": null
+    },
+    {
+      "rank": 3,
+      "passage_id": "5690165",
+      "text": "1 Applicants must demonstrate distant and near visual acuity, correctable to 20/20 in each eye, and must not have blood pressure that exceeds 140/90 measured in a sitting position.  Height of 62 to 75 inches (157.5 centimeters to 190.5 centimeters).",
+      "category": "tax-state",
+      "source": "Tevatron/msmarco-passage-corpus",
+      "score": 0.44336046242891375,
+      "dense_rank": 5,
+      "dense_score": 0.5829236507415771,
+      "bm25_rank": 2,
+      "bm25_score": 8.768356323242188
+    }
+  ],
+  "verification": "100% of returned points strictly match requested category pre-retrieval"
+}

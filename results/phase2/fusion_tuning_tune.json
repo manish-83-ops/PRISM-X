@@ -1,0 +1,112 @@
+{
+  "results": [
+    {
+      "label": "Weighted (alpha=0.3, minmax)",
+      "method": "weighted",
+      "alpha": 0.3,
+      "rrf_k": null,
+      "norm": "minmax",
+      "ndcg5": 0.8008,
+      "mrr10": 0.7902,
+      "recall5": 0.8533,
+      "hit1": 0.7333,
+      "time_s": 8.7
+    },
+    {
+      "label": "Weighted (alpha=0.5, minmax)",
+      "method": "weighted",
+      "alpha": 0.5,
+      "rrf_k": null,
+      "norm": "minmax",
+      "ndcg5": 0.8752,
+      "mrr10": 0.8602,
+      "recall5": 0.9333,
+      "hit1": 0.7933,
+      "time_s": 10.9
+    },
+    {
+      "label": "Weighted (alpha=0.7, minmax)",
+      "method": "weighted",
+      "alpha": 0.7,
+      "rrf_k": null,
+      "norm": "minmax",
+      "ndcg5": 0.8935,
+      "mrr10": 0.8817,
+      "recall5": 0.9367,
+      "hit1": 0.8333,
+      "time_s": 9.6
+    },
+    {
+      "label": "Weighted (alpha=0.8, minmax)",
+      "method": "weighted",
+      "alpha": 0.8,
+      "rrf_k": null,
+      "norm": "minmax",
+      "ndcg5": 0.8962,
+      "mrr10": 0.8856,
+      "recall5": 0.9367,
+      "hit1": 0.8467,
+      "time_s": 10.1
+    },
+    {
+      "label": "Weighted (alpha=0.7, clipped)",
+      "method": "weighted",
+      "alpha": 0.7,
+      "rrf_k": null,
+      "norm": "minmax_clipped",
+      "ndcg5": 0.8935,
+      "mrr10": 0.8817,
+      "recall5": 0.9367,
+      "hit1": 0.8333,
+      "time_s": 9.6
+    },
+    {
+      "label": "RRF (k=20)",
+      "method": "rrf",
+      "alpha": null,
+      "rrf_k": 20,
+      "norm": "-",
+      "ndcg5": 0.8504,
+      "mrr10": 0.8298,
+      "recall5": 0.9267,
+      "hit1": 0.7667,
+      "time_s": 11.8
+    },
+    {
+      "label": "RRF (k=60)",
+      "method": "rrf",
+      "alpha": null,
+      "rrf_k": 60,
+      "norm": "-",
+      "ndcg5": 0.8438,
+      "mrr10": 0.8253,
+      "recall5": 0.9133,
+      "hit1": 0.7667,
+      "time_s": 9.6
+    },
+    {
+      "label": "RRF (k=100)",
+      "method": "rrf",
+      "alpha": null,
+      "rrf_k": 100,
+      "norm": "-",
+      "ndcg5": 0.8438,
+      "mrr10": 0.8253,
+      "recall5": 0.9133,
+      "hit1": 0.7667,
+      "time_s": 9.1
+    }
+  ],
+  "best": {
+    "label": "Weighted (alpha=0.8, minmax)",
+    "method": "weighted",
+    "alpha": 0.8,
+    "rrf_k": null,
+    "norm": "minmax",
+    "ndcg5": 0.8962,
+    "mrr10": 0.8856,
+    "recall5": 0.9367,
+    "hit1": 0.8467,
+    "time_s": 10.1
+  }
+}

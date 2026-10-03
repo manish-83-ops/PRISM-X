@@ -156,5 +156,5 @@ All architectural and algorithmic decisions are recorded here with context, opti
 | Config Name | Phase | Gate | Config Hash (SHA-256 canonical JSON) | Date Frozen | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `phase1_dense_baseline` | Phase 1 Dense | Gate 3 | `3b06508a5c6dc296663e0547331da83b6b5996afa6a21d510fcbd84cb64cdd95` | 2026-10-03 | Dense cosine baseline on 100k index |
-| *Pending Phase 2* | Phase 2 Hybrid| Gate 3 | *Pending* | - | Single TEST evaluation |
+| `phase2_hybrid_optimized`| Phase 2 Hybrid| Gate 3 | `b23eb0d7862be81675e68eb82540f7039dc2cfea1850916833ee44c515ab0018` | 2026-10-03 | Hybrid weighted (alpha=0.8, minmax) frozen from TUNE grid search |
 

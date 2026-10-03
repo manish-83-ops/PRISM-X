@@ -51,7 +51,7 @@ retrieval:
   candidate_depth: 50
   fusion:
     method: "weighted"
-    alpha: 0.7
+    alpha: 0.8
     rrf_k: 60
 
 rerank:
