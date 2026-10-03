@@ -1,0 +1,90 @@
+{
+  "benchmark_name": "Gate 4B Primary RAGAS Evaluation",
+  "ground_truth_rule": "Use wellFormedAnswers[0] if present and valid; else answers[0] if present and valid ('No Answer Present', empty, or single-token excluded).",
+  "evaluator_model": "allam-2-7b",
+  "n_queries": 25,
+  "total_tokens": 91157,
+  "elapsed_seconds": 856.1,
+  "phases": {
+    "phase1_dense": {
+      "context_precision": {
+        "mean": 0.8539,
+        "ci_lower": 0.7778,
+        "ci_upper": 0.9186
+      },
+      "context_recall": {
+        "mean": 0.776,
+        "ci_lower": 0.704,
+        "ci_upper": 0.836
+      }
+    },
+    "phase2_hybrid": {
+      "context_precision": {
+        "mean": 0.9184,
+        "ci_lower": 0.874,
+        "ci_upper": 0.9575
+      },
+      "context_recall": {
+        "mean": 0.812,
+        "ci_lower": 0.744,
+        "ci_upper": 0.864
+      }
+    },
+    "phase3_rerank": {
+      "context_precision": {
+        "mean": 0.9126,
+        "ci_lower": 0.8491,
+        "ci_upper": 0.9637
+      },
+      "context_recall": {
+        "mean": 0.784,
+        "ci_lower": 0.692,
+        "ci_upper": 0.856
+      }
+    }
+  },
+  "pairwise_differences": {
+    "p2_vs_p1": {
+      "context_precision": {
+        "mean_diff": 0.0645,
+        "ci_lower": 0.0165,
+        "ci_upper": 0.1234,
+        "is_statistically_distinguishable": true
+      },
+      "context_recall": {
+        "mean_diff": 0.036,
+        "ci_lower": 0.0,
+        "ci_upper": 0.088,
+        "is_statistically_distinguishable": false
+      }
+    },
+    "p3_vs_p2": {
+      "context_precision": {
+        "mean_diff": -0.0058,
+        "ci_lower": -0.0667,
+        "ci_upper": 0.0549,
+        "is_statistically_distinguishable": false
+      },
+      "context_recall": {
+        "mean_diff": -0.028,
+        "ci_lower": -0.116,
+        "ci_upper": 0.044,
+        "is_statistically_distinguishable": false
+      }
+    },
+    "p3_vs_p1": {
+      "context_precision": {
+        "mean_diff": 0.0587,
+        "ci_lower": 0.0021,
+        "ci_upper": 0.1153,
+        "is_statistically_distinguishable": true
+      },
+      "context_recall": {
+        "mean_diff": 0.008,
+        "ci_lower": -0.076,
+        "ci_upper": 0.072,
+        "is_statistically_distinguishable": false
+      }
+    }
+  }
+}

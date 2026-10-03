@@ -1,0 +1,1476 @@
+[
+  {
+    "query_id": "647687",
+    "query": "what does semen consist of",
+    "gold_passage_ids": [
+      "7597903"
+    ],
+    "raw_answers": [
+      "Protein, all kinds of chemicals and minerals, including water, sugar, calcium, chlorine, magnesium, nitrogen, vitamin B12, and zinc."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Protein, all kinds of chemicals and minerals, including water, sugar, calcium, chlorine, magnesium, nitrogen, vitamin B12, and zinc.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "74328",
+    "query": "can tennis elbow cause pain in your shoulder?",
+    "gold_passage_ids": [
+      "7777750"
+    ],
+    "raw_answers": [
+      "Yes, Tennis elbow can cause pain in your shoulder."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Yes, Tennis elbow can cause pain in your shoulder.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "391662",
+    "query": "if meat is bad for you what should you eat",
+    "gold_passage_ids": [
+      "7656119"
+    ],
+    "raw_answers": [
+      "A variety of protein-containing foods each day."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "A variety of protein-containing foods each day.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "530602",
+    "query": "types organizational structure",
+    "gold_passage_ids": [
+      "7603386",
+      "7603394"
+    ],
+    "raw_answers": [
+      "Matrix structure, Product Organizational Structure."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Matrix structure, Product Organizational Structure.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "61836",
+    "query": "can a 15 year old fly alone domestic flights?",
+    "gold_passage_ids": [
+      "7370781"
+    ],
+    "raw_answers": [
+      "Yes"
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": null,
+    "answer_source": "invalid_content: Yes",
+    "is_valid": false
+  },
+  {
+    "query_id": "1082622",
+    "query": "what does the root word tele mean",
+    "gold_passage_ids": [
+      "7144010"
+    ],
+    "raw_answers": [
+      "Tele means over a distance telegram."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Tele means over a distance telegram.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "321951",
+    "query": "how much is donald trump jr worth",
+    "gold_passage_ids": [
+      "6164706"
+    ],
+    "raw_answers": [
+      "$150 million"
+    ],
+    "raw_well_formed_answers": [
+      "The net worth of Donald Trump Jr is $150 million."
+    ],
+    "reference_answer": "The net worth of Donald Trump Jr is $150 million.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "653187",
+    "query": "what does the term the age of aquarius mean?",
+    "gold_passage_ids": [
+      "7458238"
+    ],
+    "raw_answers": [
+      "The age of God Consciousness."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The age of God Consciousness.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1051211",
+    "query": "what is mepap certification",
+    "gold_passage_ids": [
+      "7183753"
+    ],
+    "raw_answers": [
+      "MEPAP is the course that has been able to fill in the areas of educational needs for those who want to join the activities profession and those currently working in the activities profession."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "MEPAP is the course that has been able to fill in the areas of educational needs for those who want to join the activities profession and those currently working in the activities profession.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "451484",
+    "query": "medicare eligibility contact number",
+    "gold_passage_ids": [
+      "329164"
+    ],
+    "raw_answers": [
+      "1-800-633-4227"
+    ],
+    "raw_well_formed_answers": [
+      "Medicare eligibility contact number is 1-800-633-4227.",
+      "The contact number for Medicare eligibility is 1-800-633-4227.  ",
+      "The contact number for medicare eligibility is 1 800 633 4227."
+    ],
+    "reference_answer": "Medicare eligibility contact number is 1-800-633-4227.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1021277",
+    "query": "define atrium",
+    "gold_passage_ids": [
+      "7232021"
+    ],
+    "raw_answers": [
+      "An atrium is a part of a building such as a hotel or shopping centre, which extends up through several floors of the building and often has a glass roof."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "An atrium is a part of a building such as a hotel or shopping centre, which extends up through several floors of the building and often has a glass roof.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "988745",
+    "query": "who is the new york county clerk",
+    "gold_passage_ids": [
+      "7287868"
+    ],
+    "raw_answers": [
+      "Idoni Honored as New York's County Clerk of the Year."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Idoni Honored as New York's County Clerk of the Year.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1083010",
+    "query": "what does simple circuit contain",
+    "gold_passage_ids": [
+      "7141335",
+      "7141337"
+    ],
+    "raw_answers": [
+      "A simple circuit contains conductors, a switch, a load, a power source, a button, an LED, and a resistor."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "A simple circuit contains conductors, a switch, a load, a power source, a button, an LED, and a resistor.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1083598",
+    "query": "what does it mean cardholder name?",
+    "gold_passage_ids": [
+      "7135949"
+    ],
+    "raw_answers": [
+      "The meaning of the name Cardholder is one who holds a card, especially a credit card."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The meaning of the name Cardholder is one who holds a card, especially a credit card.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "549342",
+    "query": "what about phones in iceland",
+    "gold_passage_ids": [
+      "7708995"
+    ],
+    "raw_answers": [
+      "Direct calls can be made to all parts of Iceland.The code into Iceland from overseas is +354 + seven-digit number. Direct long-distance calls can be made to Europe and the USA by dialling 00 plus the country code, and the telephone number you wish to reach."
+    ],
+    "raw_well_formed_answers": [
+      "The phones in Iceland is direct calls can be made to all parts of Iceland and the code into Iceland from overseas is +354 + seven-digit number.",
+      "Direct calls can be made to all parts of Iceland.The code into Iceland from overseas is plus 354 plus seven digit number."
+    ],
+    "reference_answer": "The phones in Iceland is direct calls can be made to all parts of Iceland and the code into Iceland from overseas is +354 + seven-digit number.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "946631",
+    "query": "when does harbin ice city end",
+    "gold_passage_ids": [
+      "7889800"
+    ],
+    "raw_answers": [
+      "Harbin ice city ends of February 2016."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Harbin ice city ends of February 2016.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "507381",
+    "query": "symptoms of congenital heart defects",
+    "gold_passage_ids": [
+      "7454709"
+    ],
+    "raw_answers": [
+      "1 Cyanosis. 2 Blue skin. 3 Blue lips. 4 Breathing difficulty. 5 Poor growth."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "1 Cyanosis. 2 Blue skin. 3 Blue lips. 4 Breathing difficulty. 5 Poor growth.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1011021",
+    "query": "what year declaration of independence",
+    "gold_passage_ids": [
+      "7246712"
+    ],
+    "raw_answers": [
+      "The Declaration of Independence is in 1776."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The Declaration of Independence is in 1776.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "999610",
+    "query": "where is vista ca",
+    "gold_passage_ids": [
+      "1389277"
+    ],
+    "raw_answers": [
+      "San Diego County"
+    ],
+    "raw_well_formed_answers": [
+      "Vista is located in San Diego County, California."
+    ],
+    "reference_answer": "Vista is located in San Diego County, California.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1094460",
+    "query": "inches of mercury meaning",
+    "gold_passage_ids": [
+      "7668615"
+    ],
+    "raw_answers": [
+      "Inch of mercury is a unit of atmospheric pressure, being the pressure equal to that exerted by a column of mercury one inch high under standard conditions of temperature and gravity: 33.864 millibars."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Inch of mercury is a unit of atmospheric pressure, being the pressure equal to that exerted by a column of mercury one inch high under standard conditions of temperature and gravity: 33.864 millibars.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "696677",
+    "query": "what is a public health concept",
+    "gold_passage_ids": [
+      "1276700"
+    ],
+    "raw_answers": [
+      "A described what we as a society do collectively to assure the conditions in which people can be healthy."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "A described what we as a society do collectively to assure the conditions in which people can be healthy.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1074989",
+    "query": "what is a cyst on the kidneys do",
+    "gold_passage_ids": [
+      "7154444",
+      "7154451"
+    ],
+    "raw_answers": [
+      "Cyst on the kidneys cause  1 A dull ache in the back or side. 3 Elevated fever. 4 Pain in the upper portion of the abdomen."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Cyst on the kidneys cause  1 A dull ache in the back or side. 3 Elevated fever. 4 Pain in the upper portion of the abdomen.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1063702",
+    "query": "what is an advocacy project",
+    "gold_passage_ids": [
+      "7164845"
+    ],
+    "raw_answers": [
+      "An advocacy project is ensuring that people have meaningful choice & control over their lives."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "An advocacy project is ensuring that people have meaningful choice & control over their lives.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1090701",
+    "query": "side effects for diclofenac topical",
+    "gold_passage_ids": [
+      "7975396"
+    ],
+    "raw_answers": [
+      "The side effects of diclofenac topical include allergic reaction: hives; difficulty breathing; swelling of your face, lips, tongue, or throat."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The side effects of diclofenac topical include allergic reaction: hives; difficulty breathing; swelling of your face, lips, tongue, or throat.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1081730",
+    "query": "what family do squirrels belong to",
+    "gold_passage_ids": [
+      "7147941"
+    ],
+    "raw_answers": [
+      "Squirrels belong to a large family of species that include chipmunks, prairie dogs, groundhogs, marmots, and flying squirrels."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Squirrels belong to a large family of species that include chipmunks, prairie dogs, groundhogs, marmots, and flying squirrels.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "978057",
+    "query": "where is berrimah",
+    "gold_passage_ids": [
+      "7731943"
+    ],
+    "raw_answers": [
+      "It is located in the city of Darwin in the Northern Territory of Australia."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "It is located in the city of Darwin in the Northern Territory of Australia.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1102235",
+    "query": "why does ehr downtime happen",
+    "gold_passage_ids": [
+      "7155089"
+    ],
+    "raw_answers": [
+      "Few bad batteries made the UPS system useless, causing the EHR system to fail and forcing employees to put the facility\u2019s \u201cunplanned downtime plan\u201d into effect."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Few bad batteries made the UPS system useless, causing the EHR system to fail and forcing employees to put the facility\u2019s \u201cunplanned downtime plan\u201d into effect.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1096045",
+    "query": "how much does one roll of duck tape cost",
+    "gold_passage_ids": [
+      "7539951"
+    ],
+    "raw_answers": [
+      "One roll of duck tape costs $14.77."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "One roll of duck tape costs $14.77.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "169305",
+    "query": "does motion sensor device have camera",
+    "gold_passage_ids": [
+      "7994286"
+    ],
+    "raw_answers": [
+      "Yes, motion sensor device have camera.",
+      "Yes, Inside that body is Canary's 1080p night-vision camera, along with the motion sensor."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Yes, motion sensor device have camera.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1051214",
+    "query": "what is meningitis.",
+    "gold_passage_ids": [
+      "1590950"
+    ],
+    "raw_answers": [
+      "Meningitis is an inflammation of the membranes surrounding your brain and spinal cord."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Meningitis is an inflammation of the membranes surrounding your brain and spinal cord.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1098953",
+    "query": "how heavy are road bikes",
+    "gold_passage_ids": [
+      "7300375"
+    ],
+    "raw_answers": [
+      "The average weight for a road bike is around 17 to 19 pounds."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The average weight for a road bike is around 17 to 19 pounds.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "534941",
+    "query": "usps schedule a delivery",
+    "gold_passage_ids": [
+      "7492091"
+    ],
+    "raw_answers": [
+      "Monday through Friday at 12:30 p.m.and 4:00 p.m."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Monday through Friday at 12:30 p.m.and 4:00 p.m.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "658372",
+    "query": "what event started world war 1",
+    "gold_passage_ids": [
+      "7580404"
+    ],
+    "raw_answers": [
+      "Decision-makers in Berlin and Vienna chose to pursue a course that they hoped would bring about significant political advantages even if it brought about general war."
+    ],
+    "raw_well_formed_answers": [
+      "Decision-makers in Berlin and Vienna chose to pursue a course that they hoped would bring about significant political advantages even if it brought about general war."
+    ],
+    "reference_answer": "Decision-makers in Berlin and Vienna chose to pursue a course that they hoped would bring about significant political advantages even if it brought about general war.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1070452",
+    "query": "what is a mimo receiver",
+    "gold_passage_ids": [
+      "7158303"
+    ],
+    "raw_answers": [
+      "MIMO is an antenna technology for wireless communications in which multiple antennas are used at both the source and the destination."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "MIMO is an antenna technology for wireless communications in which multiple antennas are used at both the source and the destination.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "414714",
+    "query": "is it still dangerous to go to the place of where the chernobyl happened",
+    "gold_passage_ids": [
+      "7522719"
+    ],
+    "raw_answers": [
+      "Yes"
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": null,
+    "answer_source": "invalid_content: Yes",
+    "is_valid": false
+  },
+  {
+    "query_id": "1036800",
+    "query": "who is ovid in greek mythology",
+    "gold_passage_ids": [
+      "7933154"
+    ],
+    "raw_answers": [
+      "Ovid was a prolific Roman poet, straddling the Golden and Silver Ages of Latin literature, who wrote about love, seduction and mythological transformation."
+    ],
+    "raw_well_formed_answers": [
+      "Ovid was a prolific Roman poet, straddling the Golden and Silver Ages of Latin literature, who wrote about love, seduction and mythological transformation.",
+      "In Greek mythology, Ovid was a prolific Roman poet."
+    ],
+    "reference_answer": "Ovid was a prolific Roman poet, straddling the Golden and Silver Ages of Latin literature, who wrote about love, seduction and mythological transformation.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "249866",
+    "query": "how long does a pa marriage license last",
+    "gold_passage_ids": [
+      "7570414"
+    ],
+    "raw_answers": [
+      "60 days."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "60 days.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1011140",
+    "query": "what wire is used to mig mild steel",
+    "gold_passage_ids": [
+      "7246357"
+    ],
+    "raw_answers": [
+      "E70S6 wire is used for mig welding mild steel."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "E70S6 wire is used for mig welding mild steel.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "569555",
+    "query": "what are the elements to make air",
+    "gold_passage_ids": [
+      "7670556"
+    ],
+    "raw_answers": [
+      "Dry air is primarily made up of nitrogen, oxygen, argon, carbon dioxide and other trace gases."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Dry air is primarily made up of nitrogen, oxygen, argon, carbon dioxide and other trace gases.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1000097",
+    "query": "where is whiteville tennessee",
+    "gold_passage_ids": [
+      "7844847"
+    ],
+    "raw_answers": [
+      "Hardeman County, Tennessee, United States."
+    ],
+    "raw_well_formed_answers": [
+      "Whiteville is in Hardeman County, Tennessee, United States."
+    ],
+    "reference_answer": "Whiteville is in Hardeman County, Tennessee, United States.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "107283",
+    "query": "cost of starting a restaurant",
+    "gold_passage_ids": [
+      "7383919"
+    ],
+    "raw_answers": [
+      "$498,888"
+    ],
+    "raw_well_formed_answers": [
+      "The cost of starting a restaurant is $498,888.",
+      "The cost of starting a restaurant is $498,888.  "
+    ],
+    "reference_answer": "The cost of starting a restaurant is $498,888.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "278863",
+    "query": "how many career games did paul krause play in the nfl.",
+    "gold_passage_ids": [
+      "7341285"
+    ],
+    "raw_answers": [
+      "81"
+    ],
+    "raw_well_formed_answers": [
+      "Paul Krause had played 81 National Football League games in his career.",
+      "Paul Krause played 81 career games in the NFL."
+    ],
+    "reference_answer": "Paul Krause had played 81 National Football League games in his career.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "780297",
+    "query": "what is orofacial dyskinesia",
+    "gold_passage_ids": [
+      "1321129"
+    ],
+    "raw_answers": [
+      "An involuntary movements of the tongue, lips, face, trunk, and extremities that occur in patients treated with long-term dopaminergic antagonist medications."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "An involuntary movements of the tongue, lips, face, trunk, and extremities that occur in patients treated with long-term dopaminergic antagonist medications.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "9454",
+    "query": "a simple definition for the word bias.",
+    "gold_passage_ids": [
+      "7368996"
+    ],
+    "raw_answers": [
+      "Bias has been shown to influence the accuracy of memory recall."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Bias has been shown to influence the accuracy of memory recall.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "922389",
+    "query": "what was the result of pearl harbor attack",
+    "gold_passage_ids": [
+      "3135995"
+    ],
+    "raw_answers": [
+      "The result of this attack was that people all over the country began worrying that Japanese living in the US and Japanese sympathizers were spies for Japan."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The result of this attack was that people all over the country began worrying that Japanese living in the US and Japanese sympathizers were spies for Japan.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "55691",
+    "query": "boulangerie pronunciation",
+    "gold_passage_ids": [
+      "7355625"
+    ],
+    "raw_answers": [
+      "Boo-lauhn-zher-rie The 'zher' like how you say lingerie."
+    ],
+    "raw_well_formed_answers": [
+      "The pronunciation of the word Boulangerie is B,o,o,l,a,u,h,n,z,h,e,r,r,i,e."
+    ],
+    "reference_answer": "The pronunciation of the word Boulangerie is B,o,o,l,a,u,h,n,z,h,e,r,r,i,e.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "996181",
+    "query": "where was the movie true grit filmed at",
+    "gold_passage_ids": [
+      "7272351"
+    ],
+    "raw_answers": [
+      "Filming took place mainly in Ouray County, Colorado, in the vicinity of Ridgway now the home of the True Grit Cafe, around the town of Montrose County, and the town of Ouray."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Filming took place mainly in Ouray County, Colorado, in the vicinity of Ridgway now the home of the True Grit Cafe, around the town of Montrose County, and the town of Ouray.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "991138",
+    "query": "where is punta cana eden resort",
+    "gold_passage_ids": [
+      "7748425"
+    ],
+    "raw_answers": [
+      "In cap cana,at the eastern tip of the Dominican Republic, 10 miles southwest of Punta Cana International Airport."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "In cap cana,at the eastern tip of the Dominican Republic, 10 miles southwest of Punta Cana International Airport.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1026775",
+    "query": "what kind of mixture is rocky road ice cream",
+    "gold_passage_ids": [
+      "7223855"
+    ],
+    "raw_answers": [
+      "A rocky road ice cream is a mixture of miniature marshmallows, nuts and sometimes small chunks of dark, white or milk chocolate."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "A rocky road ice cream is a mixture of miniature marshmallows, nuts and sometimes small chunks of dark, white or milk chocolate.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "865616",
+    "query": "what jedi commands the arc troopers",
+    "gold_passage_ids": [
+      "7729077",
+      "7729083"
+    ],
+    "raw_answers": [
+      "Jedi General Plo Koon.",
+      "An ARC trooper served under the command of the Weequay Jedi General Sev."
+    ],
+    "raw_well_formed_answers": [
+      "An ARC trooper served under the command of the Weequay Jedi General Sev.",
+      "The Weequay Jedi General Sev commands the Arc troopers."
+    ],
+    "reference_answer": "An ARC trooper served under the command of the Weequay Jedi General Sev.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "602352",
+    "query": "what county is alton bay,nh in?",
+    "gold_passage_ids": [
+      "7676449"
+    ],
+    "raw_answers": [
+      "Belknap"
+    ],
+    "raw_well_formed_answers": [
+      "Alton Bay is in Belknap County, New Hampshire, United States.",
+      "Alton Bay, New Hampshire is in Belknap County."
+    ],
+    "reference_answer": "Alton Bay is in Belknap County, New Hampshire, United States.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "282530",
+    "query": "how many doctors are in the us",
+    "gold_passage_ids": [
+      "173764"
+    ],
+    "raw_answers": [
+      "There were over one million doctors of medicine all over the United States."
+    ],
+    "raw_well_formed_answers": [
+      "There were over one million doctors of medicine all over the United States."
+    ],
+    "reference_answer": "There were over one million doctors of medicine all over the United States.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "291248",
+    "query": "how many ounces of liquid is in one gallon",
+    "gold_passage_ids": [
+      "8003933"
+    ],
+    "raw_answers": [
+      "128 fluid ounces in 1 US gallon and 160 fluid ounces in 1 UK gallon."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "128 fluid ounces in 1 US gallon and 160 fluid ounces in 1 UK gallon.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "997449",
+    "query": "where is the kihei",
+    "gold_passage_ids": [
+      "7270152"
+    ],
+    "raw_answers": [
+      "Kihei is located in Hawaii."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Kihei is located in Hawaii.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1063371",
+    "query": "what is an aviation medical examiner?",
+    "gold_passage_ids": [
+      "7165375"
+    ],
+    "raw_answers": [
+      "Aviation Medical Examiners are licensed medical physicians that are designated by the FAA and therefore permitted to issue medical certificates to civilian pilots after performing a thorough flight physical examination and review of the pilot\u2019s medical history."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Aviation Medical Examiners are licensed medical physicians that are designated by the FAA and therefore permitted to issue medical certificates to civilian pilots after performing a thorough flight physical examination and review of the pilot\u2019s medical history.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1003006",
+    "query": "where was napoleon forced to.exile",
+    "gold_passage_ids": [
+      "7809192"
+    ],
+    "raw_answers": [
+      "Island of Saint Helena off the coast of Africa"
+    ],
+    "raw_well_formed_answers": [
+      "Napoleon was forced to exile on the Island of Saint Helena off the coast of Africa.",
+      "Napoleon was forced to exile on the island of Saint Helena off the coast of Africa.",
+      "Napoleon was forced to.exile on the Island of Saint Helena off the coast of Africa."
+    ],
+    "reference_answer": "Napoleon was forced to exile on the Island of Saint Helena off the coast of Africa.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "531142",
+    "query": "typing average words per minute test",
+    "gold_passage_ids": [
+      "2730772"
+    ],
+    "raw_answers": [
+      "43"
+    ],
+    "raw_well_formed_answers": [
+      "In a typing test, the average words per minute are 43.",
+      "The average person types 43 words per minute in a test."
+    ],
+    "reference_answer": "In a typing test, the average words per minute are 43.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1050695",
+    "query": "what is motor dyspraxia",
+    "gold_passage_ids": [
+      "7184656"
+    ],
+    "raw_answers": [
+      "Dyspraxia is a form of developmental coordination disorder is a common disorder affecting fine or gross motor coordination in children and adults."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Dyspraxia is a form of developmental coordination disorder is a common disorder affecting fine or gross motor coordination in children and adults.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "548099",
+    "query": "wellcare mike vice president",
+    "gold_passage_ids": [
+      "7538554"
+    ],
+    "raw_answers": [
+      "Mike joined WellCare in May 2005. He served as vice president of corporate initiatives and strategy."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Mike joined WellCare in May 2005. He served as vice president of corporate initiatives and strategy.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "953355",
+    "query": "when is the rib cook off in reno",
+    "gold_passage_ids": [
+      "7925126"
+    ],
+    "raw_answers": [
+      "In 2016,runs from Wednesday, August 31 through Monday, September 5."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "In 2016,runs from Wednesday, August 31 through Monday, September 5.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1096375",
+    "query": "how much data analyst makes",
+    "gold_passage_ids": [
+      "7508495"
+    ],
+    "raw_answers": [
+      "The average salary for a data analyst is $113,436."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The average salary for a data analyst is $113,436.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "541135",
+    "query": "was there a true bagger vance",
+    "gold_passage_ids": [
+      "7477283"
+    ],
+    "raw_answers": [
+      "No"
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": null,
+    "answer_source": "invalid_content: No",
+    "is_valid": false
+  },
+  {
+    "query_id": "812387",
+    "query": "what is the correct height for step handrails",
+    "gold_passage_ids": [
+      "7776665"
+    ],
+    "raw_answers": [
+      "27.25 inches (your window height) or default to 24\u2033."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "27.25 inches (your window height) or default to 24\u2033.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "480064",
+    "query": "price chopper locations in ct",
+    "gold_passage_ids": [
+      "7478541"
+    ],
+    "raw_answers": [
+      "Middletown and Storrs near the main campus of UConn."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Middletown and Storrs near the main campus of UConn.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "442593",
+    "query": "longest punt in nfl",
+    "gold_passage_ids": [
+      "7543541"
+    ],
+    "raw_answers": [
+      "A 98-yarder by Steve O'Neal of the New York Jets in an American Football League game."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "A 98-yarder by Steve O'Neal of the New York Jets in an American Football League game.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1085288",
+    "query": "case can arrive at the supreme court through each of these ways except",
+    "gold_passage_ids": [
+      "7120331"
+    ],
+    "raw_answers": [
+      "A case can arrive at the supreme court through each of these ways except By an order from the executive branch The supreme court held the highest position within the judiciary branch and has the authority to judge the law even the executive branch itself."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "A case can arrive at the supreme court through each of these ways except By an order from the executive branch The supreme court held the highest position within the judiciary branch and has the authority to judge the law even the executive branch itself.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "185299",
+    "query": "fastest cell phone processor",
+    "gold_passage_ids": [
+      "2459032"
+    ],
+    "raw_answers": [
+      "The Snapdragon 820 and 821."
+    ],
+    "raw_well_formed_answers": [
+      "The fastest cell phone processor is the Snapdragon 820 and 821.",
+      "The Snapdragon 820 and 821 are the fastest cell phone processor."
+    ],
+    "reference_answer": "The fastest cell phone processor is the Snapdragon 820 and 821.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "798945",
+    "query": "what is spotting",
+    "gold_passage_ids": [
+      "2652138"
+    ],
+    "raw_answers": [
+      "Spotting is a common concern that many pregnant women face."
+    ],
+    "raw_well_formed_answers": [
+      "Spotting is a common concern that many pregnant women face."
+    ],
+    "reference_answer": "Spotting is a common concern that many pregnant women face.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1041159",
+    "query": "who is the ninja turtle with the blue mask",
+    "gold_passage_ids": [
+      "7771115"
+    ],
+    "raw_answers": [
+      "Leonardo or Leo"
+    ],
+    "raw_well_formed_answers": [
+      "Leonardo or Leo is the ninja turtle with the blue mask."
+    ],
+    "reference_answer": "Leonardo or Leo is the ninja turtle with the blue mask.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "165480",
+    "query": "does digoxin affect potassium",
+    "gold_passage_ids": [
+      "5034699"
+    ],
+    "raw_answers": [
+      "Yes"
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": null,
+    "answer_source": "invalid_content: Yes",
+    "is_valid": false
+  },
+  {
+    "query_id": "1087484",
+    "query": "what are mofongo",
+    "gold_passage_ids": [
+      "7101742"
+    ],
+    "raw_answers": [
+      "Classic mofongo is redolent of garlic."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Classic mofongo is redolent of garlic.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "780850",
+    "query": "what is oxycodone",
+    "gold_passage_ids": [
+      "7962609"
+    ],
+    "raw_answers": [
+      "An opiate with some synthetic properties that is used in the treatment of pain."
+    ],
+    "raw_well_formed_answers": [
+      "Oxycodone is an opiate with some synthetic properties that is used in the treatment of pain.  ",
+      "Oxycodone is an opiate with some synthetic properties that is used in the treatment of pain."
+    ],
+    "reference_answer": "Oxycodone is an opiate with some synthetic properties that is used in the treatment of pain.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1086675",
+    "query": "what are thomas jefferson's kids named",
+    "gold_passage_ids": [
+      "7108284"
+    ],
+    "raw_answers": [
+      "Thomas Jefferson had a total of four children where three daughters named Martha Jefferson Randolph, Lucy Elizabeth Jefferson and Mary Jefferson Eppes and his son name was Peter Jefferson."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Thomas Jefferson had a total of four children where three daughters named Martha Jefferson Randolph, Lucy Elizabeth Jefferson and Mary Jefferson Eppes and his son name was Peter Jefferson.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1052274",
+    "query": "what is korean seafood pancake",
+    "gold_passage_ids": [
+      "7181518"
+    ],
+    "raw_answers": [
+      "These crispy seafood pancakes get a spicy tang from the kimchi that\u2019s mixed into the batter."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "These crispy seafood pancakes get a spicy tang from the kimchi that\u2019s mixed into the batter.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1088437",
+    "query": "weather in kingston tn",
+    "gold_passage_ids": [
+      "7093592"
+    ],
+    "raw_answers": [
+      "The weather in Kingston, Tennessee for Aug 26 is 82 degrees and partly cloudy, Aug 27 is 84 degrees and partly cloudy,  Aug 28 is 81 degrees and Thundery outbreaks possible and Aug 29 is 82 degrees and partly cloudy."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The weather in Kingston, Tennessee for Aug 26 is 82 degrees and partly cloudy, Aug 27 is 84 degrees and partly cloudy,  Aug 28 is 81 degrees and Thundery outbreaks possible and Aug 29 is 82 degrees and partly cloudy.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1090151",
+    "query": "systemic response definition",
+    "gold_passage_ids": [
+      "3624309"
+    ],
+    "raw_answers": [
+      "Systemic inflammatory response syndrome is an inflammatory state affecting the whole body."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Systemic inflammatory response syndrome is an inflammatory state affecting the whole body.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1047833",
+    "query": "cost of hiv/aids yearly treatment",
+    "gold_passage_ids": [
+      "7188670"
+    ],
+    "raw_answers": [
+      "The average total cost of HIV care was $19,912 per patient per year."
+    ],
+    "raw_well_formed_answers": [
+      "The cost of HIV or aids yearly treatment was $19,912 per patient per year."
+    ],
+    "reference_answer": "The cost of HIV or aids yearly treatment was $19,912 per patient per year.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1091633",
+    "query": "phone number irs tax id number",
+    "gold_passage_ids": [
+      "7856506"
+    ],
+    "raw_answers": [
+      "The phone number of IRS is 800-829-1040."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The phone number of IRS is 800-829-1040.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1095749",
+    "query": "how much jake paul merch",
+    "gold_passage_ids": [
+      "7566269"
+    ],
+    "raw_answers": [
+      "Jake Paul's long-sleeve graphic T-shirts, hoodies, distressed denim jackets with prices ranged from $30 to $100 for a skate deck."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Jake Paul's long-sleeve graphic T-shirts, hoodies, distressed denim jackets with prices ranged from $30 to $100 for a skate deck.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1090077",
+    "query": "telephone number for amazon fire stick customer service",
+    "gold_passage_ids": [
+      "7078615"
+    ],
+    "raw_answers": [
+      "The customer service telephone number for amazon fire stick is 1-844-745-1521."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The customer service telephone number for amazon fire stick is 1-844-745-1521.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1097449",
+    "query": "how many calories in provolone cheese",
+    "gold_passage_ids": [
+      "7413603"
+    ],
+    "raw_answers": [
+      "There are 60 calories in 1 cubic inch of Provolone cheese."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "There are 60 calories in 1 cubic inch of Provolone cheese.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "457714",
+    "query": "most expensive hotels in new york city",
+    "gold_passage_ids": [
+      "7714160",
+      "7714162"
+    ],
+    "raw_answers": [
+      "1 The Ty Warner Penthouse at the Four Seasons. 2 The Presidential Suite at The St. Regis."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "1 The Ty Warner Penthouse at the Four Seasons. 2 The Presidential Suite at The St. Regis.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "129641",
+    "query": "define: morbid obesity",
+    "gold_passage_ids": [
+      "7416464"
+    ],
+    "raw_answers": [
+      "The quality of being morbid."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The quality of being morbid.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1086915",
+    "query": "what are the observed periodic trends in electron affinity?",
+    "gold_passage_ids": [
+      "7106361"
+    ],
+    "raw_answers": [
+      "The observed periodic trends in electron affinity are as follows: 1 For main-group elements, electron affinity generally becomes more negative as you move to the right across a row B. 2 For main-group elements, electron affinity generally becomes more positive as you move to the right across a row C. 3 There is not a corresponding trend in electron affinity going right across a row D. 4 For main-group elements, electron affinity generally becomes more negative as you move down a column."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "The observed periodic trends in electron affinity are as follows: 1 For main-group elements, electron affinity generally becomes more negative as you move to the right across a row B. 2 For main-group elements, electron affinity generally becomes more positive as you move to the right across a row C. 3 There is not a corresponding trend in electron affinity going right across a row D. 4 For main-group elements, electron affinity generally becomes more negative as you move down a column.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "433415",
+    "query": "josephine's feast",
+    "gold_passage_ids": [
+      "7538122"
+    ],
+    "raw_answers": [
+      "It made from local each jar has about two pounds of fruit and nothing artificial from Long Island come in flavors like Ginger-Spiced Carrot Jam with Drunken Raisins and Red Hot Pepper Jam."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "It made from local each jar has about two pounds of fruit and nothing artificial from Long Island come in flavors like Ginger-Spiced Carrot Jam with Drunken Raisins and Red Hot Pepper Jam.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "902931",
+    "query": "what test is for lupus",
+    "gold_passage_ids": [
+      "4123683"
+    ],
+    "raw_answers": [
+      "Antinuclear antibody test (ANA)."
+    ],
+    "raw_well_formed_answers": [
+      "Antinuclear antibody test is for Lupus.",
+      "Lupus is tested using the Antinuclear Antibody Test, or ANA. "
+    ],
+    "reference_answer": "Antinuclear antibody test is for Lupus.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "147337",
+    "query": "difference between ford supercab and crew cab",
+    "gold_passage_ids": [
+      "7749359",
+      "7510754",
+      "7749362"
+    ],
+    "raw_answers": [
+      "1 SuperCrew has seats in the back that are created for passengers or cargo while crew cabs are full-size cabs with four doors, bench seats and more legroom. 2 crew cab will cost more than one with a SuperCab. 3 crew cab as four full doors while SuperCab has a full passenger door, full driver's door and two half doors in the back."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "1 SuperCrew has seats in the back that are created for passengers or cargo while crew cabs are full-size cabs with four doors, bench seats and more legroom. 2 crew cab will cost more than one with a SuperCab. 3 crew cab as four full doors while SuperCab has a full passenger door, full driver's door and two half doors in the back.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "66154",
+    "query": "can crystals cause dizziness",
+    "gold_passage_ids": [
+      "7396173"
+    ],
+    "raw_answers": [
+      "Yes,The dizziness is caused by dislodged calcium crystals."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Yes,The dizziness is caused by dislodged calcium crystals.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "842596",
+    "query": "what is the purpose of polarized sunglasses",
+    "gold_passage_ids": [
+      "7889349"
+    ],
+    "raw_answers": [
+      "They are designed to reduce the glare from surfaces like water, snow and glass."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "They are designed to reduce the glare from surfaces like water, snow and glass.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "992950",
+    "query": "which super bowl did colin kaepernick play in",
+    "gold_passage_ids": [
+      "7278548"
+    ],
+    "raw_answers": [
+      "Colin Kaepernick played in Super Bowl XLVII."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Colin Kaepernick played in Super Bowl XLVII.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "490802",
+    "query": "russ simmons net worth",
+    "gold_passage_ids": [
+      "7638465"
+    ],
+    "raw_answers": [
+      "$325 Million"
+    ],
+    "raw_well_formed_answers": [
+      "The net worth of Russ Simmons is $325 million.",
+      "The net worth of Russ Simmons is $325 Million. ",
+      "Russ Simmons's net worth is $325 million."
+    ],
+    "reference_answer": "The net worth of Russ Simmons is $325 million.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1026372",
+    "query": "who did colton haynes play on arrow",
+    "gold_passage_ids": [
+      "7818007"
+    ],
+    "raw_answers": [
+      "Roy Harper/Arsenal"
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Roy Harper/Arsenal",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1098497",
+    "query": "how long do resin countertops last",
+    "gold_passage_ids": [
+      "7334501"
+    ],
+    "raw_answers": [
+      "Resin countertops last at least 10 to 20 years."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Resin countertops last at least 10 to 20 years.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "100616",
+    "query": "cost estimate glass shower",
+    "gold_passage_ids": [
+      "7326072"
+    ],
+    "raw_answers": [
+      "$589 - $844 per door"
+    ],
+    "raw_well_formed_answers": [
+      "The estimate cost of glass shower is $589 to $844 per door.",
+      "The estimated cost of a glass shower is $589 to $844 per door.  "
+    ],
+    "reference_answer": "The estimate cost of glass shower is $589 to $844 per door.",
+    "answer_source": "wellFormedAnswers",
+    "is_valid": true
+  },
+  {
+    "query_id": "641583",
+    "query": "what does it mean when your tongue is all white",
+    "gold_passage_ids": [
+      "850886"
+    ],
+    "raw_answers": [
+      "It happens when the bumps on your tongue swell and trap dead cells, bacteria, and debris between them."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "It happens when the bumps on your tongue swell and trap dead cells, bacteria, and debris between them.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "222954",
+    "query": "how do you lower hardness in pool water?",
+    "gold_passage_ids": [
+      "7313953"
+    ],
+    "raw_answers": [
+      "Reduce Pool Water Hardness. 1 Take a water sample from a depth of at least 12 inches from the water surface. 2 Add a reagent from a hardness test kit to the water sample and check the result against the guide provided by the test kit manufacturer. 3 Drain some of the water in the pool if the water hardness level is too high."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Reduce Pool Water Hardness. 1 Take a water sample from a depth of at least 12 inches from the water surface. 2 Add a reagent from a hardness test kit to the water sample and check the result against the guide provided by the test kit manufacturer. 3 Drain some of the water in the pool if the water hardness level is too high.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "899800",
+    "query": "what supplements are antiinflammatory",
+    "gold_passage_ids": [
+      "7731519",
+      "7731522",
+      "7731523"
+    ],
+    "raw_answers": [
+      "Boswellia (serrata, frankincense), Borage or Star Flower Oil, Curcumin and Turmeric."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Boswellia (serrata, frankincense), Borage or Star Flower Oil, Curcumin and Turmeric.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "548254",
+    "query": "wenatchee washington population",
+    "gold_passage_ids": [
+      "7439342"
+    ],
+    "raw_answers": [
+      "33,636 as of 2016."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "33,636 as of 2016.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "422501",
+    "query": "is rhinitis painful",
+    "gold_passage_ids": [
+      "7490616"
+    ],
+    "raw_answers": [
+      "Yes, less common symptoms include itchy throat, loss of smell, face pain, headache and itchy and watery, red eyes."
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Yes, less common symptoms include itchy throat, loss of smell, face pain, headache and itchy and watery, red eyes.",
+    "answer_source": "answers",
+    "is_valid": true
+  },
+  {
+    "query_id": "1093927",
+    "query": "is the jaraguay volcanic field dormant?",
+    "gold_passage_ids": [
+      "7711203"
+    ],
+    "raw_answers": [
+      "Yes, coordinates Jaraguay volcanic field is a volcanic field in northern Baja California"
+    ],
+    "raw_well_formed_answers": [],
+    "reference_answer": "Yes, coordinates Jaraguay volcanic field is a volcanic field in northern Baja California",
+    "answer_source": "answers",
+    "is_valid": true
+  }
+]

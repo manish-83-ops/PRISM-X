@@ -49,7 +49,8 @@ This document provides the complete, authoritative specification for all HTTP en
 - `query` (string, required): 1 to 512 characters.
 - `mode` (string, optional, default `"hybrid"`): Supported modes: `"dense"`, `"hybrid"`, `"hybrid_rerank"`, `"hybrid+rerank"`.
 - `top_k` (integer, optional, default `5`): Range 1 to 50 (number of final passages returned).
-- `rerank_k` (integer, optional, default `30`): Range 1 to 100 (candidate depth evaluated by cross-encoder in rerank modes).
+- `rerank_k` (integer, optional, default `10`): Range 1 to 100 (candidate depth evaluated by cross-encoder in rerank modes; Gate 4B frozen default is 10).
+- `deadline_ms` (float, optional, default `200.0`): Range 10.0 to 5000.0 (wall-clock latency budget enforced by the Deadline Governor).
 - `use_cache` (boolean, optional, default `true`): Toggle query result cache lookup and population (alias: `cache`).
 - `filters` (object, optional, nullable):
   - `category` (string, list of strings, or null).

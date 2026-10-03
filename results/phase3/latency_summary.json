@@ -1,0 +1,95 @@
+{
+  "benchmark": "Gate 4B Official HTTP Latency Benchmark (N=100 per scenario)",
+  "timestamp": "2026-10-03 19:18:27",
+  "sla_target_p95_ms": 250.0,
+  "sla_hard_limit_ms": 280.0,
+  "rerank_config": {
+    "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "quantization": "PyTorch dynamic INT8",
+    "candidate_depth_k": 10,
+    "max_length": 128,
+    "torch_threads": 8,
+    "deadline_ms": 200.0
+  },
+  "mode_latency_uncached": {
+    "dense": {
+      "scenario": "dense_uncached",
+      "mode": "dense",
+      "n_queries": 100,
+      "p50_ms": 54.26,
+      "p90_ms": 63.24,
+      "p95_ms": 67.93,
+      "p99_ms": 78.78,
+      "mean_ms": 56.01,
+      "min_ms": 46.03,
+      "max_ms": 79.68
+    },
+    "hybrid": {
+      "scenario": "hybrid_uncached",
+      "mode": "hybrid",
+      "n_queries": 100,
+      "p50_ms": 60.0,
+      "p90_ms": 69.28,
+      "p95_ms": 77.57,
+      "p99_ms": 91.07,
+      "mean_ms": 61.61,
+      "min_ms": 50.41,
+      "max_ms": 94.5
+    },
+    "hybrid_rerank_k10": {
+      "scenario": "hybrid_rerank_uncached",
+      "mode": "hybrid_rerank",
+      "n_queries": 100,
+      "p50_ms": 181.59,
+      "p90_ms": 216.69,
+      "p95_ms": 242.25,
+      "p99_ms": 280.51,
+      "mean_ms": 187.83,
+      "min_ms": 143.38,
+      "max_ms": 290.83
+    }
+  },
+  "cache_workloads": {
+    "all_unique_0pct_hits": {
+      "scenario": "cache_unique_workload",
+      "mode": "hybrid_rerank",
+      "n_queries": 100,
+      "p50_ms": 181.17,
+      "p90_ms": 230.74,
+      "p95_ms": 258.58,
+      "p99_ms": 370.1,
+      "mean_ms": 190.76,
+      "min_ms": 142.4,
+      "max_ms": 377.69
+    },
+    "repeated_30pct": {
+      "scenario": "cache_30pct_workload",
+      "mode": "hybrid_rerank",
+      "n_queries": 100,
+      "p50_ms": 4.8,
+      "p90_ms": 21.07,
+      "p95_ms": 23.65,
+      "p99_ms": 26.73,
+      "mean_ms": 8.83,
+      "min_ms": 3.64,
+      "max_ms": 27.51
+    },
+    "repeated_100pct_best_case": {
+      "scenario": "cache_100pct_repeated_best_case",
+      "mode": "hybrid_rerank",
+      "n_queries": 100,
+      "p50_ms": 4.77,
+      "p90_ms": 16.87,
+      "p95_ms": 24.6,
+      "p99_ms": 27.49,
+      "mean_ms": 7.54,
+      "min_ms": 3.71,
+      "max_ms": 28.93
+    }
+  },
+  "sla_status": {
+    "hybrid_rerank_p95_ms": 242.25,
+    "within_250ms_target": true,
+    "within_280ms_hard_limit": true
+  }
+}

@@ -1,0 +1,101 @@
+idx,query_id,query,mode,scenario,cache_hit,governor_state,client_wall_clock_ms,server_encode_ms,server_dense_ms,server_sparse_ms,server_fusion_ms,server_fetch_text_ms,server_rerank_ms,server_total_ms
+1,647687,what does semen consist of,dense,dense_uncached,False,normal,59.04,44.23,5.86,0.0,0.0,2.67,0.0,53.05
+2,74328,can tennis elbow cause pain in your shoulder?,dense,dense_uncached,False,normal,50.75,35.18,5.81,0.0,0.0,3.06,0.0,44.34
+3,391662,if meat is bad for you what should you eat,dense,dense_uncached,False,normal,53.4,37.28,5.99,0.0,0.0,3.7,0.0,47.33
+4,530602,types organizational structure,dense,dense_uncached,False,normal,46.87,31.42,6.12,0.0,0.0,3.0,0.0,40.83
+5,61836,can a 15 year old fly alone domestic flights?,dense,dense_uncached,False,normal,61.8,39.83,6.71,0.0,0.0,4.15,0.0,56.61
+6,1082622,what does the root word tele mean,dense,dense_uncached,False,normal,51.54,37.01,6.32,0.0,0.0,2.51,0.0,46.13
+7,321951,how much is donald trump jr worth,dense,dense_uncached,False,normal,58.89,41.95,6.81,0.0,0.0,2.86,0.0,51.99
+8,653187,what does the term the age of aquarius mean?,dense,dense_uncached,False,normal,53.5,37.3,6.63,0.0,0.0,3.34,0.0,47.66
+9,1051211,what is mepap certification,dense,dense_uncached,False,normal,60.14,43.79,6.47,0.0,0.0,3.29,0.0,53.92
+10,451484,medicare eligibility contact number,dense,dense_uncached,False,normal,65.53,28.43,5.99,0.0,0.0,3.15,0.0,38.05
+11,1021277,define atrium,dense,dense_uncached,False,normal,54.52,28.91,6.59,0.0,0.0,2.96,0.0,38.76
+12,988745,who is the new york county clerk,dense,dense_uncached,False,normal,58.04,35.14,6.59,0.0,0.0,4.42,0.0,52.18
+13,1083010,what does simple circuit contain,dense,dense_uncached,False,normal,58.56,41.68,6.88,0.0,0.0,3.24,0.0,52.22
+14,1083598,what does it mean cardholder name?,dense,dense_uncached,False,normal,59.14,44.56,6.33,0.0,0.0,2.37,0.0,53.54
+15,549342,what about phones in iceland,dense,dense_uncached,False,normal,52.0,36.11,6.09,0.0,0.0,2.95,0.0,45.49
+16,946631,when does harbin ice city end,dense,dense_uncached,False,normal,52.49,37.01,6.49,0.0,0.0,2.94,0.0,46.81
+17,507381,symptoms of congenital heart defects,dense,dense_uncached,False,normal,63.82,32.49,6.13,0.0,0.0,2.95,0.0,41.91
+18,1011021,what year declaration of independence,dense,dense_uncached,False,normal,50.85,35.61,6.06,0.0,0.0,3.23,0.0,45.26
+19,999610,where is vista ca,dense,dense_uncached,False,normal,59.52,36.58,6.58,0.0,0.0,4.54,0.0,54.02
+20,1094460,inches of mercury meaning,dense,dense_uncached,False,normal,53.82,38.46,6.26,0.0,0.0,2.69,0.0,47.73
+21,696677,what is a public health concept,dense,dense_uncached,False,normal,55.8,39.41,6.48,0.0,0.0,3.01,0.0,49.32
+22,1074989,what is a cyst on the kidneys do,dense,dense_uncached,False,normal,56.73,42.15,6.5,0.0,0.0,2.68,0.0,51.6
+23,1063702,what is an advocacy project,dense,dense_uncached,False,normal,49.83,35.41,6.32,0.0,0.0,2.58,0.0,44.61
+24,1090701,side effects for diclofenac topical,dense,dense_uncached,False,normal,63.57,32.16,7.01,0.0,0.0,2.77,0.0,42.24
+25,1081730,what family do squirrels belong to,dense,dense_uncached,False,normal,51.59,36.42,6.86,0.0,0.0,2.84,0.0,46.44
+26,978057,where is berrimah,dense,dense_uncached,False,normal,56.47,32.96,7.14,0.0,0.0,4.24,0.0,50.17
+27,1102235,why does ehr downtime happen,dense,dense_uncached,False,normal,52.72,37.22,6.33,0.0,0.0,3.17,0.0,47.07
+28,1096045,how much does one roll of duck tape cost,dense,dense_uncached,False,normal,53.58,38.86,6.51,0.0,0.0,2.65,0.0,48.35
+29,169305,does motion sensor device have camera,dense,dense_uncached,False,normal,49.52,34.89,6.8,0.0,0.0,2.64,0.0,44.62
+30,1051214,what is meningitis.,dense,dense_uncached,False,normal,52.79,38.15,6.5,0.0,0.0,2.75,0.0,47.73
+31,1098953,how heavy are road bikes,dense,dense_uncached,False,normal,48.3,32.63,6.31,0.0,0.0,2.78,0.0,42.14
+32,534941,usps schedule a delivery,dense,dense_uncached,False,normal,57.4,41.41,6.45,0.0,0.0,2.95,0.0,51.14
+33,658372,what event started world war 1,dense,dense_uncached,False,normal,79.68,31.88,6.81,0.0,0.0,4.46,0.0,49.32
+34,1070452,what is a mimo receiver,dense,dense_uncached,False,normal,56.7,40.05,6.2,0.0,0.0,3.98,0.0,50.56
+35,414714,is it still dangerous to go to the place of where the chernobyl happened,dense,dense_uncached,False,normal,75.44,38.88,6.36,0.0,0.0,2.72,0.0,48.29
+36,1036800,who is ovid in greek mythology,dense,dense_uncached,False,normal,52.17,36.67,6.35,0.0,0.0,2.76,0.0,46.08
+37,249866,how long does a pa marriage license last,dense,dense_uncached,False,normal,54.63,38.46,6.21,0.0,0.0,3.14,0.0,48.16
+38,1011140,what wire is used to mig mild steel,dense,dense_uncached,False,normal,54.32,39.23,6.91,0.0,0.0,2.73,0.0,49.18
+39,569555,what are the elements to make air,dense,dense_uncached,False,normal,53.44,38.68,6.5,0.0,0.0,3.0,0.0,48.49
+40,1000097,where is whiteville tennessee,dense,dense_uncached,False,normal,58.64,35.06,6.46,0.0,0.0,5.22,0.0,52.96
+41,107283,cost of starting a restaurant,dense,dense_uncached,False,normal,51.21,36.13,6.33,0.0,0.0,3.22,0.0,46.05
+42,278863,how many career games did paul krause play in the nfl.,dense,dense_uncached,False,normal,54.2,39.61,6.53,0.0,0.0,2.77,0.0,49.23
+43,780297,what is orofacial dyskinesia,dense,dense_uncached,False,normal,54.13,39.91,6.01,0.0,0.0,2.74,0.0,48.97
+44,9454,a simple definition for the word bias.,dense,dense_uncached,False,normal,57.7,41.27,6.6,0.0,0.0,3.43,0.0,51.68
+45,922389,what was the result of pearl harbor attack,dense,dense_uncached,False,normal,55.0,38.75,7.84,0.0,0.0,2.75,0.0,49.66
+46,55691,boulangerie pronunciation,dense,dense_uncached,False,normal,49.22,33.52,6.85,0.0,0.0,3.16,0.0,43.87
+47,996181,where was the movie true grit filmed at,dense,dense_uncached,False,normal,58.44,34.61,6.72,0.0,0.0,4.82,0.0,52.34
+48,991138,where is punta cana eden resort,dense,dense_uncached,False,normal,52.56,37.24,6.27,0.0,0.0,2.98,0.0,46.85
+49,1026775,what kind of mixture is rocky road ice cream,dense,dense_uncached,False,normal,56.27,40.84,7.02,0.0,0.0,2.72,0.0,50.91
+50,865616,what jedi commands the arc troopers,dense,dense_uncached,False,normal,56.15,41.02,6.32,0.0,0.0,2.97,0.0,50.63
+51,602352,"what county is alton bay,nh in?",dense,dense_uncached,False,normal,56.53,40.92,6.21,0.0,0.0,2.95,0.0,50.44
+52,282530,how many doctors are in the us,dense,dense_uncached,False,normal,63.73,48.24,6.41,0.0,0.0,3.23,0.0,58.26
+53,291248,how many ounces of liquid is in one gallon,dense,dense_uncached,False,normal,78.77,39.74,6.62,0.0,0.0,3.15,0.0,49.86
+54,997449,where is the kihei,dense,dense_uncached,False,normal,61.64,36.89,6.37,0.0,0.0,4.65,0.0,55.78
+55,1063371,what is an aviation medical examiner?,dense,dense_uncached,False,normal,57.86,42.29,6.52,0.0,0.0,2.61,0.0,51.77
+56,1003006,where was napoleon forced to.exile,dense,dense_uncached,False,normal,53.64,38.04,6.51,0.0,0.0,3.07,0.0,48.02
+57,531142,typing average words per minute test,dense,dense_uncached,False,normal,52.4,37.42,6.6,0.0,0.0,2.84,0.0,47.19
+58,1050695,what is motor dyspraxia,dense,dense_uncached,False,normal,53.39,38.59,6.46,0.0,0.0,2.66,0.0,48.01
+59,548099,wellcare mike vice president,dense,dense_uncached,False,normal,51.65,36.43,6.5,0.0,0.0,2.81,0.0,46.07
+60,953355,when is the rib cook off in reno,dense,dense_uncached,False,normal,55.21,39.85,6.26,0.0,0.0,2.74,0.0,49.23
+61,1096375,how much data analyst makes,dense,dense_uncached,False,normal,56.39,34.04,5.83,0.0,0.0,4.07,0.0,50.91
+62,541135,was there a true bagger vance,dense,dense_uncached,False,normal,52.73,37.0,7.54,0.0,0.0,2.77,0.0,47.62
+63,812387,what is the correct height for step handrails,dense,dense_uncached,False,normal,56.35,41.15,6.38,0.0,0.0,2.73,0.0,50.62
+64,480064,price chopper locations in ct,dense,dense_uncached,False,normal,52.23,36.19,6.69,0.0,0.0,3.05,0.0,46.3
+65,442593,longest punt in nfl,dense,dense_uncached,False,normal,48.9,34.04,6.4,0.0,0.0,2.89,0.0,43.65
+66,1085288,case can arrive at the supreme court through each of these ways except,dense,dense_uncached,False,normal,52.84,37.6,6.24,0.0,0.0,3.08,0.0,47.28
+67,185299,fastest cell phone processor,dense,dense_uncached,False,normal,51.8,36.7,6.63,0.0,0.0,2.91,0.0,46.59
+68,798945,what is spotting,dense,dense_uncached,False,normal,57.65,35.45,6.61,0.0,0.0,4.02,0.0,52.57
+69,1041159,who is the ninja turtle with the blue mask,dense,dense_uncached,False,normal,58.13,41.77,6.49,0.0,0.0,3.13,0.0,51.77
+70,165480,does digoxin affect potassium,dense,dense_uncached,False,normal,56.02,41.1,6.42,0.0,0.0,2.93,0.0,50.76
+71,1087484,what are mofongo,dense,dense_uncached,False,normal,63.2,36.04,7.17,0.0,0.0,3.07,0.0,46.61
+72,780850,what is oxycodone,dense,dense_uncached,False,normal,51.82,36.5,6.74,0.0,0.0,2.89,0.0,46.5
+73,1086675,what are thomas jefferson's kids named,dense,dense_uncached,False,normal,52.62,37.89,6.35,0.0,0.0,2.63,0.0,47.18
+74,1052274,what is korean seafood pancake,dense,dense_uncached,False,normal,50.74,36.54,6.06,0.0,0.0,2.51,0.0,45.41
+75,1088437,weather in kingston tn,dense,dense_uncached,False,normal,54.38,30.3,6.76,0.0,0.0,4.52,0.0,47.8
+76,1090151,systemic response definition,dense,dense_uncached,False,normal,50.73,34.82,6.62,0.0,0.0,3.03,0.0,44.9
+77,1047833,cost of hiv/aids yearly treatment,dense,dense_uncached,False,normal,74.26,34.05,7.04,0.0,0.0,2.78,0.0,44.16
+78,1091633,phone number irs tax id number,dense,dense_uncached,False,normal,52.64,38.44,6.12,0.0,0.0,2.65,0.0,47.53
+79,1095749,how much jake paul merch,dense,dense_uncached,False,normal,52.57,37.08,6.43,0.0,0.0,2.81,0.0,46.67
+80,1090077,telephone number for amazon fire stick customer service,dense,dense_uncached,False,normal,63.05,38.43,6.09,0.0,0.0,2.81,0.0,47.67
+81,1097449,how many calories in provolone cheese,dense,dense_uncached,False,normal,53.86,39.02,5.91,0.0,0.0,2.71,0.0,47.94
+82,457714,most expensive hotels in new york city,dense,dense_uncached,False,normal,58.86,35.42,6.3,0.0,0.0,4.66,0.0,53.01
+83,129641,define: morbid obesity,dense,dense_uncached,False,normal,49.68,34.63,6.88,0.0,0.0,2.77,0.0,44.59
+84,1086915,what are the observed periodic trends in electron affinity?,dense,dense_uncached,False,normal,50.8,35.84,6.84,0.0,0.0,2.81,0.0,45.83
+85,433415,josephine's feast,dense,dense_uncached,False,normal,48.16,32.64,7.13,0.0,0.0,2.9,0.0,43.01
+86,902931,what test is for lupus,dense,dense_uncached,False,normal,49.88,34.71,6.48,0.0,0.0,3.06,0.0,44.6
+87,147337,difference between ford supercab and crew cab,dense,dense_uncached,False,normal,53.93,38.98,6.82,0.0,0.0,2.79,0.0,48.9
+88,66154,can crystals cause dizziness,dense,dense_uncached,False,normal,61.06,33.07,6.3,0.0,0.0,3.04,0.0,42.77
+89,842596,what is the purpose of polarized sunglasses,dense,dense_uncached,False,normal,61.57,38.78,7.48,0.0,0.0,3.75,0.0,56.03
+90,992950,which super bowl did colin kaepernick play in,dense,dense_uncached,False,normal,55.85,40.35,6.51,0.0,0.0,2.9,0.0,50.14
+91,490802,russ simmons net worth,dense,dense_uncached,False,normal,50.91,36.2,6.59,0.0,0.0,2.79,0.0,45.91
+92,1026372,who did colton haynes play on arrow,dense,dense_uncached,False,normal,67.6,34.82,6.53,0.0,0.0,2.73,0.0,44.4
+93,1098497,how long do resin countertops last,dense,dense_uncached,False,normal,51.07,35.92,7.15,0.0,0.0,2.61,0.0,46.0
+94,100616,cost estimate glass shower,dense,dense_uncached,False,normal,46.03,31.09,5.98,0.0,0.0,3.34,0.0,40.78
+95,641583,what does it mean when your tongue is all white,dense,dense_uncached,False,normal,52.39,37.58,6.62,0.0,0.0,2.88,0.0,47.41
+96,222954,how do you lower hardness in pool water?,dense,dense_uncached,False,normal,59.62,36.25,6.98,0.0,0.0,4.65,0.0,53.84
+97,899800,what supplements are antiinflammatory,dense,dense_uncached,False,normal,51.99,36.88,6.14,0.0,0.0,3.01,0.0,46.4
+98,548254,wenatchee washington population,dense,dense_uncached,False,normal,55.07,38.92,7.05,0.0,0.0,3.15,0.0,49.49
+99,422501,is rhinitis painful,dense,dense_uncached,False,normal,52.43,38.45,6.05,0.0,0.0,2.65,0.0,47.44
+100,1093927,is the jaraguay volcanic field dormant?,dense,dense_uncached,False,normal,74.38,47.91,6.54,0.0,0.0,2.93,0.0,57.71

@@ -171,15 +171,21 @@ class SearchService:
 
         # 4. Optional Reranking Stage
         final_pool = hydrated_candidates
+        governor_state = "normal"
         if should_rerank and self.reranker is not None:
             rerank_pool = hydrated_candidates[:rerank_k]
-            reranked, r_ms = self.reranker.rerank(
+            reranked, r_ms, gov_state = self.reranker.rerank(
                 query=request.query,
                 candidates=rerank_pool,
                 top_k=request.top_k,
+                max_length=128,
+                deadline_ms=request.deadline_ms,
+                t_request_start=t_total_start,
+                batch_size=5,
             )
             latencies["rerank"] = round(r_ms, 2)
             final_pool = reranked
+            governor_state = gov_state
 
         # 5. Assemble final response items
         results: list[SearchResultItem] = []
@@ -232,7 +238,7 @@ class SearchService:
             results=results,
             latency_ms=LatencyBreakdown(**latencies),
             cache_hit=False,
-            governor_state="normal",
+            governor_state=governor_state,
         )
 
         # Store in cache if enabled

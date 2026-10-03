@@ -24,7 +24,8 @@ class SearchRequest(BaseModel):
     filters: FilterParams | None = None
     fusion: FusionParams | None = None
     rerank: bool = False
-    rerank_k: int = Field(default=20, ge=1, le=100)
+    rerank_k: int = Field(default=10, ge=1, le=100)
+    deadline_ms: float | None = Field(default=200.0, ge=10.0, le=5000.0)
     use_cache: bool = True
     cache: bool | None = None  # alias for use_cache
 

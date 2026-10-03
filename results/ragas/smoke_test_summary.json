@@ -1,0 +1,22 @@
+{
+  "model": "qwen/qwen3.8-27b",
+  "n_smoke_queries": 3,
+  "total_calls": 12,
+  "total_tokens": 9150,
+  "avg_tokens_per_query": 3050.0,
+  "avg_calls_per_query": 4,
+  "elapsed_seconds": 29.1,
+  "free_tier_limits": {
+    "model": "qwen/qwen3.8-27b",
+    "rpm": 30,
+    "rpd": 1000,
+    "tpd": 500000,
+    "tpm": 8000
+  },
+  "projections": {
+    "est_100_queries_tokens": 305000,
+    "daily_capacity_queries": 163,
+    "days_for_100_queries": 0.61,
+    "fits_in_one_day": true
+  }
+}

@@ -178,6 +178,36 @@ All architectural and algorithmic decisions are recorded here with context, opti
 - **Evaluation Workloads:**
   - Evaluated on three workloads: (1) All-unique (0% cache hits, p50=66.18ms, p95=103.04ms), (2) 30% repeated queries (p50=61.10ms, p95=75.95ms), and (3) 100% repeated queries (p50=4.26ms, p95=24.28ms, sub-millisecond cache hits).
 
+## ADR-013: Latency-Constrained Reranker Selection and Deadline Governor (Gate 4B)
+- **Date:** 2026-10-03
+- **Context:** While $K=30$ was selected under ADR-011 for unconstrained retrieval quality (NDCG@5 = 0.9381 on TUNE), its HTTP client p95 latency on this CPU reached 743.53 ms, significantly exceeding the 300 ms SLA.
+- **Latency-Constrained Selection Rule (Written BEFORE Running):**
+  > Among configurations whose p95 total latency on TUNE (HTTP path, idle machine) is $\le 250$ ms (with hard limit 280 ms), select the configuration that maximizes **NDCG@5**. Ties within $0.0010$ NDCG@5 go to the lower-latency configuration.
+  > If NO reranker configuration achieves p95 $\le 250$ ms on TUNE, the default production system remains **Hybrid without reranking** (p95 = 104.24 ms), and reranking is designated as an optional, opt-in mode labeled "exceeds SLA".
+- **Empirical Results on 150 TUNE Queries:**
+  - $K = 5$: NDCG@5 = 0.9139, MRR@10 = 0.9089, Hit@1 = 0.8800, p50 = 102.5 ms, p95 = 163.0 ms, Truncation = 0.0% (Valid)
+  - $K = 8$: NDCG@5 = 0.9229, MRR@10 = 0.9144, Hit@1 = 0.8800, p50 = 141.0 ms, p95 = 203.0 ms, Truncation = 0.7% (Valid)
+  - $K = 10$: NDCG@5 = **0.9296**, MRR@10 = **0.9211**, Hit@1 = **0.8867**, p50 = 134.4 ms, p95 = **170.3 ms**, Truncation = 0.7% (**WINNER**)
+  - $K = 15$: NDCG@5 = 0.9311, MRR@10 = 0.9208, Hit@1 = 0.8800, p50 = 205.6 ms, p95 = 269.4 ms, Truncation = 10.7% (FAILED SLA: > 250 ms)
+  - $K = 20$: NDCG@5 = 0.9336, MRR@10 = 0.9208, Hit@1 = 0.8800, p50 = 229.5 ms, p95 = 266.4 ms, Truncation = 46.0% (FAILED SLA: > 250 ms)
+- **Deadline Governor Evaluation on K=10:**
+  - Deadline 150.0 ms: NDCG@5 = 0.9296, p95 = 198.4 ms, Truncation = 6.0%
+  - Deadline 200.0 ms: NDCG@5 = **0.9305**, p95 = 219.2 ms, Truncation = 2.7% (**Selected Budget**)
+  - Deadline 250.0 ms: NDCG@5 = 0.9296, p95 = 290.3 ms, Truncation = 0.7%
+- **Selected Frozen Configuration:** Candidate depth $K = 10$, `max_length = 128`, PyTorch dynamic INT8 quantization, 8 threads, and Deadline Governor budget = $200.0$ ms.
+
+---
+
+## ADR-014: MS MARCO Human Reference Answer Ground Truth for RAGAS Evaluation
+- **Date:** 2026-10-03
+- **Context:** Evaluating RAGAS with long gold-passage text (~350 chars) creates reference-context confounding. The primary benchmark must evaluate against human-generated reference answers.
+- **Answer-Selection Rule (Written BEFORE Running):**
+  1. Use `wellFormedAnswers[0]` if present and valid ($>1$ word, informative).
+  2. Otherwise use `answers[0]` if present and valid.
+  3. Queries without valid answers ("No Answer Present", empty, or single-token "Yes"/"No") are excluded from the primary aggregate.
+- **Audit Findings:** 96% (96/100) of BENCH queries have valid human answers; 4 queries were excluded for single-token responses.
+- **Supersession Notice:** Prior Gate 3 $N=25$ run using passage text is marked "superseded".
+
 ---
 
 ## Frozen Configurations Registry
@@ -187,7 +217,9 @@ All architectural and algorithmic decisions are recorded here with context, opti
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `phase1_dense_baseline` | Phase 1 Dense | Gate 3 | `3b06508a5c6dc296663e0547331da83b6b5996afa6a21d510fcbd84cb64cdd95` | 2026-10-03 | Dense cosine baseline on 100k index |
 | `phase2_hybrid_optimized`| Phase 2 Hybrid| Gate 3 | `b23eb0d7862be81675e68eb82540f7039dc2cfea1850916833ee44c515ab0018` | 2026-10-03 | Hybrid weighted (alpha=0.8, minmax) frozen from TUNE grid search |
-| `phase3_hybrid_rerank` | Phase 3 Rerank | Gate 4A | `0f106e12f557e9c7440284eaa0582c292a5904273d9b9561dc86dbd31ff78c76` | 2026-10-03 | Hybrid + MiniLM-L6 INT8 reranker (K=30) frozen from TUNE sweep |
+| `phase3_hybrid_rerank` | Phase 3 Rerank | Gate 4A | `0f106e12f557e9c7440284eaa0582c292a5904273d9b9561dc86dbd31ff78c76` | 2026-10-03 | Unconstrained Hybrid + MiniLM-L6 INT8 reranker (K=30) |
+| `phase3_hybrid_rerank_constrained` | Phase 3 Rerank | Gate 4B | `64e95cabb1a1fd58e1ff021ff16043924b7eef86637d9e4defd1c0b5c7c4d2fd` | 2026-10-03 | Latency-constrained Hybrid + MiniLM-L6 INT8 (K=10, len=128, 200ms governor) |
+
 
 
 

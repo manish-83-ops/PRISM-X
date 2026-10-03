@@ -1,0 +1,101 @@
+idx,query_id,query,mode,scenario,cache_hit,governor_state,client_wall_clock_ms,server_encode_ms,server_dense_ms,server_sparse_ms,server_fusion_ms,server_fetch_text_ms,server_rerank_ms,server_total_ms
+1,530602,types organizational structure,hybrid_rerank,cache_30pct_workload,True,normal,4.62,35.45,6.27,4.06,0.46,3.91,104.13,0.08
+2,534941,usps schedule a delivery,hybrid_rerank,cache_30pct_workload,True,normal,4.32,34.6,6.24,4.84,0.54,3.72,90.51,0.08
+3,1090701,side effects for diclofenac topical,hybrid_rerank,cache_30pct_workload,True,normal,4.25,41.57,6.65,4.67,0.51,3.66,122.84,0.07
+4,1090701,side effects for diclofenac topical,hybrid_rerank,cache_30pct_workload,True,normal,5.57,41.57,6.65,4.67,0.51,3.66,122.84,0.07
+5,988745,who is the new york county clerk,hybrid_rerank,cache_30pct_workload,True,normal,5.71,37.12,7.96,5.86,0.45,3.74,114.09,0.07
+6,61836,can a 15 year old fly alone domestic flights?,hybrid_rerank,cache_30pct_workload,True,normal,4.37,38.33,6.42,3.9,0.41,3.54,125.71,0.06
+7,321951,how much is donald trump jr worth,hybrid_rerank,cache_30pct_workload,True,normal,4.81,35.54,6.06,4.71,0.47,3.27,98.97,0.07
+8,1094460,inches of mercury meaning,hybrid_rerank,cache_30pct_workload,True,normal,4.33,38.08,6.42,5.23,0.49,3.68,126.98,0.07
+9,321951,how much is donald trump jr worth,hybrid_rerank,cache_30pct_workload,True,normal,4.7,35.54,6.06,4.71,0.47,3.27,98.97,0.07
+10,165480,does digoxin affect potassium,hybrid_rerank,cache_30pct_workload,True,normal,5.01,32.77,7.33,4.44,0.47,3.77,123.33,0.06
+11,1050695,what is motor dyspraxia,hybrid_rerank,cache_30pct_workload,True,normal,5.93,37.11,6.27,4.35,0.48,3.74,121.83,0.13
+12,647687,what does semen consist of,hybrid_rerank,cache_30pct_workload,True,normal,5.18,45.06,6.07,5.63,0.48,3.84,124.99,0.07
+13,696677,what is a public health concept,hybrid_rerank,cache_30pct_workload,True,normal,4.7,46.65,6.44,4.98,0.52,3.85,107.77,0.06
+14,9454,a simple definition for the word bias.,hybrid_rerank,cache_30pct_workload,True,normal,4.73,37.12,6.16,4.21,0.49,4.26,103.87,0.07
+15,321951,how much is donald trump jr worth,hybrid_rerank,cache_30pct_workload,True,normal,4.65,35.54,6.06,4.71,0.47,3.27,98.97,0.07
+16,9454,a simple definition for the word bias.,hybrid_rerank,cache_30pct_workload,True,normal,4.67,37.12,6.16,4.21,0.49,4.26,103.87,0.09
+17,1083010,what does simple circuit contain,hybrid_rerank,cache_30pct_workload,True,normal,4.55,34.7,7.03,4.21,0.42,3.17,113.71,0.07
+18,1096045,how much does one roll of duck tape cost,hybrid_rerank,cache_30pct_workload,True,normal,5.22,42.66,5.88,4.47,0.59,3.55,113.69,0.07
+19,1070452,what is a mimo receiver,hybrid_rerank,cache_30pct_workload,True,normal,4.78,41.71,6.06,3.93,0.58,3.95,314.82,0.07
+20,548099,wellcare mike vice president,hybrid_rerank,cache_30pct_workload,True,normal,4.41,32.94,6.19,4.76,0.69,4.45,115.79,0.07
+21,1026775,what kind of mixture is rocky road ice cream,hybrid_rerank,cache_30pct_workload,True,normal,10.32,39.37,6.41,4.96,0.46,3.14,120.83,0.08
+22,451484,medicare eligibility contact number,hybrid_rerank,cache_30pct_workload,True,normal,4.79,71.13,6.46,4.94,0.52,4.82,110.89,0.07
+23,996181,where was the movie true grit filmed at,hybrid_rerank,cache_30pct_workload,True,normal,4.68,37.02,6.37,4.73,0.46,3.35,110.23,0.08
+24,1051211,what is mepap certification,hybrid_rerank,cache_30pct_workload,True,normal,5.2,36.18,6.6,4.75,0.51,3.83,142.19,0.08
+25,653187,what does the term the age of aquarius mean?,hybrid_rerank,cache_30pct_workload,True,normal,4.86,37.62,6.28,3.92,0.43,3.86,131.4,0.07
+26,1021277,define atrium,hybrid_rerank,cache_30pct_workload,True,normal,4.58,30.77,6.62,4.05,0.46,4.05,111.92,0.07
+27,1083010,what does simple circuit contain,hybrid_rerank,cache_30pct_workload,True,normal,4.86,34.7,7.03,4.21,0.42,3.17,113.71,0.07
+28,548099,wellcare mike vice president,hybrid_rerank,cache_30pct_workload,True,normal,5.34,32.94,6.19,4.76,0.69,4.45,115.79,0.07
+29,996181,where was the movie true grit filmed at,hybrid_rerank,cache_30pct_workload,True,normal,4.81,37.02,6.37,4.73,0.46,3.35,110.23,0.07
+30,988745,who is the new york county clerk,hybrid_rerank,cache_30pct_workload,True,normal,4.83,37.12,7.96,5.86,0.45,3.74,114.09,0.07
+31,1051211,what is mepap certification,hybrid_rerank,cache_30pct_workload,True,normal,5.95,36.18,6.6,4.75,0.51,3.83,142.19,0.07
+32,451484,medicare eligibility contact number,hybrid_rerank,cache_30pct_workload,True,normal,4.69,71.13,6.46,4.94,0.52,4.82,110.89,0.07
+33,1074989,what is a cyst on the kidneys do,hybrid_rerank,cache_30pct_workload,True,normal,4.75,40.3,7.33,4.45,0.46,3.77,185.41,0.07
+34,534941,usps schedule a delivery,hybrid_rerank,cache_30pct_workload,True,normal,5.17,34.6,6.24,4.84,0.54,3.72,90.51,0.07
+35,1083010,what does simple circuit contain,hybrid_rerank,cache_30pct_workload,True,normal,4.54,34.7,7.03,4.21,0.42,3.17,113.71,0.06
+36,1051214,what is meningitis.,hybrid_rerank,cache_30pct_workload,True,normal,4.52,35.45,6.5,3.79,0.47,3.71,120.59,0.07
+37,169305,does motion sensor device have camera,hybrid_rerank,cache_30pct_workload,True,normal,5.11,34.11,6.51,5.49,0.44,3.33,120.09,0.07
+38,653187,what does the term the age of aquarius mean?,hybrid_rerank,cache_30pct_workload,True,normal,4.49,37.62,6.28,3.92,0.43,3.86,131.4,0.07
+39,74328,can tennis elbow cause pain in your shoulder?,hybrid_rerank,cache_30pct_workload,True,normal,21.07,37.46,6.27,4.5,0.42,3.28,123.65,0.08
+40,282530,how many doctors are in the us,hybrid_rerank,cache_30pct_workload,True,normal,15.36,53.29,6.64,5.07,0.57,4.4,137.59,0.06
+41,321951,how much is donald trump jr worth,hybrid_rerank,cache_30pct_workload,True,normal,3.96,35.54,6.06,4.71,0.47,3.27,98.97,0.06
+42,107283,cost of starting a restaurant,hybrid_rerank,cache_30pct_workload,True,normal,5.17,29.77,5.78,4.84,0.55,3.56,123.25,0.06
+43,946631,when does harbin ice city end,hybrid_rerank,cache_30pct_workload,True,normal,14.83,39.04,7.85,5.11,0.65,3.86,117.04,0.06
+44,548099,wellcare mike vice president,hybrid_rerank,cache_30pct_workload,True,normal,17.91,32.94,6.19,4.76,0.69,4.45,115.79,0.07
+45,61836,can a 15 year old fly alone domestic flights?,hybrid_rerank,cache_30pct_workload,True,normal,17.12,38.33,6.42,3.9,0.41,3.54,125.71,0.09
+46,1011021,what year declaration of independence,hybrid_rerank,cache_30pct_workload,True,normal,4.51,54.22,7.14,5.26,0.48,3.57,177.86,0.05
+47,1063371,what is an aviation medical examiner?,hybrid_rerank,cache_30pct_workload,True,normal,20.6,39.25,6.66,4.32,5.56,5.83,108.48,0.08
+48,282530,how many doctors are in the us,hybrid_rerank,cache_30pct_workload,True,normal,4.21,53.29,6.64,5.07,0.57,4.4,137.59,0.06
+49,1011021,what year declaration of independence,hybrid_rerank,cache_30pct_workload,True,normal,6.47,54.22,7.14,5.26,0.48,3.57,177.86,0.13
+50,988745,who is the new york county clerk,hybrid_rerank,cache_30pct_workload,True,normal,4.67,37.12,7.96,5.86,0.45,3.74,114.09,0.06
+51,549342,what about phones in iceland,hybrid_rerank,cache_30pct_workload,True,normal,4.43,38.82,6.24,4.19,0.46,5.1,120.98,0.07
+52,1082622,what does the root word tele mean,hybrid_rerank,cache_30pct_workload,True,normal,4.26,43.96,6.31,4.09,0.45,4.12,116.65,0.07
+53,1063371,what is an aviation medical examiner?,hybrid_rerank,cache_30pct_workload,True,normal,4.52,39.25,6.66,4.32,5.56,5.83,108.48,0.07
+54,865616,what jedi commands the arc troopers,hybrid_rerank,cache_30pct_workload,True,normal,23.57,34.94,6.5,5.43,0.53,3.9,189.14,0.07
+55,953355,when is the rib cook off in reno,hybrid_rerank,cache_30pct_workload,True,normal,4.07,37.89,6.37,3.95,0.45,4.54,110.21,0.06
+56,74328,can tennis elbow cause pain in your shoulder?,hybrid_rerank,cache_30pct_workload,True,normal,17.9,37.46,6.27,4.5,0.42,3.28,123.65,0.06
+57,549342,what about phones in iceland,hybrid_rerank,cache_30pct_workload,True,normal,3.64,38.82,6.24,4.19,0.46,5.1,120.98,0.06
+58,1041159,who is the ninja turtle with the blue mask,hybrid_rerank,cache_30pct_workload,True,normal,4.02,35.86,6.04,3.69,0.47,4.14,121.33,0.05
+59,9454,a simple definition for the word bias.,hybrid_rerank,cache_30pct_workload,True,normal,3.96,37.12,6.16,4.21,0.49,4.26,103.87,0.06
+60,1083598,what does it mean cardholder name?,hybrid_rerank,cache_30pct_workload,True,normal,4.65,53.19,6.45,5.46,0.53,3.53,120.49,0.06
+61,647687,what does semen consist of,hybrid_rerank,cache_30pct_workload,True,normal,4.98,45.06,6.07,5.63,0.48,3.84,124.99,0.07
+62,1070452,what is a mimo receiver,hybrid_rerank,cache_30pct_workload,True,normal,19.24,41.71,6.06,3.93,0.58,3.95,314.82,0.07
+63,1063702,what is an advocacy project,hybrid_rerank,cache_30pct_workload,True,normal,3.81,52.74,6.64,6.57,0.5,3.72,120.41,0.06
+64,1083598,what does it mean cardholder name?,hybrid_rerank,cache_30pct_workload,True,normal,4.27,53.19,6.45,5.46,0.53,3.53,120.49,0.06
+65,569555,what are the elements to make air,hybrid_rerank,cache_30pct_workload,True,normal,19.86,38.41,6.42,4.69,0.5,3.65,130.1,0.09
+66,442593,longest punt in nfl,hybrid_rerank,cache_30pct_workload,True,normal,3.9,36.78,6.66,4.44,0.46,3.58,114.59,0.05
+67,1094460,inches of mercury meaning,hybrid_rerank,cache_30pct_workload,True,normal,3.89,38.08,6.42,5.23,0.49,3.68,126.98,0.06
+68,696677,what is a public health concept,hybrid_rerank,cache_30pct_workload,True,normal,16.39,46.65,6.44,4.98,0.52,3.85,107.77,0.07
+69,798945,what is spotting,hybrid_rerank,cache_30pct_workload,True,normal,4.3,32.31,7.35,3.02,0.36,2.81,101.58,0.06
+70,278863,how many career games did paul krause play in the nfl.,hybrid_rerank,cache_30pct_workload,True,normal,20.5,37.06,5.86,5.04,0.46,3.52,115.27,0.08
+71,549342,what about phones in iceland,hybrid_rerank,cache_30pct_workload,True,normal,4.56,38.82,6.24,4.19,0.46,5.1,120.98,0.05
+72,1000097,where is whiteville tennessee,hybrid_rerank,cache_30pct_workload,True,normal,21.08,37.46,6.82,4.57,0.45,3.25,113.88,0.07
+73,653187,what does the term the age of aquarius mean?,hybrid_rerank,cache_30pct_workload,True,normal,4.43,37.62,6.28,3.92,0.43,3.86,131.4,0.06
+74,1021277,define atrium,hybrid_rerank,cache_30pct_workload,True,normal,26.4,30.77,6.62,4.05,0.46,4.05,111.92,0.07
+75,946631,when does harbin ice city end,hybrid_rerank,cache_30pct_workload,True,normal,4.93,39.04,7.85,5.11,0.65,3.86,117.04,0.07
+76,1041159,who is the ninja turtle with the blue mask,hybrid_rerank,cache_30pct_workload,True,normal,22.61,35.86,6.04,3.69,0.47,4.14,121.33,0.06
+77,507381,symptoms of congenital heart defects,hybrid_rerank,cache_30pct_workload,True,normal,4.44,79.42,6.18,4.43,0.48,3.61,166.1,0.08
+78,1074989,what is a cyst on the kidneys do,hybrid_rerank,cache_30pct_workload,True,normal,4.43,40.3,7.33,4.45,0.46,3.77,185.41,0.08
+79,1096045,how much does one roll of duck tape cost,hybrid_rerank,cache_30pct_workload,True,normal,22.43,42.66,5.88,4.47,0.59,3.55,113.69,0.06
+80,1096045,how much does one roll of duck tape cost,hybrid_rerank,cache_30pct_workload,True,normal,5.42,42.66,5.88,4.47,0.59,3.55,113.69,0.07
+81,978057,where is berrimah,hybrid_rerank,cache_30pct_workload,True,normal,6.07,37.73,6.59,2.48,0.35,2.88,114.48,0.09
+82,282530,how many doctors are in the us,hybrid_rerank,cache_30pct_workload,True,normal,4.33,53.29,6.64,5.07,0.57,4.4,137.59,0.06
+83,991138,where is punta cana eden resort,hybrid_rerank,cache_30pct_workload,True,normal,4.1,31.18,6.19,4.72,0.47,3.51,113.47,0.07
+84,185299,fastest cell phone processor,hybrid_rerank,cache_30pct_workload,True,normal,21.74,31.37,6.39,4.88,0.56,4.86,133.89,0.1
+85,534941,usps schedule a delivery,hybrid_rerank,cache_30pct_workload,True,normal,4.39,34.6,6.24,4.84,0.54,3.72,90.51,0.06
+86,1021277,define atrium,hybrid_rerank,cache_30pct_workload,True,normal,25.21,30.77,6.62,4.05,0.46,4.05,111.92,0.07
+87,1011021,what year declaration of independence,hybrid_rerank,cache_30pct_workload,True,normal,4.5,54.22,7.14,5.26,0.48,3.57,177.86,0.08
+88,653187,what does the term the age of aquarius mean?,hybrid_rerank,cache_30pct_workload,True,normal,16.48,37.62,6.28,3.92,0.43,3.86,131.4,0.06
+89,1063702,what is an advocacy project,hybrid_rerank,cache_30pct_workload,True,normal,4.06,52.74,6.64,6.57,0.5,3.72,120.41,0.06
+90,1051214,what is meningitis.,hybrid_rerank,cache_30pct_workload,True,normal,20.18,35.45,6.5,3.79,0.47,3.71,120.59,0.07
+91,74328,can tennis elbow cause pain in your shoulder?,hybrid_rerank,cache_30pct_workload,True,normal,3.75,37.46,6.27,4.5,0.42,3.28,123.65,0.06
+92,451484,medicare eligibility contact number,hybrid_rerank,cache_30pct_workload,True,normal,27.51,71.13,6.46,4.94,0.52,4.82,110.89,0.06
+93,1036800,who is ovid in greek mythology,hybrid_rerank,cache_30pct_workload,True,normal,15.57,37.68,6.08,4.68,0.49,3.68,131.37,0.07
+94,1096045,how much does one roll of duck tape cost,hybrid_rerank,cache_30pct_workload,True,normal,4.93,42.66,5.88,4.47,0.59,3.55,113.69,0.07
+95,1096375,how much data analyst makes,hybrid_rerank,cache_30pct_workload,True,normal,26.44,35.02,6.61,3.87,0.42,3.32,109.7,0.07
+96,946631,when does harbin ice city end,hybrid_rerank,cache_30pct_workload,True,normal,15.7,39.04,7.85,5.11,0.65,3.86,117.04,0.05
+97,1081730,what family do squirrels belong to,hybrid_rerank,cache_30pct_workload,True,normal,3.79,36.23,6.69,4.53,0.45,3.41,120.72,0.05
+98,1074989,what is a cyst on the kidneys do,hybrid_rerank,cache_30pct_workload,True,normal,20.23,40.3,7.33,4.45,0.46,3.77,185.41,0.07
+99,1063371,what is an aviation medical examiner?,hybrid_rerank,cache_30pct_workload,True,normal,4.37,39.25,6.66,4.32,5.56,5.83,108.48,0.05
+100,321951,how much is donald trump jr worth,hybrid_rerank,cache_30pct_workload,True,normal,26.73,35.54,6.06,4.71,0.47,3.27,98.97,0.07

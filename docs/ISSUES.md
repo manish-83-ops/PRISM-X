@@ -32,3 +32,16 @@ This document tracks system caveats, platform-specific warnings, contradictions,
 ## 4. MS MARCO Passage Corpus Lacks Native Categories
 - **Issue:** The problem statement references queries with constraints such as "documents from category X only", but MS MARCO passages have no inherent category labels.
 - **Resolution:** As prescribed in Gate 2, categories are derived using MiniBatchKMeans ($k=15$, seeded) over passage embeddings, followed by c-TF-IDF cluster labeling. This is clearly disclosed as derived metadata in `docs/DATA.md` and the final report.
+
+---
+
+## 5. CPU Cross-Encoder Latency Budget & Deadline Governor Mitigation
+- **Issue:** In Gate 4A, evaluating candidate depth $K=30$ with max length 256 over HTTP reached p95 = 743.53 ms on this 6-core CPU, exceeding the 300 ms SLA limit.
+- **Resolution:** Under ADR-013, four optimizations were introduced: (1) dynamic INT8 quantization (1.66x–2.13x speedup), (2) sequence truncation to `max_length=128` (2.62x speedup), (3) 8 threads instead of 12 (reducing core context-switching), (4) candidate depth reduced to $K=10$ (selected on TUNE with p95 = 170.3 ms), and (5) Deadline Governor (200 ms budget). The official 100-query HTTP benchmark achieved **p95 = 242.25 ms**, passing both the $\le 250$ ms target and $\le 280$ ms hard ceiling.
+
+---
+
+## 6. MS MARCO Single-Token Reference Answers in RAGAS Evaluation
+- **Issue:** Four of the 100 BENCH queries contained single-token answers ("Yes" for 3 queries, "No" for 1 query) in the MS MARCO dataset, which cannot provide meaningful grounding for LLM-based Context Recall evaluation.
+- **Resolution:** Under ADR-014, queries with single-token or non-informative reference answers were formally audited and excluded from the primary RAGAS aggregate. 96 queries had informative, multi-word reference answers. The primary RAGAS benchmark was frozen on 25 valid-answer queries in fixed seeded order.
+

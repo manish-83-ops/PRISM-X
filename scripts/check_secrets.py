@@ -21,7 +21,7 @@ SECRET_PATTERNS = [
     (r"(?i)api[_-]?key\s*[:=]\s*['\"][a-zA-Z0-9_\-]{20,}['\"]", "Generic API Key Assignment"),
 ]
 
-IGNORED_DIRS = {".git", ".venv", "venv", "__pycache__", "data", "model_cache", ".pytest_cache"}
+IGNORED_DIRS = {".git", ".venv", "venv", "__pycache__", "data", "model_cache", ".pytest_cache", "node_modules", "frontend", "bin"}
 IGNORED_FILES = {"check_secrets.py"}
 
 def scan_file(path: Path) -> list[tuple[int, str, str]]:

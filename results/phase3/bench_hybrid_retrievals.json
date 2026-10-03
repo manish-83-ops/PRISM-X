@@ -18,16 +18,17 @@
       "2127538",
       "8790898"
     ],
-    "client_latency_ms": 50.4,
+    "client_latency_ms": 153.63,
     "server_latency_ms": {
-      "encode": 33.24,
-      "dense": 6.65,
-      "sparse": 4.37,
-      "fusion": 0.45,
-      "fetch_text": 3.86,
+      "encode": 128.08,
+      "dense": 11.13,
+      "sparse": 8.12,
+      "fusion": 0.5,
+      "fetch_text": 3.79,
       "rerank": 0.0,
-      "total": 49.09
+      "total": 152.3
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -274,16 +275,17 @@
       "6816327",
       "7329993"
     ],
-    "client_latency_ms": 52.6,
+    "client_latency_ms": 62.18,
     "server_latency_ms": {
-      "encode": 36.04,
-      "dense": 5.92,
-      "sparse": 4.49,
+      "encode": 37.9,
+      "dense": 7.36,
+      "sparse": 5.55,
       "fusion": 0.45,
-      "fetch_text": 3.72,
+      "fetch_text": 8.17,
       "rerank": 0.0,
-      "total": 51.18
+      "total": 60.15
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -536,16 +538,17 @@
       "1748170",
       "3129140"
     ],
-    "client_latency_ms": 52.75,
+    "client_latency_ms": 78.16,
     "server_latency_ms": {
-      "encode": 35.51,
-      "dense": 6.25,
-      "sparse": 4.36,
-      "fusion": 0.54,
-      "fetch_text": 4.09,
+      "encode": 53.56,
+      "dense": 6.77,
+      "sparse": 4.31,
+      "fusion": 6.68,
+      "fetch_text": 5.1,
       "rerank": 0.0,
-      "total": 51.42
+      "total": 77.0
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -779,8 +782,8 @@
     "query_id": "530602",
     "query": "types organizational structure",
     "gold_passage_ids": [
-      "7603394",
-      "7603386"
+      "7603386",
+      "7603394"
     ],
     "retrieved_passage_ids": [
       "3610396",
@@ -794,16 +797,17 @@
       "2074031",
       "7763281"
     ],
-    "client_latency_ms": 53.11,
+    "client_latency_ms": 45.39,
     "server_latency_ms": {
-      "encode": 29.95,
-      "dense": 6.54,
-      "sparse": 4.08,
-      "fusion": 5.89,
-      "fetch_text": 4.67,
+      "encode": 28.39,
+      "dense": 7.0,
+      "sparse": 4.09,
+      "fusion": 0.42,
+      "fetch_text": 3.56,
       "rerank": 0.0,
-      "total": 51.74
+      "total": 44.01
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -1052,16 +1056,17 @@
       "6142611",
       "1071933"
     ],
-    "client_latency_ms": 53.98,
+    "client_latency_ms": 46.13,
     "server_latency_ms": {
-      "encode": 36.8,
-      "dense": 6.41,
-      "sparse": 4.62,
-      "fusion": 0.47,
-      "fetch_text": 3.77,
+      "encode": 28.72,
+      "dense": 6.22,
+      "sparse": 4.89,
+      "fusion": 0.49,
+      "fetch_text": 3.71,
       "rerank": 0.0,
-      "total": 52.67
+      "total": 44.76
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -1308,16 +1313,17 @@
       "2726179",
       "3276050"
     ],
-    "client_latency_ms": 56.88,
+    "client_latency_ms": 53.3,
     "server_latency_ms": {
-      "encode": 33.47,
-      "dense": 6.75,
-      "sparse": 5.25,
-      "fusion": 0.45,
-      "fetch_text": 8.95,
+      "encode": 28.69,
+      "dense": 7.36,
+      "sparse": 5.13,
+      "fusion": 0.55,
+      "fetch_text": 9.66,
       "rerank": 0.0,
-      "total": 55.48
+      "total": 51.91
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -1568,16 +1574,17 @@
       "7878736",
       "7559084"
     ],
-    "client_latency_ms": 62.5,
+    "client_latency_ms": 45.78,
     "server_latency_ms": {
-      "encode": 39.59,
-      "dense": 6.9,
-      "sparse": 5.83,
-      "fusion": 0.47,
-      "fetch_text": 7.31,
+      "encode": 26.55,
+      "dense": 6.12,
+      "sparse": 3.88,
+      "fusion": 0.4,
+      "fetch_text": 6.91,
       "rerank": 0.0,
-      "total": 60.73
+      "total": 44.39
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -1829,16 +1836,17 @@
       "7862358",
       "6055844"
     ],
-    "client_latency_ms": 58.46,
+    "client_latency_ms": 47.67,
     "server_latency_ms": {
-      "encode": 36.16,
-      "dense": 6.35,
-      "sparse": 5.68,
-      "fusion": 0.55,
-      "fetch_text": 7.64,
+      "encode": 27.25,
+      "dense": 6.57,
+      "sparse": 4.11,
+      "fusion": 0.42,
+      "fetch_text": 7.38,
       "rerank": 0.0,
-      "total": 57.06
+      "total": 46.18
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -2090,16 +2098,17 @@
       "7189441",
       "221599"
     ],
-    "client_latency_ms": 62.83,
+    "client_latency_ms": 51.48,
     "server_latency_ms": {
-      "encode": 40.58,
-      "dense": 6.42,
-      "sparse": 5.02,
-      "fusion": 0.49,
-      "fetch_text": 8.23,
+      "encode": 23.9,
+      "dense": 6.4,
+      "sparse": 4.17,
+      "fusion": 5.92,
+      "fetch_text": 9.1,
       "rerank": 0.0,
-      "total": 61.33
+      "total": 50.11
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -2349,16 +2358,17 @@
       "4351919",
       "1046920"
     ],
-    "client_latency_ms": 60.55,
+    "client_latency_ms": 41.18,
     "server_latency_ms": {
-      "encode": 31.86,
-      "dense": 6.44,
-      "sparse": 5.52,
-      "fusion": 6.38,
-      "fetch_text": 8.11,
+      "encode": 21.87,
+      "dense": 7.5,
+      "sparse": 3.97,
+      "fusion": 0.33,
+      "fetch_text": 6.04,
       "rerank": 0.0,
-      "total": 58.96
+      "total": 40.17
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -2605,16 +2615,17 @@
       "8801096",
       "308847"
     ],
-    "client_latency_ms": 53.93,
+    "client_latency_ms": 45.11,
     "server_latency_ms": {
-      "encode": 32.5,
-      "dense": 6.39,
-      "sparse": 5.07,
-      "fusion": 0.49,
-      "fetch_text": 7.5,
+      "encode": 25.01,
+      "dense": 6.06,
+      "sparse": 5.22,
+      "fusion": 0.43,
+      "fetch_text": 7.13,
       "rerank": 0.0,
-      "total": 52.54
+      "total": 44.26
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -2864,16 +2875,17 @@
       "1112333",
       "8539311"
     ],
-    "client_latency_ms": 55.11,
+    "client_latency_ms": 43.25,
     "server_latency_ms": {
-      "encode": 35.51,
-      "dense": 6.18,
-      "sparse": 5.1,
-      "fusion": 0.48,
-      "fetch_text": 5.97,
+      "encode": 25.39,
+      "dense": 5.43,
+      "sparse": 3.68,
+      "fusion": 0.41,
+      "fetch_text": 6.42,
       "rerank": 0.0,
-      "total": 53.78
+      "total": 41.86
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -3123,16 +3135,17 @@
       "6361065",
       "1488990"
     ],
-    "client_latency_ms": 53.79,
+    "client_latency_ms": 44.14,
     "server_latency_ms": {
-      "encode": 32.51,
-      "dense": 6.52,
-      "sparse": 5.41,
-      "fusion": 0.52,
-      "fetch_text": 6.9,
+      "encode": 24.05,
+      "dense": 5.8,
+      "sparse": 4.04,
+      "fusion": 0.44,
+      "fetch_text": 7.16,
       "rerank": 0.0,
-      "total": 52.41
+      "total": 42.3
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -3382,16 +3395,17 @@
       "7024593",
       "6245110"
     ],
-    "client_latency_ms": 55.82,
+    "client_latency_ms": 57.07,
     "server_latency_ms": {
-      "encode": 32.63,
-      "dense": 6.7,
-      "sparse": 5.32,
-      "fusion": 0.48,
-      "fetch_text": 8.69,
+      "encode": 34.07,
+      "dense": 6.5,
+      "sparse": 4.52,
+      "fusion": 0.51,
+      "fetch_text": 9.4,
       "rerank": 0.0,
-      "total": 54.43
+      "total": 55.6
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -3636,16 +3650,17 @@
       "2734088",
       "4078319"
     ],
-    "client_latency_ms": 51.32,
+    "client_latency_ms": 66.52,
     "server_latency_ms": {
-      "encode": 30.56,
-      "dense": 6.16,
-      "sparse": 4.62,
-      "fusion": 0.43,
-      "fetch_text": 7.81,
+      "encode": 38.37,
+      "dense": 6.12,
+      "sparse": 4.39,
+      "fusion": 6.86,
+      "fetch_text": 8.85,
       "rerank": 0.0,
-      "total": 50.11
+      "total": 65.22
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -3892,16 +3907,17 @@
       "781217",
       "2234827"
     ],
-    "client_latency_ms": 60.86,
+    "client_latency_ms": 53.56,
     "server_latency_ms": {
-      "encode": 33.46,
-      "dense": 6.47,
-      "sparse": 4.54,
-      "fusion": 6.14,
-      "fetch_text": 8.28,
+      "encode": 29.94,
+      "dense": 6.92,
+      "sparse": 5.01,
+      "fusion": 0.49,
+      "fetch_text": 9.11,
       "rerank": 0.0,
-      "total": 59.49
+      "total": 52.13
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -4145,16 +4161,17 @@
       "3515753",
       "8117119"
     ],
-    "client_latency_ms": 48.26,
+    "client_latency_ms": 85.22,
     "server_latency_ms": {
-      "encode": 29.19,
-      "dense": 6.11,
-      "sparse": 4.66,
-      "fusion": 0.42,
-      "fetch_text": 6.22,
+      "encode": 64.48,
+      "dense": 6.55,
+      "sparse": 5.17,
+      "fusion": 0.49,
+      "fetch_text": 6.74,
       "rerank": 0.0,
-      "total": 47.08
+      "total": 83.98
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -4403,16 +4420,17 @@
       "2998265",
       "621216"
     ],
-    "client_latency_ms": 47.94,
+    "client_latency_ms": 46.34,
     "server_latency_ms": {
-      "encode": 28.25,
-      "dense": 6.1,
-      "sparse": 6.59,
-      "fusion": 0.46,
-      "fetch_text": 4.94,
+      "encode": 28.44,
+      "dense": 5.96,
+      "sparse": 3.96,
+      "fusion": 0.4,
+      "fetch_text": 5.6,
       "rerank": 0.0,
-      "total": 46.81
+      "total": 44.89
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -4665,16 +4683,17 @@
       "7831410",
       "7349989"
     ],
-    "client_latency_ms": 51.85,
+    "client_latency_ms": 47.39,
     "server_latency_ms": {
-      "encode": 30.44,
-      "dense": 6.14,
-      "sparse": 5.17,
-      "fusion": 0.48,
-      "fetch_text": 7.59,
+      "encode": 25.53,
+      "dense": 6.15,
+      "sparse": 4.26,
+      "fusion": 0.5,
+      "fetch_text": 8.72,
       "rerank": 0.0,
-      "total": 50.36
+      "total": 45.8
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -4921,16 +4940,17 @@
       "94800",
       "5452722"
     ],
-    "client_latency_ms": 53.14,
+    "client_latency_ms": 49.79,
     "server_latency_ms": {
-      "encode": 31.16,
-      "dense": 6.42,
-      "sparse": 5.0,
-      "fusion": 0.48,
-      "fetch_text": 7.84,
+      "encode": 26.13,
+      "dense": 6.06,
+      "sparse": 4.42,
+      "fusion": 0.47,
+      "fetch_text": 10.27,
       "rerank": 0.0,
-      "total": 51.44
+      "total": 47.93
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -5180,16 +5200,17 @@
       "1712506",
       "5238095"
     ],
-    "client_latency_ms": 49.24,
+    "client_latency_ms": 59.33,
     "server_latency_ms": {
-      "encode": 29.88,
-      "dense": 6.64,
-      "sparse": 4.69,
-      "fusion": 0.44,
-      "fetch_text": 5.76,
+      "encode": 32.06,
+      "dense": 6.24,
+      "sparse": 4.17,
+      "fusion": 6.79,
+      "fetch_text": 8.09,
       "rerank": 0.0,
-      "total": 47.93
+      "total": 57.94
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -5442,16 +5463,17 @@
       "8252522",
       "4487779"
     ],
-    "client_latency_ms": 62.56,
+    "client_latency_ms": 49.61,
     "server_latency_ms": {
-      "encode": 34.58,
-      "dense": 7.54,
-      "sparse": 4.27,
-      "fusion": 6.91,
-      "fetch_text": 7.27,
+      "encode": 30.24,
+      "dense": 6.27,
+      "sparse": 4.89,
+      "fusion": 0.48,
+      "fetch_text": 6.22,
       "rerank": 0.0,
-      "total": 61.19
+      "total": 48.59
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -5699,16 +5721,17 @@
       "1616542",
       "8460182"
     ],
-    "client_latency_ms": 51.84,
+    "client_latency_ms": 45.06,
     "server_latency_ms": {
-      "encode": 30.04,
-      "dense": 6.39,
-      "sparse": 6.62,
-      "fusion": 0.46,
-      "fetch_text": 6.61,
+      "encode": 25.15,
+      "dense": 6.12,
+      "sparse": 4.26,
+      "fusion": 0.42,
+      "fetch_text": 7.28,
       "rerank": 0.0,
-      "total": 50.63
+      "total": 43.79
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -5956,16 +5979,17 @@
       "5902213",
       "8319898"
     ],
-    "client_latency_ms": 54.8,
+    "client_latency_ms": 52.23,
     "server_latency_ms": {
-      "encode": 35.51,
-      "dense": 6.12,
-      "sparse": 4.51,
-      "fusion": 0.43,
-      "fetch_text": 6.27,
+      "encode": 32.45,
+      "dense": 5.84,
+      "sparse": 4.77,
+      "fusion": 0.59,
+      "fetch_text": 6.68,
       "rerank": 0.0,
-      "total": 53.41
+      "total": 50.91
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -6213,16 +6237,17 @@
       "2130185",
       "5192130"
     ],
-    "client_latency_ms": 52.36,
+    "client_latency_ms": 57.5,
     "server_latency_ms": {
-      "encode": 32.54,
-      "dense": 6.13,
-      "sparse": 5.05,
-      "fusion": 0.45,
-      "fetch_text": 6.31,
+      "encode": 36.71,
+      "dense": 6.72,
+      "sparse": 4.89,
+      "fusion": 0.47,
+      "fetch_text": 6.29,
       "rerank": 0.0,
-      "total": 51.0
+      "total": 55.68
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -6472,16 +6497,17 @@
       "2295164",
       "1647102"
     ],
-    "client_latency_ms": 43.52,
+    "client_latency_ms": 44.74,
     "server_latency_ms": {
-      "encode": 31.11,
-      "dense": 6.22,
-      "sparse": 1.78,
-      "fusion": 0.27,
-      "fetch_text": 2.53,
+      "encode": 30.62,
+      "dense": 7.55,
+      "sparse": 1.98,
+      "fusion": 0.32,
+      "fetch_text": 2.7,
       "rerank": 0.0,
-      "total": 42.29
+      "total": 43.58
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -6725,16 +6751,17 @@
       "6025068",
       "2508392"
     ],
-    "client_latency_ms": 55.18,
+    "client_latency_ms": 68.66,
     "server_latency_ms": {
-      "encode": 33.3,
-      "dense": 6.42,
-      "sparse": 4.62,
-      "fusion": 0.5,
-      "fetch_text": 8.45,
+      "encode": 35.37,
+      "dense": 7.32,
+      "sparse": 4.64,
+      "fusion": 7.82,
+      "fetch_text": 11.55,
       "rerank": 0.0,
-      "total": 53.87
+      "total": 67.39
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -6980,16 +7007,17 @@
       "7624379",
       "8020608"
     ],
-    "client_latency_ms": 58.3,
+    "client_latency_ms": 48.57,
     "server_latency_ms": {
-      "encode": 30.88,
-      "dense": 6.27,
-      "sparse": 4.75,
-      "fusion": 6.65,
-      "fetch_text": 7.88,
+      "encode": 29.11,
+      "dense": 5.96,
+      "sparse": 4.58,
+      "fusion": 0.54,
+      "fetch_text": 6.86,
       "rerank": 0.0,
-      "total": 57.03
+      "total": 47.56
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -7236,16 +7264,17 @@
       "5486809",
       "5363555"
     ],
-    "client_latency_ms": 54.79,
+    "client_latency_ms": 43.79,
     "server_latency_ms": {
-      "encode": 32.32,
-      "dense": 7.23,
-      "sparse": 6.74,
-      "fusion": 0.48,
-      "fetch_text": 5.99,
+      "encode": 24.97,
+      "dense": 7.46,
+      "sparse": 4.56,
+      "fusion": 0.42,
+      "fetch_text": 4.58,
       "rerank": 0.0,
-      "total": 53.33
+      "total": 42.69
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -7492,16 +7521,17 @@
       "1130187",
       "8438503"
     ],
-    "client_latency_ms": 50.44,
+    "client_latency_ms": 45.39,
     "server_latency_ms": {
-      "encode": 33.52,
-      "dense": 6.47,
-      "sparse": 3.42,
-      "fusion": 0.38,
-      "fetch_text": 4.94,
+      "encode": 28.2,
+      "dense": 5.99,
+      "sparse": 4.19,
+      "fusion": 0.41,
+      "fetch_text": 5.2,
       "rerank": 0.0,
-      "total": 49.21
+      "total": 44.39
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -7754,16 +7784,17 @@
       "8170292",
       "3931540"
     ],
-    "client_latency_ms": 51.11,
+    "client_latency_ms": 46.98,
     "server_latency_ms": {
-      "encode": 30.12,
-      "dense": 6.18,
-      "sparse": 4.53,
-      "fusion": 0.48,
-      "fetch_text": 7.59,
+      "encode": 26.45,
+      "dense": 5.79,
+      "sparse": 3.65,
+      "fusion": 0.45,
+      "fetch_text": 8.87,
       "rerank": 0.0,
-      "total": 49.47
+      "total": 45.74
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -8011,16 +8042,17 @@
       "8325042",
       "6658677"
     ],
-    "client_latency_ms": 50.98,
+    "client_latency_ms": 48.57,
     "server_latency_ms": {
-      "encode": 30.78,
-      "dense": 6.91,
-      "sparse": 4.72,
-      "fusion": 0.45,
-      "fetch_text": 6.27,
+      "encode": 29.23,
+      "dense": 6.54,
+      "sparse": 4.56,
+      "fusion": 0.52,
+      "fetch_text": 6.26,
       "rerank": 0.0,
-      "total": 49.67
+      "total": 47.57
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -8270,16 +8302,17 @@
       "7580404",
       "4246994"
     ],
-    "client_latency_ms": 49.8,
+    "client_latency_ms": 49.33,
     "server_latency_ms": {
-      "encode": 31.03,
-      "dense": 6.07,
-      "sparse": 4.33,
-      "fusion": 0.5,
-      "fetch_text": 6.05,
+      "encode": 24.63,
+      "dense": 5.26,
+      "sparse": 3.81,
+      "fusion": 5.88,
+      "fetch_text": 8.17,
       "rerank": 0.0,
-      "total": 48.5
+      "total": 48.29
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -8526,16 +8559,17 @@
       "897185",
       "5747753"
     ],
-    "client_latency_ms": 55.6,
+    "client_latency_ms": 46.29,
     "server_latency_ms": {
-      "encode": 29.85,
-      "dense": 6.1,
-      "sparse": 4.28,
-      "fusion": 6.15,
-      "fetch_text": 7.49,
+      "encode": 27.23,
+      "dense": 5.97,
+      "sparse": 3.76,
+      "fusion": 0.45,
+      "fetch_text": 6.67,
       "rerank": 0.0,
-      "total": 54.43
+      "total": 44.6
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -8785,16 +8819,17 @@
       "5113025",
       "6429661"
     ],
-    "client_latency_ms": 55.35,
+    "client_latency_ms": 51.39,
     "server_latency_ms": {
-      "encode": 34.35,
-      "dense": 6.5,
-      "sparse": 5.05,
+      "encode": 29.87,
+      "dense": 6.48,
+      "sparse": 4.47,
       "fusion": 0.5,
-      "fetch_text": 6.92,
+      "fetch_text": 8.28,
       "rerank": 0.0,
-      "total": 53.87
+      "total": 50.15
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -8834,7 +8869,7 @@
         "sparse_rank": 9,
         "sparse_score": 13.335731506347656,
         "fused_rank": 2,
-        "fused_score": 0.7395259502494252,
+        "fused_score": 0.7395258821566626,
         "rerank_rank": null,
         "rerank_score": null,
         "retrieved_by": [
@@ -8857,7 +8892,7 @@
         "sparse_rank": 4,
         "sparse_score": 14.015266418457031,
         "fused_rank": 3,
-        "fused_score": 0.7386863240974473,
+        "fused_score": 0.7386862476994434,
         "rerank_rank": null,
         "rerank_score": null,
         "retrieved_by": [
@@ -8880,7 +8915,7 @@
         "sparse_rank": null,
         "sparse_score": null,
         "fused_rank": 4,
-        "fused_score": 0.7322556440274206,
+        "fused_score": 0.7322556131826984,
         "rerank_rank": null,
         "rerank_score": null,
         "retrieved_by": [
@@ -8896,13 +8931,13 @@
         "length_chars": 427,
         "score": 0.6714,
         "dense_rank": 7,
-        "dense_score": 0.7040789723396301,
+        "dense_score": 0.7040790319442749,
         "bm25_rank": 1,
         "bm25_score": 17.667339324951172,
         "sparse_rank": 1,
         "sparse_score": 17.667339324951172,
         "fused_rank": 5,
-        "fused_score": 0.6713806467592829,
+        "fused_score": 0.6713808613838801,
         "rerank_rank": null,
         "rerank_score": null,
         "retrieved_by": [
@@ -8925,7 +8960,7 @@
         "sparse_rank": 33,
         "sparse_score": 10.915655136108398,
         "fused_rank": 6,
-        "fused_score": 0.6330142552877303,
+        "fused_score": 0.6330141669156374,
         "rerank_rank": null,
         "rerank_score": null,
         "retrieved_by": [
@@ -8948,7 +8983,7 @@
         "sparse_rank": 5,
         "sparse_score": 13.947935104370117,
         "fused_rank": 7,
-        "fused_score": 0.6157840117777951,
+        "fused_score": 0.6157838802061085,
         "rerank_rank": null,
         "rerank_score": null,
         "retrieved_by": [
@@ -8971,7 +9006,7 @@
         "sparse_rank": null,
         "sparse_score": null,
         "fused_rank": 8,
-        "fused_score": 0.40032490948429733,
+        "fused_score": 0.40032472750799863,
         "rerank_rank": null,
         "rerank_score": null,
         "retrieved_by": [
@@ -8987,13 +9022,13 @@
         "length_chars": 356,
         "score": 0.3118,
         "dense_rank": 9,
-        "dense_score": 0.6779679656028748,
+        "dense_score": 0.6779680252075195,
         "bm25_rank": null,
         "bm25_score": null,
         "sparse_rank": null,
         "sparse_score": null,
         "fused_rank": 9,
-        "fused_score": 0.3118143936358537,
+        "fused_score": 0.3118145356082471,
         "rerank_rank": null,
         "rerank_score": null,
         "retrieved_by": [
@@ -9015,7 +9050,7 @@
         "sparse_rank": null,
         "sparse_score": null,
         "fused_rank": 10,
-        "fused_score": 0.29989327524787096,
+        "fused_score": 0.29989304754398644,
         "rerank_rank": null,
         "rerank_score": null,
         "retrieved_by": [
@@ -9043,16 +9078,17 @@
       "2622704",
       "2812067"
     ],
-    "client_latency_ms": 54.08,
+    "client_latency_ms": 42.47,
     "server_latency_ms": {
-      "encode": 33.33,
-      "dense": 6.33,
-      "sparse": 5.14,
-      "fusion": 0.51,
-      "fetch_text": 6.66,
+      "encode": 23.13,
+      "dense": 6.05,
+      "sparse": 4.28,
+      "fusion": 0.45,
+      "fetch_text": 6.85,
       "rerank": 0.0,
-      "total": 52.55
+      "total": 41.3
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -9302,16 +9338,17 @@
       "6068900",
       "7451936"
     ],
-    "client_latency_ms": 54.03,
+    "client_latency_ms": 44.38,
     "server_latency_ms": {
-      "encode": 34.15,
+      "encode": 24.91,
       "dense": 6.08,
-      "sparse": 4.79,
-      "fusion": 0.51,
-      "fetch_text": 6.63,
+      "sparse": 4.62,
+      "fusion": 0.48,
+      "fetch_text": 6.38,
       "rerank": 0.0,
-      "total": 52.71
+      "total": 42.88
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -9560,16 +9597,17 @@
       "6967803",
       "7149538"
     ],
-    "client_latency_ms": 51.86,
+    "client_latency_ms": 45.21,
     "server_latency_ms": {
-      "encode": 32.35,
-      "dense": 6.15,
-      "sparse": 4.61,
-      "fusion": 0.47,
-      "fetch_text": 6.5,
+      "encode": 26.96,
+      "dense": 5.4,
+      "sparse": 3.68,
+      "fusion": 0.4,
+      "fetch_text": 6.93,
       "rerank": 0.0,
-      "total": 50.61
+      "total": 43.91
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -9819,16 +9857,17 @@
       "6932682",
       "1267474"
     ],
-    "client_latency_ms": 62.13,
+    "client_latency_ms": 48.39,
     "server_latency_ms": {
-      "encode": 39.82,
-      "dense": 6.61,
-      "sparse": 4.76,
-      "fusion": 0.51,
-      "fetch_text": 8.33,
+      "encode": 23.62,
+      "dense": 5.76,
+      "sparse": 3.1,
+      "fusion": 5.15,
+      "fetch_text": 8.7,
       "rerank": 0.0,
-      "total": 60.62
+      "total": 46.93
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -10073,16 +10112,17 @@
       "3319859",
       "247838"
     ],
-    "client_latency_ms": 57.61,
+    "client_latency_ms": 40.72,
     "server_latency_ms": {
-      "encode": 31.21,
-      "dense": 7.26,
-      "sparse": 4.95,
-      "fusion": 6.08,
-      "fetch_text": 6.32,
+      "encode": 25.19,
+      "dense": 5.73,
+      "sparse": 3.52,
+      "fusion": 0.39,
+      "fetch_text": 4.74,
       "rerank": 0.0,
-      "total": 56.41
+      "total": 39.93
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -10333,16 +10373,17 @@
       "3095499",
       "5682080"
     ],
-    "client_latency_ms": 50.8,
+    "client_latency_ms": 41.25,
     "server_latency_ms": {
-      "encode": 30.85,
-      "dense": 6.21,
-      "sparse": 4.34,
-      "fusion": 0.49,
-      "fetch_text": 7.09,
+      "encode": 21.85,
+      "dense": 5.64,
+      "sparse": 4.36,
+      "fusion": 0.63,
+      "fetch_text": 7.06,
       "rerank": 0.0,
-      "total": 49.5
+      "total": 40.08
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -10589,16 +10630,17 @@
       "7307296",
       "638300"
     ],
-    "client_latency_ms": 57.51,
+    "client_latency_ms": 46.24,
     "server_latency_ms": {
-      "encode": 37.29,
-      "dense": 5.93,
-      "sparse": 4.87,
-      "fusion": 0.43,
-      "fetch_text": 7.13,
+      "encode": 26.64,
+      "dense": 5.62,
+      "sparse": 4.07,
+      "fusion": 0.45,
+      "fetch_text": 7.72,
       "rerank": 0.0,
-      "total": 56.19
+      "total": 45.03
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -10849,16 +10891,17 @@
       "7484440",
       "7208676"
     ],
-    "client_latency_ms": 49.68,
+    "client_latency_ms": 37.26,
     "server_latency_ms": {
-      "encode": 36.5,
-      "dense": 6.17,
-      "sparse": 2.35,
-      "fusion": 0.35,
-      "fetch_text": 2.82,
+      "encode": 25.6,
+      "dense": 5.68,
+      "sparse": 1.88,
+      "fusion": 0.38,
+      "fetch_text": 2.44,
       "rerank": 0.0,
-      "total": 48.57
+      "total": 36.33
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -11104,16 +11147,17 @@
       "8027337",
       "3049737"
     ],
-    "client_latency_ms": 57.88,
+    "client_latency_ms": 42.82,
     "server_latency_ms": {
-      "encode": 38.93,
-      "dense": 6.54,
-      "sparse": 4.48,
+      "encode": 24.88,
+      "dense": 6.27,
+      "sparse": 4.68,
       "fusion": 0.48,
-      "fetch_text": 5.63,
+      "fetch_text": 5.21,
       "rerank": 0.0,
-      "total": 56.65
+      "total": 41.94
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -11359,16 +11403,17 @@
       "2130951",
       "3290742"
     ],
-    "client_latency_ms": 50.92,
+    "client_latency_ms": 49.83,
     "server_latency_ms": {
-      "encode": 31.67,
-      "dense": 6.44,
-      "sparse": 4.65,
-      "fusion": 0.42,
-      "fetch_text": 6.09,
+      "encode": 23.76,
+      "dense": 6.03,
+      "sparse": 4.05,
+      "fusion": 6.01,
+      "fetch_text": 8.27,
       "rerank": 0.0,
-      "total": 49.78
+      "total": 48.67
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -11619,16 +11664,17 @@
       "2339847",
       "2334437"
     ],
-    "client_latency_ms": 54.98,
+    "client_latency_ms": 45.02,
     "server_latency_ms": {
-      "encode": 27.16,
-      "dense": 6.58,
-      "sparse": 4.43,
-      "fusion": 6.22,
-      "fetch_text": 8.72,
+      "encode": 25.9,
+      "dense": 5.94,
+      "sparse": 3.64,
+      "fusion": 0.35,
+      "fetch_text": 7.73,
       "rerank": 0.0,
-      "total": 53.75
+      "total": 43.99
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -11876,16 +11922,17 @@
       "5217870",
       "2818994"
     ],
-    "client_latency_ms": 51.9,
+    "client_latency_ms": 41.79,
     "server_latency_ms": {
-      "encode": 31.98,
-      "dense": 6.3,
-      "sparse": 4.3,
-      "fusion": 0.44,
-      "fetch_text": 7.1,
+      "encode": 23.16,
+      "dense": 6.16,
+      "sparse": 3.61,
+      "fusion": 0.47,
+      "fetch_text": 7.09,
       "rerank": 0.0,
-      "total": 50.7
+      "total": 40.89
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -12134,16 +12181,17 @@
       "2915726",
       "4808526"
     ],
-    "client_latency_ms": 52.92,
+    "client_latency_ms": 39.47,
     "server_latency_ms": {
-      "encode": 34.28,
-      "dense": 6.1,
-      "sparse": 4.74,
-      "fusion": 0.44,
-      "fetch_text": 5.75,
+      "encode": 22.64,
+      "dense": 5.59,
+      "sparse": 3.72,
+      "fusion": 0.4,
+      "fetch_text": 5.57,
       "rerank": 0.0,
-      "total": 51.81
+      "total": 38.36
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -12395,16 +12443,17 @@
       "4573623",
       "7435120"
     ],
-    "client_latency_ms": 52.79,
+    "client_latency_ms": 42.02,
     "server_latency_ms": {
-      "encode": 33.85,
-      "dense": 6.39,
-      "sparse": 5.28,
-      "fusion": 0.45,
-      "fetch_text": 5.32,
+      "encode": 24.18,
+      "dense": 6.25,
+      "sparse": 4.08,
+      "fusion": 0.39,
+      "fetch_text": 5.58,
       "rerank": 0.0,
-      "total": 51.77
+      "total": 40.93
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -12642,8 +12691,8 @@
     "query_id": "865616",
     "query": "what jedi commands the arc troopers",
     "gold_passage_ids": [
-      "7729077",
-      "7729083"
+      "7729083",
+      "7729077"
     ],
     "retrieved_passage_ids": [
       "7729077",
@@ -12657,16 +12706,17 @@
       "4622770",
       "2320039"
     ],
-    "client_latency_ms": 52.99,
+    "client_latency_ms": 43.66,
     "server_latency_ms": {
-      "encode": 33.41,
-      "dense": 6.74,
-      "sparse": 4.34,
-      "fusion": 0.42,
-      "fetch_text": 6.36,
+      "encode": 25.66,
+      "dense": 6.45,
+      "sparse": 3.64,
+      "fusion": 0.41,
+      "fetch_text": 5.98,
       "rerank": 0.0,
-      "total": 51.8
+      "total": 42.61
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -12917,16 +12967,17 @@
       "493885",
       "4773316"
     ],
-    "client_latency_ms": 57.36,
+    "client_latency_ms": 57.07,
     "server_latency_ms": {
-      "encode": 35.71,
-      "dense": 5.97,
-      "sparse": 5.84,
-      "fusion": 0.48,
-      "fetch_text": 7.5,
+      "encode": 27.99,
+      "dense": 6.25,
+      "sparse": 5.4,
+      "fusion": 6.03,
+      "fetch_text": 9.29,
       "rerank": 0.0,
-      "total": 56.1
+      "total": 55.79
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -13171,16 +13222,17 @@
       "2365441",
       "6765025"
     ],
-    "client_latency_ms": 56.71,
+    "client_latency_ms": 53.18,
     "server_latency_ms": {
-      "encode": 28.76,
-      "dense": 6.55,
-      "sparse": 4.13,
-      "fusion": 6.95,
-      "fetch_text": 8.54,
+      "encode": 32.65,
+      "dense": 6.04,
+      "sparse": 4.73,
+      "fusion": 0.64,
+      "fetch_text": 7.76,
       "rerank": 0.0,
-      "total": 55.51
+      "total": 52.27
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -13423,16 +13475,17 @@
       "6310246",
       "878591"
     ],
-    "client_latency_ms": 53.88,
+    "client_latency_ms": 48.41,
     "server_latency_ms": {
-      "encode": 35.44,
-      "dense": 6.3,
-      "sparse": 4.55,
-      "fusion": 0.41,
-      "fetch_text": 5.38,
+      "encode": 30.44,
+      "dense": 5.82,
+      "sparse": 4.2,
+      "fusion": 0.46,
+      "fetch_text": 5.52,
       "rerank": 0.0,
-      "total": 52.61
+      "total": 46.96
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -13685,16 +13738,17 @@
       "950643",
       "638953"
     ],
-    "client_latency_ms": 42.59,
+    "client_latency_ms": 35.74,
     "server_latency_ms": {
-      "encode": 29.68,
-      "dense": 6.58,
-      "sparse": 1.68,
-      "fusion": 0.26,
-      "fetch_text": 2.86,
+      "encode": 23.68,
+      "dense": 5.84,
+      "sparse": 1.5,
+      "fusion": 0.29,
+      "fetch_text": 2.87,
       "rerank": 0.0,
-      "total": 41.45
+      "total": 34.6
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -13938,16 +13992,17 @@
       "8462458",
       "8423946"
     ],
-    "client_latency_ms": 53.2,
+    "client_latency_ms": 43.24,
     "server_latency_ms": {
-      "encode": 33.63,
-      "dense": 6.35,
-      "sparse": 4.67,
-      "fusion": 0.46,
-      "fetch_text": 6.3,
+      "encode": 25.56,
+      "dense": 6.07,
+      "sparse": 3.73,
+      "fusion": 0.39,
+      "fetch_text": 5.74,
       "rerank": 0.0,
-      "total": 51.97
+      "total": 41.96
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -14194,16 +14249,17 @@
       "3403478",
       "4527947"
     ],
-    "client_latency_ms": 110.86,
+    "client_latency_ms": 40.68,
     "server_latency_ms": {
-      "encode": 88.52,
-      "dense": 7.98,
-      "sparse": 4.6,
-      "fusion": 0.47,
-      "fetch_text": 7.37,
+      "encode": 23.78,
+      "dense": 5.98,
+      "sparse": 4.09,
+      "fusion": 0.41,
+      "fetch_text": 4.84,
       "rerank": 0.0,
-      "total": 109.5
+      "total": 39.56
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -14454,16 +14510,17 @@
       "563314",
       "8776437"
     ],
-    "client_latency_ms": 70.0,
+    "client_latency_ms": 52.01,
     "server_latency_ms": {
-      "encode": 45.85,
-      "dense": 6.48,
-      "sparse": 5.02,
-      "fusion": 0.48,
-      "fetch_text": 10.38,
+      "encode": 24.75,
+      "dense": 6.77,
+      "sparse": 3.82,
+      "fusion": 6.79,
+      "fetch_text": 8.17,
       "rerank": 0.0,
-      "total": 68.79
+      "total": 50.86
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -14713,16 +14770,17 @@
       "5440660",
       "525982"
     ],
-    "client_latency_ms": 67.92,
+    "client_latency_ms": 43.46,
     "server_latency_ms": {
-      "encode": 32.35,
-      "dense": 6.26,
-      "sparse": 4.17,
-      "fusion": 6.0,
-      "fetch_text": 17.28,
+      "encode": 23.21,
+      "dense": 5.92,
+      "sparse": 3.4,
+      "fusion": 0.43,
+      "fetch_text": 8.76,
       "rerank": 0.0,
-      "total": 66.66
+      "total": 42.22
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -14968,16 +15026,17 @@
       "3796609",
       "3704245"
     ],
-    "client_latency_ms": 49.89,
+    "client_latency_ms": 47.11,
     "server_latency_ms": {
-      "encode": 29.4,
-      "dense": 6.28,
-      "sparse": 5.77,
+      "encode": 27.46,
+      "dense": 6.3,
+      "sparse": 3.74,
       "fusion": 0.45,
-      "fetch_text": 6.18,
+      "fetch_text": 7.4,
       "rerank": 0.0,
-      "total": 48.67
+      "total": 45.87
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -15223,16 +15282,17 @@
       "4953471",
       "7590242"
     ],
-    "client_latency_ms": 49.88,
+    "client_latency_ms": 45.33,
     "server_latency_ms": {
-      "encode": 31.19,
-      "dense": 6.42,
-      "sparse": 4.08,
-      "fusion": 0.43,
-      "fetch_text": 6.2,
+      "encode": 25.61,
+      "dense": 7.09,
+      "sparse": 3.83,
+      "fusion": 0.52,
+      "fetch_text": 6.04,
       "rerank": 0.0,
-      "total": 48.8
+      "total": 43.67
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -15480,16 +15540,17 @@
       "924441",
       "7474982"
     ],
-    "client_latency_ms": 48.49,
+    "client_latency_ms": 45.85,
     "server_latency_ms": {
-      "encode": 28.59,
-      "dense": 6.26,
-      "sparse": 4.61,
-      "fusion": 0.46,
-      "fetch_text": 6.93,
+      "encode": 25.96,
+      "dense": 6.39,
+      "sparse": 4.71,
+      "fusion": 0.47,
+      "fetch_text": 6.69,
       "rerank": 0.0,
-      "total": 47.37
+      "total": 44.78
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -15735,16 +15796,17 @@
       "5238296",
       "8633396"
     ],
-    "client_latency_ms": 51.16,
+    "client_latency_ms": 45.85,
     "server_latency_ms": {
-      "encode": 29.9,
-      "dense": 6.73,
-      "sparse": 4.6,
-      "fusion": 0.5,
-      "fetch_text": 7.72,
+      "encode": 24.45,
+      "dense": 6.48,
+      "sparse": 4.52,
+      "fusion": 0.53,
+      "fetch_text": 8.19,
       "rerank": 0.0,
-      "total": 50.04
+      "total": 44.74
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -15990,16 +16052,17 @@
       "5579017",
       "4551578"
     ],
-    "client_latency_ms": 54.07,
+    "client_latency_ms": 57.01,
     "server_latency_ms": {
-      "encode": 33.78,
-      "dense": 6.84,
-      "sparse": 4.45,
-      "fusion": 0.44,
-      "fetch_text": 6.67,
+      "encode": 29.78,
+      "dense": 6.22,
+      "sparse": 5.08,
+      "fusion": 5.96,
+      "fetch_text": 7.87,
       "rerank": 0.0,
-      "total": 52.75
+      "total": 55.52
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -16248,16 +16311,17 @@
       "1489038",
       "2068828"
     ],
-    "client_latency_ms": 57.33,
+    "client_latency_ms": 45.77,
     "server_latency_ms": {
-      "encode": 30.99,
-      "dense": 6.15,
-      "sparse": 4.16,
-      "fusion": 6.3,
-      "fetch_text": 7.97,
+      "encode": 25.33,
+      "dense": 6.06,
+      "sparse": 4.84,
+      "fusion": 0.48,
+      "fetch_text": 7.3,
       "rerank": 0.0,
-      "total": 56.16
+      "total": 44.56
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -16509,16 +16573,17 @@
       "1289850",
       "5371162"
     ],
-    "client_latency_ms": 47.95,
+    "client_latency_ms": 44.85,
     "server_latency_ms": {
-      "encode": 27.95,
-      "dense": 7.37,
-      "sparse": 4.6,
-      "fusion": 0.49,
-      "fetch_text": 5.81,
+      "encode": 25.95,
+      "dense": 5.87,
+      "sparse": 4.52,
+      "fusion": 0.57,
+      "fetch_text": 6.28,
       "rerank": 0.0,
-      "total": 46.76
+      "total": 43.84
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -16765,16 +16830,17 @@
       "1928539",
       "1167108"
     ],
-    "client_latency_ms": 52.65,
+    "client_latency_ms": 50.19,
     "server_latency_ms": {
-      "encode": 33.79,
-      "dense": 6.3,
-      "sparse": 4.59,
-      "fusion": 0.46,
-      "fetch_text": 5.88,
+      "encode": 30.34,
+      "dense": 5.96,
+      "sparse": 4.6,
+      "fusion": 0.6,
+      "fetch_text": 7.03,
       "rerank": 0.0,
-      "total": 51.53
+      "total": 49.04
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -17025,16 +17091,17 @@
       "4626839",
       "4373129"
     ],
-    "client_latency_ms": 49.37,
+    "client_latency_ms": 48.98,
     "server_latency_ms": {
-      "encode": 29.57,
-      "dense": 6.31,
-      "sparse": 4.39,
-      "fusion": 0.48,
-      "fetch_text": 6.83,
+      "encode": 29.63,
+      "dense": 5.88,
+      "sparse": 3.71,
+      "fusion": 0.9,
+      "fetch_text": 7.22,
       "rerank": 0.0,
-      "total": 48.15
+      "total": 47.88
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -17278,16 +17345,17 @@
       "7116653",
       "1405182"
     ],
-    "client_latency_ms": 44.16,
+    "client_latency_ms": 37.15,
     "server_latency_ms": {
-      "encode": 28.68,
-      "dense": 6.56,
-      "sparse": 2.78,
-      "fusion": 0.42,
-      "fetch_text": 4.21,
+      "encode": 23.76,
+      "dense": 5.96,
+      "sparse": 2.06,
+      "fusion": 0.27,
+      "fetch_text": 3.8,
       "rerank": 0.0,
-      "total": 43.09
+      "total": 36.15
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -17535,16 +17603,17 @@
       "4558860",
       "548660"
     ],
-    "client_latency_ms": 52.67,
+    "client_latency_ms": 61.69,
     "server_latency_ms": {
-      "encode": 33.17,
-      "dense": 6.36,
-      "sparse": 4.39,
-      "fusion": 0.46,
-      "fetch_text": 6.58,
+      "encode": 32.0,
+      "dense": 6.43,
+      "sparse": 5.04,
+      "fusion": 6.3,
+      "fetch_text": 9.61,
       "rerank": 0.0,
-      "total": 51.49
+      "total": 60.06
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -17791,16 +17860,17 @@
       "8282675",
       "7984663"
     ],
-    "client_latency_ms": 63.38,
+    "client_latency_ms": 55.75,
     "server_latency_ms": {
-      "encode": 35.13,
-      "dense": 6.43,
-      "sparse": 5.05,
-      "fusion": 6.37,
-      "fetch_text": 8.3,
+      "encode": 35.54,
+      "dense": 6.72,
+      "sparse": 5.06,
+      "fusion": 0.44,
+      "fetch_text": 6.53,
       "rerank": 0.0,
-      "total": 61.9
+      "total": 54.78
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -18051,16 +18121,17 @@
       "2575779",
       "7782822"
     ],
-    "client_latency_ms": 97.38,
+    "client_latency_ms": 44.86,
     "server_latency_ms": {
-      "encode": 83.51,
-      "dense": 6.62,
-      "sparse": 1.82,
-      "fusion": 0.28,
-      "fetch_text": 3.33,
+      "encode": 30.75,
+      "dense": 7.16,
+      "sparse": 2.0,
+      "fusion": 0.3,
+      "fetch_text": 2.99,
       "rerank": 0.0,
-      "total": 96.01
+      "total": 43.64
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -18303,16 +18374,17 @@
       "6980931",
       "3610185"
     ],
-    "client_latency_ms": 126.79,
+    "client_latency_ms": 50.86,
     "server_latency_ms": {
-      "encode": 85.0,
-      "dense": 6.62,
-      "sparse": 29.53,
-      "fusion": 0.4,
-      "fetch_text": 3.37,
+      "encode": 35.69,
+      "dense": 6.36,
+      "sparse": 3.39,
+      "fusion": 0.38,
+      "fetch_text": 3.25,
       "rerank": 0.0,
-      "total": 125.39
+      "total": 49.54
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -18564,16 +18636,17 @@
       "3247783",
       "3208493"
     ],
-    "client_latency_ms": 108.55,
+    "client_latency_ms": 56.93,
     "server_latency_ms": {
-      "encode": 53.35,
-      "dense": 6.82,
-      "sparse": 5.13,
-      "fusion": 0.46,
-      "fetch_text": 40.71,
+      "encode": 35.16,
+      "dense": 7.35,
+      "sparse": 4.75,
+      "fusion": 0.49,
+      "fetch_text": 6.78,
       "rerank": 0.0,
-      "total": 107.1
+      "total": 55.13
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -18823,16 +18896,17 @@
       "8646419",
       "2066196"
     ],
-    "client_latency_ms": 110.27,
+    "client_latency_ms": 53.25,
     "server_latency_ms": {
-      "encode": 58.62,
-      "dense": 6.7,
-      "sparse": 4.88,
-      "fusion": 0.58,
-      "fetch_text": 37.57,
+      "encode": 30.18,
+      "dense": 6.69,
+      "sparse": 4.84,
+      "fusion": 0.54,
+      "fetch_text": 8.79,
       "rerank": 0.0,
-      "total": 108.97
+      "total": 51.7
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -19076,16 +19150,17 @@
       "1457766",
       "6552901"
     ],
-    "client_latency_ms": 55.06,
+    "client_latency_ms": 57.16,
     "server_latency_ms": {
-      "encode": 31.36,
-      "dense": 6.17,
-      "sparse": 5.74,
-      "fusion": 0.47,
-      "fetch_text": 9.08,
+      "encode": 29.39,
+      "dense": 6.36,
+      "sparse": 4.07,
+      "fusion": 7.27,
+      "fetch_text": 8.02,
       "rerank": 0.0,
-      "total": 53.43
+      "total": 55.81
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -19330,16 +19405,17 @@
       "6838160",
       "3164795"
     ],
-    "client_latency_ms": 78.47,
+    "client_latency_ms": 49.43,
     "server_latency_ms": {
-      "encode": 33.15,
-      "dense": 6.7,
-      "sparse": 4.99,
-      "fusion": 7.58,
-      "fetch_text": 24.13,
+      "encode": 28.51,
+      "dense": 6.61,
+      "sparse": 4.72,
+      "fusion": 0.51,
+      "fetch_text": 6.84,
       "rerank": 0.0,
-      "total": 77.16
+      "total": 47.8
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -19587,16 +19663,17 @@
       "5751594",
       "947694"
     ],
-    "client_latency_ms": 54.15,
+    "client_latency_ms": 49.35,
     "server_latency_ms": {
-      "encode": 32.49,
-      "dense": 6.52,
-      "sparse": 4.52,
-      "fusion": 0.48,
-      "fetch_text": 8.03,
+      "encode": 29.18,
+      "dense": 6.03,
+      "sparse": 4.72,
+      "fusion": 0.59,
+      "fetch_text": 7.27,
       "rerank": 0.0,
-      "total": 52.62
+      "total": 48.28
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -19843,16 +19920,17 @@
       "763420",
       "6824610"
     ],
-    "client_latency_ms": 91.94,
+    "client_latency_ms": 49.31,
     "server_latency_ms": {
-      "encode": 32.42,
-      "dense": 5.88,
-      "sparse": 36.75,
-      "fusion": 0.43,
-      "fetch_text": 14.58,
+      "encode": 29.47,
+      "dense": 6.02,
+      "sparse": 5.28,
+      "fusion": 0.5,
+      "fetch_text": 6.21,
       "rerank": 0.0,
-      "total": 90.58
+      "total": 48.02
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -20100,16 +20178,17 @@
       "7794208",
       "3857474"
     ],
-    "client_latency_ms": 89.0,
+    "client_latency_ms": 56.1,
     "server_latency_ms": {
-      "encode": 32.04,
-      "dense": 6.52,
-      "sparse": 4.85,
-      "fusion": 0.48,
-      "fetch_text": 42.98,
+      "encode": 34.34,
+      "dense": 6.48,
+      "sparse": 4.94,
+      "fusion": 0.51,
+      "fetch_text": 7.76,
       "rerank": 0.0,
-      "total": 87.54
+      "total": 54.7
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -20354,16 +20433,17 @@
       "5086558",
       "623161"
     ],
-    "client_latency_ms": 55.99,
+    "client_latency_ms": 52.9,
     "server_latency_ms": {
-      "encode": 34.31,
-      "dense": 6.13,
-      "sparse": 4.66,
-      "fusion": 0.43,
-      "fetch_text": 8.73,
+      "encode": 31.91,
+      "dense": 7.05,
+      "sparse": 4.44,
+      "fusion": 0.49,
+      "fetch_text": 6.9,
       "rerank": 0.0,
-      "total": 54.8
+      "total": 51.42
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -20612,16 +20692,17 @@
       "1315824",
       "7579284"
     ],
-    "client_latency_ms": 66.56,
+    "client_latency_ms": 56.55,
     "server_latency_ms": {
-      "encode": 33.96,
-      "dense": 6.0,
-      "sparse": 4.53,
-      "fusion": 0.53,
-      "fetch_text": 19.73,
+      "encode": 29.34,
+      "dense": 6.83,
+      "sparse": 4.66,
+      "fusion": 6.67,
+      "fetch_text": 7.2,
       "rerank": 0.0,
-      "total": 65.3
+      "total": 55.3
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -20875,16 +20956,17 @@
       "4246160",
       "5324202"
     ],
-    "client_latency_ms": 62.32,
+    "client_latency_ms": 51.6,
     "server_latency_ms": {
-      "encode": 34.36,
-      "dense": 6.4,
-      "sparse": 4.89,
-      "fusion": 6.09,
-      "fetch_text": 8.24,
+      "encode": 31.14,
+      "dense": 6.35,
+      "sparse": 5.16,
+      "fusion": 0.48,
+      "fetch_text": 6.61,
       "rerank": 0.0,
-      "total": 60.61
+      "total": 50.35
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -21133,16 +21215,17 @@
       "2598851",
       "7903447"
     ],
-    "client_latency_ms": 56.75,
+    "client_latency_ms": 50.06,
     "server_latency_ms": {
-      "encode": 36.98,
-      "dense": 6.47,
-      "sparse": 5.22,
-      "fusion": 0.5,
-      "fetch_text": 5.9,
+      "encode": 29.95,
+      "dense": 6.31,
+      "sparse": 5.23,
+      "fusion": 0.53,
+      "fetch_text": 6.06,
       "rerank": 0.0,
-      "total": 55.61
+      "total": 48.68
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -21390,16 +21473,17 @@
       "4258162",
       "127497"
     ],
-    "client_latency_ms": 57.4,
+    "client_latency_ms": 52.57,
     "server_latency_ms": {
-      "encode": 35.87,
-      "dense": 6.82,
-      "sparse": 4.75,
-      "fusion": 0.42,
-      "fetch_text": 7.51,
+      "encode": 31.03,
+      "dense": 6.53,
+      "sparse": 5.38,
+      "fusion": 0.55,
+      "fetch_text": 7.32,
       "rerank": 0.0,
-      "total": 55.95
+      "total": 51.37
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -21647,16 +21731,17 @@
       "2398342",
       "5435238"
     ],
-    "client_latency_ms": 51.02,
+    "client_latency_ms": 47.72,
     "server_latency_ms": {
-      "encode": 29.93,
-      "dense": 6.61,
-      "sparse": 4.25,
+      "encode": 28.43,
+      "dense": 6.88,
+      "sparse": 4.55,
       "fusion": 0.45,
-      "fetch_text": 6.35,
+      "fetch_text": 5.84,
       "rerank": 0.0,
-      "total": 48.13
+      "total": 46.66
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -21902,16 +21987,17 @@
       "5905018",
       "3297783"
     ],
-    "client_latency_ms": 52.13,
+    "client_latency_ms": 49.91,
     "server_latency_ms": {
-      "encode": 33.81,
-      "dense": 6.25,
-      "sparse": 4.12,
-      "fusion": 0.42,
-      "fetch_text": 5.82,
+      "encode": 29.93,
+      "dense": 6.32,
+      "sparse": 5.78,
+      "fusion": 0.61,
+      "fetch_text": 5.52,
       "rerank": 0.0,
-      "total": 50.92
+      "total": 48.67
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -22166,16 +22252,17 @@
       "881337",
       "4272550"
     ],
-    "client_latency_ms": 53.9,
+    "client_latency_ms": 56.47,
     "server_latency_ms": {
-      "encode": 34.55,
-      "dense": 6.3,
-      "sparse": 4.57,
-      "fusion": 0.49,
-      "fetch_text": 6.28,
+      "encode": 29.53,
+      "dense": 5.98,
+      "sparse": 4.59,
+      "fusion": 5.99,
+      "fetch_text": 8.24,
       "rerank": 0.0,
-      "total": 52.75
+      "total": 54.92
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -22426,16 +22513,17 @@
       "6223948",
       "2248566"
     ],
-    "client_latency_ms": 56.13,
+    "client_latency_ms": 42.12,
     "server_latency_ms": {
-      "encode": 30.25,
-      "dense": 6.08,
-      "sparse": 4.44,
-      "fusion": 6.6,
-      "fetch_text": 6.97,
+      "encode": 24.03,
+      "dense": 5.75,
+      "sparse": 4.8,
+      "fusion": 0.44,
+      "fetch_text": 5.63,
       "rerank": 0.0,
-      "total": 54.93
+      "total": 41.04
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -22686,16 +22774,17 @@
       "4341450",
       "4104299"
     ],
-    "client_latency_ms": 53.92,
+    "client_latency_ms": 47.07,
     "server_latency_ms": {
-      "encode": 33.83,
-      "dense": 6.49,
-      "sparse": 4.61,
-      "fusion": 0.47,
-      "fetch_text": 6.52,
+      "encode": 28.28,
+      "dense": 5.63,
+      "sparse": 4.21,
+      "fusion": 0.56,
+      "fetch_text": 6.57,
       "rerank": 0.0,
-      "total": 52.52
+      "total": 45.83
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -22947,16 +23036,17 @@
       "2768038",
       "8436975"
     ],
-    "client_latency_ms": 51.38,
+    "client_latency_ms": 47.92,
     "server_latency_ms": {
-      "encode": 33.34,
-      "dense": 6.09,
-      "sparse": 4.59,
-      "fusion": 0.43,
-      "fetch_text": 5.18,
+      "encode": 30.53,
+      "dense": 6.1,
+      "sparse": 4.24,
+      "fusion": 0.42,
+      "fetch_text": 4.94,
       "rerank": 0.0,
-      "total": 50.14
+      "total": 46.76
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -23209,16 +23299,17 @@
       "4732098",
       "6634413"
     ],
-    "client_latency_ms": 50.65,
+    "client_latency_ms": 42.44,
     "server_latency_ms": {
-      "encode": 31.23,
-      "dense": 5.92,
-      "sparse": 4.41,
-      "fusion": 0.52,
-      "fetch_text": 6.68,
+      "encode": 24.38,
+      "dense": 6.32,
+      "sparse": 3.5,
+      "fusion": 0.36,
+      "fetch_text": 6.1,
       "rerank": 0.0,
-      "total": 49.33
+      "total": 41.16
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -23463,16 +23554,17 @@
       "2295091",
       "8228306"
     ],
-    "client_latency_ms": 52.78,
+    "client_latency_ms": 46.51,
     "server_latency_ms": {
-      "encode": 32.5,
-      "dense": 5.92,
-      "sparse": 4.36,
-      "fusion": 0.63,
-      "fetch_text": 7.53,
+      "encode": 26.99,
+      "dense": 5.59,
+      "sparse": 5.04,
+      "fusion": 0.45,
+      "fetch_text": 7.01,
       "rerank": 0.0,
-      "total": 51.48
+      "total": 45.54
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -23719,16 +23811,17 @@
       "2495680",
       "2611535"
     ],
-    "client_latency_ms": 55.32,
+    "client_latency_ms": 53.67,
     "server_latency_ms": {
-      "encode": 36.39,
-      "dense": 6.44,
-      "sparse": 4.49,
-      "fusion": 0.44,
-      "fetch_text": 5.93,
+      "encode": 26.91,
+      "dense": 5.83,
+      "sparse": 4.28,
+      "fusion": 6.6,
+      "fetch_text": 8.07,
       "rerank": 0.0,
-      "total": 54.21
+      "total": 52.22
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -23976,16 +24069,17 @@
       "4839529",
       "8129824"
     ],
-    "client_latency_ms": 57.4,
+    "client_latency_ms": 46.21,
     "server_latency_ms": {
-      "encode": 30.52,
-      "dense": 6.12,
-      "sparse": 4.45,
-      "fusion": 5.94,
-      "fetch_text": 8.31,
+      "encode": 26.03,
+      "dense": 5.84,
+      "sparse": 5.57,
+      "fusion": 0.47,
+      "fetch_text": 6.56,
       "rerank": 0.0,
-      "total": 55.97
+      "total": 44.95
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -24234,16 +24328,17 @@
       "8786370",
       "6924027"
     ],
-    "client_latency_ms": 53.59,
+    "client_latency_ms": 47.41,
     "server_latency_ms": {
-      "encode": 34.71,
-      "dense": 6.16,
-      "sparse": 5.23,
-      "fusion": 1.15,
-      "fetch_text": 4.66,
+      "encode": 29.69,
+      "dense": 5.78,
+      "sparse": 5.45,
+      "fusion": 0.42,
+      "fetch_text": 4.7,
       "rerank": 0.0,
-      "total": 52.42
+      "total": 46.43
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -24496,16 +24591,17 @@
       "1885357",
       "8456147"
     ],
-    "client_latency_ms": 52.25,
+    "client_latency_ms": 47.73,
     "server_latency_ms": {
-      "encode": 33.34,
-      "dense": 6.16,
-      "sparse": 5.09,
-      "fusion": 0.47,
-      "fetch_text": 5.47,
+      "encode": 28.9,
+      "dense": 5.92,
+      "sparse": 4.44,
+      "fusion": 0.53,
+      "fetch_text": 6.27,
       "rerank": 0.0,
-      "total": 51.11
+      "total": 46.58
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -24739,8 +24835,8 @@
     "query": "what supplements are antiinflammatory",
     "gold_passage_ids": [
       "7731522",
-      "7731519",
-      "7731523"
+      "7731523",
+      "7731519"
     ],
     "retrieved_passage_ids": [
       "4254777",
@@ -24754,16 +24850,17 @@
       "1667240",
       "7398249"
     ],
-    "client_latency_ms": 56.08,
+    "client_latency_ms": 46.61,
     "server_latency_ms": {
-      "encode": 35.34,
-      "dense": 6.49,
-      "sparse": 4.32,
-      "fusion": 0.5,
-      "fetch_text": 7.09,
+      "encode": 26.78,
+      "dense": 5.89,
+      "sparse": 3.85,
+      "fusion": 0.46,
+      "fetch_text": 7.67,
       "rerank": 0.0,
-      "total": 54.36
+      "total": 45.22
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -25008,16 +25105,17 @@
       "4997919",
       "4090799"
     ],
-    "client_latency_ms": 50.41,
+    "client_latency_ms": 41.45,
     "server_latency_ms": {
-      "encode": 31.56,
-      "dense": 6.3,
-      "sparse": 4.24,
-      "fusion": 0.43,
-      "fetch_text": 5.86,
+      "encode": 24.59,
+      "dense": 6.64,
+      "sparse": 3.54,
+      "fusion": 0.33,
+      "fetch_text": 5.07,
       "rerank": 0.0,
-      "total": 48.9
+      "total": 40.58
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -25270,16 +25368,17 @@
       "2461581",
       "2903056"
     ],
-    "client_latency_ms": 48.07,
+    "client_latency_ms": 48.2,
     "server_latency_ms": {
-      "encode": 27.79,
-      "dense": 6.6,
-      "sparse": 4.63,
-      "fusion": 0.49,
-      "fetch_text": 6.44,
+      "encode": 24.27,
+      "dense": 5.18,
+      "sparse": 3.59,
+      "fusion": 6.43,
+      "fetch_text": 7.44,
       "rerank": 0.0,
-      "total": 46.47
+      "total": 47.34
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,
@@ -25526,16 +25625,17 @@
       "3239733",
       "8730448"
     ],
-    "client_latency_ms": 60.59,
+    "client_latency_ms": 47.0,
     "server_latency_ms": {
-      "encode": 34.72,
-      "dense": 6.37,
-      "sparse": 4.33,
-      "fusion": 6.5,
-      "fetch_text": 6.93,
+      "encode": 27.31,
+      "dense": 6.15,
+      "sparse": 5.02,
+      "fusion": 0.63,
+      "fetch_text": 6.25,
       "rerank": 0.0,
-      "total": 59.46
+      "total": 45.92
     },
+    "governor_state": "normal",
     "results": [
       {
         "rank": 1,

@@ -1,0 +1,101 @@
+idx,query_id,query,mode,scenario,cache_hit,governor_state,client_wall_clock_ms,server_encode_ms,server_dense_ms,server_sparse_ms,server_fusion_ms,server_fetch_text_ms,server_rerank_ms,server_total_ms
+1,647687,what does semen consist of,hybrid_rerank,hybrid_rerank_uncached,False,normal,280.41,50.34,6.97,4.57,0.49,6.14,203.16,272.34
+2,74328,can tennis elbow cause pain in your shoulder?,hybrid_rerank,hybrid_rerank_uncached,False,normal,241.05,50.61,8.54,5.39,0.46,3.45,153.07,222.16
+3,391662,if meat is bad for you what should you eat,hybrid_rerank,hybrid_rerank_uncached,False,normal,204.19,45.09,6.23,4.86,0.48,3.73,137.02,198.07
+4,530602,types organizational structure,hybrid_rerank,hybrid_rerank_uncached,False,normal,193.71,40.36,7.37,4.94,0.47,3.54,128.42,185.83
+5,61836,can a 15 year old fly alone domestic flights?,hybrid_rerank,hybrid_rerank_uncached,False,normal,194.61,40.78,6.3,4.94,0.48,4.05,131.4,188.6
+6,1082622,what does the root word tele mean,hybrid_rerank,hybrid_rerank_uncached,False,normal,187.82,39.84,7.15,4.36,0.53,3.8,124.41,180.74
+7,321951,how much is donald trump jr worth,hybrid_rerank,hybrid_rerank_uncached,False,normal,168.78,36.01,6.23,4.97,0.46,3.51,108.08,159.83
+8,653187,what does the term the age of aquarius mean?,hybrid_rerank,hybrid_rerank_uncached,False,normal,201.15,37.25,6.5,5.05,0.48,3.92,141.35,195.22
+9,1051211,what is mepap certification,hybrid_rerank,hybrid_rerank_uncached,False,normal,180.24,34.94,6.39,4.69,0.47,3.75,123.24,174.07
+10,451484,medicare eligibility contact number,hybrid_rerank,hybrid_rerank_uncached,False,normal,197.76,32.22,6.19,5.17,0.5,3.99,118.19,166.85
+11,1021277,define atrium,hybrid_rerank,hybrid_rerank_uncached,False,normal,179.34,38.82,6.24,4.68,0.48,3.59,118.39,172.77
+12,988745,who is the new york county clerk,hybrid_rerank,hybrid_rerank_uncached,False,normal,180.9,46.85,6.38,4.04,0.44,3.87,112.29,174.5
+13,1083010,what does simple circuit contain,hybrid_rerank,hybrid_rerank_uncached,False,normal,189.13,33.65,6.69,3.85,0.43,3.49,119.66,168.35
+14,1083598,what does it mean cardholder name?,hybrid_rerank,hybrid_rerank_uncached,False,normal,199.44,35.86,6.87,4.34,0.47,3.65,141.06,192.89
+15,549342,what about phones in iceland,hybrid_rerank,hybrid_rerank_uncached,False,normal,211.25,44.62,7.42,4.26,0.45,3.55,143.02,203.91
+16,946631,when does harbin ice city end,hybrid_rerank,hybrid_rerank_uncached,False,normal,176.99,35.1,7.49,4.21,0.46,4.52,116.62,169.02
+17,507381,symptoms of congenital heart defects,hybrid_rerank,hybrid_rerank_uncached,False,normal,196.65,39.06,6.92,4.62,0.48,3.57,134.97,190.24
+18,1011021,what year declaration of independence,hybrid_rerank,hybrid_rerank_uncached,False,normal,183.14,37.42,6.08,4.56,0.57,4.04,122.83,176.13
+19,999610,where is vista ca,hybrid_rerank,hybrid_rerank_uncached,False,normal,177.21,32.74,6.16,3.72,0.45,4.52,120.16,168.46
+20,1094460,inches of mercury meaning,hybrid_rerank,hybrid_rerank_uncached,False,normal,159.78,32.98,6.63,4.28,0.44,3.63,105.12,153.68
+21,696677,what is a public health concept,hybrid_rerank,hybrid_rerank_uncached,False,normal,164.42,44.43,6.74,3.84,0.39,3.89,98.17,158.16
+22,1074989,what is a cyst on the kidneys do,hybrid_rerank,hybrid_rerank_uncached,False,normal,191.57,41.21,7.27,4.38,0.45,4.36,125.65,183.94
+23,1063702,what is an advocacy project,hybrid_rerank,hybrid_rerank_uncached,False,normal,149.03,34.18,6.99,4.1,0.44,3.63,93.58,143.49
+24,1090701,side effects for diclofenac topical,hybrid_rerank,hybrid_rerank_uncached,False,normal,186.49,40.34,6.11,4.5,0.48,5.08,123.52,180.67
+25,1081730,what family do squirrels belong to,hybrid_rerank,hybrid_rerank_uncached,False,normal,186.62,38.13,6.96,4.12,0.41,3.82,125.2,179.2
+26,978057,where is berrimah,hybrid_rerank,hybrid_rerank_uncached,False,normal,169.44,32.57,6.22,2.05,0.32,2.3,119.58,163.54
+27,1102235,why does ehr downtime happen,hybrid_rerank,hybrid_rerank_uncached,False,normal,209.22,33.95,6.73,5.44,1.44,6.84,145.93,201.2
+28,1096045,how much does one roll of duck tape cost,hybrid_rerank,hybrid_rerank_uncached,False,normal,199.69,40.52,6.85,5.01,0.57,4.12,136.17,193.99
+29,169305,does motion sensor device have camera,hybrid_rerank,hybrid_rerank_uncached,False,normal,192.82,35.64,6.78,4.87,0.46,4.35,134.14,186.91
+30,1051214,what is meningitis.,hybrid_rerank,hybrid_rerank_uncached,False,normal,185.45,33.36,7.35,3.62,0.4,3.75,130.28,179.31
+31,1098953,how heavy are road bikes,hybrid_rerank,hybrid_rerank_uncached,False,normal,159.51,31.25,6.8,4.45,5.84,5.74,98.66,153.45
+32,534941,usps schedule a delivery,hybrid_rerank,hybrid_rerank_uncached,False,normal,143.38,33.92,6.69,4.84,0.47,3.46,87.81,137.75
+33,658372,what event started world war 1,hybrid_rerank,hybrid_rerank_uncached,False,normal,174.84,35.09,6.4,4.55,0.56,3.96,117.11,168.35
+34,1070452,what is a mimo receiver,hybrid_rerank,hybrid_rerank_uncached,False,normal,196.52,35.74,6.73,4.06,0.42,3.65,137.05,188.23
+35,414714,is it still dangerous to go to the place of where the chernobyl happened,hybrid_rerank,hybrid_rerank_uncached,False,normal,185.11,39.49,6.97,4.22,0.45,3.52,124.13,179.37
+36,1036800,who is ovid in greek mythology,hybrid_rerank,hybrid_rerank_uncached,False,normal,163.73,34.18,6.17,4.03,0.48,3.62,108.95,158.07
+37,249866,how long does a pa marriage license last,hybrid_rerank,hybrid_rerank_uncached,False,normal,181.38,33.83,6.55,4.17,0.45,3.45,124.72,173.75
+38,1011140,what wire is used to mig mild steel,hybrid_rerank,hybrid_rerank_uncached,False,normal,179.52,36.4,6.71,4.2,0.45,3.37,122.2,173.95
+39,569555,what are the elements to make air,hybrid_rerank,hybrid_rerank_uncached,False,normal,189.27,38.93,6.66,5.78,0.51,3.79,126.42,182.77
+40,1000097,where is whiteville tennessee,hybrid_rerank,hybrid_rerank_uncached,False,normal,166.73,33.28,6.16,3.94,0.43,3.88,109.77,158.06
+41,107283,cost of starting a restaurant,hybrid_rerank,hybrid_rerank_uncached,False,normal,175.35,33.89,6.09,4.08,0.56,4.05,120.18,169.56
+42,278863,how many career games did paul krause play in the nfl.,hybrid_rerank,hybrid_rerank_uncached,False,normal,175.93,36.94,6.08,4.02,0.43,3.69,118.49,170.19
+43,780297,what is orofacial dyskinesia,hybrid_rerank,hybrid_rerank_uncached,False,normal,183.41,42.4,6.03,1.77,0.32,3.82,123.11,177.93
+44,9454,a simple definition for the word bias.,hybrid_rerank,hybrid_rerank_uncached,False,normal,163.53,36.0,6.45,3.93,6.38,5.68,98.92,158.04
+45,922389,what was the result of pearl harbor attack,hybrid_rerank,hybrid_rerank_uncached,False,normal,180.62,36.4,7.18,4.1,0.41,3.38,123.01,175.07
+46,55691,boulangerie pronunciation,hybrid_rerank,hybrid_rerank_uncached,False,normal,177.84,32.36,5.94,4.61,0.49,3.74,124.07,171.79
+47,996181,where was the movie true grit filmed at,hybrid_rerank,hybrid_rerank_uncached,False,normal,179.26,37.56,6.14,4.6,0.5,3.89,117.88,171.18
+48,991138,where is punta cana eden resort,hybrid_rerank,hybrid_rerank_uncached,False,normal,172.31,35.64,6.18,3.94,0.43,3.6,115.44,165.87
+49,1026775,what kind of mixture is rocky road ice cream,hybrid_rerank,hybrid_rerank_uncached,False,truncated,214.09,40.42,7.9,4.77,0.42,3.51,149.95,207.59
+50,865616,what jedi commands the arc troopers,hybrid_rerank,hybrid_rerank_uncached,False,truncated,224.0,66.41,7.07,4.26,0.46,4.87,117.62,201.36
+51,602352,"what county is alton bay,nh in?",hybrid_rerank,hybrid_rerank_uncached,False,normal,233.24,65.34,6.99,4.47,0.47,3.9,145.68,227.48
+52,282530,how many doctors are in the us,hybrid_rerank,hybrid_rerank_uncached,False,normal,190.97,39.87,6.29,4.05,0.54,3.98,127.49,182.91
+53,291248,how many ounces of liquid is in one gallon,hybrid_rerank,hybrid_rerank_uncached,False,normal,181.8,41.86,6.63,4.32,0.42,3.36,118.14,175.27
+54,997449,where is the kihei,hybrid_rerank,hybrid_rerank_uncached,False,normal,163.56,33.35,6.1,1.44,0.26,2.86,113.16,157.63
+55,1063371,what is an aviation medical examiner?,hybrid_rerank,hybrid_rerank_uncached,False,normal,166.56,35.91,6.14,4.03,0.52,4.16,106.64,158.03
+56,1003006,where was napoleon forced to.exile,hybrid_rerank,hybrid_rerank_uncached,False,normal,178.57,37.44,6.35,4.89,0.53,3.67,118.86,172.4
+57,531142,typing average words per minute test,hybrid_rerank,hybrid_rerank_uncached,False,normal,149.57,33.01,7.33,4.33,0.42,3.27,94.87,143.8
+58,1050695,what is motor dyspraxia,hybrid_rerank,hybrid_rerank_uncached,False,normal,177.49,35.76,6.51,4.03,0.46,3.66,118.16,169.26
+59,548099,wellcare mike vice president,hybrid_rerank,hybrid_rerank_uncached,False,normal,150.51,33.91,6.13,4.73,0.49,3.73,95.41,145.0
+60,953355,when is the rib cook off in reno,hybrid_rerank,hybrid_rerank_uncached,False,normal,189.12,38.98,7.56,4.82,0.49,3.6,127.49,183.61
+61,1096375,how much data analyst makes,hybrid_rerank,hybrid_rerank_uncached,False,normal,184.12,38.56,5.93,4.14,0.46,3.99,122.84,176.6
+62,541135,was there a true bagger vance,hybrid_rerank,hybrid_rerank_uncached,False,normal,184.02,39.18,6.29,4.24,0.49,4.23,123.28,178.38
+63,812387,what is the correct height for step handrails,hybrid_rerank,hybrid_rerank_uncached,False,normal,185.74,37.33,6.41,3.91,0.47,4.55,125.41,178.95
+64,480064,price chopper locations in ct,hybrid_rerank,hybrid_rerank_uncached,False,normal,165.85,38.52,6.11,4.67,0.53,4.36,103.16,157.94
+65,442593,longest punt in nfl,hybrid_rerank,hybrid_rerank_uncached,False,normal,160.51,30.27,6.63,4.2,0.45,3.63,108.36,154.18
+66,1085288,case can arrive at the supreme court through each of these ways except,hybrid_rerank,hybrid_rerank_uncached,False,normal,180.03,37.44,6.97,4.24,0.44,3.55,120.59,174.03
+67,185299,fastest cell phone processor,hybrid_rerank,hybrid_rerank_uncached,False,normal,182.61,33.07,6.18,3.95,0.51,3.71,126.57,174.56
+68,798945,what is spotting,hybrid_rerank,hybrid_rerank_uncached,False,normal,163.65,37.35,6.28,2.49,0.36,2.93,108.14,158.04
+69,1041159,who is the ninja turtle with the blue mask,hybrid_rerank,hybrid_rerank_uncached,False,truncated,240.76,77.62,7.07,6.31,0.49,4.16,138.44,234.85
+70,165480,does digoxin affect potassium,hybrid_rerank,hybrid_rerank_uncached,False,normal,266.87,56.84,6.55,5.0,0.52,3.7,183.8,257.26
+71,1087484,what are mofongo,hybrid_rerank,hybrid_rerank_uncached,False,normal,215.94,58.22,6.67,1.63,0.27,2.78,140.25,210.29
+72,780850,what is oxycodone,hybrid_rerank,hybrid_rerank_uncached,False,normal,210.94,34.26,6.67,2.72,0.32,2.75,135.91,183.15
+73,1086675,what are thomas jefferson's kids named,hybrid_rerank,hybrid_rerank_uncached,False,truncated,290.83,40.71,7.36,4.44,0.44,3.45,225.69,282.68
+74,1052274,what is korean seafood pancake,hybrid_rerank,hybrid_rerank_uncached,False,normal,223.49,62.21,6.95,5.28,0.54,4.59,117.82,198.08
+75,1088437,weather in kingston tn,hybrid_rerank,hybrid_rerank_uncached,False,normal,160.08,32.71,5.67,5.48,0.47,3.64,104.06,152.58
+76,1090151,systemic response definition,hybrid_rerank,hybrid_rerank_uncached,False,normal,171.37,35.57,6.36,4.68,0.54,3.68,113.19,164.65
+77,1047833,cost of hiv/aids yearly treatment,hybrid_rerank,hybrid_rerank_uncached,False,normal,175.62,37.21,6.48,5.25,0.46,3.56,116.49,170.04
+78,1091633,phone number irs tax id number,hybrid_rerank,hybrid_rerank_uncached,False,normal,169.36,33.72,7.01,4.14,0.4,3.24,112.58,161.64
+79,1095749,how much jake paul merch,hybrid_rerank,hybrid_rerank_uncached,False,normal,178.16,31.94,6.67,4.17,0.44,3.67,110.12,157.63
+80,1090077,telephone number for amazon fire stick customer service,hybrid_rerank,hybrid_rerank_uncached,False,normal,178.33,37.21,6.28,5.29,0.51,4.93,117.49,172.5
+81,1097449,how many calories in provolone cheese,hybrid_rerank,hybrid_rerank_uncached,False,normal,182.75,40.46,5.74,4.22,0.48,4.15,119.64,175.28
+82,457714,most expensive hotels in new york city,hybrid_rerank,hybrid_rerank_uncached,False,normal,177.05,40.2,5.99,4.4,0.44,4.5,115.11,171.22
+83,129641,define: morbid obesity,hybrid_rerank,hybrid_rerank_uncached,False,normal,183.42,43.26,6.95,5.15,0.51,3.82,117.49,177.81
+84,1086915,what are the observed periodic trends in electron affinity?,hybrid_rerank,hybrid_rerank_uncached,False,normal,176.82,40.06,6.0,4.23,0.54,3.76,113.86,169.13
+85,433415,josephine's feast,hybrid_rerank,hybrid_rerank_uncached,False,normal,172.73,33.32,6.85,4.41,0.5,3.45,117.89,167.03
+86,902931,what test is for lupus,hybrid_rerank,hybrid_rerank_uncached,False,normal,201.34,42.44,6.2,5.38,0.62,3.8,136.44,195.52
+87,147337,difference between ford supercab and crew cab,hybrid_rerank,hybrid_rerank_uncached,False,normal,173.19,41.87,6.22,3.57,0.39,3.39,109.96,165.93
+88,66154,can crystals cause dizziness,hybrid_rerank,hybrid_rerank_uncached,False,normal,176.5,33.45,6.48,4.34,0.43,3.26,121.87,170.46
+89,842596,what is the purpose of polarized sunglasses,hybrid_rerank,hybrid_rerank_uncached,False,normal,278.85,37.2,9.01,4.9,0.5,3.81,217.05,273.19
+90,992950,which super bowl did colin kaepernick play in,hybrid_rerank,hybrid_rerank_uncached,False,normal,265.14,81.42,6.18,4.66,0.44,3.59,147.17,244.04
+91,490802,russ simmons net worth,hybrid_rerank,hybrid_rerank_uncached,False,normal,166.44,34.28,6.55,4.5,0.47,3.67,110.6,160.88
+92,1026372,who did colton haynes play on arrow,hybrid_rerank,hybrid_rerank_uncached,False,normal,205.26,39.61,6.65,4.37,0.53,4.28,126.88,183.48
+93,1098497,how long do resin countertops last,hybrid_rerank,hybrid_rerank_uncached,False,normal,187.11,40.39,6.16,4.9,0.48,3.75,122.29,178.56
+94,100616,cost estimate glass shower,hybrid_rerank,hybrid_rerank_uncached,False,normal,176.28,33.17,5.76,4.04,0.44,4.24,121.51,169.79
+95,641583,what does it mean when your tongue is all white,hybrid_rerank,hybrid_rerank_uncached,False,normal,167.9,38.18,6.13,3.76,0.39,3.05,110.41,162.45
+96,222954,how do you lower hardness in pool water?,hybrid_rerank,hybrid_rerank_uncached,False,normal,182.34,35.99,6.43,4.02,0.44,3.54,123.99,175.0
+97,899800,what supplements are antiinflammatory,hybrid_rerank,hybrid_rerank_uncached,False,normal,179.23,34.71,7.22,4.09,0.48,3.85,122.6,173.58
+98,548254,wenatchee washington population,hybrid_rerank,hybrid_rerank_uncached,False,normal,154.2,34.43,6.17,4.06,0.41,3.83,97.5,147.03
+99,422501,is rhinitis painful,hybrid_rerank,hybrid_rerank_uncached,False,normal,195.31,43.14,6.49,4.12,0.45,4.13,128.57,187.49
+100,1093927,is the jaraguay volcanic field dormant?,hybrid_rerank,hybrid_rerank_uncached,False,normal,186.4,39.16,6.54,4.52,0.47,3.93,125.12,180.42
