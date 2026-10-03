@@ -424,6 +424,67 @@ All architectural and algorithmic decisions are recorded here with context, opti
   - `semantic_hash`: Must remain strictly identical to v1 (`8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf`).
   - `serving_hash`: Computed over new serving parameters (`total_deadline_ms`, batching, runtime flags).
 
+---
+
+## ADR-022: Anytime Cascade and Request-Level Predictive Governor (Gate 12 Part 1)
+- **Status:** **APPROVED & PRE-REGISTERED (Pre-Execution)**
+- **Date:** 2026-10-04
+- **Branch:** `gate12-cascade`
+- **Context:** Reranking with a Cross-Encoder ($K=10$) on CPU causes tail latency violations ($p95 = 306.39$ ms in v1) when earlier retrieval or serialization stages consume variable time. A stage-local deadline fails because it ignores the actual request wall-clock elapsed time.
+- **Decision:**
+  1. **Request-Level Clock:** Measure elapsed time from request arrival at the ASGI middleware level ($t_0$). Compute dynamic remaining budget:
+     $$\text{remaining} = \text{total\_deadline\_ms}(230) - (t - t_0) - \text{reserve\_ms}$$
+     where $\text{reserve\_ms}$ is the measured p95 of text hydration and JSON serialization.
+  2. **Anytime Stage Semantics:**
+     - Stage 1 (Hybrid dual-vector retrieval with concurrent dense encode and sparse search) always completes and serves as guaranteed fallback.
+     - Stage 3 Cross-Encoder reranks top-$K_{\text{eff}}$ candidates in micro-batches (2–3 pairs) with hard deadline checks between batches.
+     - Dynamic candidate clamping: $K_{\text{eff}} = \text{clamp}(\lfloor \text{remaining} / \text{per\_pair\_ms} \rfloor, 0, K)$ using rolling median per-pair cost calibrated at startup (20 warm pairs). Candidates beyond $K_{\text{eff}}$ maintain first-stage hybrid ranking below the scored subset.
+     - States: `normal`, `truncated`, `skipped_budget`.
+  3. **Runtime Engine Optimization:**
+     - Evaluate ONNX Runtime FP32 and dynamic INT8 quantization (using physical core pinning, `inter_op=1`, `allow_spinning=0`, length-sorted dynamic padding, max_length {128, 96}).
+- **Pre-Registered Parity Gates (Evaluated against PyTorch FP32 on all 500 TUNE queries):**
+  - Top-1 passage identity agreement $\ge 0.97$.
+  - Top-5 candidate set agreement $\ge 0.98$.
+  - Paired $\Delta \text{NDCG@5}$ and $\Delta \text{Hit@1}$ satisfy $|\Delta| \le 0.005$ with $95\%$ bootstrap confidence interval containing 0.
+  - *Decision Rule:* Adopt the fastest ONNX variant passing all parity gates. If an optimized variant fails any gate, reject it and report exact metrics.
+
+---
+
+## ADR-023: Evaluation Power, Zero-Token Analysis, and Persistent Verdict Ledger (Gate 12 Part 2)
+- **Status:** **APPROVED & PRE-REGISTERED (Pre-Execution)**
+- **Date:** 2026-10-04
+- **Branch:** `gate12-cascade`
+- **Context:** Downstream RAGAS evaluation with LLM judges is constrained by API rate limits, daily token caps, and sample size variance ($N=50$ bootstrap CIs cross zero). Redundant LLM calls on identical passage-query pairs waste tokens.
+- **Decision:**
+  1. **Audit Installed Ragas Semantics:** Read `ragas` source code to verify whether Context Precision evaluates contexts independently or jointly, record the exact aggregation denominator, and inspect Context Recall inputs.
+  2. **Zero-Token Analysis on Stored Data:** Recompute Top-1 identity, Top-5 Jaccard overlap, lexical-only vs dense-only contributions, CP headroom, and the top-10 rerank degradation queries using existing benchmark files without API calls.
+  3. **Persistent Verdict Ledger:** Maintain `results/ragas/verdict_ledger.jsonl` keyed by $(qid, \text{passage\_id}, \text{judge}, \text{prompt\_hash}, \text{ragas\_version})$. When evaluating a mode, retrieve existing verdicts from the ledger; call the judge only for novel pairs.
+  4. **Pre-Registered Claim Rule:** Primary RAGAS evaluation remains pre-registered at $N=50$. Any extended evaluation ($N > 50$) enabled by ledger token savings will be reported in a separate, dedicated section.
+
+---
+
+## ADR-024: Architecture Integrity: Version-Stamped Cache, Dual-Write Outbox, and Sparse Hash Audit (Gate 12 Part 3)
+- **Status:** **APPROVED & PRE-REGISTERED (Pre-Execution)**
+- **Date:** 2026-10-04
+- **Branch:** `gate12-cascade`
+- **Context:** Global cache invalidation on write thrashes cache hit rates. Dual writes across Qdrant and SQLite risk consistency drift if a crash occurs mid-update. Sparse vector hashing may suffer token collisions.
+- **Decision:**
+  1. **Version-Stamped Cache Keys:** Cache keys incorporate `corpus_version` stored in SQLite metadata. Writes increment `corpus_version`, rendering all previous cache entries invalid in $O(1)$ without memory wipes. Ongoing read requests that started before a write complete under the old version key. Deletions evict via a reverse index mapping `passage_id \to \text{cache\_keys}`.
+  2. **Transactional Dual-Write Outbox:** SQLite serves as authoritative source of truth. Mutations write document data and an outbox record (`pending_ops`) in a single SQLite transaction, followed by idempotent Qdrant write, and outbox resolution. Startup sequence replays unapplied operations.
+  3. **Sparse Token Hash Collision Audit:** Audit 32-bit Murmur/SHA token hash space over MS MARCO vocabulary to determine exact collision frequency and affected query tokens on TUNE.
+
+---
+
+## ADR-025: ColBERT Late-Interaction Multi-Vector Reranking Stage (Gate 12 Part 4)
+- **Status:** **PARKED (Pre-Registered, Execution Blocked until "GO COLBERT")**
+- **Date:** 2026-10-04
+- **Branch:** `gate12-cascade`
+- **Context:** Cross-encoders compute $O(K \times L^2)$ all-to-all attention. Late-interaction ColBERT models (`answerai-colbert-small-v1`) pre-compute document token embeddings and compute query-document similarity via MaxSim in $O(L_Q \times L_D)$, running in $<25$ ms.
+- **Decision Rule (Pre-Registered):**
+  - Verify license, availability, and model size via HuggingFace API.
+  - Do NOT train or execute index build until explicit user confirmation (`GO COLBERT`).
+  - Pre-registered adoption rule: Adopt ColBERT as stage-2 intermediate filter IF AND ONLY IF on TUNE it achieves NDCG@5 non-inferior to CE (95% CI lower bound $\ge -0.02$) at materially lower p95 latency. Any negative result will be published without cherry-picking.
+
 
 
 
