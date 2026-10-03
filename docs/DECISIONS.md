@@ -47,7 +47,23 @@ All architectural and algorithmic decisions are recorded here with context, opti
 - **Context:** In `qdrant-client` 1.19.1, `QdrantClient.search` has been removed.
 - **Choice:** Use `client.query_points`.
 - **Why:** `query_points` is the unified method supporting dense vectors, sparse vectors (`using="bm25"`), filters, and payload selection in `qdrant-client` 1.19.1.
-- **Evidence:** `tests/test_qdrant_api.py` and `docs/API_NOTES.md`.
+- **Evidence:** `tests/test_gate0.py` and `docs/API_NOTES.md`.
+
+---
+
+## ADR-005: Dataset Source Selection for MS MARCO Corpus and Splits
+- **Date:** 2026-10-03
+- **Context:** Gate 1 requires finding MS MARCO passage data on HuggingFace that provides stable passage IDs, queries, and qrels, verifying 100% cross-dataset consistency.
+- **Options Considered:**
+  1. *`microsoft/ms_marco`*: Original legacy HF dataset; lacks pre-split passage corpus with fast retrieval IDs; schema requires complex parsing.
+  2. *`BeIR/msmarco`*: Clean corpus and queries; however, corpus parquet download is 1.55 GB and query extraction over streaming is slow.
+  3. *`Tevatron/msmarco-passage-corpus` + `Tevatron/msmarco-passage` + `BeIR/msmarco-qrels`*:
+     - `Tevatron/msmarco-passage-corpus`: canonical `docid` string (exact MS MARCO integer IDs `0` to `8841822`).
+     - `Tevatron/msmarco-passage` (`dev.jsonl.gz`): exactly 6,980 dev queries.
+     - `BeIR/msmarco-qrels` (`dev.tsv`): exactly 7,437 qrels across 6,980 dev queries.
+- **Choice:** Option 3.
+- **Why:** Complete 100% ID consistency between qrels and queries (6,980/6,980 match). 100% of gold passage IDs exist in the corpus. Clean schema: `docid` and `text`.
+- **Evidence:** Verified in `data/manifests/splits_manifest.json` and `data/manifests/corpus_manifest.json`.
 
 ---
 

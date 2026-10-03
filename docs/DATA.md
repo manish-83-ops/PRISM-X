@@ -1,6 +1,6 @@
 # Data Management and Corpus Specification
 
-This document details the MS MARCO passage dataset selection, schema verification, deterministic sampling strategy, split generation, and critical caveats.
+This document details the MS MARCO passage dataset selection, schema verification, deterministic sampling strategy, split generation, sanity metrics, and critical caveats.
 
 ---
 
@@ -8,51 +8,88 @@ This document details the MS MARCO passage dataset selection, schema verificatio
 
 ### Selected HuggingFace Repositories
 - **Corpus Source:** `Tevatron/msmarco-passage-corpus`
-  - Stable passage IDs (`docid` or `passage_id` mapped to integer or string).
+  - Stable passage IDs (`docid` string matching official MS MARCO IDs `0` to `8841822`).
   - Schema: `docid: string`, `title: string`, `text: string`.
-- **Query & Qrels Source:** `Tevatron/msmarco-passage`
-  - Clean dev split with queries (`query_id: string`, `query: string`) and qrels mapping `query_id -> positive_passages: list[string]`.
+  - Raw size: 1,066.68 MB gzipped (8,841,823 passages).
+- **Query & Qrels Source:** `Tevatron/msmarco-passage` + `BeIR/msmarco-qrels`
+  - Dev Queries: `Tevatron/msmarco-passage` (`dev.jsonl.gz`, 6,980 queries).
+  - Dev Qrels: `BeIR/msmarco-qrels` (`dev.tsv`, 7,437 qrels across 6,980 unique queries).
+  - Verification: 100% of query IDs in `dev.tsv` match `dev.jsonl.gz`. 100% of positive passage IDs exist in the corpus.
 
-### Verification Protocol
-Before building the full corpus, sampled qrel passage IDs are verified to be 100% present in the corpus source.
-
----
-
-## 2. Deterministic Splits
-
-From the MS MARCO Dev queries that have $\ge 1$ positive qrel passage:
-1. **TUNE Split (500 queries):** Used exclusively for all hyperparameter tuning (dense instruction prefix, BM25 $k_1$ and $b$, stemming, hybrid fusion $\alpha$, RRF $k_{\text{rrf}}$, and candidate depth $n$).
-2. **TEST Split (500 queries):** Used **EXACTLY ONCE** for the final reported evaluation of the frozen configurations (Phase 1 baseline, Phase 2 hybrid, optional reranker).
-3. **BENCH Split (100 queries):** The first 100 queries of a fixed, seeded permutation of TEST, used for client-side latency profiling under protocol D2.
-4. **RAGAS Split (100 queries):** The identical 100 queries as BENCH, used for RAGAS evaluation across Non-LLM and LLM-based families.
-
-**Partition Isolation Guarantee:** TUNE and TEST splits are strictly disjoint ($\text{TUNE} \cap \text{TEST} = \emptyset$). All query ID manifests are persisted to `data/manifests/`.
+### Why Chosen
+Direct official MS MARCO canonical IDs without re-indexing or synthetic ID shifts, enabling exact cross-channel parity between dense and sparse representations.
 
 ---
 
-## 3. Corpus A ("standard-100K") Construction
+## 2. Deterministic Query Splits
 
-Corpus A consists of **EXACTLY 100,000 unique passages**, created deterministically:
-1. **Gold Retention:** All gold passages associated with the 1,000 TUNE + TEST queries are unconditionally included.
-2. **Deterministic Filler Sampling:** Non-gold passages from the corpus are ranked by a stable seeded SHA-256 hash of their ID (`int(sha256(f"{seed}_{docid}"))`). The lowest-hash passages fill the remaining quota.
-3. **Deduplication:** Exact text duplicate passages are removed (retaining the gold instance if a collision occurs).
-4. **Final Exact Trim:** Trimmed to exactly 100,000 total passages.
-5. **Leakage Prevention:** No field or payload ever stores whether a passage is gold, negative, or filler.
-
----
-
-## 4. Derived Metadata Categories
-
-MS MARCO does not contain native category labels. To support FR-4 (pre-retrieval metadata filtering):
-- Embeddings are clustered into $k=15$ clusters using seeded `MiniBatchKMeans` (seed 42).
-- Each cluster is labeled with its top c-TF-IDF keyword terms.
-- A clean slug (e.g. `tech-hardware`, `health-medical`, `finance-econ`) is assigned to the `category` payload field.
-- The `source` field is populated with `"msmarco-passage"`.
+From the 6,980 MS MARCO Dev queries that have $\ge 1$ positive qrel:
+- **Seed:** `42` (deterministic random shuffle).
+- **TUNE Split:** 500 queries (`split_tune.json`, SHA-256 in manifest). All hyperparameter tuning is restricted strictly to this split. Associated with 531 gold passages.
+- **TEST Split:** 500 queries (`split_test.json`, SHA-256 in manifest). Frozen evaluation only, used strictly ONCE per frozen configuration. Associated with 541 gold passages.
+- **BENCH Split:** First 100 queries of a fixed, seeded permutation (`seed=43`) of the TEST split. Used for latency profiling under protocol D2.
+- **RAGAS Split:** The identical 100 queries as BENCH, used for RAGAS evaluation across Non-LLM and LLM-based families.
+- **Partition Isolation:** $\text{TUNE} \cap \text{TEST} = \emptyset$ (0 overlap, verified). Total unique gold passages across TUNE+TEST: 1,072.
 
 ---
 
-## 5. Critical Caveat on Retrieval Scores
+## 3. Corpus A ("standard-100K") Manifest and Sanity Statistics
+
+Corpus A was constructed deterministically in a single streaming pass through `data/raw/corpus.jsonl.gz`:
+1. **Passage Count:** EXACTLY 100,000 unique passages.
+2. **Gold Passages:** 1,072 passages (100% of gold passages for TUNE + TEST queries).
+3. **Filler Passages:** 98,928 passages sampled via lowest SHA-256 hash rank.
+4. **Gold-to-Total Ratio:** 0.01072 (1.072%).
+5. **Exact Duplicate Texts Removed:** 1 (gold copy preserved).
+6. **Corpus File:** `data/corpus_100k.jsonl` (SHA-256: `30d5212101e6d5ee12c0f5894e0cc522fd8da526b434ab4c841c34ee1f29e8b2`).
+
+### Passage Length Distribution
+- **Characters:**
+  - Min: 14
+  - 25th percentile: 255.0
+  - Median (p50): 301.0
+  - 75th percentile: 388.0
+  - 95th percentile: 598.0
+  - Max: 1,299
+  - Mean: 335.99
+- **Words:**
+  - Min: 2
+  - 25th percentile: 42.0
+  - Median (p50): 50.0
+  - 75th percentile: 65.0
+  - 95th percentile: 102.0
+  - Max: 230
+  - Mean: 56.29
+
+### Query-Passage Statistics
+- **Qrels Per Query:** Mean 1.072, Min 1, Max 4.
+- **Verbatim Query in Gold Passage:** 2.8% of queries appear verbatim within the gold passage text.
+
+---
+
+## 4. Informative BM25 Baseline (bm25s) on TUNE Split
+
+As required by Gate 1, BM25 using `bm25s` (k1=1.2, b=0.75, English stopwords) was evaluated on the 500 TUNE queries over Corpus A purely as **information**:
+- **MRR@10:** 0.6386
+- **Recall@20:** 0.8340
 
 > [!WARNING]
-> **Caveat Regarding Evaluation on a 100,000 Passage Sub-Corpus:**
-> Standard MS MARCO benchmarks evaluate over the full 8.8 million passage collection. The 100,000 passage index mandated by the challenge contains significantly fewer distractors than the full collection. Consequently, absolute retrieval metrics (Hit@1, MRR@10, NDCG@10, Recall@20) will naturally be higher than published full-corpus MS MARCO leaderboards. This sub-corpus is used strictly for relative comparison between Phase 1 (dense baseline) and Phase 2 (hybrid + metadata filtering).
+> **Caveat Regarding 100K Sub-Corpus Evaluation:**
+> A 100,000 passage sample has far fewer distractors than the full 8.8 million passage MS MARCO collection. Consequently, absolute retrieval scores (such as MRR@10 = 0.6386 and Recall@20 = 0.8340) are significantly higher than published numbers on the full MS MARCO leaderboard (which typically hover around 0.18 - 0.23 for un-reranked BM25). All comparisons in PRISMX are strictly paired and relative between Phase 1 and Phase 2 on this identical frozen 100K sub-corpus. These informational numbers were not used to modify or filter corpus content.
+
+---
+
+## 5. Sample Query - Gold Passage Pairs (10 Random from TUNE)
+
+| Query ID | Query | Gold Passage ID | Gold Passage Excerpt |
+| :--- | :--- | :--- | :--- |
+| `578735` | what benefit did the social security act provide for people who were not of retirement age? | `7575680` | Social Security Disability (SSDI) benefits automatically convert to retirement benefits at the same rate of pay when the... |
+| `1060566` | community bank bristow routing number | `7168414` | View details for routing number - 103112125 - assigned to COMMUNITY BANK in BRISTOW, OK. The ABA routing/transit number ... |
+| `1007696` | when a second epsp arrives at a single synapse before the effects of the first have disappeared, what occurs? | `7251223` | When a second EPSP arrivesat a single synapse before the effects of the first one have disappeared, what occurs? Tempora... |
+| `738165` | what is definition of fugue music | `7430567` | Fugue. in music, the most mature form of imitative counterpoint (see. ). The fugue is based on a short melody, or theme,... |
+| `1094389` | insertion point definition | `1304256` | Insertion Point. An insertion point is the location on the screen where the next character typed will be inserted. This ... |
+| `1090352` | sty causes | `2791813` | Styes are usually caused by infections of the oil glands in the eyelid. Very frequently, they are infected by bacteria, ... |
+| `1089036` | vasospasms caused by what | `7088809` | Blood can also irritate and damage the normal blood vessels and cause vasospasm (constriction). This can interrupt norma... |
+| `1080031` | what gao office | `7149425` | The United States Government Accountability Office (GAO) is an independent agency that investigates how the federal gove... |
+| `729697` | what is chattahoochee | `7615909` | Chattahoochee, Chattahoochee River(noun) a river rising in northern Georgia and flowing southwest and south to join the ... |
+| `1055197` | what is flex fuel on a jeep? | `7176630` | GM identifies its E85 ethanol flex-fuel vehicles with Flex Fuel E85 badges and yellow fuel-filler caps. Ford labels its ... |

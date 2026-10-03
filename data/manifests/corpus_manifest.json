@@ -1,0 +1,102 @@
+{
+  "dataset_name": "Tevatron/msmarco-passage-corpus",
+  "corpus_name": "Corpus A (standard-100K)",
+  "total_passages": 100000,
+  "gold_passages_count": 1072,
+  "filler_passages_count": 98928,
+  "gold_to_total_ratio": 0.01072,
+  "duplicates_removed": 1,
+  "seed": 42,
+  "sha256": "30d5212101e6d5ee12c0f5894e0cc522fd8da526b434ab4c841c34ee1f29e8b2",
+  "length_distribution_chars": {
+    "min": 14,
+    "p25": 255.0,
+    "p50": 301.0,
+    "p75": 388.0,
+    "p95": 598.0,
+    "max": 1299,
+    "mean": 335.98641
+  },
+  "length_distribution_words": {
+    "min": 2,
+    "p25": 42.0,
+    "p50": 50.0,
+    "p75": 65.0,
+    "p95": 102.0,
+    "max": 230,
+    "mean": 56.29035
+  },
+  "verbatim_query_in_gold_pct": 2.8,
+  "qrels_per_query_distribution": {
+    "mean": 1.072,
+    "min": 1,
+    "max": 4
+  },
+  "informative_bm25s_tune": {
+    "mrr_at_10": 0.6386,
+    "recall_at_20": 0.834,
+    "note": "Informational only on 100K sub-corpus; not full 8.8M MS MARCO collection."
+  },
+  "sample_pairs": [
+    {
+      "query_id": "578735",
+      "query": "what benefit did the social security act provide for people who were not of retirement age?",
+      "gold_passage_id": "7575680",
+      "gold_passage_text": "Social Security Disability (SSDI) benefits automatically convert to retirement benefits at the same rate of pay when the..."
+    },
+    {
+      "query_id": "1060566",
+      "query": "community bank bristow routing number",
+      "gold_passage_id": "7168414",
+      "gold_passage_text": "View details for routing number - 103112125 - assigned to COMMUNITY BANK in BRISTOW, OK. The ABA routing/transit number ..."
+    },
+    {
+      "query_id": "1007696",
+      "query": "when a second epsp arrives at a single synapse before the effects of the first have disappeared, what occurs?",
+      "gold_passage_id": "7251223",
+      "gold_passage_text": "When a second EPSP arrivesat a single synapse before the effects of the first one have disappeared, what occurs? Tempora..."
+    },
+    {
+      "query_id": "738165",
+      "query": "what is definition of fugue music",
+      "gold_passage_id": "7430567",
+      "gold_passage_text": "Fugue. in music, the most mature form of imitative counterpoint (see. ). The fugue is based on a short melody, or theme,..."
+    },
+    {
+      "query_id": "1094389",
+      "query": "insertion point definition",
+      "gold_passage_id": "1304256",
+      "gold_passage_text": "Insertion Point. An insertion point is the location on the screen where the next character typed will be inserted. This ..."
+    },
+    {
+      "query_id": "1090352",
+      "query": "sty causes",
+      "gold_passage_id": "2791813",
+      "gold_passage_text": "Styes are usually caused by infections of the oil glands in the eyelid. Very frequently, they are infected by bacteria, ..."
+    },
+    {
+      "query_id": "1089036",
+      "query": "vasospasms caused by what",
+      "gold_passage_id": "7088809",
+      "gold_passage_text": "Blood can also irritate and damage the normal blood vessels and cause vasospasm (constriction). This can interrupt norma..."
+    },
+    {
+      "query_id": "1080031",
+      "query": "what gao office",
+      "gold_passage_id": "7149425",
+      "gold_passage_text": "The United States Government Accountability Office (GAO) is an independent agency that investigates how the federal gove..."
+    },
+    {
+      "query_id": "729697",
+      "query": "what is chattahoochee",
+      "gold_passage_id": "7615909",
+      "gold_passage_text": "Chattahoochee, Chattahoochee River(noun) a river rising in northern Georgia and flowing southwest and south to join the ..."
+    },
+    {
+      "query_id": "1055197",
+      "query": "what is flex fuel on a jeep?",
+      "gold_passage_id": "7176630",
+      "gold_passage_text": "GM identifies its E85 ethanol flex-fuel vehicles with Flex Fuel E85 badges and yellow fuel-filler caps. Ford labels its ..."
+    }
+  ]
+}

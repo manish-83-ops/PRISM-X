@@ -42,6 +42,9 @@ bin/
 data/raw/
 data/cache/
 data/qdrant_storage/
+data/*.jsonl
+data/*.db
+data/*.sqlite
 !data/manifests/
 !data/manifests/*
 model_cache/
