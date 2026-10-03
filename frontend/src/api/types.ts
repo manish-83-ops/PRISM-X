@@ -80,6 +80,11 @@ export interface SearchResponse {
   latency_ms: LatencyBreakdown;
   cache_hit?: boolean;
   governor_state?: string;
+  stage_reached?: number | string;
+  candidates_scored?: number;
+  K_requested?: number;
+  per_pair_ms?: number;
+  effective_mode?: string;
   http_ms?: number;
   /** Populated in recorded mode */
   _recorded?: boolean;
@@ -108,6 +113,8 @@ export interface MetaResponse {
   drift: number | null;
   drift_warning: boolean | null;
   inconsistency_count: number | null;
+  outbox_pending_count?: number | null;
+  consistency_probe?: Record<string, unknown> | null;
   cache_hits: number | null;
   cache_misses: number | null;
   cache_hit_rate: number | null;

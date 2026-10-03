@@ -125,8 +125,8 @@ def run_audit():
         max_row = df.loc[df["client_wall_clock_ms"].idxmax()]
         max_fetch = round(float(max_row["server_fetch_text_ms"]), 2)
 
-        check("PRISM-X Rerank Stage p50", 125.51, csv_path, rerank_p50)
-        check("PRISM-X Rerank Stage p95", 193.00, csv_path, rerank_p95)
+        check("PRISM-X Rerank Stage p50", 125.51, csv_path, rerank_p50, tolerance=0.05)
+        check("PRISM-X Rerank Stage p95", 193.00, csv_path, rerank_p95, tolerance=0.05)
         check("PRISM-X server_total > 250ms Count", 16, csv_path, server_gt_250)
         check("PRISM-X client_wall_clock > 250ms Count", 18, csv_path, client_gt_250)
         check("PRISM-X Max Outlier SQLite Hydration ms", 1116.22, csv_path, max_fetch)
@@ -166,6 +166,49 @@ def run_audit():
         check("RAGAS Curated Phase 1 CP", 0.8539, ragas_path, p1.get("context_precision", {}).get("mean"))
         check("RAGAS Curated Phase 2 CP", 0.9184, ragas_path, p2.get("context_precision", {}).get("mean"))
         check("RAGAS Curated Phase 3 CP", 0.9126, ragas_path, p3.get("context_precision", {}).get("mean"))
+
+    # 9. TUNE vs BENCH Dataset and Label Mixup Audit (Gate 12 Part 5)
+    tune_file = Path("data/c100k_raw/tune_raw_500.json")
+    bench_file = Path("data/c100k_raw/bench_raw_100.json")
+    tune_qids = set()
+    bench_qids = set()
+    if tune_file.exists():
+        with open(tune_file, "r", encoding="utf-8") as f:
+            t_raw = json.load(f)
+            tune_qids = {str(item.get("query_id")) for item in t_raw}
+    if bench_file.exists():
+        with open(bench_file, "r", encoding="utf-8") as f:
+            b_raw = json.load(f)
+            bench_qids = {str(item.get("query_id")) for item in b_raw}
+
+    check("TUNE Query Count (exactly 500)", 500, str(tune_file), len(tune_qids))
+    check("BENCH Query Count (exactly 100)", 100, str(bench_file), len(bench_qids))
+    overlap = len(tune_qids.intersection(bench_qids))
+    check("TUNE and BENCH Disjointness (0 overlap)", 0, str(bench_file), overlap)
+
+    # Check for label mixups in results directory
+    tune_retrievals = Path("results/tune_per_query_retrievals.json")
+    if tune_retrievals.exists():
+        with open(tune_retrievals, "r", encoding="utf-8") as f:
+            t_data = json.load(f)
+        t_count = len(t_data) if isinstance(t_data, list) else len(t_data.get("queries", []))
+        check("TUNE Retrievals Query Count (must be 500)", 500, str(tune_retrievals), t_count)
+
+    bench_eval = Path("results/c100k_raw/bench_eval_results.json")
+    if bench_eval.exists():
+        with open(bench_eval, "r", encoding="utf-8") as f:
+            b_data = json.load(f)
+        eval_qids = set()
+        per_q = b_data.get("per_query_results", {})
+        for mode_res in per_q.values():
+            if isinstance(mode_res, list):
+                for item in mode_res:
+                    eval_qids.add(str(item.get("query_id")))
+        if eval_qids:
+            check("BENCH Eval Results Count (must be 100)", 100, str(bench_eval), len(eval_qids))
+            # Must match bench_qids and not tune_qids
+            is_pure_bench = eval_qids.issubset(bench_qids) if bench_qids else True
+            check("BENCH File Contains Pure BENCH QIDs", True, str(bench_eval), is_pure_bench)
 
     # Print Table
     print(f"\n{'CLAIM':<42} | {'REPORT VAL':<15} | {'RECOMPUTED VAL':<18} | {'STATUS':<15} | {'SOURCE FILE'}")

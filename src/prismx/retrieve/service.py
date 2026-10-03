@@ -49,8 +49,8 @@ class SearchService:
         self.cache = cache if cache is not None else QueryCache(maxsize=2000)
         self.inconsistency_count = 0
 
-    def search(self, request: SearchRequest) -> SearchResponse:
-        t_total_start = time.perf_counter()
+    def search(self, request: SearchRequest, t_request_start: float | None = None) -> SearchResponse:
+        t_total_start = t_request_start if t_request_start is not None else time.perf_counter()
 
         # Check Cache if enabled
         use_cache = request.get_use_cache()
@@ -124,6 +124,7 @@ class SearchService:
                 alpha=alpha,
                 rrf_k=rrf_k,
                 search_ef=search_ef,
+                concurrent_execution=True,
             )
             latencies.update(h_lats)
             fusion_used = {"method": method, "alpha": alpha, "rrf_k": rrf_k}
@@ -173,31 +174,41 @@ class SearchService:
             }
             hydrated_candidates.append(c_entry)
 
-        # 4. Optional Reranking Stage
+        # 4. Optional Reranking Stage with Anytime Cascade Semantics (ADR-022)
         final_pool = hydrated_candidates
         governor_state = "normal"
+        stage_reached = "stage1_hybrid" if request.mode != "dense" else "stage1_dense"
+        candidates_scored = 0
+        K_requested = rerank_k if should_rerank else request.top_k
+        per_pair_ms = round(self.reranker.rolling_per_pair_ms, 2) if self.reranker else 0.0
+        effective_mode = request.mode
+
         if should_rerank and self.reranker is not None:
             rerank_pool = hydrated_candidates[:rerank_k]
-            rerank_budget = request.get_rerank_budget_ms()
-            elapsed_pre_rerank = (time.perf_counter() - t_total_start) * 1000.0
-            total_deadline = getattr(request, "total_deadline_ms", 250.0) or 250.0
-            # Gate 5.2 (1f): Cross-encoder uses min(rerank_budget_ms, total_deadline_ms - elapsed - 10ms safety)
-            remaining_for_rerank = total_deadline - elapsed_pre_rerank - 10.0
-            effective_deadline = min(rerank_budget, max(0.0, remaining_for_rerank))
+            total_deadline = getattr(request, "total_deadline_ms", 230.0) or 230.0
 
-            t_rerank_stage_start = time.perf_counter()
-            reranked, r_ms, gov_state = self.reranker.rerank(
+            reranked, r_ms, gov_state, scored_count, p_pair_ms = self.reranker.rerank(
                 query=request.query,
                 candidates=rerank_pool,
                 top_k=request.top_k,
                 max_length=128,
-                deadline_ms=effective_deadline,
-                t_request_start=t_rerank_stage_start,
-                batch_size=5,
+                total_deadline_ms=total_deadline,
+                t_request_start=t_total_start,
+                reserve_ms=4.0,
+                batch_size=2,
             )
             latencies["rerank"] = round(r_ms, 2)
             final_pool = reranked
             governor_state = gov_state
+            candidates_scored = scored_count
+            per_pair_ms = p_pair_ms
+
+            if gov_state == "skipped_budget":
+                stage_reached = "stage1_hybrid"
+                effective_mode = "hybrid"
+            else:
+                stage_reached = "stage3_rerank"
+                effective_mode = "prismx" if request.mode == "prismx" else "hybrid_rerank"
 
         # 5. Assemble final response items
         results: list[SearchResultItem] = []
@@ -251,6 +262,11 @@ class SearchService:
             latency_ms=LatencyBreakdown(**latencies),
             cache_hit=False,
             governor_state=governor_state,
+            stage_reached=stage_reached,
+            candidates_scored=candidates_scored,
+            K_requested=K_requested,
+            per_pair_ms=per_pair_ms,
+            effective_mode=effective_mode,
         )
 
         # Store in cache if enabled
@@ -260,13 +276,9 @@ class SearchService:
         return response
 
     def upsert_passage(self, req: UpsertRequest) -> UpsertResponse:
-        """Live upsert implementing PATCH-1 & Gate 6 atomic update with cache invalidation."""
+        """Live upsert implementing ADR-024 atomic dual-write outbox pattern."""
         pid_str = str(req.passage_id)
         pt_id = passage_id_to_point_id(pid_str)
-
-        # Invalidate query cache immediately
-        if self.cache is not None:
-            self.cache.invalidate()
 
         # 1. Compute dense vector
         dense_vec = self.dense_retriever.encoder.encode_queries(req.text)[0].tolist()
@@ -275,30 +287,27 @@ class SearchService:
         avgdl_ref = float(self.text_store.get_meta("avgdl_ref", 50.0))
         sparse_indices, sparse_values = self.hybrid_retriever.tokenizer.compute_doc_sparse_vector(req.text, avgdl_ref)
 
-        # 3. Derive category if not provided
         category = req.category or "general"
-
-        # 4. Write to SQLite (updates running total_doc_len, n_docs, index_version)
+        source = req.source or "manual"
         tokens = self.hybrid_retriever.tokenizer.tokenize(req.text)
-        new_version = self.text_store.upsert_single(
+
+        # 3. Write row + outbox op (pending) in one SQLite transaction
+        op_id, new_version = self.text_store.upsert_with_outbox(
             passage_id=pid_str,
             text=req.text,
             category=category,
-            source=req.source or "manual",
+            source=source,
             doc_token_len=len(tokens),
         )
 
-        # 5. Write to Qdrant (wait=True for synchronous confirmation)
+        # 4. Invalidate/bump cache version
+        if self.cache is not None:
+            self.cache.bump_version()
+
+        # 5. Apply to Qdrant (idempotent with deterministic pt_id)
         from qdrant_client import models
 
-        sparse_name = "sparse"
-        try:
-            c_info = self.qdrant_store.client.get_collection(self.qdrant_store.collection_name)
-            s_vecs = c_info.config.params.sparse_vectors or {}
-            sparse_name = "bm25" if "bm25" in s_vecs else "sparse"
-        except Exception:
-            sparse_name = "sparse"
-
+        sparse_name = getattr(self.hybrid_retriever, "_sparse_vector_name", None) or "bm25"
         pt = models.PointStruct(
             id=pt_id,
             vector={
@@ -308,10 +317,13 @@ class SearchService:
             payload={
                 "passage_id": pid_str,
                 "category": category,
-                "source": req.source or "manual",
+                "source": source,
             },
         )
         self.qdrant_store.upsert_points_batch([pt], wait=True)
+
+        # 6. Mark outbox op applied
+        self.text_store.mark_outbox_applied(op_id)
 
         return UpsertResponse(
             status="success",
@@ -320,15 +332,22 @@ class SearchService:
         )
 
     def delete_passage(self, passage_id: str) -> DeleteResponse:
-        """Live delete removing from Qdrant and SQLite with cache invalidation."""
+        """Live delete removing from Qdrant and SQLite with outbox and cache eviction."""
         pid_str = str(passage_id)
 
-        # Invalidate query cache immediately
-        if self.cache is not None:
-            self.cache.invalidate()
+        # 1. Atomic delete + outbox op in SQLite
+        op_id, was_deleted, new_version = self.text_store.delete_with_outbox(pid_str)
 
-        was_deleted, new_version = self.text_store.delete_single(pid_str)
+        # 2. Invalidate cache and evict passage reverse index
+        if self.cache is not None:
+            self.cache.evict_passage(pid_str)
+            self.cache.bump_version()
+
+        # 3. Delete from Qdrant
         self.qdrant_store.delete_point(pid_str, wait=True)
+
+        # 4. Mark outbox op applied
+        self.text_store.mark_outbox_applied(op_id)
 
         return DeleteResponse(
             status="deleted" if was_deleted else "not_found",
@@ -336,13 +355,64 @@ class SearchService:
             index_version=new_version,
         )
 
+    def replay_pending_outbox(self) -> int:
+        """Replays any unapplied pending outbox operations to Qdrant on startup."""
+        pending_ops = self.text_store.get_pending_outbox_ops()
+        if not pending_ops:
+            return 0
+        logger.info(f"Replaying {len(pending_ops)} pending outbox operations to Qdrant...")
+        replayed = 0
+        from qdrant_client import models
+
+        sparse_name = getattr(self.hybrid_retriever, "_sparse_vector_name", None) or "bm25"
+        for op in pending_ops:
+            op_id = op["id"]
+            pid = op["passage_id"]
+            op_type = op["op_type"]
+            payload = op.get("payload") or {}
+
+            try:
+                if op_type == "upsert":
+                    text = payload.get("text", "")
+                    cat = payload.get("category", "general")
+                    src = payload.get("source", "manual")
+                    d_vec = self.dense_retriever.encoder.encode_queries(text)[0].tolist()
+                    avgdl_ref = float(self.text_store.get_meta("avgdl_ref", 50.0))
+                    s_ind, s_val = self.hybrid_retriever.tokenizer.compute_doc_sparse_vector(text, avgdl_ref)
+                    pt = models.PointStruct(
+                        id=passage_id_to_point_id(pid),
+                        vector={
+                            "dense": d_vec,
+                            sparse_name: models.SparseVector(indices=s_ind, values=s_val),
+                        },
+                        payload={"passage_id": pid, "category": cat, "source": src},
+                    )
+                    self.qdrant_store.upsert_points_batch([pt], wait=True)
+                elif op_type == "delete":
+                    self.qdrant_store.delete_point(pid, wait=True)
+
+                self.text_store.mark_outbox_applied(op_id)
+                replayed += 1
+            except Exception as exc:
+                logger.error(f"Failed to replay outbox op {op_id} for passage {pid}: {exc}")
+
+        logger.info(f"Successfully replayed {replayed}/{len(pending_ops)} outbox operations.")
+        return replayed
+
     def get_meta(self) -> dict[str, Any]:
         """Provides system health, drift, index stats, and metadata."""
         stats = self.text_store.get_stats()
         q_count = self.qdrant_store.count()
         cache_stats = self.cache.stats() if self.cache is not None else None
+
+        probe = None
+        try:
+            probe = self.text_store.consistency_probe(self.qdrant_store, sample_size=200)
+        except Exception as exc:
+            logger.warning(f"Error computing consistency probe: {exc}")
+
         return {
-            "modes": ["dense", "hybrid", "hybrid_rerank"],
+            "modes": ["dense", "hybrid", "hybrid_rerank", "prismx"],
             "fusion_defaults": self.config["retrieval"]["fusion"],
             "point_count": q_count,
             "sqlite_count": stats["n_docs"],
@@ -352,6 +422,8 @@ class SearchService:
             "drift": stats["drift"],
             "drift_warning": stats["drift_exceeds_threshold"],
             "inconsistency_count": self.inconsistency_count,
+            "outbox_pending_count": self.text_store.get_outbox_pending_count(),
+            "consistency_probe": probe,
             "config_hash": self.config.get("_config_hash", "unknown"),
             "models": {
                 "dense": self.config["encoder"]["model_name"],

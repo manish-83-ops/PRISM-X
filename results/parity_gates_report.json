@@ -1,0 +1,58 @@
+{
+  "n_queries": 500,
+  "baseline": {
+    "name": "pytorch_fp32_ml128",
+    "mean_hit1": 0.496,
+    "mean_ndcg5": 0.7216
+  },
+  "variants": {
+    "onnx_fp32_ml128": {
+      "max_length": 128,
+      "top1_agreement": 1.0,
+      "pass_top1": true,
+      "top5_set_agreement": 1.0,
+      "pass_top5": true,
+      "delta_ndcg5": 0.0,
+      "ndcg5_ci_lower": 0.0,
+      "ndcg5_ci_upper": 0.0,
+      "pass_ndcg5": true,
+      "delta_hit1": 0.0,
+      "hit1_ci_lower": 0.0,
+      "hit1_ci_upper": 0.0,
+      "pass_hit1": true,
+      "gate_passed": true
+    },
+    "onnx_int8_ml128": {
+      "max_length": 128,
+      "top1_agreement": 0.942,
+      "pass_top1": false,
+      "top5_set_agreement": 0.962,
+      "pass_top5": false,
+      "delta_ndcg5": 0.00638,
+      "ndcg5_ci_lower": 0.00018,
+      "ndcg5_ci_upper": 0.01294,
+      "pass_ndcg5": false,
+      "delta_hit1": 0.01,
+      "hit1_ci_lower": -0.004,
+      "hit1_ci_upper": 0.024,
+      "pass_hit1": false,
+      "gate_passed": false
+    },
+    "onnx_int8_ml96": {
+      "max_length": 96,
+      "top1_agreement": 0.914,
+      "pass_top1": false,
+      "top5_set_agreement": 0.941,
+      "pass_top5": false,
+      "delta_ndcg5": 0.00044,
+      "ndcg5_ci_lower": -0.01087,
+      "ndcg5_ci_upper": 0.0114,
+      "pass_ndcg5": true,
+      "delta_hit1": 0.006,
+      "hit1_ci_lower": -0.016,
+      "hit1_ci_upper": 0.028,
+      "pass_hit1": false,
+      "gate_passed": false
+    }
+  }
+}

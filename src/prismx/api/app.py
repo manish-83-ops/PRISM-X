@@ -130,8 +130,11 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     )
     _state["service"] = service
 
-    # 7. Warm up pipeline (one dummy query per mode to eliminate cold start; cache cleared immediately after)
+    # 7. Replay pending outbox mutations & warm up pipeline
     try:
+        replayed = service.replay_pending_outbox()
+        if replayed > 0:
+            logger.info(f"Replayed {replayed} pending outbox operations on startup.")
         logger.info("Warming up pipeline with one dummy query per mode...")
         service.search(SearchRequest(query="warmup dense query", mode="dense", top_k=5, use_cache=False))
         service.search(SearchRequest(query="warmup hybrid query", mode="hybrid", top_k=5, use_cache=False))
@@ -140,7 +143,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         _state["ready"] = True
         logger.info("PRISMX backend startup warmup complete (all modes primed, cache cleared).")
     except Exception as exc:
-        logger.warning(f"Warmup encountered an issue: {exc}")
+        logger.warning(f"Startup warmup encountered an issue: {exc}")
         _state["ready"] = True
 
     yield
@@ -215,6 +218,8 @@ def check_mutation_auth(request: Request) -> None:
 
 @app.middleware("http")
 async def check_request_limits(request: Request, call_next):
+    # Record arrival timestamp for request-level SLA and anytime cascade deadline
+    request.state.t0 = time.perf_counter()
     if PUBLIC_DEMO and request.method in ("POST", "PUT", "PATCH"):
         content_length = request.headers.get("content-length")
         if content_length and int(content_length) > 65536:
@@ -383,6 +388,8 @@ async def get_meta() -> MetaResponse:
         drift=meta.get("drift"),
         drift_warning=meta.get("drift_warning"),
         inconsistency_count=meta.get("inconsistency_count", 0),
+        outbox_pending_count=meta.get("outbox_pending_count", 0),
+        consistency_probe=meta.get("consistency_probe"),
         categories=categories,
         sources=["msmarco-passage", "manual"],
         models=meta["models"],
@@ -399,8 +406,9 @@ async def search(req: SearchRequest, request: Request) -> SearchResponse:
     """Execute dense, hybrid, or hybrid+rerank retrieval with optional metadata pre-filtering and caching."""
     check_rate_limit(request, limit=60)
     service = get_service()
+    t_req_start = getattr(request.state, "t0", time.perf_counter())
     try:
-        return service.search(req)
+        return service.search(req, t_request_start=t_req_start)
     except Exception as exc:
         logger.exception("Error executing search request")
         raise HTTPException(

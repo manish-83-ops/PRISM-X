@@ -486,10 +486,18 @@ export function SearchPage() {
                   </span>
                 )}
 
-                {/* Governor State */}
-                {response.governor_state === 'truncated' ? (
+                {/* Governor State & Anytime Cascade Honesty */}
+                {response.governor_state === 'skipped_budget' ? (
+                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-800 border border-rose-300 shadow-2xs" title="Governor skipped reranking because request budget was exhausted; degraded gracefully to first-stage hybrid order">
+                    ⚠️ Degraded to hybrid (budget exhausted, scored 0 of {response.K_requested || 5})
+                  </span>
+                ) : response.governor_state === 'truncated' ? (
                   <span className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-300 shadow-2xs" title="Governor stopped reranking when the deadline was reached; remaining candidates kept in fused order">
-                    ⚠️ Reranking truncated by Deadline Governor (budget ~200ms / deadline 250ms reached)
+                    ⚠️ Reranked {response.candidates_scored ?? 0} of {response.K_requested || 5} (truncated by deadline governor, ~{response.per_pair_ms ?? 0}ms/pair)
+                  </span>
+                ) : mode === 'hybrid_rerank' || (response.candidates_scored && response.candidates_scored > 0) ? (
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200" title={`All ${response.candidates_scored ?? 5} candidates reranked within deadline (~${response.per_pair_ms ?? 0}ms/pair)`}>
+                    ✓ Reranked {response.candidates_scored ?? response.K_requested ?? 5} of {response.K_requested || 5} (normal, ~{response.per_pair_ms ?? 0}ms/pair)
                   </span>
                 ) : (
                   <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">

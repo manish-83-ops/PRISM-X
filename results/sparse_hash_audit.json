@@ -1,0 +1,14 @@
+{
+  "hash_width_bits": 32,
+  "hash_space_size": 4294967296,
+  "corpus_distinct_tokens": 103812,
+  "tune_distinct_tokens": 1216,
+  "combined_distinct_tokens": 103816,
+  "colliding_buckets_count": 0,
+  "colliding_pairs_count": 0,
+  "theoretical_expected_collision_pairs": 1.2547,
+  "tune_total_token_occurrences": 1661,
+  "tune_occurrences_affected": 0,
+  "fraction_tune_occurrences_affected": 0.0,
+  "sample_collisions": []
+}

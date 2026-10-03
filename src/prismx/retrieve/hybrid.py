@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import concurrent.futures
 import time
 from typing import Any
 from qdrant_client import models
@@ -40,43 +41,12 @@ class HybridRetriever:
             self.default_rrf_k = default_rrf_k
             self.default_fusion_method = default_fusion_method
 
-    def retrieve(
+    def _retrieve_sparse(
         self,
         query: str,
-        limit: int | None = None,
+        limit: int,
         query_filter: models.Filter | None = None,
-        fusion_method: str | None = None,
-        alpha: float | None = None,
-        rrf_k: int | None = None,
-        norm_method: NormalizationType = "minmax",
-        prefix: str = "",
-        search_ef: int | None = None,
-    ) -> tuple[list[dict[str, Any]], dict[str, float]]:
-        """Executes dual-channel retrieval (dense + BM25 sparse) with client-side fusion.
-        
-        Returns:
-            fused_candidates: list of fused candidate dictionaries
-            stage_latencies_ms: breakdown of encode, dense, sparse, and fusion latencies
-        """
-        k = limit if limit is not None else self.default_candidate_depth
-        method = fusion_method or self.default_fusion_method
-        a = alpha if alpha is not None else self.default_alpha
-        rk = rrf_k if rrf_k is not None else self.default_rrf_k
-
-        latencies: dict[str, float] = {}
-
-        # 1. Dense retrieval channel
-        dense_cands, encode_ms, dense_ms = self.dense_retriever.retrieve(
-            query=query,
-            limit=k,
-            query_filter=query_filter,
-            prefix=prefix,
-            search_ef=search_ef,
-        )
-        latencies["encode"] = round(encode_ms, 2)
-        latencies["dense"] = round(dense_ms, 2)
-
-        # 2. Sparse lexical retrieval channel
+    ) -> tuple[list[dict[str, Any]], float]:
         t0 = time.perf_counter()
         sparse_indices, sparse_values = self.tokenizer.compute_query_sparse_vector(query)
         sparse_cands = []
@@ -98,7 +68,7 @@ class HybridRetriever:
                 query=models.SparseVector(indices=sparse_indices, values=sparse_values),
                 using=sparse_name,
                 query_filter=query_filter,
-                limit=k,
+                limit=limit,
                 with_payload=True,
                 with_vectors=False,
             )
@@ -111,7 +81,71 @@ class HybridRetriever:
                     "source": pt.payload.get("source"),
                 })
 
-        latencies["sparse"] = round((time.perf_counter() - t0) * 1000.0, 2)
+        sparse_ms = round((time.perf_counter() - t0) * 1000.0, 2)
+        return sparse_cands, sparse_ms
+
+    def retrieve(
+        self,
+        query: str,
+        limit: int | None = None,
+        query_filter: models.Filter | None = None,
+        fusion_method: str | None = None,
+        alpha: float | None = None,
+        rrf_k: int | None = None,
+        norm_method: NormalizationType = "minmax",
+        prefix: str = "",
+        search_ef: int | None = None,
+        concurrent_execution: bool = True,
+    ) -> tuple[list[dict[str, Any]], dict[str, float]]:
+        """Executes dual-channel retrieval (dense + BM25 sparse) with client-side fusion.
+        When concurrent_execution=True, executes dense encode+search concurrently with sparse BM25 search.
+        
+        Returns:
+            fused_candidates: list of fused candidate dictionaries
+            stage_latencies_ms: breakdown of encode, dense, sparse, and fusion latencies
+        """
+        k = limit if limit is not None else self.default_candidate_depth
+        method = fusion_method or self.default_fusion_method
+        a = alpha if alpha is not None else self.default_alpha
+        rk = rrf_k if rrf_k is not None else self.default_rrf_k
+
+        latencies: dict[str, float] = {}
+
+        if concurrent_execution:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+                dense_fut = executor.submit(
+                    self.dense_retriever.retrieve,
+                    query=query,
+                    limit=k,
+                    query_filter=query_filter,
+                    prefix=prefix,
+                    search_ef=search_ef,
+                )
+                sparse_fut = executor.submit(
+                    self._retrieve_sparse,
+                    query=query,
+                    limit=k,
+                    query_filter=query_filter,
+                )
+                dense_cands, encode_ms, dense_ms = dense_fut.result()
+                sparse_cands, sparse_ms = sparse_fut.result()
+        else:
+            dense_cands, encode_ms, dense_ms = self.dense_retriever.retrieve(
+                query=query,
+                limit=k,
+                query_filter=query_filter,
+                prefix=prefix,
+                search_ef=search_ef,
+            )
+            sparse_cands, sparse_ms = self._retrieve_sparse(
+                query=query,
+                limit=k,
+                query_filter=query_filter,
+            )
+
+        latencies["encode"] = round(encode_ms, 2)
+        latencies["dense"] = round(dense_ms, 2)
+        latencies["sparse"] = round(sparse_ms, 2)
 
         # 3. Client-side fusion
         t_f0 = time.perf_counter()

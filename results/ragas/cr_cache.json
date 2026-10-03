@@ -1,0 +1,1354 @@
+{
+  "156087::raw_95154,raw_95155,raw_95158,raw_95160,raw_95161": {
+    "qid": "156087",
+    "passage_ids_sorted": [
+      "raw_95154",
+      "raw_95155",
+      "raw_95158",
+      "raw_95160",
+      "raw_95161"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1100,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "156087::raw_95154,raw_95155,raw_95157,raw_95160,raw_95161": {
+    "qid": "156087",
+    "passage_ids_sorted": [
+      "raw_95154",
+      "raw_95155",
+      "raw_95157",
+      "raw_95160",
+      "raw_95161"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1100,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "156087::raw_95155,raw_95156,raw_95157,raw_95160,raw_95161": {
+    "qid": "156087",
+    "passage_ids_sorted": [
+      "raw_95155",
+      "raw_95156",
+      "raw_95157",
+      "raw_95160",
+      "raw_95161"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1120,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "196655::raw_93371,raw_93372,raw_93373,raw_93374,raw_93379": {
+    "qid": "196655",
+    "passage_ids_sorted": [
+      "raw_93371",
+      "raw_93372",
+      "raw_93373",
+      "raw_93374",
+      "raw_93379"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1050,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "196655::raw_93372,raw_93373,raw_93374,raw_93378,raw_93379": {
+    "qid": "196655",
+    "passage_ids_sorted": [
+      "raw_93372",
+      "raw_93373",
+      "raw_93374",
+      "raw_93378",
+      "raw_93379"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1030,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "196655::raw_93371,raw_93372,raw_93373,raw_93377,raw_93379": {
+    "qid": "196655",
+    "passage_ids_sorted": [
+      "raw_93371",
+      "raw_93372",
+      "raw_93373",
+      "raw_93377",
+      "raw_93379"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1165,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "947750::raw_27776,raw_55242,raw_55244,raw_55249,raw_55251": {
+    "qid": "947750",
+    "passage_ids_sorted": [
+      "raw_27776",
+      "raw_55242",
+      "raw_55244",
+      "raw_55249",
+      "raw_55251"
+    ],
+    "context_recall": 0.6,
+    "tokens_used": 1470,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1086525::raw_28954,raw_37374,raw_48539,raw_48541,raw_48546": {
+    "qid": "1086525",
+    "passage_ids_sorted": [
+      "raw_28954",
+      "raw_37374",
+      "raw_48539",
+      "raw_48541",
+      "raw_48546"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1260,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1086525::raw_28954,raw_48539,raw_48541,raw_48545,raw_48546": {
+    "qid": "1086525",
+    "passage_ids_sorted": [
+      "raw_28954",
+      "raw_48539",
+      "raw_48541",
+      "raw_48545",
+      "raw_48546"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1385,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1086525::raw_37373,raw_37374,raw_48539,raw_48541,raw_48546": {
+    "qid": "1086525",
+    "passage_ids_sorted": [
+      "raw_37373",
+      "raw_37374",
+      "raw_48539",
+      "raw_48541",
+      "raw_48546"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1255,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "528278::raw_90311,raw_90315,raw_9983,raw_9984,raw_9992": {
+    "qid": "528278",
+    "passage_ids_sorted": [
+      "raw_90311",
+      "raw_90315",
+      "raw_9983",
+      "raw_9984",
+      "raw_9992"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1645,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "760440::raw_66313,raw_66314,raw_66315,raw_66319,raw_66321": {
+    "qid": "760440",
+    "passage_ids_sorted": [
+      "raw_66313",
+      "raw_66314",
+      "raw_66315",
+      "raw_66319",
+      "raw_66321"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1400,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "125712::raw_23839,raw_83366,raw_83367,raw_83369,raw_83372": {
+    "qid": "125712",
+    "passage_ids_sorted": [
+      "raw_23839",
+      "raw_83366",
+      "raw_83367",
+      "raw_83369",
+      "raw_83372"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1185,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "125712::raw_23839,raw_23848,raw_83367,raw_83369,raw_83372": {
+    "qid": "125712",
+    "passage_ids_sorted": [
+      "raw_23839",
+      "raw_23848",
+      "raw_83367",
+      "raw_83369",
+      "raw_83372"
+    ],
+    "context_recall": 0.3,
+    "tokens_used": 1295,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "125712::raw_23839,raw_83366,raw_83367,raw_83372,raw_83373": {
+    "qid": "125712",
+    "passage_ids_sorted": [
+      "raw_23839",
+      "raw_83366",
+      "raw_83367",
+      "raw_83372",
+      "raw_83373"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1075,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1085902::raw_46793,raw_46794,raw_46796,raw_46797,raw_46801": {
+    "qid": "1085902",
+    "passage_ids_sorted": [
+      "raw_46793",
+      "raw_46794",
+      "raw_46796",
+      "raw_46797",
+      "raw_46801"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1225,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1085902::raw_46794,raw_46796,raw_46797,raw_46800,raw_46801": {
+    "qid": "1085902",
+    "passage_ids_sorted": [
+      "raw_46794",
+      "raw_46796",
+      "raw_46797",
+      "raw_46800",
+      "raw_46801"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1385,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1097949::raw_41169,raw_41172,raw_72804,raw_72809,raw_8005": {
+    "qid": "1097949",
+    "passage_ids_sorted": [
+      "raw_41169",
+      "raw_41172",
+      "raw_72804",
+      "raw_72809",
+      "raw_8005"
+    ],
+    "context_recall": 0.95,
+    "tokens_used": 1425,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1097949::raw_41169,raw_41171,raw_72804,raw_72809,raw_8005": {
+    "qid": "1097949",
+    "passage_ids_sorted": [
+      "raw_41169",
+      "raw_41171",
+      "raw_72804",
+      "raw_72809",
+      "raw_8005"
+    ],
+    "context_recall": 0.95,
+    "tokens_used": 1465,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1090664::raw_62574,raw_62575,raw_62578,raw_62580,raw_82207": {
+    "qid": "1090664",
+    "passage_ids_sorted": [
+      "raw_62574",
+      "raw_62575",
+      "raw_62578",
+      "raw_62580",
+      "raw_82207"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1395,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1090664::raw_62574,raw_62575,raw_62578,raw_62580,raw_84750": {
+    "qid": "1090664",
+    "passage_ids_sorted": [
+      "raw_62574",
+      "raw_62575",
+      "raw_62578",
+      "raw_62580",
+      "raw_84750"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1310,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1091187::raw_56255,raw_56256,raw_56257,raw_56258,raw_56260": {
+    "qid": "1091187",
+    "passage_ids_sorted": [
+      "raw_56255",
+      "raw_56256",
+      "raw_56257",
+      "raw_56258",
+      "raw_56260"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 885,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1091187::raw_56255,raw_56256,raw_56257,raw_56258,raw_56261": {
+    "qid": "1091187",
+    "passage_ids_sorted": [
+      "raw_56255",
+      "raw_56256",
+      "raw_56257",
+      "raw_56258",
+      "raw_56261"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1215,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1091924::raw_713,raw_714,raw_716,raw_717,raw_719": {
+    "qid": "1091924",
+    "passage_ids_sorted": [
+      "raw_713",
+      "raw_714",
+      "raw_716",
+      "raw_717",
+      "raw_719"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1210,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1091924::raw_713,raw_714,raw_717,raw_718,raw_719": {
+    "qid": "1091924",
+    "passage_ids_sorted": [
+      "raw_713",
+      "raw_714",
+      "raw_717",
+      "raw_718",
+      "raw_719"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1120,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "702179::raw_5424,raw_5427,raw_5429,raw_5431,raw_5433": {
+    "qid": "702179",
+    "passage_ids_sorted": [
+      "raw_5424",
+      "raw_5427",
+      "raw_5429",
+      "raw_5431",
+      "raw_5433"
+    ],
+    "context_recall": 0.4,
+    "tokens_used": 1245,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "702179::raw_5427,raw_5429,raw_5430,raw_5431,raw_81713": {
+    "qid": "702179",
+    "passage_ids_sorted": [
+      "raw_5427",
+      "raw_5429",
+      "raw_5430",
+      "raw_5431",
+      "raw_81713"
+    ],
+    "context_recall": 0.55,
+    "tokens_used": 1220,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "702179::raw_5425,raw_5427,raw_5430,raw_5431,raw_5433": {
+    "qid": "702179",
+    "passage_ids_sorted": [
+      "raw_5425",
+      "raw_5427",
+      "raw_5430",
+      "raw_5431",
+      "raw_5433"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1255,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "550293::raw_95215,raw_95217,raw_95219,raw_95220,raw_95221": {
+    "qid": "550293",
+    "passage_ids_sorted": [
+      "raw_95215",
+      "raw_95217",
+      "raw_95219",
+      "raw_95220",
+      "raw_95221"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1160,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1054047::raw_75670,raw_75671,raw_75674,raw_75675,raw_75679": {
+    "qid": "1054047",
+    "passage_ids_sorted": [
+      "raw_75670",
+      "raw_75671",
+      "raw_75674",
+      "raw_75675",
+      "raw_75679"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1435,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1054047::raw_75670,raw_75671,raw_75673,raw_75675,raw_75679": {
+    "qid": "1054047",
+    "passage_ids_sorted": [
+      "raw_75670",
+      "raw_75671",
+      "raw_75673",
+      "raw_75675",
+      "raw_75679"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1215,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1102379::raw_25218,raw_63589,raw_78322,raw_78328,raw_78329": {
+    "qid": "1102379",
+    "passage_ids_sorted": [
+      "raw_25218",
+      "raw_63589",
+      "raw_78322",
+      "raw_78328",
+      "raw_78329"
+    ],
+    "context_recall": 0.95,
+    "tokens_used": 1485,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1102379::raw_25218,raw_57128,raw_63589,raw_78329,raw_78330": {
+    "qid": "1102379",
+    "passage_ids_sorted": [
+      "raw_25218",
+      "raw_57128",
+      "raw_63589",
+      "raw_78329",
+      "raw_78330"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1560,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1102379::raw_25218,raw_50715,raw_63589,raw_78328,raw_78329": {
+    "qid": "1102379",
+    "passage_ids_sorted": [
+      "raw_25218",
+      "raw_50715",
+      "raw_63589",
+      "raw_78328",
+      "raw_78329"
+    ],
+    "context_recall": 0.95,
+    "tokens_used": 1490,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "962758::raw_54274,raw_54278,raw_54279,raw_54281,raw_54283": {
+    "qid": "962758",
+    "passage_ids_sorted": [
+      "raw_54274",
+      "raw_54278",
+      "raw_54279",
+      "raw_54281",
+      "raw_54283"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1200,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "962758::raw_54274,raw_54276,raw_54278,raw_54281,raw_54283": {
+    "qid": "962758",
+    "passage_ids_sorted": [
+      "raw_54274",
+      "raw_54276",
+      "raw_54278",
+      "raw_54281",
+      "raw_54283"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1230,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "962758::raw_54274,raw_54278,raw_54280,raw_54281,raw_54283": {
+    "qid": "962758",
+    "passage_ids_sorted": [
+      "raw_54274",
+      "raw_54278",
+      "raw_54280",
+      "raw_54281",
+      "raw_54283"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1095,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "513238::raw_97434,raw_97437,raw_97439,raw_97440,raw_97441": {
+    "qid": "513238",
+    "passage_ids_sorted": [
+      "raw_97434",
+      "raw_97437",
+      "raw_97439",
+      "raw_97440",
+      "raw_97441"
+    ],
+    "context_recall": 0.97,
+    "tokens_used": 1145,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "837740::raw_90106,raw_93134,raw_93137,raw_93138,raw_93139": {
+    "qid": "837740",
+    "passage_ids_sorted": [
+      "raw_90106",
+      "raw_93134",
+      "raw_93137",
+      "raw_93138",
+      "raw_93139"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1270,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "837740::raw_90106,raw_93134,raw_93136,raw_93137,raw_93139": {
+    "qid": "837740",
+    "passage_ids_sorted": [
+      "raw_90106",
+      "raw_93134",
+      "raw_93136",
+      "raw_93137",
+      "raw_93139"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1205,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "918993::raw_70705,raw_77925,raw_88874,raw_89879,raw_89884": {
+    "qid": "918993",
+    "passage_ids_sorted": [
+      "raw_70705",
+      "raw_77925",
+      "raw_88874",
+      "raw_89879",
+      "raw_89884"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1010,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "918993::raw_65688,raw_77925,raw_88874,raw_89879,raw_89884": {
+    "qid": "918993",
+    "passage_ids_sorted": [
+      "raw_65688",
+      "raw_77925",
+      "raw_88874",
+      "raw_89879",
+      "raw_89884"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1110,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "918993::raw_77925,raw_88874,raw_89878,raw_89879,raw_89884": {
+    "qid": "918993",
+    "passage_ids_sorted": [
+      "raw_77925",
+      "raw_88874",
+      "raw_89878",
+      "raw_89879",
+      "raw_89884"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1165,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "789833::raw_94224,raw_94225,raw_94226,raw_94228,raw_94229": {
+    "qid": "789833",
+    "passage_ids_sorted": [
+      "raw_94224",
+      "raw_94225",
+      "raw_94226",
+      "raw_94228",
+      "raw_94229"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1225,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "789833::raw_94222,raw_94224,raw_94225,raw_94226,raw_94228": {
+    "qid": "789833",
+    "passage_ids_sorted": [
+      "raw_94222",
+      "raw_94224",
+      "raw_94225",
+      "raw_94226",
+      "raw_94228"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1270,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "789833::raw_94221,raw_94225,raw_94227,raw_94228,raw_94230": {
+    "qid": "789833",
+    "passage_ids_sorted": [
+      "raw_94221",
+      "raw_94225",
+      "raw_94227",
+      "raw_94228",
+      "raw_94230"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1380,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1083574::raw_54513,raw_54519,raw_54520,raw_74250,raw_80645": {
+    "qid": "1083574",
+    "passage_ids_sorted": [
+      "raw_54513",
+      "raw_54519",
+      "raw_54520",
+      "raw_74250",
+      "raw_80645"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 2010,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1083574::raw_54513,raw_54515,raw_54519,raw_74249,raw_74250": {
+    "qid": "1083574",
+    "passage_ids_sorted": [
+      "raw_54513",
+      "raw_54515",
+      "raw_54519",
+      "raw_74249",
+      "raw_74250"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1215,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "442137::raw_98292,raw_98296,raw_98297,raw_98298,raw_98300": {
+    "qid": "442137",
+    "passage_ids_sorted": [
+      "raw_98292",
+      "raw_98296",
+      "raw_98297",
+      "raw_98298",
+      "raw_98300"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1515,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "442137::raw_85231,raw_98295,raw_98296,raw_98298,raw_98300": {
+    "qid": "442137",
+    "passage_ids_sorted": [
+      "raw_85231",
+      "raw_98295",
+      "raw_98296",
+      "raw_98298",
+      "raw_98300"
+    ],
+    "context_recall": 0.9,
+    "tokens_used": 1750,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "442137::raw_85231,raw_98292,raw_98296,raw_98297,raw_98300": {
+    "qid": "442137",
+    "passage_ids_sorted": [
+      "raw_85231",
+      "raw_98292",
+      "raw_98296",
+      "raw_98297",
+      "raw_98300"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1420,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "394244::raw_56079,raw_56080,raw_56082,raw_56084,raw_56085": {
+    "qid": "394244",
+    "passage_ids_sorted": [
+      "raw_56079",
+      "raw_56080",
+      "raw_56082",
+      "raw_56084",
+      "raw_56085"
+    ],
+    "context_recall": 0.9,
+    "tokens_used": 1195,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "394244::raw_50635,raw_56079,raw_56080,raw_56082,raw_56084": {
+    "qid": "394244",
+    "passage_ids_sorted": [
+      "raw_50635",
+      "raw_56079",
+      "raw_56080",
+      "raw_56082",
+      "raw_56084"
+    ],
+    "context_recall": 0.1,
+    "tokens_used": 1260,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "520578::raw_49432,raw_49434,raw_49435,raw_49439,raw_76124": {
+    "qid": "520578",
+    "passage_ids_sorted": [
+      "raw_49432",
+      "raw_49434",
+      "raw_49435",
+      "raw_49439",
+      "raw_76124"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1300,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "520578::raw_49432,raw_49433,raw_49434,raw_49435,raw_76124": {
+    "qid": "520578",
+    "passage_ids_sorted": [
+      "raw_49432",
+      "raw_49433",
+      "raw_49434",
+      "raw_49435",
+      "raw_76124"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1490,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "520578::raw_49431,raw_49432,raw_49434,raw_49435,raw_49440": {
+    "qid": "520578",
+    "passage_ids_sorted": [
+      "raw_49431",
+      "raw_49432",
+      "raw_49434",
+      "raw_49435",
+      "raw_49440"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1290,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "20461::raw_3928,raw_89308,raw_89311,raw_89314,raw_89315": {
+    "qid": "20461",
+    "passage_ids_sorted": [
+      "raw_3928",
+      "raw_89308",
+      "raw_89311",
+      "raw_89314",
+      "raw_89315"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1115,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "20461::raw_3928,raw_89308,raw_89309,raw_89311,raw_89315": {
+    "qid": "20461",
+    "passage_ids_sorted": [
+      "raw_3928",
+      "raw_89308",
+      "raw_89309",
+      "raw_89311",
+      "raw_89315"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1280,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "20461::raw_89308,raw_89309,raw_89311,raw_89315,raw_89316": {
+    "qid": "20461",
+    "passage_ids_sorted": [
+      "raw_89308",
+      "raw_89309",
+      "raw_89311",
+      "raw_89315",
+      "raw_89316"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1460,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "525734::raw_631,raw_632,raw_7295,raw_7298,raw_84473": {
+    "qid": "525734",
+    "passage_ids_sorted": [
+      "raw_631",
+      "raw_632",
+      "raw_7295",
+      "raw_7298",
+      "raw_84473"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1365,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "525734::raw_631,raw_632,raw_633,raw_7295,raw_7298": {
+    "qid": "525734",
+    "passage_ids_sorted": [
+      "raw_631",
+      "raw_632",
+      "raw_633",
+      "raw_7295",
+      "raw_7298"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1175,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "325195::raw_34190,raw_34191,raw_34193,raw_34196,raw_34197": {
+    "qid": "325195",
+    "passage_ids_sorted": [
+      "raw_34190",
+      "raw_34191",
+      "raw_34193",
+      "raw_34196",
+      "raw_34197"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1790,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "325195::raw_34190,raw_34191,raw_34193,raw_34194,raw_34197": {
+    "qid": "325195",
+    "passage_ids_sorted": [
+      "raw_34190",
+      "raw_34191",
+      "raw_34193",
+      "raw_34194",
+      "raw_34197"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1900,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "325195::raw_34191,raw_34193,raw_34196,raw_34197,raw_34199": {
+    "qid": "325195",
+    "passage_ids_sorted": [
+      "raw_34191",
+      "raw_34193",
+      "raw_34196",
+      "raw_34197",
+      "raw_34199"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1750,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1001279::raw_62829,raw_62831,raw_77420,raw_77422,raw_77423": {
+    "qid": "1001279",
+    "passage_ids_sorted": [
+      "raw_62829",
+      "raw_62831",
+      "raw_77420",
+      "raw_77422",
+      "raw_77423"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1445,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1001279::raw_62829,raw_62830,raw_62831,raw_77422,raw_77423": {
+    "qid": "1001279",
+    "passage_ids_sorted": [
+      "raw_62829",
+      "raw_62830",
+      "raw_62831",
+      "raw_77422",
+      "raw_77423"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1695,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1001279::raw_62829,raw_62830,raw_77422,raw_77423,raw_77426": {
+    "qid": "1001279",
+    "passage_ids_sorted": [
+      "raw_62829",
+      "raw_62830",
+      "raw_77422",
+      "raw_77423",
+      "raw_77426"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1710,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1038214::raw_95604,raw_95609,raw_95610,raw_95612,raw_95613": {
+    "qid": "1038214",
+    "passage_ids_sorted": [
+      "raw_95604",
+      "raw_95609",
+      "raw_95610",
+      "raw_95612",
+      "raw_95613"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1425,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1038214::raw_95604,raw_95606,raw_95610,raw_95612,raw_95613": {
+    "qid": "1038214",
+    "passage_ids_sorted": [
+      "raw_95604",
+      "raw_95606",
+      "raw_95610",
+      "raw_95612",
+      "raw_95613"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1345,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "986174::raw_42329,raw_42331,raw_42332,raw_42336,raw_42337": {
+    "qid": "986174",
+    "passage_ids_sorted": [
+      "raw_42329",
+      "raw_42331",
+      "raw_42332",
+      "raw_42336",
+      "raw_42337"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1000,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "986174::raw_42328,raw_42329,raw_42331,raw_42332,raw_42333": {
+    "qid": "986174",
+    "passage_ids_sorted": [
+      "raw_42328",
+      "raw_42329",
+      "raw_42331",
+      "raw_42332",
+      "raw_42333"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1130,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "986174::raw_42328,raw_42329,raw_42331,raw_42333,raw_42337": {
+    "qid": "986174",
+    "passage_ids_sorted": [
+      "raw_42328",
+      "raw_42329",
+      "raw_42331",
+      "raw_42333",
+      "raw_42337"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1270,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "606138::raw_90117,raw_90123,raw_90125,raw_90126,raw_92562": {
+    "qid": "606138",
+    "passage_ids_sorted": [
+      "raw_90117",
+      "raw_90123",
+      "raw_90125",
+      "raw_90126",
+      "raw_92562"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1105,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "773352::raw_57063,raw_62624,raw_72355,raw_7726,raw_98799": {
+    "qid": "773352",
+    "passage_ids_sorted": [
+      "raw_57063",
+      "raw_62624",
+      "raw_72355",
+      "raw_7726",
+      "raw_98799"
+    ],
+    "context_recall": 0.0,
+    "tokens_used": 1245,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "773352::raw_46773,raw_62624,raw_72355,raw_7726,raw_98799": {
+    "qid": "773352",
+    "passage_ids_sorted": [
+      "raw_46773",
+      "raw_62624",
+      "raw_72355",
+      "raw_7726",
+      "raw_98799"
+    ],
+    "context_recall": 0.0,
+    "tokens_used": 1355,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "773352::raw_46773,raw_49152,raw_57063,raw_72355,raw_7726": {
+    "qid": "773352",
+    "passage_ids_sorted": [
+      "raw_46773",
+      "raw_49152",
+      "raw_57063",
+      "raw_72355",
+      "raw_7726"
+    ],
+    "context_recall": 0.0,
+    "tokens_used": 1165,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1096170::raw_7525,raw_7526,raw_7529,raw_7530,raw_7531": {
+    "qid": "1096170",
+    "passage_ids_sorted": [
+      "raw_7525",
+      "raw_7526",
+      "raw_7529",
+      "raw_7530",
+      "raw_7531"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1370,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "83245::raw_53511,raw_53512,raw_53513,raw_53518,raw_86014": {
+    "qid": "83245",
+    "passage_ids_sorted": [
+      "raw_53511",
+      "raw_53512",
+      "raw_53513",
+      "raw_53518",
+      "raw_86014"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1385,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "835723::raw_11242,raw_30067,raw_30068,raw_30069,raw_30070": {
+    "qid": "835723",
+    "passage_ids_sorted": [
+      "raw_11242",
+      "raw_30067",
+      "raw_30068",
+      "raw_30069",
+      "raw_30070"
+    ],
+    "context_recall": 0.1,
+    "tokens_used": 1290,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1052134::raw_67151,raw_67152,raw_67153,raw_67155,raw_67156": {
+    "qid": "1052134",
+    "passage_ids_sorted": [
+      "raw_67151",
+      "raw_67152",
+      "raw_67153",
+      "raw_67155",
+      "raw_67156"
+    ],
+    "context_recall": 0.9,
+    "tokens_used": 1435,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1052134::raw_67150,raw_67151,raw_67152,raw_67153,raw_67155": {
+    "qid": "1052134",
+    "passage_ids_sorted": [
+      "raw_67150",
+      "raw_67151",
+      "raw_67152",
+      "raw_67153",
+      "raw_67155"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1335,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "620643::raw_63218,raw_63222,raw_84205,raw_84206,raw_84208": {
+    "qid": "620643",
+    "passage_ids_sorted": [
+      "raw_63218",
+      "raw_63222",
+      "raw_84205",
+      "raw_84206",
+      "raw_84208"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1120,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "620643::raw_63218,raw_63222,raw_84205,raw_84208,raw_84211": {
+    "qid": "620643",
+    "passage_ids_sorted": [
+      "raw_63218",
+      "raw_63222",
+      "raw_84205",
+      "raw_84208",
+      "raw_84211"
+    ],
+    "context_recall": 0.3,
+    "tokens_used": 1160,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1095491::raw_10861,raw_22272,raw_22273,raw_68233,raw_68236": {
+    "qid": "1095491",
+    "passage_ids_sorted": [
+      "raw_10861",
+      "raw_22272",
+      "raw_22273",
+      "raw_68233",
+      "raw_68236"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1415,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1095491::raw_22272,raw_22273,raw_42358,raw_68233,raw_68236": {
+    "qid": "1095491",
+    "passage_ids_sorted": [
+      "raw_22272",
+      "raw_22273",
+      "raw_42358",
+      "raw_68233",
+      "raw_68236"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1550,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1095491::raw_22272,raw_22273,raw_68230,raw_68233,raw_68236": {
+    "qid": "1095491",
+    "passage_ids_sorted": [
+      "raw_22272",
+      "raw_22273",
+      "raw_68230",
+      "raw_68233",
+      "raw_68236"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1370,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "770750::raw_15911,raw_15914,raw_15917,raw_15918,raw_15919": {
+    "qid": "770750",
+    "passage_ids_sorted": [
+      "raw_15911",
+      "raw_15914",
+      "raw_15917",
+      "raw_15918",
+      "raw_15919"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1165,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "770750::raw_15911,raw_15915,raw_15917,raw_15918,raw_15919": {
+    "qid": "770750",
+    "passage_ids_sorted": [
+      "raw_15911",
+      "raw_15915",
+      "raw_15917",
+      "raw_15918",
+      "raw_15919"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1090,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "608254::raw_17038,raw_17043,raw_17044,raw_17045,raw_63656": {
+    "qid": "608254",
+    "passage_ids_sorted": [
+      "raw_17038",
+      "raw_17043",
+      "raw_17044",
+      "raw_17045",
+      "raw_63656"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1195,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1089374::raw_45034,raw_45035,raw_45037,raw_45039,raw_45040": {
+    "qid": "1089374",
+    "passage_ids_sorted": [
+      "raw_45034",
+      "raw_45035",
+      "raw_45037",
+      "raw_45039",
+      "raw_45040"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1325,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1089374::raw_45032,raw_45034,raw_45037,raw_45040,raw_73451": {
+    "qid": "1089374",
+    "passage_ids_sorted": [
+      "raw_45032",
+      "raw_45034",
+      "raw_45037",
+      "raw_45040",
+      "raw_73451"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1795,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1089374::raw_45034,raw_45037,raw_45039,raw_45040,raw_73451": {
+    "qid": "1089374",
+    "passage_ids_sorted": [
+      "raw_45034",
+      "raw_45037",
+      "raw_45039",
+      "raw_45040",
+      "raw_73451"
+    ],
+    "context_recall": 0.97,
+    "tokens_used": 1390,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "585818::raw_7589,raw_75914,raw_75917,raw_75919,raw_75923": {
+    "qid": "585818",
+    "passage_ids_sorted": [
+      "raw_7589",
+      "raw_75914",
+      "raw_75917",
+      "raw_75919",
+      "raw_75923"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1280,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "991078::raw_92787,raw_92788,raw_92789,raw_92790,raw_92793": {
+    "qid": "991078",
+    "passage_ids_sorted": [
+      "raw_92787",
+      "raw_92788",
+      "raw_92789",
+      "raw_92790",
+      "raw_92793"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1190,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "920671::raw_51682,raw_51685,raw_51686,raw_51688,raw_62225": {
+    "qid": "920671",
+    "passage_ids_sorted": [
+      "raw_51682",
+      "raw_51685",
+      "raw_51686",
+      "raw_51688",
+      "raw_62225"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1255,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "920671::raw_51682,raw_51685,raw_51688,raw_51690,raw_62225": {
+    "qid": "920671",
+    "passage_ids_sorted": [
+      "raw_51682",
+      "raw_51685",
+      "raw_51688",
+      "raw_51690",
+      "raw_62225"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1460,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "920671::raw_51682,raw_51685,raw_51687,raw_51688,raw_62225": {
+    "qid": "920671",
+    "passage_ids_sorted": [
+      "raw_51682",
+      "raw_51685",
+      "raw_51687",
+      "raw_51688",
+      "raw_62225"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1240,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "786502::raw_79045,raw_79046,raw_79047,raw_79052,raw_79053": {
+    "qid": "786502",
+    "passage_ids_sorted": [
+      "raw_79045",
+      "raw_79046",
+      "raw_79047",
+      "raw_79052",
+      "raw_79053"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1185,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "949869::raw_12211,raw_12212,raw_12213,raw_12214,raw_12215": {
+    "qid": "949869",
+    "passage_ids_sorted": [
+      "raw_12211",
+      "raw_12212",
+      "raw_12213",
+      "raw_12214",
+      "raw_12215"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1520,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "987062::raw_93094,raw_93095,raw_93096,raw_93098,raw_93101": {
+    "qid": "987062",
+    "passage_ids_sorted": [
+      "raw_93094",
+      "raw_93095",
+      "raw_93096",
+      "raw_93098",
+      "raw_93101"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1415,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "987062::raw_93094,raw_93095,raw_93097,raw_93098,raw_93101": {
+    "qid": "987062",
+    "passage_ids_sorted": [
+      "raw_93094",
+      "raw_93095",
+      "raw_93097",
+      "raw_93098",
+      "raw_93101"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1400,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "355867::raw_82330,raw_82331,raw_82332,raw_82334,raw_82338": {
+    "qid": "355867",
+    "passage_ids_sorted": [
+      "raw_82330",
+      "raw_82331",
+      "raw_82332",
+      "raw_82334",
+      "raw_82338"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1700,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "355867::raw_82331,raw_82332,raw_82333,raw_82334,raw_82335": {
+    "qid": "355867",
+    "passage_ids_sorted": [
+      "raw_82331",
+      "raw_82332",
+      "raw_82333",
+      "raw_82334",
+      "raw_82335"
+    ],
+    "context_recall": 1.0,
+    "tokens_used": 1430,
+    "judge": "openai/gpt-oss-120b"
+  },
+  "1085824::raw_90765,raw_90766,raw_90772,raw_90773,raw_90774": {
+    "qid": "1085824",
+    "passage_ids_sorted": [
+      "raw_90765",
+      "raw_90766",
+      "raw_90772",
+      "raw_90773",
+      "raw_90774"
+    ],
+    "context_recall": 0.9,
+    "tokens_used": 1515,
+    "judge": "openai/gpt-oss-120b"
+  }
+}

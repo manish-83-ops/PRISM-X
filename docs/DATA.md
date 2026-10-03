@@ -120,3 +120,24 @@ From the official MS MARCO v2.1 validation split (101,093 queries), a seeded per
 
 **Takeaway:** Filtering for gold ground truth and human reference answers causes minimal distribution shift across all 5 query types ($\le 2.2\%$ deviation). The relative category rankings (DESCRIPTION > NUMERIC > ENTITY > PERSON $\approx$ LOCATION) are strictly preserved between the sampled pool and the evaluation benchmark split.
 
+---
+
+## 7. Sparse Lexical Token Hash Collision Audit (Gate 12 Part 3.3 / ADR-024)
+
+An exhaustive audit of the 32-bit SHA-256 token hashing mechanism used by `BM25Tokenizer` was performed across all 100,008 corpus passages in `c100k_raw` and all 500 TUNE queries:
+
+| Metric | Measured Value | Notes |
+| :--- | :--- | :--- |
+| **Hash Function** | `SHA-256` truncated to 8 hex chars | `int(sha256(token)[:8], 16)` |
+| **Hash Width** | **32 bits** | $2^{32} = 4,294,967,296$ unique buckets |
+| **Corpus Vocabulary** | **103,812 distinct tokens** | Scanned 100% of 100,008 raw passages |
+| **TUNE Query Vocabulary** | **1,216 distinct tokens** | 500 TUNE queries (1,661 token occurrences) |
+| **Combined Unique Vocabulary** | **103,816 tokens** | Corpus $\cup$ TUNE queries |
+| **Colliding Hash Buckets** | **0 buckets** | Zero collisions detected |
+| **Colliding Token Pairs** | **0 pairs** | Zero colliding pairs |
+| **Theoretical Expectation** | 1.25 pairs | Poisson / Birthday model: $N^2 / (2 \times 2^{32})$ |
+| **TUNE Occurrences Affected** | **0 (0.0000%)** | Zero query degradation from sparse hash aliasing |
+
+**Conclusion:** The 32-bit hash space ($4.29 \times 10^9$) is overwhelmingly sufficient for a vocabulary of ~104K tokens. Hash collision rate is empirically 0.0000%, guaranteeing zero vocabulary aliasing in sparse vector retrieval. No index modifications or width expansions are necessary.
+
+

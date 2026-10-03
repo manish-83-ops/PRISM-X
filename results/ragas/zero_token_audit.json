@@ -1,0 +1,837 @@
+{
+  "bench_retrieval_overlap": {
+    "hybrid_vs_dense": {
+      "top1_identity_rate": 0.8,
+      "top1_differ_rate": 0.2,
+      "mean_top5_jaccard": 0.8624
+    },
+    "rerank_vs_hybrid": {
+      "top1_identity_rate": 0.6,
+      "top1_differ_rate": 0.4,
+      "mean_top5_jaccard": 0.7249
+    },
+    "rerank_vs_dense": {
+      "top1_identity_rate": 0.59,
+      "top1_differ_rate": 0.41,
+      "mean_top5_jaccard": 0.7231
+    }
+  },
+  "tune_retrieval_overlap": {
+    "hybrid_vs_dense": {
+      "top1_identity_rate": 0.776,
+      "top1_differ_rate": 0.224,
+      "mean_top5_jaccard": 0.8701
+    },
+    "rerank_vs_hybrid": {
+      "top1_identity_rate": 0.56,
+      "top1_differ_rate": 0.44,
+      "mean_top5_jaccard": 0.6982
+    },
+    "rerank_vs_dense": {
+      "top1_identity_rate": 0.596,
+      "top1_differ_rate": 0.404,
+      "mean_top5_jaccard": 0.6952
+    }
+  },
+  "lexical_contribution_audit": {
+    "n_queries": 500,
+    "queries_with_sparse_dense_top1_differ": 436,
+    "differ_fraction": 0.872,
+    "distribution_when_differ": {
+      "dense_only_has_gold_top1": 168,
+      "sparse_only_has_gold_top1": 29,
+      "both_have_gold_top1": 2,
+      "neither_has_gold_top1": 237
+    },
+    "hit_at_1": {
+      "dense": 0.404,
+      "sparse": 0.126,
+      "hybrid": 0.416,
+      "oracle_best_channel": 0.462
+    },
+    "hit_at_5": {
+      "dense": 0.882,
+      "sparse": 0.346,
+      "hybrid": 0.884,
+      "oracle_best_channel": 0.908
+    }
+  },
+  "context_precision_headroom": {
+    "dense": {
+      "n_queries": 50,
+      "queries_cp_less_than_1": 20,
+      "fraction_cp_less_than_1": 0.4,
+      "queries_first_useful_below_rank1": 10,
+      "fraction_first_useful_below_rank1": 0.2
+    },
+    "hybrid": {
+      "n_queries": 50,
+      "queries_cp_less_than_1": 23,
+      "fraction_cp_less_than_1": 0.46,
+      "queries_first_useful_below_rank1": 10,
+      "fraction_first_useful_below_rank1": 0.2
+    },
+    "prismx": {
+      "n_queries": 50,
+      "queries_cp_less_than_1": 20,
+      "fraction_cp_less_than_1": 0.4,
+      "queries_first_useful_below_rank1": 13,
+      "fraction_first_useful_below_rank1": 0.26
+    }
+  },
+  "top_10_rerank_vs_hybrid_drops": [
+    {
+      "rank": 1,
+      "query_id": "528278",
+      "query": "types of iron lines cornea",
+      "reference_answer": "Hudson-Stahli line, Fleischer line and Khodadoust Line.",
+      "hybrid_cp": 1.0,
+      "rerank_cp": 0.0,
+      "delta_drop": 1.0,
+      "hybrid_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_9984",
+          "verdict": 1,
+          "text": "Anybody driving on a rainy day with chewed-up wiper blades knows what I\u2019m talking about. Small puddles of stagnant tears..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_9983",
+          "verdict": 0,
+          "text": "Corneal epithelial iron line at the edge of filtering blebs of glaucoma surgery. Hudson-Stahli Line : Iron deposition li..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_90311",
+          "verdict": 0,
+          "text": "Hudson-stahli line: Iron deposition line in the corneal epithelium, which commonly seen in the junction between middle a..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_9992",
+          "verdict": 0,
+          "text": "Ehrlich-Turk Line: Vertical linear deposition of KPs in uveitis. Ferry's Line: Corneal epithelial iron line at the edge ..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_90315",
+          "verdict": 0,
+          "text": "1 Iron deposition line in the corneal epithelium, which commonly seen in the junction between middle and lower third cor..."
+        }
+      ],
+      "rerank_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_9983",
+          "verdict": 0,
+          "text": "Corneal epithelial iron line at the edge of filtering blebs of glaucoma surgery. Hudson-Stahli Line : Iron deposition li..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_9992",
+          "verdict": 0,
+          "text": "Ehrlich-Turk Line: Vertical linear deposition of KPs in uveitis. Ferry's Line: Corneal epithelial iron line at the edge ..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_9984",
+          "verdict": 0,
+          "text": "Anybody driving on a rainy day with chewed-up wiper blades knows what I\u2019m talking about. Small puddles of stagnant tears..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_90311",
+          "verdict": 0,
+          "text": "Hudson-stahli line: Iron deposition line in the corneal epithelium, which commonly seen in the junction between middle a..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_90315",
+          "verdict": 0,
+          "text": "1 Iron deposition line in the corneal epithelium, which commonly seen in the junction between middle and lower third cor..."
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "query_id": "835723",
+      "query": "what is the name of the theatre play is considered one of the most important musicals of the golden age of musical theatre.",
+      "reference_answer": "Broadway Musical Home.",
+      "hybrid_cp": 1.0,
+      "rerank_cp": 0.3333,
+      "delta_drop": 0.6667,
+      "hybrid_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_30069",
+          "verdict": 1,
+          "text": "Find out at Broadway Musical Home. Browse classic Broadway musicals - those that were written and premiered between 1920..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_30068",
+          "verdict": 0,
+          "text": "Anyhow, considering that gypsy is almost universally considered (along with guys and dolls) the most perfect representat..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_30070",
+          "verdict": 0,
+          "text": "Transcript of THE GOLDEN AGE OF MUSICAL THEATRE. Conclusion. Fiddler on the Roof (1964; 3,242 performances) Had the firs..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_11242",
+          "verdict": 0,
+          "text": "Shakespeare's Globe Theatre. The Globe Theatre also known as the Shakespeare Globe Theatre was not only one of most famo..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_30067",
+          "verdict": 0,
+          "text": "McNally could easily be on a much larger list of the most important people in modern theatrical history, but his contrib..."
+        }
+      ],
+      "rerank_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_30068",
+          "verdict": 0,
+          "text": "Anyhow, considering that gypsy is almost universally considered (along with guys and dolls) the most perfect representat..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_30070",
+          "verdict": 0,
+          "text": "Transcript of THE GOLDEN AGE OF MUSICAL THEATRE. Conclusion. Fiddler on the Roof (1964; 3,242 performances) Had the firs..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_30069",
+          "verdict": 1,
+          "text": "Find out at Broadway Musical Home. Browse classic Broadway musicals - those that were written and premiered between 1920..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_30067",
+          "verdict": 0,
+          "text": "McNally could easily be on a much larger list of the most important people in modern theatrical history, but his contrib..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_11242",
+          "verdict": 0,
+          "text": "Shakespeare's Globe Theatre. The Globe Theatre also known as the Shakespeare Globe Theatre was not only one of most famo..."
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "query_id": "702179",
+      "query": "what is a summer salad",
+      "reference_answer": "Tomatoes, cabbage, carrots , strawberries, blueberries, raspberries, or blackberries .",
+      "hybrid_cp": 0.8667,
+      "rerank_cp": 0.325,
+      "delta_drop": 0.5417,
+      "hybrid_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_5431",
+          "verdict": 1,
+          "text": "Tomato, Baby Lettuce, and Olive Bread Salad. With the bounty of gorgeous summer vegetables available from your garden or..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_5429",
+          "verdict": 1,
+          "text": "10 Salads That Eat Like A Meal. Fresh veggies unite with Mexican spices, Caribbean flavors, and other lively ingredients..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_5427",
+          "verdict": 0,
+          "text": "For a cool salad on a hot summer day, I combine shrimp, corn, tomatoes and nectarines with a drizzle of tarragon dressin..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_5430",
+          "verdict": 0,
+          "text": "Grilled Steak and Summer Vegetable Salad. The hanger steak and fresh summer vegetables in this salad are infused with a ..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_81713",
+          "verdict": 1,
+          "text": "Garden salads use a base of leafy greens like lettuce, arugula, kale or spinach; they are common enough that the word sa..."
+        }
+      ],
+      "rerank_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_5431",
+          "verdict": 0,
+          "text": "Tomato, Baby Lettuce, and Olive Bread Salad. With the bounty of gorgeous summer vegetables available from your garden or..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_5430",
+          "verdict": 0,
+          "text": "Grilled Steak and Summer Vegetable Salad. The hanger steak and fresh summer vegetables in this salad are infused with a ..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_5427",
+          "verdict": 0,
+          "text": "For a cool salad on a hot summer day, I combine shrimp, corn, tomatoes and nectarines with a drizzle of tarragon dressin..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_5425",
+          "verdict": 1,
+          "text": "For a lot of the year, I can use my garden's produce when I make this cool salad. In spring, it's salad mix and radishes..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_5433",
+          "verdict": 1,
+          "text": "Not only is this summer side dish something to look at, it's a treat for the taste buds, too. The medley of textures and..."
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "query_id": "947750",
+      "query": "when does summer finish",
+      "reference_answer": "In August.",
+      "hybrid_cp": 1.0,
+      "rerank_cp": 0.5,
+      "delta_drop": 0.5,
+      "hybrid_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_55251",
+          "verdict": 1,
+          "text": "Summer is June, July and August. So, the summer months are over and autumn has now begun, and lasts through the rest of ..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_55249",
+          "verdict": 0,
+          "text": "Confidence votes 632. Summer begins each year on the day of the summer solstice, which is on or near June 21 and ends ea..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_55244",
+          "verdict": 0,
+          "text": "The length of the summer season is usually three months. This is applicable for both Northern and Southern Hemispheres. ..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_27776",
+          "verdict": 0,
+          "text": "Answers. Best Answer: Or better yet, log into whatever school you're thinking about and search for academic calendar. In..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_55242",
+          "verdict": 0,
+          "text": "Summer and winter begin on the solstices, about three weeks after the meteorological seasons, and the instant when direc..."
+        }
+      ],
+      "rerank_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_55249",
+          "verdict": 0,
+          "text": "Confidence votes 632. Summer begins each year on the day of the summer solstice, which is on or near June 21 and ends ea..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_55251",
+          "verdict": 1,
+          "text": "Summer is June, July and August. So, the summer months are over and autumn has now begun, and lasts through the rest of ..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_55244",
+          "verdict": 0,
+          "text": "The length of the summer season is usually three months. This is applicable for both Northern and Southern Hemispheres. ..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_55242",
+          "verdict": 0,
+          "text": "Summer and winter begin on the solstices, about three weeks after the meteorological seasons, and the instant when direc..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_27776",
+          "verdict": 0,
+          "text": "Answers. Best Answer: Or better yet, log into whatever school you're thinking about and search for academic calendar. In..."
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "query_id": "513238",
+      "query": "teradata string manipulation functions",
+      "reference_answer": "INDEX, POSITION.",
+      "hybrid_cp": 1.0,
+      "rerank_cp": 0.5,
+      "delta_drop": 0.5,
+      "hybrid_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_97440",
+          "verdict": 1,
+          "text": "Teradata has an equivalent function called INDEX. Both the POSITION and INDEX functions returns position of character's ..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_97441",
+          "verdict": 0,
+          "text": "SQL String Functions. 1. Concat: Concat function is used to concatenate all the inputs provided to the function. Select ..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_97437",
+          "verdict": 0,
+          "text": "Teradata 13.10 SQL Language Functions and User Defined Ordered Analytic Functions. Teradata 13.10 continues the strategy..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_97434",
+          "verdict": 0,
+          "text": "FUNCTIONS in Teradata. 1. Concat function is used to concatenate all the inputs provided to the function. Returns Ascii ..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_97439",
+          "verdict": 0,
+          "text": "This chapter describes the concatenation operator and functions that operate on character, byte, and numeric strings. SQ..."
+        }
+      ],
+      "rerank_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_97434",
+          "verdict": 0,
+          "text": "FUNCTIONS in Teradata. 1. Concat function is used to concatenate all the inputs provided to the function. Returns Ascii ..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_97440",
+          "verdict": 1,
+          "text": "Teradata has an equivalent function called INDEX. Both the POSITION and INDEX functions returns position of character's ..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_97441",
+          "verdict": 0,
+          "text": "SQL String Functions. 1. Concat: Concat function is used to concatenate all the inputs provided to the function. Select ..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_97439",
+          "verdict": 0,
+          "text": "This chapter describes the concatenation operator and functions that operate on character, byte, and numeric strings. SQ..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_97437",
+          "verdict": 0,
+          "text": "Teradata 13.10 SQL Language Functions and User Defined Ordered Analytic Functions. Teradata 13.10 continues the strategy..."
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "query_id": "355867",
+      "query": "how to do ellipses question",
+      "reference_answer": "Steps to do ellipses question are a set of three periods indicating an omission. Each period should have a single space on either side, except when adjacent to a quotation mark, in which case there should be no space.",
+      "hybrid_cp": 1.0,
+      "rerank_cp": 0.5,
+      "delta_drop": 0.5,
+      "hybrid_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_82331",
+          "verdict": 1,
+          "text": "Ellipses. 1  An ellipsis is a set of three periods ( . . . ) indicating an omission. Each period should have a single sp..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_82332",
+          "verdict": 0,
+          "text": "Ellipses. 1  An ellipsis is a set of three periods ( . . . ) indicating an omission. 2  In informal writing, an ellipsis..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_82334",
+          "verdict": 0,
+          "text": "An ellipse, informally, is an oval or a squished circle. In primitive geometrical terms, an ellipse is the figure you ca..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_82338",
+          "verdict": 0,
+          "text": "The area of an ellipse is: \u03c0 \u00d7 a \u00d7 b. where a is the length of the Semi-major Axis, and b is the length of the Semi-mino..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_82330",
+          "verdict": 0,
+          "text": "A Circle is an Ellipse. In fact a Circle is an Ellipse, where both foci are at the same point (the center). In other wor..."
+        }
+      ],
+      "rerank_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_82334",
+          "verdict": 0,
+          "text": "An ellipse, informally, is an oval or a squished circle. In primitive geometrical terms, an ellipse is the figure you ca..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_82331",
+          "verdict": 1,
+          "text": "Ellipses. 1  An ellipsis is a set of three periods ( . . . ) indicating an omission. Each period should have a single sp..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_82332",
+          "verdict": 0,
+          "text": "Ellipses. 1  An ellipsis is a set of three periods ( . . . ) indicating an omission. 2  In informal writing, an ellipsis..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_82335",
+          "verdict": 0,
+          "text": "An ellipsis (plural ellipses; from the Ancient Greek: \u1f14\u03bb\u03bb\u03b5\u03b9\u03c8\u03b9\u03c2, \u00e9lleipsis, omission or falling short) is a series of dot..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_82333",
+          "verdict": 0,
+          "text": "In fact a Circle is an Ellipse, where both foci are at the same point (the center). In other words, a circle is a specia..."
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "query_id": "1102379",
+      "query": "why do earthquake occur",
+      "reference_answer": "Earthquakes are caused by two tectonic plates that push against each other. The internal pressure between the plates increases, which creates friction and heat, and ultimately creates energy. Earthquakes are triggered after rocks break apart, or when the two tectonic plates stick together instead of sliding.",
+      "hybrid_cp": 1.0,
+      "rerank_cp": 0.5889,
+      "delta_drop": 0.4111,
+      "hybrid_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_63589",
+          "verdict": 1,
+          "text": "Ans: An earthquake is caused by a sudden slip on a fault. Stresses in the earth's outer layer push the sides of the faul..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_57128",
+          "verdict": 0,
+          "text": "Intensity of shaking is measured on the modified Mercalli scale. The shallower an earthquake, the more damage to structu..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_78329",
+          "verdict": 0,
+          "text": "Earthquakes are caused by two tectonic plates that push against each other. The internal pressure between the plates inc..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_25218",
+          "verdict": 0,
+          "text": "Most earthquakes occur along zones where the Earth's crust is undergoing deformation. Deformation results from plate tec..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_78330",
+          "verdict": 0,
+          "text": "Sometimes an earthquake has foreshocks. These are smaller earthquakes that happen in the same place as the larger earthq..."
+        }
+      ],
+      "rerank_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_25218",
+          "verdict": 0,
+          "text": "Most earthquakes occur along zones where the Earth's crust is undergoing deformation. Deformation results from plate tec..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_78329",
+          "verdict": 1,
+          "text": "Earthquakes are caused by two tectonic plates that push against each other. The internal pressure between the plates inc..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_63589",
+          "verdict": 1,
+          "text": "Ans: An earthquake is caused by a sudden slip on a fault. Stresses in the earth's outer layer push the sides of the faul..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_50715",
+          "verdict": 0,
+          "text": "An earthquake is what happens when two blocks of the earth suddenly slip past one another. The surface where they slip i..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_78328",
+          "verdict": 1,
+          "text": "A: Earthquakes are usually triggered when rock located beneath the ground, on top of fault lines, breaks and suddenly re..."
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "query_id": "1001279",
+      "query": "where are the most deserts",
+      "reference_answer": "Most deserts lie between 15\u00b0 and 35\u00b0 north and south of the equator.",
+      "hybrid_cp": 0.8667,
+      "rerank_cp": 0.4778,
+      "delta_drop": 0.3889,
+      "hybrid_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_62829",
+          "verdict": 1,
+          "text": "Most of the world's deserts occur at low latitudes close to the equator, although there are high-latitude deserts as wel..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_77423",
+          "verdict": 1,
+          "text": "Most deserts lie between 15\u00b0 and 35\u00b0 north and south of the equator. They were created by air that rises over the equato..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_62830",
+          "verdict": 0,
+          "text": "A desert is a hot area of land that gets very little rain\u2014not more than 200 mm a year. Temperatures during the daytime c..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_77422",
+          "verdict": 0,
+          "text": "The beauty of one place is not defined by the number of tourists it gets. Despite having the harsh environment, deserts ..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_62831",
+          "verdict": 1,
+          "text": "Desert classifications include hot and dry, semiarid, coastal and cold. While most conceive of deserts as hot environmen..."
+        }
+      ],
+      "rerank_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_77422",
+          "verdict": 0,
+          "text": "The beauty of one place is not defined by the number of tourists it gets. Despite having the harsh environment, deserts ..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_77426",
+          "verdict": 0,
+          "text": "The Most Beautiful Deserts in the World By definition, a desert is a region that receive about 10 inches of rain or less..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_77423",
+          "verdict": 1,
+          "text": "Most deserts lie between 15\u00b0 and 35\u00b0 north and south of the equator. They were created by air that rises over the equato..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_62829",
+          "verdict": 1,
+          "text": "Most of the world's deserts occur at low latitudes close to the equator, although there are high-latitude deserts as wel..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_62830",
+          "verdict": 1,
+          "text": "A desert is a hot area of land that gets very little rain\u2014not more than 200 mm a year. Temperatures during the daytime c..."
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "query_id": "125712",
+      "query": "define primary colors",
+      "reference_answer": "A color belonging to any of three groups each of which is regarded as generating all colors, with the groups being a Additive, physiological, or light primaries red, green, and blue.",
+      "hybrid_cp": 0.5889,
+      "rerank_cp": 0.3333,
+      "delta_drop": 0.2556,
+      "hybrid_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_83369",
+          "verdict": 0,
+          "text": "primary color for light, primary colour for light - any of three primary colors of light from which all colors can be ob..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_23848",
+          "verdict": 1,
+          "text": "Elementary art education materials, dictionaries, and electronic search engines often define primary colors effectively ..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_83367",
+          "verdict": 1,
+          "text": "primary color. noun. Definition of primary color for Students. : one of the colors red, yellow, or blue which can be mix..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_23839",
+          "verdict": 0,
+          "text": "Primary color. A set of primary colors is a small, arbitrary set of pigmented physical media, lights or purely abstract ..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_83372",
+          "verdict": 1,
+          "text": "primary color - any of three colors from which all others can be obtained by mixing. primary colour. color, coloring, co..."
+        }
+      ],
+      "rerank_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_23839",
+          "verdict": 0,
+          "text": "Primary color. A set of primary colors is a small, arbitrary set of pigmented physical media, lights or purely abstract ..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_83367",
+          "verdict": 0,
+          "text": "primary color. noun. Definition of primary color for Students. : one of the colors red, yellow, or blue which can be mix..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_83366",
+          "verdict": 1,
+          "text": "primary color. n. A color belonging to any of three groups each of which is regarded as generating all colors, with the ..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_83373",
+          "verdict": 0,
+          "text": "Definition of primary color for English Language Learners. : one of the three colors red, yellow, or blue which can be m..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_83372",
+          "verdict": 0,
+          "text": "primary color - any of three colors from which all others can be obtained by mixing. primary colour. color, coloring, co..."
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "query_id": "442137",
+      "query": "long terms effects of great depression definition",
+      "reference_answer": "Definition:\nAn economic slump sparked by the collapse of the New York stock exchange in 1929.\nLong term effect:\nIt devastated the US economy and caused unemployment.",
+      "hybrid_cp": 0.7,
+      "rerank_cp": 0.45,
+      "delta_drop": 0.25,
+      "hybrid_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_98296",
+          "verdict": 1,
+          "text": "The stock market crash of 1929 marked the start of the Great Depression, the most widespread in modern history, with eff..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_98298",
+          "verdict": 0,
+          "text": "The Great Depression affected all groups, ages, and races of people. The Great Depression was a result of many fails wit..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_98295",
+          "verdict": 0,
+          "text": "A useful example is the difference in the chronology of the Great Depression in the U.S. under the view of alternative d..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_85231",
+          "verdict": 0,
+          "text": "The Great Depression (1929-39) was the deepest and longest-lasting economic downturn in the history of the Western indus..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_98300",
+          "verdict": 1,
+          "text": "Unemployed workers queue in Berlin. The Great Depression was a long and extensive economic crisis, affecting most develo..."
+        }
+      ],
+      "rerank_passages": [
+        {
+          "rank": 1,
+          "passage_id": "raw_98292",
+          "verdict": 0,
+          "text": "Short-Term and Long-Term Effects of Depression. In the short-term, depression is likely to cause loss of appetite, weigh..."
+        },
+        {
+          "rank": 2,
+          "passage_id": "raw_98296",
+          "verdict": 1,
+          "text": "The stock market crash of 1929 marked the start of the Great Depression, the most widespread in modern history, with eff..."
+        },
+        {
+          "rank": 3,
+          "passage_id": "raw_85231",
+          "verdict": 0,
+          "text": "The Great Depression (1929-39) was the deepest and longest-lasting economic downturn in the history of the Western indus..."
+        },
+        {
+          "rank": 4,
+          "passage_id": "raw_98300",
+          "verdict": 0,
+          "text": "Unemployed workers queue in Berlin. The Great Depression was a long and extensive economic crisis, affecting most develo..."
+        },
+        {
+          "rank": 5,
+          "passage_id": "raw_98297",
+          "verdict": 1,
+          "text": "1. The Great Depression was an economic slump sparked by the collapse of the New York stock exchange in 1929. 2. It deva..."
+        }
+      ]
+    }
+  ],
+  "power_analysis": {
+    "hybrid_minus_dense": {
+      "mean_delta": -0.0119,
+      "sample_std": 0.0766,
+      "bootstrap_se": 0.0107,
+      "current_95_ci_halfwidth": 0.021,
+      "n_needed_for_pm_0_02_ci": 57
+    },
+    "rerank_minus_hybrid": {
+      "mean_delta": -0.0344,
+      "sample_std": 0.3078,
+      "bootstrap_se": 0.0433,
+      "current_95_ci_halfwidth": 0.0849,
+      "n_needed_for_pm_0_02_ci": 910
+    },
+    "rerank_minus_dense": {
+      "mean_delta": -0.0463,
+      "sample_std": 0.3144,
+      "bootstrap_se": 0.0445,
+      "current_95_ci_halfwidth": 0.0873,
+      "n_needed_for_pm_0_02_ci": 950
+    }
+  }
+}

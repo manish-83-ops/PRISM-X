@@ -1,0 +1,8 @@
+{
+  "governor": {
+    "component": "governor",
+    "normal_count": 2,
+    "truncated_count": 2,
+    "skipped_count": 2
+  }
+}

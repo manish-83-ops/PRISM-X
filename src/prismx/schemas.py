@@ -89,6 +89,11 @@ class SearchResponse(BaseModel):
     latency_ms: LatencyBreakdown
     cache_hit: bool = False
     governor_state: str = "normal"
+    stage_reached: str = "stage1_hybrid"
+    candidates_scored: int = 0
+    K_requested: int = 5
+    per_pair_ms: float = 0.0
+    effective_mode: str = "hybrid"
 
 
 class UpsertRequest(BaseModel):
@@ -121,6 +126,8 @@ class MetaResponse(BaseModel):
     drift: float | None = None
     drift_warning: bool | None = None
     inconsistency_count: int | None = 0
+    outbox_pending_count: int | None = 0
+    consistency_probe: dict[str, Any] | None = None
     categories: list[Any] | None = None
     sources: list[str] | None = None
     models: dict[str, str]
