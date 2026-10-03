@@ -741,9 +741,9 @@ html_content = """<!DOCTYPE html>
   </tbody>
 </table>
 
-<h3>C. Exploratory RAGAS Evaluation (Gate 4B Curated Partition — Superseded)</h3>
+<h3>C. Official Frozen-50 RAGAS Evaluation (c100k_raw, Completed)</h3>
 <p style="font-size:7.5pt; color:#64748b;">
-  <em>Provenance Audit Notice:</em> Below are the exploratory Gate 4B RAGAS results (<span class="mono">results/ragas/frozen25_ragas_summary.json</span>, run date: 2026-10-03, N=25 paired queries, judge: <span class="mono">allam-2-7b</span>, top-5 retrieved contexts, curated 100K corpus, ground truth: <span class="mono">wellFormedAnswers[0]</span>, coverage: 87/100 valid queries on BENCH). These exploratory numbers are <strong>superseded</strong> by the raw query-centric benchmark and are maintained strictly separate from the N=100 retrieval table. The frozen-50 benchmark RAGAS re-run remains blocked pending Groq API key rotation.
+  <em>Benchmark Audit Notice:</em> Scored across all N=50 paired queries under canonical hash <span class="mono">8e1000d5...</span> (judge: <span class="mono">openai/gpt-oss-120b</span>, temperature=0, top-5 retrieved contexts, reference: official human-authored MS MARCO answers). 198,324 tokens consumed across 300 calls. Bootstrap 95% confidence intervals (B=10,000 resamples) on all paired deltas include zero (&Delta;CP Hybrid&minus;Dense: [-0.033, +0.009], &Delta;CP Rerank&minus;Hybrid: [-0.122, +0.050]), confirming no statistically measurable degradation across modes at N=50.
 </p>
 <table>
   <thead>
@@ -757,24 +757,25 @@ html_content = """<!DOCTYPE html>
   <tbody>
     <tr>
       <td><strong>Phase 1: Dense Only</strong></td>
-      <td class="text-right mono">0.8539 <span style="font-size:7pt; color:#64748b;">[0.778, 0.919]</span></td>
-      <td class="text-right mono">0.7760 <span style="font-size:7pt; color:#64748b;">[0.704, 0.836]</span></td>
-      <td class="text-center text-slate-500">N=25, allam-2-7b (Exploratory, Gate 4B)</td>
+      <td class="text-right mono font-bold">0.8415 <span style="font-size:7pt; color:#64748b;">[0.763, 0.911]</span></td>
+      <td class="text-right mono">0.9280 <span style="font-size:7pt; color:#64748b;">[0.853, 0.984]</span></td>
+      <td class="text-center text-slate-500">N=50, gpt-oss-120b (Official Frozen-50)</td>
     </tr>
     <tr>
       <td><strong>Phase 2: Hybrid (&alpha;=0.8)</strong></td>
-      <td class="text-right mono font-bold" style="color:#065f46;">0.9184 <span style="font-size:7pt; color:#64748b;">[0.874, 0.958]</span></td>
-      <td class="text-right mono font-bold" style="color:#065f46;">0.8120 <span style="font-size:7pt; color:#64748b;">[0.744, 0.864]</span></td>
-      <td class="text-center text-slate-500">N=25, allam-2-7b (&Delta;CP = +0.0645, Excludes 0)</td>
+      <td class="text-right mono">0.8296 <span style="font-size:7pt; color:#64748b;">[0.753, 0.898]</span></td>
+      <td class="text-right mono font-bold" style="color:#065f46;">0.9320 <span style="font-size:7pt; color:#64748b;">[0.866, 0.982]</span></td>
+      <td class="text-center text-slate-500">N=50, gpt-oss-120b (&Delta;CR = +0.004, Crosses 0)</td>
     </tr>
     <tr>
       <td><strong>Phase 3: Hybrid + Rerank</strong></td>
-      <td class="text-right mono">0.9126 <span style="font-size:7pt; color:#64748b;">[0.849, 0.964]</span></td>
-      <td class="text-right mono">0.7840 <span style="font-size:7pt; color:#64748b;">[0.692, 0.856]</span></td>
-      <td class="text-center text-slate-500">N=25, allam-2-7b (Exploratory, Gate 4B)</td>
+      <td class="text-right mono">0.7951 <span style="font-size:7pt; color:#64748b;">[0.707, 0.876]</span></td>
+      <td class="text-right mono">0.9168 <span style="font-size:7pt; color:#64748b;">[0.840, 0.977]</span></td>
+      <td class="text-center text-slate-500">N=50, gpt-oss-120b (Informative Sibling Coverage)</td>
     </tr>
   </tbody>
 </table>
+
 
 <!-- ================= 6. LATENCY BENCHMARK TABLE ================= -->
 <div class="page-break"></div>

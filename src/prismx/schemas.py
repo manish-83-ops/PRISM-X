@@ -136,13 +136,27 @@ class AnswerCitation(BaseModel):
     score: float
 
 
+class ConfigResponse(BaseModel):
+    default_mode: str
+    semantic_hash: str
+    serving_hash: str
+    index_version: int
+    corpus_size: int
+    collection_name: str
+    git_commit: str
+    backend_status: str
+    public_demo: bool = False
+    rate_limits: dict[str, Any] | None = None
+
+
 class AnswerRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=512)
     top_k: int = Field(default=5, ge=1, le=20)
-    mode: Literal["dense", "hybrid", "hybrid_rerank", "hybrid+rerank"] = "hybrid_rerank"
+    mode: Literal["dense", "hybrid", "prismx", "hybrid_rerank", "hybrid+rerank"] = "hybrid"
     rerank_k: int = Field(default=20, ge=1, le=100)
     filters: FilterParams | None = None
     use_cache: bool = True
+    model: str | None = None
 
 
 class AnswerResponse(BaseModel):
@@ -153,6 +167,25 @@ class AnswerResponse(BaseModel):
     model: str
     latency_ms: dict[str, float]
     cache_hit: bool = False
+    validation: dict[str, Any] | None = None
+    tokens_used: int = 0
+
+
+class LiveCheckRequest(BaseModel):
+    query: str = Field(..., min_length=1, max_length=512)
+    answer: str = Field(..., min_length=1)
+    contexts: list[str] = Field(default_factory=list)
+
+
+class LiveCheckResponse(BaseModel):
+    query: str
+    answer: str
+    label: str = "single query, LLM-judged, indicative"
+    judge_model: str
+    usefulness_scores: list[dict[str, Any]]
+    faithfulness: dict[str, Any]
+    latency_ms: float
+    tokens_used: int = 0
 
 
 class ErrorResponse(BaseModel):

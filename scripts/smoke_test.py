@@ -17,6 +17,11 @@ import json
 import time
 import urllib.request
 from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(REPO_ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT / "src"))
+
 from qdrant_client import QdrantClient, models
 from prismx.index.text_store import TextStore
 
@@ -190,6 +195,7 @@ def test_api():
     # 7. Latency & Quality SLAs (Evaluated on c100k_raw official benchmark JSON)
     try:
         bench_file = Path("results/c100k_raw/latency_benchmark.json")
+        ragas_file = Path("results/ragas/c100k_raw/summary.json")
         if bench_file.exists():
             with open(bench_file, "r", encoding="utf-8") as f:
                 bench_data = json.load(f)
@@ -197,16 +203,37 @@ def test_api():
             h_p95 = uncached.get("hybrid", {}).get("p95_ms", 89.02)
             d_p95 = uncached.get("dense", {}).get("p95_ms", 107.21)
             p_p95 = uncached.get("prismx", {}).get("p95_ms", 306.39)
-            if h_p95 < 300.0:
-                evidence = (
-                    f"Hybrid uncached p95={h_p95:.2f}ms (<300ms SLA, PASS; <250ms target); "
-                    f"Dense p95={d_p95:.2f}ms; PRISM-X p95={p_p95:.2f}ms; "
-                    f"RAGAS evaluation is PENDING (awaiting LLM judge API key rotation)"
-                )
-                report_item(7, "sla_compliance", "Latency & Quality SLAs", "PENDING", evidence)
-                pending_count += 1
+
+            if ragas_file.exists():
+                with open(ragas_file, "r", encoding="utf-8") as rf:
+                    ragas_data = json.load(rf)
+                r_n = ragas_data.get("primary_n_complete_queries", 0)
+                r_judge = ragas_data.get("judge_model", "")
+                r_hybrid = ragas_data.get("metrics", {}).get("phase2_hybrid", {})
+                cp = r_hybrid.get("context_precision", {}).get("mean", 0.0)
+                cr = r_hybrid.get("context_recall", {}).get("mean", 0.0)
+                if h_p95 < 300.0 and cp >= 0.75 and cr >= 0.70:
+                    evidence = (
+                        f"Hybrid uncached p95={h_p95:.2f}ms (<300ms SLA, PASS; <250ms target); "
+                        f"Dense p95={d_p95:.2f}ms; PRISM-X p95={p_p95:.2f}ms; "
+                        f"RAGAS N={r_n} ({r_judge}): Hybrid CP={cp:.4f} (>0.75, PASS), CR={cr:.4f} (>0.70, PASS)"
+                    )
+                    report_item(7, "sla_compliance", "Latency & Quality SLAs", "PASS", evidence)
+                    pass_count += 1
+                else:
+                    evidence = f"Hybrid p95={h_p95:.2f}ms, CP={cp:.4f}, CR={cr:.4f}"
+                    report_item(7, "sla_compliance", "Latency & Quality SLAs", "FAIL", evidence)
             else:
-                report_item(7, "sla_compliance", "Latency & Quality SLAs", "FAIL", f"Hybrid p95 {h_p95} exceeds 300ms SLA")
+                if h_p95 < 300.0:
+                    evidence = (
+                        f"Hybrid uncached p95={h_p95:.2f}ms (<300ms SLA, PASS; <250ms target); "
+                        f"Dense p95={d_p95:.2f}ms; PRISM-X p95={p_p95:.2f}ms; "
+                        f"RAGAS evaluation is PENDING (awaiting LLM judge API key rotation)"
+                    )
+                    report_item(7, "sla_compliance", "Latency & Quality SLAs", "PENDING", evidence)
+                    pending_count += 1
+                else:
+                    report_item(7, "sla_compliance", "Latency & Quality SLAs", "FAIL", f"Hybrid p95 {h_p95} exceeds 300ms SLA")
         else:
             report_item(7, "sla_compliance", "Latency & Quality SLAs", "FAIL", "Missing results/c100k_raw/latency_benchmark.json")
     except Exception as e:
@@ -231,7 +258,7 @@ def test_api():
         sys.exit(1)
 
     print(f"OVERALL RESULT: {pass_count} PASS, {pending_count} PENDING (consistent with docs/REQUIREMENTS_TRACE.md)")
-    if pass_count == 6 and pending_count == 1:
+    if pass_count >= 6:
         sys.exit(0)
     else:
         sys.exit(1)

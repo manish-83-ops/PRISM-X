@@ -117,6 +117,66 @@ export interface MetaResponse {
   config_hash: string;
 }
 
+export interface ConfigResponse {
+  default_mode: string;
+  semantic_hash: string;
+  serving_hash: string;
+  index_version: number;
+  corpus_size: number;
+  collection_name: string;
+  git_commit: string;
+  backend_status: string;
+  public_demo: boolean;
+  rate_limits?: { search_per_min: number; answer_per_min: number } | null;
+}
+
+export interface AnswerCitation {
+  citation_id: number;
+  passage_id: string;
+  category?: string | null;
+  source?: string | null;
+  score: number;
+}
+
+export interface AnswerRequest {
+  query: string;
+  top_k?: number;
+  mode?: 'dense' | 'hybrid' | 'prismx' | 'hybrid_rerank';
+  rerank_k?: number;
+  filters?: FilterParams | null;
+  use_cache?: boolean;
+  model?: string | null;
+}
+
+export interface AnswerResponse {
+  query: string;
+  answer: string;
+  citations: AnswerCitation[];
+  passages: SearchResultItem[];
+  model: string;
+  latency_ms: { retrieval: number; llm: number; total: number };
+  cache_hit?: boolean;
+  validation?: { valid: boolean; citations_present: number[]; invalid_citations: number[] } | null;
+  tokens_used?: number;
+}
+
+export interface LiveCheckRequest {
+  query: string;
+  answer: string;
+  contexts: string[];
+}
+
+export interface LiveCheckResponse {
+  query: string;
+  answer: string;
+  label: string;
+  judge_model: string;
+  usefulness_scores: Array<{ context_index: number; score: number; reason: string }>;
+  faithfulness: { score: number; reason: string; supported_sentences?: number; total_sentences?: number };
+  latency_ms: number;
+  tokens_used: number;
+}
+
 export interface ErrorResponse {
   error: string;
   detail: string;

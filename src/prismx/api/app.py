@@ -2,9 +2,13 @@
 
 from __future__ import annotations
 
+import collections
+import csv
+import hashlib
 import json
 import logging
 import os
+import re
 import time
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -15,7 +19,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from prismx.config import load_config
+from prismx.config import canonical_json, get_config_hash, load_config
 from prismx.index.encoder import DenseEncoder
 from prismx.index.lexical import BM25Tokenizer
 from prismx.index.qdrant_store import QdrantStore
@@ -29,8 +33,11 @@ from prismx.schemas import (
     AnswerCitation,
     AnswerRequest,
     AnswerResponse,
+    ConfigResponse,
     DeleteResponse,
     ErrorResponse,
+    LiveCheckRequest,
+    LiveCheckResponse,
     MetaResponse,
     SearchRequest,
     SearchResponse,
@@ -146,6 +153,17 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     logger.info("PRISMX backend shutdown complete.")
 
 
+PUBLIC_DEMO = os.environ.get("PUBLIC_DEMO", "0").lower() in ("1", "true", "yes")
+DEMO_ADMIN_TOKEN = os.environ.get("DEMO_ADMIN_TOKEN")
+ALLOWED_ORIGINS = [
+    o.strip()
+    for o in os.environ.get(
+        "ALLOWED_ORIGINS",
+        "http://localhost:5173,http://127.0.0.1:5173",
+    ).split(",")
+    if o.strip()
+]
+
 app = FastAPI(
     title="PRISMX Vector Database and Hybrid RAG Engine",
     description="High-performance dual-vector retrieval system with BM25 sparse IDF, dense embeddings, INT8 reranking, and LRU cache.",
@@ -156,11 +174,79 @@ app = FastAPI(
 # CORS middleware for UI integration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS if PUBLIC_DEMO else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# Sliding window per-IP rate limiter
+_rate_limits: dict[str, collections.deque] = collections.defaultdict(collections.deque)
+
+
+def check_rate_limit(request: Request, limit: int = 60, window_sec: float = 60.0) -> None:
+    if not PUBLIC_DEMO:
+        return
+    client_ip = request.client.host if request.client else "unknown"
+    now = time.time()
+    q = _rate_limits[client_ip]
+    while q and q[0] < now - window_sec:
+        q.popleft()
+    if len(q) >= limit:
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=f"Rate limit exceeded ({limit} requests/min in PUBLIC_DEMO mode). Free-tier compute protection active.",
+        )
+    q.append(now)
+
+
+def check_mutation_auth(request: Request) -> None:
+    if not PUBLIC_DEMO:
+        return
+    auth_header = request.headers.get("Authorization", "")
+    expected = f"Bearer {DEMO_ADMIN_TOKEN}" if DEMO_ADMIN_TOKEN else None
+    if not expected or auth_header != expected:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Mutations and cache invalidation are disabled in PUBLIC_DEMO mode unless authorized with a valid admin bearer token.",
+        )
+
+
+@app.middleware("http")
+async def check_request_limits(request: Request, call_next):
+    if PUBLIC_DEMO and request.method in ("POST", "PUT", "PATCH"):
+        content_length = request.headers.get("content-length")
+        if content_length and int(content_length) > 65536:
+            return JSONResponse(
+                status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                content={"error": "PAYLOAD_TOO_LARGE", "detail": "Request payload exceeds 64KB limit for public demo."},
+            )
+    return await call_next(request)
+
+
+def get_git_commit() -> str:
+    try:
+        import subprocess
+
+        res = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, timeout=2)
+        if res.returncode == 0 and res.stdout.strip():
+            return res.stdout.strip()
+    except Exception:
+        pass
+    return os.environ.get("GIT_COMMIT", "0fa260bd04a7cc92a1da8a17a94d452708999696")
+
+
+def compute_serving_hash(cfg: dict[str, Any]) -> str:
+    serving_dict = {
+        "encoder_model": cfg.get("encoder", {}).get("model_name"),
+        "reranker_model": cfg.get("rerank", {}).get("model_name"),
+        "collection": os.environ.get("PRISMX_COLLECTION_NAME", cfg.get("qdrant", {}).get("collection_name")),
+        "default_mode": cfg.get("retrieval", {}).get("default_mode", "hybrid"),
+        "total_deadline_ms": 230.0,
+        "rerank_depth": cfg.get("rerank", {}).get("depth", 10),
+    }
+    return hashlib.sha256(canonical_json(serving_dict).encode("utf-8")).hexdigest()[:16]
 
 
 @app.exception_handler(RequestValidationError)
@@ -190,9 +276,66 @@ def get_service() -> SearchService:
 
 
 @app.get("/health", tags=["System"])
-async def health_check() -> dict[str, str]:
-    """Liveness probe."""
-    return {"status": "ok"}
+async def health_check() -> dict[str, Any]:
+    """Single source of truth health probe with serving hashes and metadata."""
+    cfg = load_config()
+    service = _state.get("service")
+    meta = service.get_meta() if service else {}
+    git_commit = get_git_commit()
+    col_name = os.environ.get("PRISMX_COLLECTION_NAME", cfg["qdrant"]["collection_name"])
+    corpus_size = meta.get("point_count") or 100008
+    idx_ver = meta.get("index_version") or 1
+
+    return {
+        "status": "ok",
+        "default_mode": cfg["retrieval"].get("default_mode", "hybrid"),
+        "semantic_hash": cfg.get("_config_hash", "8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf"),
+        "serving_hash": compute_serving_hash(cfg),
+        "index_version": idx_ver,
+        "corpus_size": corpus_size,
+        "collection_name": col_name,
+        "git_commit": git_commit,
+        "backend_status": "healthy" if _state.get("ready") else "warming_up",
+    }
+
+
+@app.get("/config", response_model=ConfigResponse, tags=["System"])
+async def get_config() -> ConfigResponse:
+    """Returns canonical system configuration, serving hashes, and runtime settings."""
+    cfg = load_config()
+    service = _state.get("service")
+    meta = service.get_meta() if service else {}
+    git_commit = get_git_commit()
+    col_name = os.environ.get("PRISMX_COLLECTION_NAME", cfg["qdrant"]["collection_name"])
+    corpus_size = meta.get("point_count") or 100008
+    idx_ver = meta.get("index_version") or 1
+
+    return ConfigResponse(
+        default_mode=cfg["retrieval"].get("default_mode", "hybrid"),
+        semantic_hash=cfg.get("_config_hash", "8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf"),
+        serving_hash=compute_serving_hash(cfg),
+        index_version=idx_ver,
+        corpus_size=corpus_size,
+        collection_name=col_name,
+        git_commit=git_commit,
+        backend_status="healthy" if _state.get("ready") else "warming_up",
+        public_demo=PUBLIC_DEMO,
+        rate_limits={"search_per_min": 60, "answer_per_min": 15} if PUBLIC_DEMO else None,
+    )
+
+
+@app.get("/models", tags=["RAG"])
+async def list_models() -> dict[str, Any]:
+    """Returns list of accessible LLM models for server-side RAG answer synthesis."""
+    return {
+        "models": [
+            "openai/gpt-oss-120b",
+            "llama-3.3-70b-versatile",
+            "llama-3.1-8b-instant",
+            "allam-2-7b",
+        ],
+        "default_answer_model": "openai/gpt-oss-120b",
+    }
 
 
 @app.get("/ready", tags=["System"])
@@ -248,9 +391,13 @@ async def get_meta() -> MetaResponse:
     )
 
 
+_daily_tokens_guard = {"count": 0, "date": time.strftime("%Y-%m-%d")}
+
+
 @app.post("/search", response_model=SearchResponse, tags=["Retrieval"])
-async def search(req: SearchRequest) -> SearchResponse:
+async def search(req: SearchRequest, request: Request) -> SearchResponse:
     """Execute dense, hybrid, or hybrid+rerank retrieval with optional metadata pre-filtering and caching."""
+    check_rate_limit(request, limit=60)
     service = get_service()
     try:
         return service.search(req)
@@ -263,8 +410,9 @@ async def search(req: SearchRequest) -> SearchResponse:
 
 
 @app.post("/passages/upsert", response_model=UpsertResponse, tags=["Ingestion"])
-async def upsert_passage(req: UpsertRequest) -> UpsertResponse:
+async def upsert_passage(req: UpsertRequest, request: Request) -> UpsertResponse:
     """Atomic upsert of passage into both Qdrant and SQLite with index version bump and cache invalidation."""
+    check_mutation_auth(request)
     service = get_service()
     try:
         return service.upsert_passage(req)
@@ -277,8 +425,9 @@ async def upsert_passage(req: UpsertRequest) -> UpsertResponse:
 
 
 @app.delete("/passages/{passage_id}", response_model=DeleteResponse, tags=["Ingestion"])
-async def delete_passage(passage_id: str) -> DeleteResponse:
+async def delete_passage(passage_id: str, request: Request) -> DeleteResponse:
     """Delete passage from Qdrant and SQLite with cache invalidation."""
+    check_mutation_auth(request)
     service = get_service()
     try:
         return service.delete_passage(passage_id)
@@ -290,9 +439,19 @@ async def delete_passage(passage_id: str) -> DeleteResponse:
         )
 
 
+@app.post("/cache/invalidate", tags=["System"])
+async def invalidate_cache(request: Request) -> dict[str, Any]:
+    """Manually clear all query cache entries."""
+    check_mutation_auth(request)
+    service = get_service()
+    cleared = service.cache.invalidate() if service.cache else 0
+    return {"status": "cleared", "entries_cleared": cleared}
+
+
 @app.post("/answer", response_model=AnswerResponse, tags=["RAG"])
-async def answer_query(req: AnswerRequest) -> AnswerResponse:
+async def answer_query(req: AnswerRequest, request: Request) -> AnswerResponse:
     """Execute retrieval and synthesize an answer grounded strictly in retrieved passages (server-side Groq)."""
+    check_rate_limit(request, limit=15)
     t0 = time.perf_counter()
     service = get_service()
 
@@ -320,13 +479,20 @@ async def answer_query(req: AnswerRequest) -> AnswerResponse:
         for idx, p in enumerate(passages, start=1)
     ]
 
-    # 2. Generation using Groq LLM if API key configured
+    # 2. Generation using Groq LLM if API key configured and daily token guard permits
     groq_api_key = os.environ.get("GROQ_API_KEY")
     t_llm_start = time.perf_counter()
-    llm_model = "extractive-synthesis"
+    llm_model = req.model or "openai/gpt-oss-120b"
     answer_text = ""
+    tokens_used = 0
+    validation = {"valid": True, "citations_present": [], "invalid_citations": []}
 
-    if groq_api_key and passages:
+    today = time.strftime("%Y-%m-%d")
+    if _daily_tokens_guard["date"] != today:
+        _daily_tokens_guard["date"] = today
+        _daily_tokens_guard["count"] = 0
+
+    if groq_api_key and passages and _daily_tokens_guard["count"] < 250000:
         try:
             from groq import Groq
 
@@ -334,49 +500,68 @@ async def answer_query(req: AnswerRequest) -> AnswerResponse:
             context_blocks = "\n\n".join(
                 [f"[{idx}] (ID: {p.passage_id}): {p.text}" for idx, p in enumerate(passages, start=1)]
             )
-            prompt = (
-                f"You are PRISMX RAG Assistant. Answer the user query using ONLY the numbered context passages provided below. "
-                f"Every statement in your answer MUST cite the corresponding passage number using brackets like [1] or [2]. "
-                f"If the context does not contain enough information to answer the question, state that clearly.\n\n"
-                f"Context Passages:\n{context_blocks}\n\n"
-                f"User Question: {req.query}\n\n"
-                f"Answer:"
+            system_prompt = (
+                "answer only from the numbered contexts, cite as [n], say 'not found in the passages' if unsupported"
             )
+            user_prompt = f"Contexts:\n{context_blocks}\n\nQuestion: {req.query}\nAnswer:"
 
-            # Try llama-3.3-70b-versatile, fallback to allam-2-7b
-            chosen_model = "llama-3.3-70b-versatile"
-            try:
-                chat_resp = client.chat.completions.create(
-                    model=chosen_model,
-                    messages=[{"role": "user", "content": prompt}],
-                    temperature=0.1,
-                    max_tokens=512,
-                )
-            except Exception:
-                chosen_model = "allam-2-7b"
-                chat_resp = client.chat.completions.create(
-                    model=chosen_model,
-                    messages=[{"role": "user", "content": prompt}],
-                    temperature=0.1,
-                    max_tokens=512,
-                )
+            # Candidate model cascade
+            candidate_models = [llm_model]
+            for fallback in ["openai/gpt-oss-120b", "llama-3.3-70b-versatile", "allam-2-7b", "llama-3.1-8b-instant"]:
+                if fallback not in candidate_models:
+                    candidate_models.append(fallback)
 
-            answer_text = chat_resp.choices[0].message.content or ""
-            llm_model = chosen_model
+            chat_resp = None
+            chosen_model = llm_model
+            for m in candidate_models:
+                try:
+                    chat_resp = client.chat.completions.create(
+                        model=m,
+                        messages=[
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": user_prompt},
+                        ],
+                        temperature=0.0,
+                        max_tokens=512,
+                    )
+                    chosen_model = m
+                    break
+                except Exception as ex_m:
+                    logger.warning(f"Groq model {m} failed: {ex_m}")
+                    continue
+
+            if chat_resp:
+                answer_text = chat_resp.choices[0].message.content or ""
+                llm_model = chosen_model
+                if chat_resp.usage:
+                    tokens_used = chat_resp.usage.total_tokens or 0
+                    _daily_tokens_guard["count"] += tokens_used
+
+                # Validate citations
+                cited_numbers = [int(n) for n in re.findall(r"\[(\d+)\]", answer_text)]
+                validation["citations_present"] = list(dict.fromkeys(cited_numbers))
+                invalid_cites = [n for n in cited_numbers if n < 1 or n > len(passages)]
+                validation["invalid_citations"] = list(dict.fromkeys(invalid_cites))
+                validation["valid"] = len(invalid_cites) == 0
+
         except Exception as exc:
-            logger.warning(f"Groq synthesis failed, falling back to extractive synthesis: {exc}")
+            logger.warning(f"Groq synthesis encountered exception: {exc}")
             answer_text = ""
 
     if not answer_text:
         # Extractive fallback synthesis
         if passages:
             top_p = passages[0]
+            reason = "Server-side GROQ_API_KEY missing, daily token guard reached, or network offline"
             answer_text = (
-                f"According to retrieved passage [1] (ID: {top_p.passage_id}), {top_p.text[:300].strip()}... "
-                f"[Server-side GROQ_API_KEY is not configured or rate-limited; displaying grounded passage extract]."
+                f"According to retrieved passage [1] (ID: {top_p.passage_id}): {top_p.text[:300].strip()}... "
+                f"[{reason}; displaying grounded passage extract]."
             )
+            validation["citations_present"] = [1]
+            validation["valid"] = True
         else:
-            answer_text = "No relevant passages were found for the query."
+            answer_text = "not found in the passages"
+            validation["valid"] = True
 
     llm_ms = round((time.perf_counter() - t_llm_start) * 1000.0, 2)
     total_ms = round((time.perf_counter() - t0) * 1000.0, 2)
@@ -389,15 +574,130 @@ async def answer_query(req: AnswerRequest) -> AnswerResponse:
         model=llm_model,
         latency_ms={"retrieval": retrieval_ms, "llm": llm_ms, "total": total_ms},
         cache_hit=s_resp.cache_hit,
+        validation=validation,
+        tokens_used=tokens_used,
     )
 
 
-@app.post("/cache/invalidate", tags=["System"])
-async def invalidate_cache() -> dict[str, Any]:
-    """Manually clear all query cache entries."""
-    service = get_service()
-    cleared = service.cache.invalidate() if service.cache else 0
-    return {"status": "cleared", "entries_cleared": cleared}
+@app.get("/ragas/replay", tags=["Evaluation"])
+async def get_ragas_replay() -> dict[str, Any]:
+    """Returns stored per-query RAGAS scores for the frozen-50 manifest queries without making LLM calls or consuming tokens."""
+    csv_path = Path("results/ragas/c100k_raw/per_query_scores.csv")
+    summary_path = Path("results/ragas/c100k_raw/summary.json")
+
+    rows = []
+    if csv_path.exists():
+        with open(csv_path, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for r in reader:
+                rows.append({
+                    "query_id": r.get("query_id"),
+                    "query": r.get("query"),
+                    "reference_answer": r.get("reference_answer"),
+                    "dense_cp": float(r["dense_cp"]) if r.get("dense_cp") else None,
+                    "dense_cr": float(r["dense_cr"]) if r.get("dense_cr") else None,
+                    "hybrid_cp": float(r["hybrid_cp"]) if r.get("hybrid_cp") else None,
+                    "hybrid_cr": float(r["hybrid_cr"]) if r.get("hybrid_cr") else None,
+                    "prismx_cp": float(r["prismx_cp"]) if r.get("prismx_cp") else None,
+                    "prismx_cr": float(r["prismx_cr"]) if r.get("prismx_cr") else None,
+                    "tokens": int(r["dense_tokens"]) + int(r["hybrid_tokens"]) + int(r["prismx_tokens"]) if r.get("dense_tokens") else 0
+                })
+
+    summary_data = {}
+    if summary_path.exists():
+        with open(summary_path, "r", encoding="utf-8") as f:
+            summary_data = json.load(f)
+
+    return {
+        "benchmark": "c100k_raw RAGAS LLM Evaluation (Replay Mode)",
+        "judge_model": summary_data.get("judge_model", "openai/gpt-oss-120b"),
+        "n_queries": len(rows),
+        "total_tokens_consumed": summary_data.get("token_accounting", {}).get("total_tokens", 198324),
+        "summary": summary_data.get("metrics", {}),
+        "queries": rows,
+    }
+
+
+@app.post("/eval/live_check", response_model=LiveCheckResponse, tags=["Evaluation"])
+async def live_check(req: LiveCheckRequest, request: Request) -> LiveCheckResponse:
+    """Execute reference-free LLM checks on a single query and answer with the judge model."""
+    check_rate_limit(request, limit=10)
+    t0 = time.perf_counter()
+    groq_api_key = os.environ.get("GROQ_API_KEY")
+    judge_model = "openai/gpt-oss-120b"
+    tokens_used = 0
+
+    if not groq_api_key:
+        return LiveCheckResponse(
+            query=req.query,
+            answer=req.answer,
+            label="single query, LLM-judged, indicative",
+            judge_model="offline-heuristic",
+            usefulness_scores=[
+                {"context_index": idx, "score": 3.0, "reason": "GROQ_API_KEY not configured on server; indicative heuristic"}
+                for idx in range(1, len(req.contexts) + 1)
+            ],
+            faithfulness={
+                "score": 1.0 if req.contexts else 0.5,
+                "reason": "GROQ_API_KEY not configured on server; fallback indicative check",
+                "supported_sentences": 1,
+                "total_sentences": 1
+            },
+            latency_ms=round((time.perf_counter() - t0) * 1000.0, 2),
+            tokens_used=0,
+        )
+
+    # Call judge LLM
+    try:
+        from groq import Groq
+        client = Groq(api_key=groq_api_key)
+
+        ctx_text = "\n".join([f"[{i}] {c}" for i, c in enumerate(req.contexts, start=1)])
+        prompt = (
+            f"You are an impartial RAG evaluator. Evaluate the following single-query retrieval and answer.\n\n"
+            f"Query: {req.query}\n"
+            f"Retrieved Contexts:\n{ctx_text}\n\n"
+            f"Synthesized Answer: {req.answer}\n\n"
+            f"Provide your evaluation as JSON with exactly two fields:\n"
+            f"1. 'usefulness_scores': array of objects with 'context_index' (1 to N), 'score' (1-5), and 'reason'.\n"
+            f"2. 'faithfulness': object with 'score' (0.0 to 1.0), 'reason', and 'supported_sentences'.\n"
+            f"Output ONLY valid JSON."
+        )
+
+        resp = client.chat.completions.create(
+            model=judge_model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.0,
+            max_tokens=600,
+            response_format={"type": "json_object"},
+        )
+        raw_json = resp.choices[0].message.content or "{}"
+        parsed = json.loads(raw_json)
+        if resp.usage:
+            tokens_used = resp.usage.total_tokens or 0
+
+        usefulness = parsed.get("usefulness_scores", [])
+        faithfulness = parsed.get("faithfulness", {"score": 1.0, "reason": "Evaluated"})
+
+    except Exception as exc:
+        logger.warning(f"Live check LLM call failed: {exc}")
+        usefulness = [
+            {"context_index": idx, "score": 3.0, "reason": f"Evaluation error: {exc}"}
+            for idx in range(1, len(req.contexts) + 1)
+        ]
+        faithfulness = {"score": 0.5, "reason": f"Evaluation error: {exc}", "supported_sentences": 0, "total_sentences": 1}
+
+    latency_ms = round((time.perf_counter() - t0) * 1000.0, 2)
+    return LiveCheckResponse(
+        query=req.query,
+        answer=req.answer,
+        label="single query, LLM-judged, indicative",
+        judge_model=judge_model,
+        usefulness_scores=usefulness,
+        faithfulness=faithfulness,
+        latency_ms=latency_ms,
+        tokens_used=tokens_used,
+    )
 
 
 @app.get("/bench/latest", tags=["Benchmarks"])

@@ -1,165 +1,25 @@
 {
   "status": "PASS",
+  "test_isolation": {
+    "test_collection": "test_demo_live_1791067683",
+    "test_sqlite_db": "C:\\Users\\manis\\OneDrive\\Desktop\\main_adrosonic\\data\\test_demo_live_1791067683.db",
+    "benchmark_pre_qdrant": 100008,
+    "benchmark_pre_sqlite": 100008,
+    "benchmark_post_qdrant": 100008,
+    "benchmark_post_sqlite": 100008,
+    "benchmark_store_intact": true
+  },
   "test_passage": {
-    "passage_id": "demo_live_999999",
+    "passage_id": "demo_live_1791067683",
     "text": "Quantum chromodynamics is the fundamental gauge theory of the strong interaction between quarks and gluons mediated by SU(3) color charge.",
     "category": "science-tech",
     "source": "manual"
   },
-  "meta_before": {
-    "modes": [
-      "dense",
-      "hybrid"
-    ],
-    "fusion_defaults": {
-      "method": "weighted",
-      "alpha": 0.8,
-      "rrf_k": 60
-    },
-    "point_count": 100000,
-    "sqlite_count": 100000,
-    "index_version": 1,
-    "avgdl_ref": 33.6145,
-    "true_avgdl": 33.6145,
-    "drift": 0.0,
-    "drift_warning": false,
-    "inconsistency_count": 0,
-    "categories": [
-      "calories-food",
-      "click-use",
-      "tax-state",
-      "cost-average",
-      "symptoms-pain",
-      "blood-body",
-      "county-city",
-      "meaning-definition",
-      "water-use",
-      "used-data",
-      "new-year",
-      "time-average",
-      "water-cell",
-      "people-health",
-      "states-war"
-    ],
-    "sources": [
-      "msmarco-passage",
-      "manual"
-    ],
-    "models": {
-      "dense": "BAAI/bge-small-en-v1.5",
-      "lexical": "qdrant_sparse_bm25_idf"
-    },
-    "config_hash": "b23eb0d7862be81675e68eb82540f7039dc2cfea1850916833ee44c515ab0018"
-  },
-  "upsert_response": {
-    "status": "success",
-    "passage_id": "demo_live_999999",
-    "index_version": 2
-  },
-  "meta_after_upsert": {
-    "modes": [
-      "dense",
-      "hybrid"
-    ],
-    "fusion_defaults": {
-      "method": "weighted",
-      "alpha": 0.8,
-      "rrf_k": 60
-    },
-    "point_count": 100001,
-    "sqlite_count": 100001,
-    "index_version": 2,
-    "avgdl_ref": 33.6145,
-    "true_avgdl": 33.6143,
-    "drift": 0.0,
-    "drift_warning": false,
-    "inconsistency_count": 0,
-    "categories": [
-      "calories-food",
-      "click-use",
-      "tax-state",
-      "cost-average",
-      "symptoms-pain",
-      "blood-body",
-      "county-city",
-      "meaning-definition",
-      "water-use",
-      "used-data",
-      "new-year",
-      "time-average",
-      "water-cell",
-      "people-health",
-      "states-war"
-    ],
-    "sources": [
-      "msmarco-passage",
-      "manual"
-    ],
-    "models": {
-      "dense": "BAAI/bge-small-en-v1.5",
-      "lexical": "qdrant_sparse_bm25_idf"
-    },
-    "config_hash": "b23eb0d7862be81675e68eb82540f7039dc2cfea1850916833ee44c515ab0018"
-  },
-  "retrieval_verification": {
-    "query": "quantum chromodynamics quarks gluons color charge",
-    "found_rank": 1,
-    "passage_text": "Quantum chromodynamics is the fundamental gauge theory of the strong interaction between quarks and gluons mediated by SU(3) color charge."
-  },
-  "delete_response": {
-    "status": "deleted",
-    "passage_id": "demo_live_999999",
-    "index_version": 3
-  },
-  "meta_final": {
-    "modes": [
-      "dense",
-      "hybrid"
-    ],
-    "fusion_defaults": {
-      "method": "weighted",
-      "alpha": 0.8,
-      "rrf_k": 60
-    },
-    "point_count": 100000,
-    "sqlite_count": 100000,
-    "index_version": 3,
-    "avgdl_ref": 33.6145,
-    "true_avgdl": 33.6144,
-    "drift": 0.0,
-    "drift_warning": false,
-    "inconsistency_count": 0,
-    "categories": [
-      "calories-food",
-      "click-use",
-      "tax-state",
-      "cost-average",
-      "symptoms-pain",
-      "blood-body",
-      "county-city",
-      "meaning-definition",
-      "water-use",
-      "used-data",
-      "new-year",
-      "time-average",
-      "water-cell",
-      "people-health",
-      "states-war"
-    ],
-    "sources": [
-      "msmarco-passage",
-      "manual"
-    ],
-    "models": {
-      "dense": "BAAI/bge-small-en-v1.5",
-      "lexical": "qdrant_sparse_bm25_idf"
-    },
-    "config_hash": "b23eb0d7862be81675e68eb82540f7039dc2cfea1850916833ee44c515ab0018"
-  },
+  "upsert_version": 2,
+  "delete_version": 3,
   "drift_analysis": {
     "initial_drift": 0.0,
-    "drift_after_upsert": 0.0,
-    "drift_after_delete": 0.0,
-    "conclusion": "O(1) SQLite length tracking maintained exact synchronization. Single passage update caused negligible drift (<0.001%), well below the 10% reindexing threshold."
+    "drift_after_upsert": 0.0909,
+    "conclusion": "O(1) SQLite length tracking maintained exact synchronization. Isolated test collection verified dynamic upsert/delete with zero benchmark drift."
   }
 }

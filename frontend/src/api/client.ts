@@ -13,6 +13,9 @@ import type {
   DeleteResponse,
   AnswerRequest,
   AnswerResponse,
+  ConfigResponse,
+  LiveCheckRequest,
+  LiveCheckResponse,
 } from './types';
 
 const API_BASE = import.meta.env.VITE_API_BASE !== undefined && import.meta.env.VITE_API_BASE !== ''
@@ -111,6 +114,25 @@ export async function upsertPassage(req: UpsertRequest): Promise<UpsertResponse>
 export async function deletePassage(passageId: string): Promise<DeleteResponse> {
   return request(`/passages/${encodeURIComponent(passageId)}`, {
     method: 'DELETE',
+  });
+}
+
+export async function getConfig(): Promise<ConfigResponse> {
+  return request('/config');
+}
+
+export async function getModels(): Promise<{ models: string[]; default_answer_model: string }> {
+  return request('/models');
+}
+
+export async function getRagasReplay(): Promise<any> {
+  return request('/ragas/replay');
+}
+
+export async function liveCheck(req: LiveCheckRequest): Promise<LiveCheckResponse> {
+  return request('/eval/live_check', {
+    method: 'POST',
+    body: JSON.stringify(req),
   });
 }
 
