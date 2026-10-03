@@ -1,0 +1,101 @@
+idx,query_id,query,client_wall_clock_ms,server_encode_ms,server_dense_ms,server_sparse_ms,server_fusion_ms,server_fetch_text_ms,server_total_ms,cached
+1,647687,what does semen consist of,55.39,34.31,7.48,3.77,0.47,3.7,49.93,False
+2,74328,can tennis elbow cause pain in your shoulder?,55.32,32.93,4.98,4.37,0.47,4.05,47.0,False
+3,391662,if meat is bad for you what should you eat,56.97,35.44,6.26,4.73,0.4,3.78,50.9,False
+4,530602,types organizational structure,49.47,28.14,5.85,4.78,0.47,3.92,43.41,False
+5,61836,can a 15 year old fly alone domestic flights?,63.19,32.86,6.84,4.21,6.92,5.46,56.58,False
+6,1082622,what does the root word tele mean,53.7,31.82,6.48,4.75,0.43,3.89,47.62,False
+7,321951,how much is donald trump jr worth,49.78,28.5,6.34,4.57,0.45,3.63,43.71,False
+8,653187,what does the term the age of aquarius mean?,56.18,33.32,7.49,3.98,0.46,4.09,49.55,False
+9,1051211,what is mepap certification,52.98,32.04,5.46,3.51,0.45,4.02,45.68,False
+10,451484,medicare eligibility contact number,55.9,28.3,5.38,3.94,7.85,4.77,50.49,False
+11,1021277,define atrium,68.29,25.77,5.78,4.87,0.47,3.91,41.01,False
+12,988745,who is the new york county clerk,50.16,29.41,6.11,4.63,0.43,3.46,44.28,False
+13,1083010,what does simple circuit contain,48.64,28.05,6.02,5.42,0.37,2.76,42.86,False
+14,1083598,what does it mean cardholder name?,52.55,31.56,7.58,3.87,0.37,3.25,46.82,False
+15,549342,what about phones in iceland,59.06,30.66,6.24,4.08,6.88,5.26,53.44,False
+16,946631,when does harbin ice city end,52.25,30.81,6.35,4.26,0.52,4.53,46.7,False
+17,507381,symptoms of congenital heart defects,51.09,30.75,5.47,4.52,0.53,3.68,45.18,False
+18,1011021,what year declaration of independence,49.83,28.52,6.8,4.4,0.41,3.56,43.92,False
+19,999610,where is vista ca,51.97,29.24,7.43,4.77,0.49,3.89,46.04,False
+20,1094460,inches of mercury meaning,57.42,27.96,6.5,4.38,6.83,4.76,50.72,False
+21,696677,what is a public health concept,52.91,31.5,6.11,4.09,0.51,4.3,46.77,False
+22,1074989,what is a cyst on the kidneys do,56.51,35.63,5.79,4.7,0.5,4.34,51.19,False
+23,1063702,what is an advocacy project,49.41,27.86,5.77,4.79,0.54,3.98,43.17,False
+24,1090701,side effects for diclofenac topical,51.96,30.8,5.97,4.52,0.53,3.91,45.95,False
+25,1081730,what family do squirrels belong to,55.92,28.16,5.92,4.31,6.69,4.17,49.56,False
+26,978057,where is berrimah,43.09,27.22,5.62,1.33,0.23,2.51,37.06,False
+27,1102235,why does ehr downtime happen,52.88,31.05,7.26,3.99,0.5,3.92,46.92,False
+28,1096045,how much does one roll of duck tape cost,58.64,36.65,6.18,3.91,0.46,4.77,52.23,False
+29,169305,does motion sensor device have camera,53.55,32.55,7.15,4.52,0.47,3.4,48.36,False
+30,1051214,what is meningitis.,49.23,29.23,6.11,3.65,0.45,3.62,43.3,False
+31,1098953,how heavy are road bikes,58.41,27.48,7.48,11.52,0.61,4.73,52.06,False
+32,534941,usps schedule a delivery,52.45,30.41,6.18,4.16,0.53,4.4,45.91,False
+33,658372,what event started world war 1,53.48,32.07,7.16,3.7,0.47,4.26,47.91,False
+34,1070452,what is a mimo receiver,51.56,30.66,7.5,4.17,0.42,2.74,45.7,False
+35,414714,is it still dangerous to go to the place of where the chernobyl happened,60.14,38.66,5.91,4.16,0.54,4.51,54.0,False
+36,1036800,who is ovid in greek mythology,69.01,29.33,6.05,3.94,7.33,5.03,51.98,False
+37,249866,how long does a pa marriage license last,53.84,32.72,5.72,4.64,0.57,3.84,47.73,False
+38,1011140,what wire is used to mig mild steel,52.2,30.64,6.56,4.46,0.43,3.27,45.65,False
+39,569555,what are the elements to make air,55.87,31.57,7.78,4.17,0.55,4.48,48.82,False
+40,1000097,where is whiteville tennessee,47.9,27.84,5.98,3.83,0.48,3.27,41.59,False
+41,107283,cost of starting a restaurant,56.67,27.61,5.84,4.35,5.96,5.48,49.52,False
+42,278863,how many career games did paul krause play in the nfl.,54.03,34.86,5.76,4.43,0.47,3.7,49.41,False
+43,780297,what is orofacial dyskinesia,50.75,33.27,7.79,1.81,0.28,2.41,45.72,False
+44,9454,a simple definition for the word bias.,71.43,31.61,7.19,3.71,0.45,4.19,47.34,False
+45,922389,what was the result of pearl harbor attack,53.07,30.09,5.74,4.02,0.52,4.23,44.79,False
+46,55691,boulangerie pronunciation,56.29,27.37,5.89,4.03,7.4,4.97,49.94,False
+47,996181,where was the movie true grit filmed at,52.96,31.74,6.06,4.59,0.46,3.85,46.97,False
+48,991138,where is punta cana eden resort,52.82,31.5,7.31,3.78,0.46,3.65,46.89,False
+49,1026775,what kind of mixture is rocky road ice cream,51.6,31.02,5.68,3.68,0.42,3.49,44.48,False
+50,865616,what jedi commands the arc troopers,48.06,27.92,6.04,3.92,0.41,3.1,41.58,False
+51,602352,"what county is alton bay,nh in?",60.1,30.07,6.38,3.89,6.96,5.21,52.81,False
+52,282530,how many doctors are in the us,73.36,30.22,7.8,4.01,0.55,4.38,47.16,False
+53,291248,how many ounces of liquid is in one gallon,54.52,31.56,6.05,4.31,0.43,3.65,46.23,False
+54,997449,where is the kihei,44.61,27.98,5.98,1.53,0.3,2.79,38.75,False
+55,1063371,what is an aviation medical examiner?,51.06,31.16,6.21,3.62,0.39,3.0,44.55,False
+56,1003006,where was napoleon forced to.exile,60.93,30.34,6.13,4.05,7.78,5.64,54.23,False
+57,531142,typing average words per minute test,49.62,28.26,5.98,4.45,0.61,3.89,43.43,False
+58,1050695,what is motor dyspraxia,55.54,33.61,6.5,4.65,0.51,4.01,49.51,False
+59,548099,wellcare mike vice president,52.85,29.3,6.22,4.61,0.48,4.42,45.28,False
+60,953355,when is the rib cook off in reno,53.39,31.01,6.02,4.01,0.48,4.5,46.26,False
+61,1096375,how much data analyst makes,83.27,29.74,7.59,4.01,6.63,4.6,52.86,False
+62,541135,was there a true bagger vance,52.33,31.18,6.12,3.76,0.49,4.39,46.2,False
+63,812387,what is the correct height for step handrails,60.13,36.34,6.97,4.29,0.55,4.34,52.75,False
+64,480064,price chopper locations in ct,49.56,27.55,6.57,4.06,0.52,3.98,42.9,False
+65,442593,longest punt in nfl,48.4,27.19,6.84,3.74,0.48,3.91,42.36,False
+66,1085288,case can arrive at the supreme court through each of these ways except,65.56,34.86,5.89,4.63,8.05,4.42,58.16,False
+67,185299,fastest cell phone processor,48.53,25.46,6.16,4.41,0.49,4.55,41.3,False
+68,798945,what is spotting,48.43,27.95,6.8,2.8,0.34,3.13,41.22,False
+69,1041159,who is the ninja turtle with the blue mask,55.4,31.72,7.81,4.05,0.48,4.27,48.59,False
+70,165480,does digoxin affect potassium,49.19,28.87,6.0,3.97,0.44,3.53,43.01,False
+71,1087484,what are mofongo,46.32,29.05,6.3,1.44,0.24,2.75,39.93,False
+72,780850,what is oxycodone,53.53,33.83,6.05,2.67,0.37,3.28,46.43,False
+73,1086675,what are thomas jefferson's kids named,60.05,29.72,12.37,5.26,0.64,5.5,53.82,False
+74,1052274,what is korean seafood pancake,52.3,29.22,6.69,4.68,0.57,4.69,46.11,False
+75,1088437,weather in kingston tn,46.6,26.32,4.98,3.68,0.52,4.39,40.13,False
+76,1090151,systemic response definition,51.94,30.35,6.72,4.54,0.39,3.64,45.87,False
+77,1047833,cost of hiv/aids yearly treatment,50.19,29.46,5.5,4.65,0.4,3.91,44.15,False
+78,1091633,phone number irs tax id number,59.02,30.79,7.87,4.05,6.11,4.41,53.48,False
+79,1095749,how much jake paul merch,49.42,30.14,5.43,4.02,0.46,3.76,44.0,False
+80,1090077,telephone number for amazon fire stick customer service,60.46,28.32,5.64,5.23,0.5,4.11,44.04,False
+81,1097449,how many calories in provolone cheese,48.75,28.17,5.79,4.59,0.52,3.78,43.12,False
+82,457714,most expensive hotels in new york city,54.28,30.36,7.71,4.24,0.5,4.19,47.21,False
+83,129641,define: morbid obesity,57.65,27.48,7.42,3.79,6.64,5.44,51.02,False
+84,1086915,what are the observed periodic trends in electron affinity?,72.79,31.68,7.38,3.67,0.37,3.27,46.57,False
+85,433415,josephine's feast,46.88,26.89,5.89,3.55,0.47,3.78,40.8,False
+86,902931,what test is for lupus,53.79,30.99,8.18,4.05,0.39,3.85,47.68,False
+87,147337,difference between ford supercab and crew cab,52.33,30.33,6.03,3.56,0.45,4.18,44.74,False
+88,66154,can crystals cause dizziness,59.78,29.76,6.5,3.88,7.78,4.94,53.19,False
+89,842596,what is the purpose of polarized sunglasses,74.38,33.83,6.15,3.66,0.44,3.63,47.92,False
+90,992950,which super bowl did colin kaepernick play in,58.57,37.43,5.71,5.03,0.49,3.79,52.67,False
+91,490802,russ simmons net worth,45.91,26.75,5.4,3.55,0.44,4.01,40.36,False
+92,1026372,who did colton haynes play on arrow,54.73,34.24,6.52,4.31,0.42,3.88,49.6,False
+93,1098497,how long do resin countertops last,68.81,29.98,7.27,3.57,0.43,3.43,44.88,False
+94,100616,cost estimate glass shower,62.16,31.34,6.38,4.15,7.81,5.12,55.11,False
+95,641583,what does it mean when your tongue is all white,74.92,34.33,5.75,3.67,0.44,3.54,47.94,False
+96,222954,how do you lower hardness in pool water?,52.79,31.76,5.59,3.99,0.39,3.8,45.72,False
+97,899800,what supplements are antiinflammatory,53.94,32.01,5.77,4.41,0.6,4.63,47.67,False
+98,548254,wenatchee washington population,53.26,32.04,7.05,4.24,0.39,3.23,47.21,False
+99,422501,is rhinitis painful,59.15,30.18,5.73,4.81,5.82,5.38,52.22,False
+100,1093927,is the jaraguay volcanic field dormant?,55.15,33.43,6.68,4.11,0.6,4.16,49.22,False

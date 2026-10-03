@@ -1,0 +1,101 @@
+idx,query_id,query,client_wall_clock_ms,server_encode_ms,server_dense_ms,server_sparse_ms,server_fusion_ms,server_fetch_text_ms,server_total_ms,cached
+1,647687,what does semen consist of,50.59,28.88,6.07,4.21,0.56,4.48,44.44,True
+2,74328,can tennis elbow cause pain in your shoulder?,50.99,30.72,5.78,4.62,0.45,3.53,45.32,True
+3,391662,if meat is bad for you what should you eat,72.32,48.35,7.63,4.52,0.53,4.19,65.48,True
+4,530602,types organizational structure,60.4,26.44,6.54,4.27,7.3,5.69,50.48,True
+5,61836,can a 15 year old fly alone domestic flights?,55.36,34.59,6.77,4.37,0.4,3.48,49.93,True
+6,1082622,what does the root word tele mean,62.19,41.16,6.68,4.19,0.45,3.61,56.32,True
+7,321951,how much is donald trump jr worth,53.12,30.73,7.42,4.64,0.44,3.45,46.91,True
+8,653187,what does the term the age of aquarius mean?,52.71,30.49,7.71,3.91,0.41,3.9,46.62,True
+9,1051211,what is mepap certification,61.89,30.87,6.16,4.01,7.67,5.22,54.26,True
+10,451484,medicare eligibility contact number,64.07,25.87,5.67,3.96,0.48,3.46,39.63,True
+11,1021277,define atrium,48.71,29.25,5.85,3.72,0.47,3.28,42.78,True
+12,988745,who is the new york county clerk,54.35,31.47,6.62,5.45,0.57,3.93,48.3,True
+13,1083010,what does simple circuit contain,51.3,28.22,7.7,4.38,0.45,3.98,44.98,True
+14,1083598,what does it mean cardholder name?,63.33,31.82,6.95,4.39,7.6,5.78,56.88,True
+15,549342,what about phones in iceland,52.2,29.54,6.81,4.63,0.55,4.44,46.22,True
+16,946631,when does harbin ice city end,68.3,29.83,6.86,4.2,0.46,3.83,45.38,True
+17,507381,symptoms of congenital heart defects,50.53,27.85,6.92,4.37,0.5,4.11,43.98,True
+18,1011021,what year declaration of independence,49.89,28.95,6.32,3.82,0.36,3.31,42.97,True
+19,999610,where is vista ca,56.67,25.84,6.05,4.54,7.12,5.59,49.45,True
+20,1094460,inches of mercury meaning,50.35,28.84,6.0,4.04,0.53,4.55,44.19,True
+21,696677,what is a public health concept,61.44,27.8,7.55,4.11,0.52,4.19,44.38,True
+22,1074989,what is a cyst on the kidneys do,55.37,32.54,6.01,4.16,0.47,4.58,47.99,True
+23,1063702,what is an advocacy project,55.86,33.15,6.77,4.45,0.48,4.38,49.48,True
+24,1090701,side effects for diclofenac topical,80.29,32.76,6.71,3.47,7.53,5.3,56.08,True
+25,1081730,what family do squirrels belong to,52.51,30.38,6.09,5.6,0.45,3.25,45.98,True
+26,978057,where is berrimah,48.52,29.66,6.21,2.22,0.4,3.28,42.06,True
+27,1102235,why does ehr downtime happen,73.36,31.3,8.08,4.01,0.53,4.34,48.49,True
+28,1096045,how much does one roll of duck tape cost,55.49,31.11,6.35,4.44,0.55,5.0,47.71,True
+29,169305,does motion sensor device have camera,63.7,32.31,5.83,4.22,7.44,4.91,55.12,True
+30,1051214,what is meningitis.,51.24,30.71,5.87,3.68,0.43,3.7,44.63,True
+31,1098953,how heavy are road bikes,58.32,25.01,6.98,4.64,0.56,4.33,41.77,True
+32,534941,usps schedule a delivery,51.44,29.83,6.34,4.58,0.57,3.91,45.48,True
+33,658372,what event started world war 1,51.62,31.53,6.49,3.98,0.4,3.46,46.09,True
+34,1070452,what is a mimo receiver,62.13,34.0,5.94,3.38,5.88,4.75,54.21,True
+35,414714,is it still dangerous to go to the place of where the chernobyl happened,57.3,34.34,7.06,4.24,0.46,4.12,50.45,True
+36,1036800,who is ovid in greek mythology,84.03,63.32,6.2,4.91,0.42,3.4,78.49,True
+37,249866,how long does a pa marriage license last,72.16,51.27,6.43,4.5,0.46,3.73,66.64,True
+38,1011140,what wire is used to mig mild steel,72.3,51.66,6.42,4.89,0.44,3.49,67.11,True
+39,569555,what are the elements to make air,81.36,50.48,6.54,5.07,7.63,5.2,75.21,True
+40,1000097,where is whiteville tennessee,69.63,48.61,7.16,4.13,0.5,3.64,64.27,True
+41,107283,cost of starting a restaurant,66.6,44.2,6.36,4.51,0.46,3.85,59.62,True
+42,278863,how many career games did paul krause play in the nfl.,69.24,44.45,6.62,5.11,0.56,4.1,61.13,True
+43,780297,what is orofacial dyskinesia,60.4,42.45,6.09,2.17,0.35,3.25,54.54,True
+44,9454,a simple definition for the word bias.,63.65,34.48,6.04,4.56,7.76,4.54,57.63,True
+45,922389,what was the result of pearl harbor attack,51.99,32.12,5.9,3.97,0.4,3.69,46.33,True
+46,55691,boulangerie pronunciation,73.82,29.09,7.1,4.0,0.47,4.0,44.89,True
+47,996181,where was the movie true grit filmed at,54.73,33.16,6.19,4.57,0.57,3.87,48.61,True
+48,991138,where is punta cana eden resort,54.36,32.71,6.44,4.8,0.39,3.94,48.54,True
+49,1026775,what kind of mixture is rocky road ice cream,61.48,33.59,6.07,4.2,6.78,4.51,55.43,True
+50,865616,what jedi commands the arc troopers,62.24,28.7,6.22,4.33,0.45,3.46,43.37,True
+51,602352,"what county is alton bay,nh in?",50.49,30.77,6.02,4.0,0.4,3.45,44.86,True
+52,282530,how many doctors are in the us,55.48,32.13,6.33,4.68,0.53,4.64,48.53,True
+53,291248,how many ounces of liquid is in one gallon,57.24,35.37,7.24,4.56,0.45,3.78,51.64,True
+54,997449,where is the kihei,61.29,28.08,5.68,1.47,0.27,2.88,38.56,True
+55,1063371,what is an aviation medical examiner?,59.25,30.24,5.98,10.81,0.63,5.0,52.9,True
+56,1003006,where was napoleon forced to.exile,53.41,35.12,5.8,3.39,0.36,3.23,48.07,True
+57,531142,typing average words per minute test,52.83,31.9,6.05,4.24,0.47,4.04,46.93,True
+58,1050695,what is motor dyspraxia,61.57,30.77,6.62,3.81,0.38,3.38,45.16,True
+59,548099,wellcare mike vice president,52.38,31.19,5.89,3.54,0.41,4.6,45.83,True
+60,953355,when is the rib cook off in reno,62.16,33.02,6.2,4.46,7.28,4.78,56.01,True
+61,1096375,how much data analyst makes,54.9,33.26,5.86,4.72,0.47,4.26,48.82,True
+62,541135,was there a true bagger vance,55.15,34.4,6.48,4.41,0.44,3.81,49.76,True
+63,812387,what is the correct height for step handrails,58.42,36.48,6.13,4.26,0.56,4.29,51.97,True
+64,480064,price chopper locations in ct,50.95,30.68,5.92,3.85,0.44,3.56,44.64,True
+65,442593,longest punt in nfl,58.82,31.16,6.27,4.03,6.22,4.28,52.22,True
+66,1085288,case can arrive at the supreme court through each of these ways except,74.46,35.1,5.54,3.76,0.45,3.72,48.76,True
+67,185299,fastest cell phone processor,50.05,27.79,7.04,3.93,0.57,4.02,43.57,True
+68,798945,what is spotting,46.46,28.63,6.31,2.52,0.36,2.95,40.92,True
+69,1041159,who is the ninja turtle with the blue mask,52.64,32.12,6.31,4.13,0.49,4.24,47.51,True
+70,165480,does digoxin affect potassium,59.99,31.18,7.05,5.05,6.07,4.47,54.15,True
+71,1087484,what are mofongo,47.26,30.58,6.66,1.79,0.32,2.72,42.23,True
+72,780850,what is oxycodone,50.52,32.83,5.93,3.06,0.36,3.19,45.57,True
+73,1086675,what are thomas jefferson's kids named,56.04,32.74,6.53,4.77,0.55,4.56,49.41,True
+74,1052274,what is korean seafood pancake,55.72,33.18,6.22,4.56,0.61,5.16,50.0,True
+75,1088437,weather in kingston tn,61.36,31.23,5.57,5.49,7.17,5.09,54.9,True
+76,1090151,systemic response definition,47.17,27.14,6.23,4.58,0.43,3.34,41.9,True
+77,1047833,cost of hiv/aids yearly treatment,56.64,35.04,5.96,4.02,0.43,4.03,49.75,True
+78,1091633,phone number irs tax id number,52.92,32.98,5.5,4.41,0.42,3.37,46.91,True
+79,1095749,how much jake paul merch,56.72,32.19,7.25,5.12,0.56,4.64,50.06,True
+80,1090077,telephone number for amazon fire stick customer service,63.78,34.57,6.5,4.69,6.48,4.71,57.23,True
+81,1097449,how many calories in provolone cheese,53.17,31.88,6.43,4.57,0.46,3.65,47.26,True
+82,457714,most expensive hotels in new york city,54.17,31.16,6.47,4.23,0.52,4.21,46.81,True
+83,129641,define: morbid obesity,54.0,31.49,7.07,3.88,0.54,4.12,47.33,True
+84,1086915,what are the observed periodic trends in electron affinity?,57.93,35.26,6.82,5.1,0.5,4.42,52.35,True
+85,433415,josephine's feast,59.67,29.83,6.09,3.8,7.4,5.17,52.68,True
+86,902931,what test is for lupus,51.81,31.55,6.15,4.65,0.44,3.35,46.42,True
+87,147337,difference between ford supercab and crew cab,54.06,33.39,6.91,4.16,0.43,3.72,48.83,True
+88,66154,can crystals cause dizziness,54.71,30.56,6.09,5.07,0.55,4.29,46.83,True
+89,842596,what is the purpose of polarized sunglasses,55.52,34.41,6.66,4.42,0.43,3.72,49.87,True
+90,992950,which super bowl did colin kaepernick play in,64.49,33.36,7.37,4.64,6.8,5.25,57.75,True
+91,490802,russ simmons net worth,49.31,28.63,6.13,4.32,0.54,3.88,43.72,True
+92,1026372,who did colton haynes play on arrow,57.92,34.76,6.65,4.68,0.71,4.57,51.74,True
+93,1098497,how long do resin countertops last,56.09,34.37,6.42,4.04,0.47,3.87,49.42,True
+94,100616,cost estimate glass shower,49.36,28.43,6.0,4.16,0.49,3.96,43.29,True
+95,641583,what does it mean when your tongue is all white,65.69,35.51,5.98,5.08,7.71,4.69,59.33,True
+96,222954,how do you lower hardness in pool water?,72.89,34.21,6.31,3.86,0.48,3.95,49.03,True
+97,899800,what supplements are antiinflammatory,59.91,37.85,6.72,4.49,0.58,4.24,54.14,True
+98,548254,wenatchee washington population,56.15,35.35,5.77,3.85,0.7,3.94,49.9,True
+99,422501,is rhinitis painful,59.62,27.28,5.83,4.36,0.56,3.71,41.98,True
+100,1093927,is the jaraguay volcanic field dormant?,62.97,34.67,6.38,3.98,7.03,4.91,57.29,True
