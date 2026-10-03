@@ -368,6 +368,63 @@ All architectural and algorithmic decisions are recorded here with context, opti
   3. **OS Power Scheme Optimization:** Enforcing high-performance CPU governor to prevent idle frequency drops.
 - **Disposition Policy:** Any runtime acceleration that modifies the inference engine or threading model requires a verified ranking-parity check against the PyTorch baseline (Spearman rank correlation $\ge 0.999$, 100% Top-5 agreement on 500 TUNE queries) and formal ADR approval before use. Config remains frozen.
 
+---
+
+## ADR-019: Pre-Registered RAGAS Frozen-50 LLM Judge Protocol (Gate 5.12 / Gate 6)
+- **Status:** **APPROVED & PRE-REGISTERED (Pre-Execution)**
+- **Date:** 2026-10-04
+- **Context:** Formal RAGAS evaluation on `data/manifests/frozen_ragas_bench_raw_50.json` (N=50 query split).
+- **Judge Model Accessibility Hierarchy:**
+  1. Primary: `llama-3.3-70b-versatile`
+  2. Fallback: `openai/gpt-oss-120b` (low reasoning effort if supported)
+  3. Hard Stop Rule: If neither is accessible via `GET https://api.groq.com/openai/v1/models`, stop immediately and report available models.
+- **Inference & Scoring Parameters:**
+  - Temperature = 0 where supported.
+  - Contexts: Top-5 retrieved contexts per mode (`dense`, `hybrid`, `hybrid_rerank`).
+  - Metrics: Context Precision (CP) and Context Recall (CR) only.
+  - Reference: `wellFormedAnswers[0]` if present and non-empty, else `answers[0]`.
+- **Token Budget & Quota Management:**
+  - Protocol: Query-major evaluation across all 3 modes.
+  - Calibration: The first 2 queries (part of real run, nothing discarded) measure tokens per query-triple.
+  - Daily token cap is set so that at least $N \ge 25$ complete paired queries fit under the account's daily limit with a 4,000-token safety margin. If projected $N < 25$, execution halts.
+- **Retry & Failure Handling:**
+  - On HTTP 429 / 5xx: Exponential backoff with up to 3 retries of the identical call; never rephrase prompts or change the judge.
+  - Parse failure or NaN counts as a failed query and is excluded from all three phases (paired exclusion) and listed with reason.
+  - Checkpoint persisted after every query.
+- **Reporting & Claim Standards:**
+  - Use "improvement" only if the 95% bootstrap confidence interval strictly excludes 0; otherwise report "no measurable difference".
+  - Prior N=25 exploratory runs marked superseded.
+
+---
+
+## ADR-021: Speed-Only Serving Optimization Protocol, Parity Gates, and Default Mode Decision (Gate 6)
+- **Status:** **APPROVED & PRE-REGISTERED (Pre-Execution)**
+- **Date:** 2026-10-04
+- **Branch:** `serving-opt` created from `final-system` (tagged `v1-frozen` at commit `c903499`).
+- **Scope & Constraints:**
+  - **Allowed Changes (Speed-Only):** Thread/env hygiene, query-encoder runtime, Qdrant client protocol and call pattern, SQLite access, reranker runtime/batching/max_length, predictive governor v2, embedding cache.
+  - **Strictly NOT Allowed:** Models, weights, candidate depth $K=10$, fusion weight $\alpha=0.80$, Top-50 candidate limits, $ef=128$, fusion method, candidate set, index configuration, relevance thresholds.
+- **Pre-Registered Parity Gates (Evaluated against v1 on 500 TUNE queries):**
+  1. Query embedding cosine similarity $\ge 0.9999$ for every query ($100\%$).
+  2. Dense Top-50 candidate overlap $\ge 99.9\%$.
+  3. Reranker final top-5 set identical on $\ge 99.0\%$ of queries.
+  4. Top-1 identical on $\ge 99.0\%$ of queries.
+  5. Spearman rank correlation of rerank scores $\ge 0.99$.
+  - *Gate Enforcement Rule:* A component failing any parity gate is rejected (try next variant) and logged.
+- **Governor v2 Serving Parameter:**
+  - `total_deadline_ms = 230` ms (server-side predictive budget) to guarantee HTTP client $p95 \le 250$ ms.
+  - Bounded from request start (including encode, retrieval, fetch).
+  - Predictive condition: Run micro-batch only if $\text{elapsed} + 1.2 \times \text{batch\_EMA} \le \text{total\_deadline\_ms} - 10$.
+  - `governor_state` reported as `normal`, `truncated`, or `skipped_budget`.
+- **Decision Rule (Unchanged ADR-018):**
+  - System default mode becomes `prismx` IF AND ONLY IF idle HTTP $p95 \le 250.0\text{ ms}$ in **BOTH** of two independent official runs (the higher p95 counts).
+  - Otherwise, default remains `hybrid` ($\alpha=0.80$).
+  - Exactly one optimization round; no third attempt.
+- **Dual Hash Verification:**
+  - `semantic_hash`: Must remain strictly identical to v1 (`8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf`).
+  - `serving_hash`: Computed over new serving parameters (`total_deadline_ms`, batching, runtime flags).
+
+
 
 
 
