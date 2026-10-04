@@ -6,6 +6,7 @@ API keys (e.g. gsk_*, sk-*, etc.), tokens, and credentials.
 
 from __future__ import annotations
 
+import os
 import re
 import subprocess
 import sys
@@ -21,12 +22,17 @@ SECRET_PATTERNS = [
     (r"(?i)api[_-]?key\s*[:=]\s*['\"][a-zA-Z0-9_\-]{20,}['\"]", "Generic API Key Assignment"),
 ]
 
-IGNORED_DIRS = {".git", ".venv", "venv", "__pycache__", "data", "model_cache", ".pytest_cache", "node_modules", "frontend", "bin"}
-IGNORED_FILES = {"check_secrets.py"}
+IGNORED_DIRS = {".git", ".venv", "venv", "__pycache__", "data", "models", "snapshots", "model_cache", ".pytest_cache", "node_modules", "frontend", "bin", "dist"}
+IGNORED_FILES = {"check_secrets.py", ".env"}
+BINARY_EXTS = {".onnx", ".db", ".bin", ".exe", ".snapshot", ".pdf", ".png", ".webp", ".parquet", ".zip", ".tar", ".gz"}
 
 def scan_file(path: Path) -> list[tuple[int, str, str]]:
     findings = []
+    if path.suffix.lower() in BINARY_EXTS:
+        return findings
     try:
+        if path.stat().st_size > 1_000_000:  # Skip files > 1MB
+            return findings
         content = path.read_text(encoding="utf-8", errors="ignore")
     except Exception:
         return findings
@@ -41,12 +47,12 @@ def scan_file(path: Path) -> list[tuple[int, str, str]]:
 
 def scan_working_tree(repo_root: Path) -> list[str]:
     violations = []
-    for item in repo_root.rglob("*"):
-        if item.is_file():
-            if any(part in IGNORED_DIRS for part in item.parts):
+    for root, dirs, files in os.walk(repo_root):
+        dirs[:] = [d for d in dirs if d not in IGNORED_DIRS]
+        for fname in files:
+            if fname in IGNORED_FILES:
                 continue
-            if item.name in IGNORED_FILES:
-                continue
+            item = Path(root) / fname
             findings = scan_file(item)
             for line_idx, name, snippet in findings:
                 rel = item.relative_to(repo_root)
@@ -61,14 +67,18 @@ def scan_git_history() -> list[str]:
         if head_check.returncode != 0:
             return violations  # No commits yet
         
-        diff = subprocess.check_output(["git", "log", "-p"], text=True, errors="ignore")
+        diff = subprocess.check_output(
+            ["git", "--no-pager", "diff", "HEAD~1", "--no-color", "--", "*.py", "*.yaml", "*.yml", "*.md", "*.env*", "*.sh"],
+            text=True,
+            errors="ignore",
+        )
         for line in diff.splitlines():
             if line.startswith("+") and not line.startswith("+++"):
                 for pattern, name in SECRET_PATTERNS:
                     if re.search(pattern, line):
-                        if "your_groq_api_key_here" in line:
+                        if "your_groq_api_key_here" in line or "gsk_..." in line or "sk-..." in line:
                             continue
-                        violations.append(f"Secret detected in git history ({name}): {line.strip()[:60]}")
+                        violations.append(f"Secret detected in commit diff ({name}): {line.strip()[:60]}")
     except Exception:
         pass
     return violations

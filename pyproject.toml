@@ -38,5 +38,6 @@ pythonpath = ["src"]
 testpaths = ["tests"]
 markers = [
     "integration: marks tests as integration tests requiring Qdrant or external service",
-    "unit: marks tests as pure unit tests"
+    "unit: marks tests as pure unit tests",
+    "needs_100k: marks tests requiring the full 100K raw benchmark store or running server"
 ]

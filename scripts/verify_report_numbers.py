@@ -229,6 +229,10 @@ def run_audit():
     mismatches = sum(1 for r in results if r["status"] == "MISMATCH")
     no_file = sum(1 for r in results if r["status"] == "NO SOURCE FILE")
     print(f"Summary: {matches} MATCH, {mismatches} MISMATCH, {no_file} NO SOURCE FILE (Total: {len(results)})")
+    if mismatches > 0 or no_file > 0:
+        import sys
+        sys.exit(1)
 
 if __name__ == "__main__":
     run_audit()
+

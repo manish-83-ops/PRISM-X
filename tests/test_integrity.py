@@ -23,6 +23,8 @@ from prismx.index.qdrant_store import QdrantStore, passage_id_to_point_id
 from prismx.index.text_store import TextStore
 from prismx.retrieve.cache import QueryCache
 
+pytestmark = pytest.mark.needs_100k
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 RAW_DB_PATH = REPO_ROOT / "data" / "c100k_raw" / "text_store_raw.db"
 BENCH_COLLECTION = "c100k_raw"

@@ -1,7 +1,8 @@
 # PRISM-X: High-Precision Hybrid Dual-Vector RAG Engine
 
+[![CI](https://github.com/manish-83-ops/PRISM-X/actions/workflows/ci.yml/badge.svg)](https://github.com/manish-83-ops/PRISM-X/actions/workflows/ci.yml)
 [![Configuration Frozen](https://img.shields.io/badge/Config_Frozen-8e1000d5...eabdf-blue.svg)](CONFIG.yaml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Qdrant](https://img.shields.io/badge/Qdrant-v1.19.1-red.svg)](docker-compose.yml)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-green.svg)](src/prismx/api)

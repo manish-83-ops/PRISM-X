@@ -8,6 +8,7 @@ Tests covering:
 6. Cache invalidation on upsert and delete
 """
 
+import collections
 import time
 import pytest
 from unittest.mock import MagicMock, patch
@@ -46,25 +47,28 @@ def test_governor_budget_exhausted_before_first_batch():
         "input_ids": MagicMock(shape=[2, 10]),
         "attention_mask": MagicMock()
     }
+    reranker.use_onnx = False
+    reranker._pair_latencies = collections.deque([5.0], maxlen=100)
 
     candidates = [
         {"passage_id": f"p{i}", "text": f"text {i}", "score": 1.0 - 0.1 * i, "fused_rank": i + 1}
         for i in range(10)
     ]
 
-    # Start timestamp is in the past such that elapsed_ms (500ms) >= deadline_ms (100ms)
+    # Start timestamp is in the past such that elapsed_ms (500ms) >= total_deadline_ms (100ms)
     t_start = time.perf_counter() - 0.5
-    top_candidates, r_ms, gov_state = reranker.rerank(
+    top_candidates, r_ms, gov_state, scored_count, per_pair_ms = reranker.rerank(
         query="test query",
         candidates=candidates,
         top_k=5,
-        deadline_ms=100.0,
+        total_deadline_ms=100.0,
         t_request_start=t_start,
         batch_size=5,
     )
 
-    assert gov_state == "exhausted_before_first_batch"
+    assert gov_state == "skipped_budget"
     assert reranker.model.call_count == 0  # No model inferences ran!
+    assert scored_count == 0
     assert len(top_candidates) == 5
     assert [c["passage_id"] for c in top_candidates] == ["p0", "p1", "p2", "p3", "p4"]
     assert all(c.get("rerank_score") is None for c in top_candidates)
@@ -79,6 +83,8 @@ def test_governor_mid_run_truncation():
         "input_ids": MagicMock(shape=[2, 10]),
         "attention_mask": MagicMock()
     }
+    reranker.use_onnx = False
+    reranker._pair_latencies = collections.deque([10.0], maxlen=100)
 
     candidates = [
         {"passage_id": f"p{i}", "text": f"text {i}", "score": 1.0 - 0.1 * i, "fused_rank": i + 1}
@@ -86,25 +92,27 @@ def test_governor_mid_run_truncation():
     ]
 
     # Deadline will expire after batch 1
-    t_start = time.perf_counter()
+    clock_vals = [100.0, 100.0, 100.0, 100.015, 100.042, 100.043, 100.044, 100.045]
+    call_idx = 0
+    def mock_clock():
+        nonlocal call_idx
+        val = clock_vals[min(call_idx, len(clock_vals) - 1)]
+        call_idx += 1
+        return val
 
-    with patch("time.perf_counter") as mock_time:
-        # Step timestamps:
-        # 1. t_rerank_start = 100.0
-        # 2. b_start=0 check: elapsed = 100.0 - 100.0 = 0 < 50ms -> runs batch 0
-        # 3. b_start=2 check: elapsed = 100.06 - 100.0 = 60ms >= 50ms -> TRUNCATE!
-        # 4. dt_ms calc = 100.07 - 100.0
-        mock_time.side_effect = [100.0, 100.0, 100.06, 100.07]
-        top_candidates, r_ms, gov_state = reranker.rerank(
+    with patch("time.perf_counter", side_effect=mock_clock):
+        top_candidates, r_ms, gov_state, scored_count, per_pair = reranker.rerank(
             query="test query",
             candidates=candidates,
             top_k=5,
-            deadline_ms=50.0,
+            total_deadline_ms=50.0,
             t_request_start=100.0,
+            reserve_ms=4.0,
             batch_size=2,
         )
 
     assert gov_state == "truncated"
+    assert scored_count == 2
     assert reranker.model.call_count == 1  # Only first batch scored
     assert len(top_candidates) == 5
     # First 2 candidates scored by cross-encoder
@@ -123,6 +131,8 @@ def test_governor_normal_execution():
         "input_ids": MagicMock(shape=[2, 10]),
         "attention_mask": MagicMock()
     }
+    reranker.use_onnx = False
+    reranker._pair_latencies = collections.deque([5.0], maxlen=100)
 
     candidates = [
         {"passage_id": f"p{i}", "text": f"text {i}", "score": 1.0 - 0.1 * i, "fused_rank": i + 1}
@@ -130,16 +140,17 @@ def test_governor_normal_execution():
     ]
 
     t_start = time.perf_counter()
-    top_candidates, r_ms, gov_state = reranker.rerank(
+    top_candidates, r_ms, gov_state, scored_count, per_pair = reranker.rerank(
         query="test query",
         candidates=candidates,
         top_k=3,
-        deadline_ms=5000.0,  # Generous deadline
+        total_deadline_ms=5000.0,  # Generous deadline
         t_request_start=t_start,
         batch_size=2,
     )
 
     assert gov_state == "normal"
+    assert scored_count == 3
     assert reranker.model.call_count == 2
     assert len(top_candidates) == 3
     assert all(c["rerank_score"] is not None for c in top_candidates)
@@ -187,7 +198,13 @@ def test_mode_switching_service_routing():
         "p2": {"passage_id": "p2", "text": "hybrid text", "category": "cat", "source": "src"}
     }
     text_store.get_meta.return_value = 1
-    reranker.rerank.return_value = ([{"passage_id": "p2", "text": "hybrid text", "score": 0.95, "rerank_score": 0.95}], 10.0, "normal")
+    reranker.rerank.return_value = (
+        [{"passage_id": "p2", "text": "hybrid text", "score": 0.95, "rerank_score": 0.95}],
+        10.0,
+        "normal",
+        1,
+        5.0
+    )
 
     # 1. Default request (hybrid)
     resp_default = service.search(SearchRequest(query="test default"))
@@ -247,13 +264,10 @@ def test_governor_total_deadline_respected_when_earlier_stages_slow():
     }
     text_store.get_meta.return_value = 1
 
-    # Simulate reranker returning exhausted_before_first_batch when deadline <= 0
+    # Simulate reranker returning skipped_budget when deadline <= 0
     def mock_rerank(**kwargs):
-        deadline = kwargs.get("deadline_ms", 200.0)
         cands = kwargs.get("candidates", [])
-        if deadline <= 0.0:
-            return cands[:kwargs.get("top_k", 5)], 0.05, "exhausted_before_first_batch"
-        return cands[:kwargs.get("top_k", 5)], 10.0, "normal"
+        return cands[:kwargs.get("top_k", 5)], 0.05, "skipped_budget", 0, 5.0
 
     reranker.rerank.side_effect = mock_rerank
 
@@ -262,10 +276,6 @@ def test_governor_total_deadline_respected_when_earlier_stages_slow():
     def mock_clock():
         nonlocal call_count
         call_count += 1
-        # call 1: t_total_start (1000.0)
-        # call 2: t_fetch_start (1000.001)
-        # call 3: t_fetch_end (1000.002)
-        # call 4+: elapsed_pre_rerank check & subsequent (1000.245 -> 245 ms elapsed)
         if call_count <= 3:
             return 1000.0 + (call_count * 0.001)
         return 1000.245 + ((call_count - 3) * 0.001)
@@ -274,10 +284,9 @@ def test_governor_total_deadline_respected_when_earlier_stages_slow():
         resp = service.search(SearchRequest(query="slow stages query", mode="prismx", total_deadline_ms=250.0))
 
     assert resp.mode == "prismx"
-    assert resp.governor_state == "exhausted_before_first_batch"
-    # Verify reranker was called with deadline_ms == 0.0
+    assert resp.governor_state == "skipped_budget"
     _, kwargs = reranker.rerank.call_args
-    assert kwargs["deadline_ms"] == 0.0
+    assert kwargs["total_deadline_ms"] == 250.0
 
 
 
@@ -285,6 +294,7 @@ def test_governor_total_deadline_respected_when_earlier_stages_slow():
 # 4. LIVE UPSERT & DELETE VISIBILITY (Isolated Integration)
 # ---------------------------------------------------------------------------
 
+@pytest.mark.needs_100k
 def test_live_upsert_and_delete_visibility():
     """Verify upsert is visible in the very next search and delete is immediately gone,
     using an isolated test_* collection and test_* SQLite file created and dropped by the test.
@@ -363,6 +373,7 @@ def test_live_upsert_and_delete_visibility():
 # 5. METADATA FILTER APPLIED AT QDRANT LEVEL (Zero out-of-filter results)
 # ---------------------------------------------------------------------------
 
+@pytest.mark.needs_100k
 def test_metadata_filter_zero_out_of_filter():
     """Verify that pre-retrieval filtering returns ZERO results outside the filtered category."""
     import urllib.request
