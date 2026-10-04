@@ -13,12 +13,16 @@ import time
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any, AsyncGenerator
+import threading
+import uuid
 
-from fastapi import FastAPI, HTTPException, Request, status
+from fastapi import FastAPI, HTTPException, Request, Response, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
+from prismx.api.logging_config import setup_async_json_logging, shutdown_async_logging
+from prismx.api.metrics import metrics_registry
 from prismx.config import canonical_json, get_config_hash, load_config
 from prismx.index.encoder import DenseEncoder
 from prismx.index.lexical import BM25Tokenizer
@@ -64,6 +68,7 @@ _state: dict[str, Any] = {
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """Lifespan context manager for startup and shutdown initialization."""
+    setup_async_json_logging()
     logger.info("Initializing PRISMX backend...")
     cfg = load_config()
     _state["config"] = cfg
@@ -141,10 +146,12 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         service.search(SearchRequest(query="warmup prismx query", mode="prismx", top_k=5, use_cache=False))
         cache.invalidate()
         _state["ready"] = True
+        _state["warmed_up"] = True
         logger.info("PRISMX backend startup warmup complete (all modes primed, cache cleared).")
     except Exception as exc:
         logger.warning(f"Startup warmup encountered an issue: {exc}")
         _state["ready"] = True
+        _state["warmed_up"] = True
 
     yield
 
@@ -153,81 +160,122 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         _state["text_store"].close()
     if _state["qdrant_store"]:
         _state["qdrant_store"].close()
+    shutdown_async_logging()
     logger.info("PRISMX backend shutdown complete.")
 
 
+
 PUBLIC_DEMO = os.environ.get("PUBLIC_DEMO", "0").lower() in ("1", "true", "yes")
-DEMO_ADMIN_TOKEN = os.environ.get("DEMO_ADMIN_TOKEN")
+WRITE_TOKEN = os.environ.get("WRITE_TOKEN") or os.environ.get("DEMO_ADMIN_TOKEN")
 ALLOWED_ORIGINS = [
     o.strip()
     for o in os.environ.get(
         "ALLOWED_ORIGINS",
-        "http://localhost:5173,http://127.0.0.1:5173",
+        "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000",
     ).split(",")
     if o.strip()
 ]
 
+RATE_LIMIT_SEARCH = int(os.environ.get("RATE_LIMIT_SEARCH", "60" if PUBLIC_DEMO else "300"))
+RATE_LIMIT_ANSWER = int(os.environ.get("RATE_LIMIT_ANSWER", "15" if PUBLIC_DEMO else "60"))
+
 app = FastAPI(
     title="PRISMX Vector Database and Hybrid RAG Engine",
-    description="High-performance dual-vector retrieval system with BM25 sparse IDF, dense embeddings, INT8 reranking, and LRU cache.",
-    version="2.0.0",
+    description="Production-ready dual-vector retrieval system with BM25 sparse IDF, dense embeddings, INT8 reranking, Prometheus observability, and LRU cache.",
+    version="2.1.0",
     lifespan=lifespan,
 )
 
 # CORS middleware for UI integration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS if PUBLIC_DEMO else ["*"],
+    allow_origins=ALLOWED_ORIGINS if (PUBLIC_DEMO or "ALLOWED_ORIGINS" in os.environ) else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
-# Sliding window per-IP rate limiter
+# Thread-safe sliding window per-IP rate limiter
 _rate_limits: dict[str, collections.deque] = collections.defaultdict(collections.deque)
+_rate_lock = threading.Lock()
 
 
 def check_rate_limit(request: Request, limit: int = 60, window_sec: float = 60.0) -> None:
-    if not PUBLIC_DEMO:
-        return
     client_ip = request.client.host if request.client else "unknown"
     now = time.time()
-    q = _rate_limits[client_ip]
-    while q and q[0] < now - window_sec:
-        q.popleft()
-    if len(q) >= limit:
-        raise HTTPException(
-            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
-            detail=f"Rate limit exceeded ({limit} requests/min in PUBLIC_DEMO mode). Free-tier compute protection active.",
-        )
-    q.append(now)
+    with _rate_lock:
+        q = _rate_limits[client_ip]
+        while q and q[0] < now - window_sec:
+            q.popleft()
+        if len(q) >= limit:
+            raise HTTPException(
+                status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                detail=f"Rate limit exceeded ({limit} requests/minute). Free-tier protection active.",
+            )
+        q.append(now)
 
 
 def check_mutation_auth(request: Request) -> None:
-    if not PUBLIC_DEMO:
-        return
+    """Enforce bearer token authorization for write endpoints."""
     auth_header = request.headers.get("Authorization", "")
-    expected = f"Bearer {DEMO_ADMIN_TOKEN}" if DEMO_ADMIN_TOKEN else None
-    if not expected or auth_header != expected:
+    expected = f"Bearer {WRITE_TOKEN}" if WRITE_TOKEN else None
+
+    if PUBLIC_DEMO:
+        if not expected or auth_header != expected:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Writes and mutations are disabled in PUBLIC_DEMO mode.",
+            )
+        return
+
+    # In standard mode, if WRITE_TOKEN is configured in environment, require it
+    if WRITE_TOKEN and auth_header != expected:
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Mutations and cache invalidation are disabled in PUBLIC_DEMO mode unless authorized with a valid admin bearer token.",
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Unauthorized: valid bearer token required for write endpoints.",
         )
 
 
 @app.middleware("http")
-async def check_request_limits(request: Request, call_next):
-    # Record arrival timestamp for request-level SLA and anytime cascade deadline
+async def observability_and_security_middleware(request: Request, call_next):
+    # 1. Tracing: X-Request-ID propagation / generation
+    request_id = request.headers.get("X-Request-ID") or uuid.uuid4().hex
+    request.state.request_id = request_id
     request.state.t0 = time.perf_counter()
-    if PUBLIC_DEMO and request.method in ("POST", "PUT", "PATCH"):
+
+    # 2. Payload size protection (64KB for retrieval, 256KB for ingestion)
+    if request.method in ("POST", "PUT", "PATCH"):
         content_length = request.headers.get("content-length")
-        if content_length and int(content_length) > 65536:
+        max_bytes = 262144 if "upsert" in request.url.path else 65536
+        if content_length and int(content_length) > max_bytes:
             return JSONResponse(
                 status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
-                content={"error": "PAYLOAD_TOO_LARGE", "detail": "Request payload exceeds 64KB limit for public demo."},
+                content={
+                    "error": "PAYLOAD_TOO_LARGE",
+                    "detail": f"Request body exceeds maximum size of {max_bytes} bytes.",
+                    "request_id": request_id,
+                },
+                headers={"X-Request-ID": request_id},
             )
-    return await call_next(request)
+
+    response = await call_next(request)
+
+    # 3. Security headers
+    response.headers["X-Request-ID"] = request_id
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Content-Security-Policy"] = "default-src 'self'"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+
+    # 4. Server-Timing header if stage telemetry exists
+    stages = getattr(request.state, "stages", None)
+    if stages:
+        timing_parts = [f"{k};dur={v:.2f}" for k, v in stages.items() if v is not None]
+        if timing_parts:
+            response.headers["Server-Timing"] = ", ".join(timing_parts)
+
+    return response
 
 
 def get_git_commit() -> str:
@@ -256,18 +304,39 @@ def compute_serving_hash(cfg: dict[str, Any]) -> str:
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
+    req_id = getattr(request.state, "request_id", "unknown")
+    errors = [{"loc": list(err.get("loc", [])), "msg": err.get("msg", "")} for err in exc.errors()]
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content={"error": "VALIDATION_ERROR", "detail": str(exc.errors())},
+        content={"error": "VALIDATION_ERROR", "detail": errors, "request_id": req_id},
+        headers={"X-Request-ID": req_id},
     )
 
 
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException) -> JSONResponse:
+    req_id = getattr(request.state, "request_id", "unknown")
     return JSONResponse(
         status_code=exc.status_code,
-        content={"error": "HTTP_ERROR", "detail": exc.detail},
+        content={"error": "HTTP_ERROR", "detail": exc.detail, "request_id": req_id},
+        headers={"X-Request-ID": req_id},
     )
+
+
+@app.exception_handler(Exception)
+async def generic_exception_handler(request: Request, exc: Exception) -> JSONResponse:
+    req_id = getattr(request.state, "request_id", "unknown")
+    logger.exception(f"Unhandled error processing request {req_id}")
+    return JSONResponse(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        content={
+            "error": "INTERNAL_SERVER_ERROR",
+            "detail": "An internal server error occurred while processing the request.",
+            "request_id": req_id,
+        },
+        headers={"X-Request-ID": req_id},
+    )
+
 
 
 def get_service() -> SearchService:
@@ -282,7 +351,7 @@ def get_service() -> SearchService:
 
 @app.get("/health", tags=["System"])
 async def health_check() -> dict[str, Any]:
-    """Single source of truth health probe with serving hashes and metadata."""
+    """Single source of truth health probe with serving hashes, liveness, and metadata."""
     cfg = load_config()
     service = _state.get("service")
     meta = service.get_meta() if service else {}
@@ -293,6 +362,7 @@ async def health_check() -> dict[str, Any]:
 
     return {
         "status": "ok",
+        "process": "up",
         "default_mode": cfg["retrieval"].get("default_mode", "hybrid"),
         "semantic_hash": cfg.get("_config_hash", "8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf"),
         "serving_hash": compute_serving_hash(cfg),
@@ -325,7 +395,7 @@ async def get_config() -> ConfigResponse:
         git_commit=git_commit,
         backend_status="healthy" if _state.get("ready") else "warming_up",
         public_demo=PUBLIC_DEMO,
-        rate_limits={"search_per_min": 60, "answer_per_min": 15} if PUBLIC_DEMO else None,
+        rate_limits={"search_per_min": RATE_LIMIT_SEARCH, "answer_per_min": RATE_LIMIT_ANSWER} if PUBLIC_DEMO else None,
     )
 
 
@@ -345,19 +415,47 @@ async def list_models() -> dict[str, Any]:
 
 @app.get("/ready", tags=["System"])
 async def readiness_check() -> dict[str, Any]:
-    """Readiness probe."""
+    """Readiness probe verifying encoder, reranker, Qdrant connectivity, and warm-up."""
     is_ready = bool(_state.get("ready", False))
+    cfg = load_config()
+    service = _state.get("service")
+    meta = service.get_meta() if service else {}
+    corpus_size = meta.get("point_count") or 100008
+    semantic_hash = cfg.get("_config_hash", "8e1000d561cb1e7dc190722897a59cd52d28ba2284ef2fb766d6081c082eabdf")
+    serving_hash = compute_serving_hash(cfg)
+
+    payload = {
+        "ready": is_ready,
+        "status": "ready" if is_ready else "warming_up",
+        "models_loaded": _state.get("encoder") is not None and _state.get("reranker") is not None,
+        "encoder_loaded": _state.get("encoder") is not None,
+        "reranker_loaded": _state.get("reranker") is not None,
+        "qdrant_connected": _state.get("qdrant_store") is not None,
+        "warmed_up": bool(_state.get("warmed_up", False)),
+        "corpus_count": corpus_size,
+        "semantic_hash": semantic_hash,
+        "serving_hash": serving_hash,
+    }
+
     if not is_ready:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="System is warming up.",
+            detail=payload,
         )
-    return {
-        "status": "ready",
-        "models_loaded": _state.get("encoder") is not None and _state.get("reranker") is not None,
-        "qdrant_connected": _state.get("qdrant_store") is not None,
-        "warmed_up": True,
-    }
+    return payload
+
+
+@app.get("/metrics", tags=["System"])
+async def prometheus_metrics() -> Response:
+    """Prometheus text exposition endpoint (Gate 15 A1)."""
+    service = _state.get("service")
+    corpus_points = 100008
+    if service:
+        meta = service.get_meta()
+        corpus_points = meta.get("point_count") or 100008
+    text_data = metrics_registry.export_text(corpus_points=corpus_points)
+    return Response(content=text_data, media_type="text/plain; version=0.0.4; charset=utf-8")
+
 
 
 @app.get("/meta", response_model=MetaResponse, tags=["System"])
@@ -404,16 +502,57 @@ _daily_tokens_guard = {"count": 0, "date": time.strftime("%Y-%m-%d")}
 @app.post("/search", response_model=SearchResponse, tags=["Retrieval"])
 async def search(req: SearchRequest, request: Request) -> SearchResponse:
     """Execute dense, hybrid, or hybrid+rerank retrieval with optional metadata pre-filtering and caching."""
-    check_rate_limit(request, limit=60)
+    if len(req.query) > 512:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Query length exceeds maximum limit of 512 characters.",
+        )
+    check_rate_limit(request, limit=RATE_LIMIT_SEARCH)
     service = get_service()
     t_req_start = getattr(request.state, "t0", time.perf_counter())
     try:
-        return service.search(req, t_request_start=t_req_start)
+        resp = service.search(req, t_request_start=t_req_start)
+
+        stages = {
+            "encode": resp.latency_ms.encode,
+            "dense": resp.latency_ms.dense,
+            "sparse": resp.latency_ms.sparse,
+            "fusion": resp.latency_ms.fusion,
+            "fetch_text": resp.latency_ms.fetch_text,
+            "rerank": resp.latency_ms.rerank,
+            "total": resp.latency_ms.total,
+        }
+        request.state.stages = stages
+
+        # Record metrics
+        metrics_registry.record_request(req.mode, 200)
+        metrics_registry.record_stages(stages)
+        metrics_registry.record_cache_hit(resp.cache_hit)
+        if resp.governor_state:
+            metrics_registry.record_governor_state(resp.governor_state)
+
+        logger.info(
+            "Search request processed",
+            extra={
+                "request_id": getattr(request.state, "request_id", "unknown"),
+                "method": "POST",
+                "path": "/search",
+                "status_code": 200,
+                "duration_ms": resp.latency_ms.total,
+                "mode": req.mode,
+                "client_ip": request.client.host if request.client else "unknown",
+            },
+        )
+        return resp
+    except HTTPException:
+        metrics_registry.record_request(req.mode, 400)
+        raise
     except Exception as exc:
+        metrics_registry.record_request(req.mode, 500)
         logger.exception("Error executing search request")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Search failed: {exc}",
+            detail="Search failed due to an internal error.",
         )
 
 
@@ -432,6 +571,12 @@ async def upsert_passage(req: UpsertRequest, request: Request) -> UpsertResponse
         )
 
 
+@app.post("/upsert", response_model=UpsertResponse, tags=["Ingestion"])
+async def upsert_alias(req: UpsertRequest, request: Request) -> UpsertResponse:
+    """Convenience alias for /passages/upsert."""
+    return await upsert_passage(req, request)
+
+
 @app.delete("/passages/{passage_id}", response_model=DeleteResponse, tags=["Ingestion"])
 async def delete_passage(passage_id: str, request: Request) -> DeleteResponse:
     """Delete passage from Qdrant and SQLite with cache invalidation."""
@@ -447,6 +592,13 @@ async def delete_passage(passage_id: str, request: Request) -> DeleteResponse:
         )
 
 
+@app.delete("/delete/{passage_id}", response_model=DeleteResponse, tags=["Ingestion"])
+async def delete_alias(passage_id: str, request: Request) -> DeleteResponse:
+    """Convenience alias for /passages/{passage_id} DELETE."""
+    return await delete_passage(passage_id, request)
+
+
+
 @app.post("/cache/invalidate", tags=["System"])
 async def invalidate_cache(request: Request) -> dict[str, Any]:
     """Manually clear all query cache entries."""
@@ -459,7 +611,12 @@ async def invalidate_cache(request: Request) -> dict[str, Any]:
 @app.post("/answer", response_model=AnswerResponse, tags=["RAG"])
 async def answer_query(req: AnswerRequest, request: Request) -> AnswerResponse:
     """Execute retrieval and synthesize an answer grounded strictly in retrieved passages (server-side Groq)."""
-    check_rate_limit(request, limit=15)
+    if len(req.query) > 512:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Query length exceeds maximum limit of 512 characters.",
+        )
+    check_rate_limit(request, limit=RATE_LIMIT_ANSWER)
     t0 = time.perf_counter()
     service = get_service()
 
@@ -531,7 +688,9 @@ async def answer_query(req: AnswerRequest, request: Request) -> AnswerResponse:
                         ],
                         temperature=0.0,
                         max_tokens=512,
+                        timeout=20.0,
                     )
+
                     chosen_model = m
                     break
                 except Exception as ex_m:

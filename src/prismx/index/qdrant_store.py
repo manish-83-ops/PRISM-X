@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import logging
+import os
 from typing import Any, Sequence
 from qdrant_client import QdrantClient, models
 
@@ -36,7 +37,7 @@ class QdrantStore:
             url=f"http://{host}:{port}",
             grpc_port=grpc_port,
             prefer_grpc=prefer_grpc,
-            timeout=60,
+            timeout=float(os.environ.get("QDRANT_TIMEOUT", 10.0)),
         )
 
     def init_collection(
