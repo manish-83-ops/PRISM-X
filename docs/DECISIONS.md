@@ -523,3 +523,25 @@ All architectural and algorithmic decisions are recorded here with context, opti
        - Top-5 candidate set agreement $\ge 0.98$.
        - Paired $|\Delta \text{NDCG@5}| \le 0.005$ with $95\%$ bootstrap CI containing 0.
      - If a candidate fails any gate, it is rejected and documented. A strict 60-minute time limit applies to Step 2 optimization.
+
+---
+
+## ADR-027: Gate 15 Production-Readiness Serving Layer Upgrades, Observability, and Overhead Gates
+- **Status:** **APPROVED & PRE-REGISTERED (Pre-Execution)**
+- **Date:** 2026-10-04
+- **Branch:** `gate15-production`
+- **Context:**
+  Gate 15 hardens the FastAPI serving architecture for production deployment without modifying retrieval models, weights, thresholds, indices, or benchmark stores:
+  - Observability: Standardized `/health`, `/ready` (verifying encoder, reranker, and Qdrant readiness with corpus count and config hashes), `/metrics` (Prometheus text exposition for request counters, latency histograms per stage, governor states, and cache hit ratios), `X-Request-ID` tracing, `Server-Timing` headers, and non-blocking asynchronous JSON structured logging via queue handlers.
+  - Security: Bearer-token authentication for write endpoints (`WRITE_TOKEN`), `PUBLIC_DEMO` flag to disable mutable actions, sliding-window rate limiting on `/search` and `/answer`, request body size limits, max query string length bounds, strict CORS allowlist, HTTP security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Content-Security-Policy`), explicit client timeouts to Qdrant and LLM providers, and sanitized error responses (no raw Python stack traces leaked).
+  - CI & Packaging: Automated GitHub Actions CI workflow (`.github/workflows/ci.yml`), multi-stage non-root `Dockerfile`, `docker-compose.yml` with native healthchecks, and an operational `Makefile`.
+  - Open Source Licensing: Enterprise Apache-2.0 license, comprehensive `THIRD_PARTY.md` attribution, and MS MARCO non-commercial dataset terms documented in `docs/BUSINESS_CASE.md`.
+- **Pre-Registered Hypotheses:**
+  1. **Retrieval Parity:** Serving layer instrumentation, headers, and security middleware introduce zero divergence in ranking. For dense and hybrid search on all 100 BENCH queries, top-10 passage IDs and scores must match the golden baseline identically (scores within $10^{-6}$). For PRISM-X reranked mode, top-10 IDs must match identically for all queries where `candidates_scored == K`.
+  2. **Serving Overhead Bounds:** On the default serving mode (Hybrid), the combined overhead of all serving upgrades (ASGI middleware, request ID generation, Server-Timing header, Prometheus metrics recording, and structured logging) shall add:
+     - $\le 1.0\text{ ms}$ to $p50$ latency
+     - $\le 2.0\text{ ms}$ to $p95$ latency
+- **Mechanical Rule:**
+  If the A6 overhead gate fails ($>1.0\text{ ms}$ $\Delta p50$ or $>2.0\text{ ms}$ $\Delta p95$ against baseline on the default mode), the offending serving component shall be immediately disabled by default in configuration, flagged with a warning, and documented in `docs/ISSUES.md` and `docs/PDF_COMPLIANCE.md`. No ad-hoc parameter tuning or benchmark manipulation is permitted.
+- **Idle Gate Protocol:**
+  Timing runs for the overhead gate are strictly deferred until explicit `"IDLE CONFIRMED"` authorization from the user.
