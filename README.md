@@ -292,6 +292,8 @@ PRISM-X indexes a 100,008-passage raw query-centric corpus (`data/c100k_raw/`) c
    On this specific MS MARCO benchmark split, hybrid search showed no measurable retrieval quality improvement over dense search ($\Delta\text{MRR@10} = -0.0083\ [-0.0466, +0.0300]$, CI crosses 0). Hybrid retrieval remains essential for lexical guarantees (acronyms, model numbers, exact codes) not captured by semantic embeddings.
 7. **PRISM-X Reranker Latency:**
    Cross-encoder reranking on CPU reaches 306.39 ms p95 uncached on this machine, exceeding the 250 ms target and 300 ms SLA. Per ADR-018, it is designated as an optional high-precision mode, with hybrid serving as the default (89.02 ms p95).
+8. **500K Scale:**
+   500K: not attempted in this submission, planned as future work.
 
 ---
 

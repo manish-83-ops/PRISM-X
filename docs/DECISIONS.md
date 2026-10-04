@@ -485,11 +485,41 @@ All architectural and algorithmic decisions are recorded here with context, opti
   - Do NOT train or execute index build until explicit user confirmation (`GO COLBERT`).
   - Pre-registered adoption rule: Adopt ColBERT as stage-2 intermediate filter IF AND ONLY IF on TUNE it achieves NDCG@5 non-inferior to CE (95% CI lower bound $\ge -0.02$) at materially lower p95 latency. Any negative result will be published without cherry-picking.
 
+---
 
-
-
-
-
-
-
-
+## ADR-026: Gate 13 System Hardening — Governor Honesty, Telemetry Labels, Warm-up Optimization, and Parity Verification (Gate 13 Step 1)
+- **Status:** **APPROVED & PRE-REGISTERED (Pre-Execution)**
+- **Date:** 2026-10-04
+- **Branch:** `gate12-cascade`
+- **Context:**
+  The Anytime Cascade architecture (ADR-022) introduces dynamic candidate clamping and micro-batching to bound tail latency. For production compliance under Gate 13, all telemetry, UI labels, and warm-up paths must adhere to rigorous honesty, transparent reporting, and pre-registered parity gates.
+- **Decision:**
+  1. **Governor Honesty & Request-Level Telemetry:**
+     - The FastAPI ASGI middleware captures request arrival time $t_0$ at the earliest network boundary.
+     - Telemetry breakdown logs all discrete stages (`encode`, `dense`, `sparse`, `fusion`, `fetch_text`, `rerank`, `total`).
+     - Response schema reports: `governor_state` (`normal`, `truncated`, `skipped_budget`), `stage_reached` (`stage1_hybrid`, `stage3_rerank`), `candidates_scored`, `K_requested`, `per_pair_ms`, and `effective_mode`.
+     - When request deadline budget is insufficient, the system gracefully degrades to first-stage hybrid results. Queries with `candidates_scored < K_requested` are tracked separately and displayed honestly without concealing degradation.
+  2. **UI & Demonstration Label Accuracy:**
+     - UI reflects governor decisions in real time with distinct badges:
+       - Normal: `✓ Reranked K of K (normal, ~Xms/pair)`
+       - Truncated: `⚠️ Reranked N of K (truncated by deadline governor, ~Xms/pair)`
+       - Skipped: `⚠️ Degraded to hybrid (budget exhausted, scored 0 of K)`
+     - SLA compliance claim is attached strictly to the default serving mode (**Hybrid**, $p95 = 89.02\text{ ms} < 300\text{ ms}$). The PRISM-X optional mode ($p95 = 306.39\text{ ms}$) is never claimed to meet SLA unless confirmed by official idle benchmark under ADR-021.
+  3. **Fetch & Server Warm-up Hygiene:**
+     - Server startup sequence executes an end-to-end pre-flight warm-up pass:
+       - Dense encoder: encode 2 warm-up text strings.
+       - Sparse tokenizer: hash & tokenize 2 warm-up queries.
+       - Cross-encoder: 1 dummy micro-batch of candidate pairs through ONNX runtime session.
+       - SQLite text store: touch mmap header and run sample passage hydration query.
+     - This guarantees that steady-state benchmark queries do not suffer from cold JIT/library compilation overhead.
+  4. **Latency Reporting Protocols:**
+     - In accordance with Gate 13 Step 1 & 4j, latency benchmarks report two distinct rows:
+       - **Row 1:** First 100 queries without discarding any (cold start included from fresh server start).
+       - **Row 2:** 100 queries with 20 warm-ups discarded.
+     - Numbers remain marked `PENDING` until the authorized idle session in Step 3.
+  5. **Parity Gate Enforcement:**
+     - Any runtime engine changes (e.g. ONNX Runtime FP32/INT8) must satisfy pre-registered parity gates against the baseline PyTorch FP32 cross-encoder on all 500 TUNE queries:
+       - Top-1 passage agreement $\ge 0.97$.
+       - Top-5 candidate set agreement $\ge 0.98$.
+       - Paired $|\Delta \text{NDCG@5}| \le 0.005$ with $95\%$ bootstrap CI containing 0.
+     - If a candidate fails any gate, it is rejected and documented. A strict 60-minute time limit applies to Step 2 optimization.
