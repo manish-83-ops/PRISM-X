@@ -331,6 +331,12 @@ During Gate 15 production readiness upgrades, an official 200-request overhead b
 │   ├── run_server.py               # Launches FastAPI backend application server
 │   ├── smoke_test.py               # End-to-end 7-item demo smoke verification suite
 │   └── verify_report_numbers.py    # Claims-to-files audit verifying all report numbers
+├── experiments/                # Archive of standalone exploratory scripts and retired gate diagnostics
+│   ├── INDEX.csv               # Historical registry of pre-registered experiment IDs and outcomes
+│   ├── README.md               # Experiments archive documentation
+│   ├── debug_stress_anomaly.py # Gate 5.2 graph traversal anomaly diagnostic (retired per ADR-015)
+│   ├── measure_reserve.py      # Gate 4A CPU thread headroom and RAM allocation diagnostic
+│   └── exp_001_ingest/         # Gate 1 initial 10k ingestion trial baseline
 └── tests/                      # Automated test suite (unit, integration, and architecture)
 ```
 
@@ -513,7 +519,31 @@ Compiles the comprehensive, publication-formatted technical report: [`PRISMX_SYS
 
 ---
 
-## 13. Limitations and Known Caveats
+## 13. Evaluation and Experiment Organization
+
+To maintain scientific hygiene and prevent code or data contamination across development gates, PRISM-X strictly isolates active runtime assets from historical and exploratory artifacts across four segregated directory tiers:
+
+1. **Active Engine and Serving Layer (`src/prismx/` and `scripts/`):** Contains the production retrieval pipeline, API endpoints, and official benchmark evaluation scripts.
+2. **Authoritative Benchmark Store (`data/c100k_raw/`):** Contains the read-only, frozen 100,008-passage corpus, strictly disjoint query splits (`tune_raw_500.json`, `bench_raw_100.json`), and the primary SQLite text database (`text_store_raw.db`).
+3. **Audited Empirical Results (`results/`):** Stores all immutable headline metrics, per-query latency CSV traces, bootstrap confidence intervals, and RAGAS checkpoints.
+4. **Historical Experiments Archive (`experiments/`):** Contains standalone investigative scripts, exploratory analysis tools, and retired experimental pipelines created during intermediate design gates.
+
+> **Operational Boundary:** None of the scripts in `experiments/` are on the active serving, testing, or official benchmark reproduction path. They are retained strictly for provenance, forensic auditability, and lineage tracking. All official benchmark results remain permanently recorded under `results/`.
+
+### Archived Experiments Ledger
+
+Historical experiment IDs, design gates, and outcomes are tracked in [`experiments/INDEX.csv`](experiments/INDEX.csv):
+
+| Script / Directory | Gate / Phase | Description | Lifecycle Status |
+| :--- | :--- | :--- | :--- |
+| [`debug_stress_anomaly.py`](experiments/debug_stress_anomaly.py) | Gate 5.2 | Investigated graph traversal anomalies during distractor stress testing on `c100k_hard`. | Retired (ADR-015 distractor suite superseded by `c100k_raw`) |
+| [`measure_reserve.py`](experiments/measure_reserve.py) | Gate 4A | Diagnostic utility measuring CPU thread headroom and RAM allocation under concurrent retrieval load. | Completed diagnostic (informed thread pinning) |
+| [`exp_001_ingest/`](experiments/exp_001_ingest/) | Gate 1 | Initial exploratory ingestion trial on 10k MS MARCO sample partition. | Preserved baseline archive |
+| [`INDEX.csv`](experiments/INDEX.csv) | Gates 1–5 | Historical registry mapping experiment IDs, configuration hashes, split targets, and execution status. | Maintained provenance registry |
+
+---
+
+## 14. Limitations and Known Caveats
 
 To uphold scientific discipline, known system boundaries and empirical constraints are explicitly stated:
 
@@ -525,7 +555,7 @@ To uphold scientific discipline, known system boundaries and empirical constrain
 
 ---
 
-## 14. Future Work
+## 15. Future Work
 
 - **Hardware-Accelerated Reranking:** Porting the cross-encoder pipeline to ONNX Runtime with TensorRT or OpenVINO execution providers for sub-50 ms GPU/NPU inference.
 - **ColBERT Late-Interaction Scoring (ADR-025):** Integrating ColBERTv2 multi-vector token scoring for fine-grained semantic alignment with sub-quadratic compute complexity.
@@ -534,7 +564,7 @@ To uphold scientific discipline, known system boundaries and empirical constrain
 
 ---
 
-## 15. Hackathon Context and Team
+## 16. Hackathon Context and Team
 
 PRISM-X was engineered for the **Adrosonic SONIC BUILD AI Hackathon 2026** under the problem track:
 > **"Vector Database Design for Large-Scale Precision Retrieval in RAG Systems"**
@@ -548,7 +578,7 @@ The project addresses every core challenge specified in the hackathon charter:
 
 ---
 
-## 16. License and Terms
+## 17. License and Terms
 
 - **Software:** Licensed under the [Apache License, Version 2.0](LICENSE).
 - **Third-Party Attributions:** See [`THIRD_PARTY.md`](THIRD_PARTY.md) for full notices and licenses covering Qdrant, FastAPI, PyTorch, Sentence-Transformers, and React.
