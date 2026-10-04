@@ -7,8 +7,11 @@
 [![Qdrant](https://img.shields.io/badge/Qdrant-v1.19.1-red.svg)](docker-compose.yml)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-green.svg)](src/prismx/api)
 [![React 19](https://img.shields.io/badge/React-19.0-61dafb.svg)](frontend/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-black.svg)](https://frontend-puce-gamma-26.vercel.app)
 
 A production-grade, two-stage information retrieval system combining dense semantic embeddings, server-side BM25 sparse vectors, min-max normalized weighted linear fusion, and deadline-governed cross-encoder reranking over a decoupled Qdrant-SQLite architecture.
+
+**Live Demo (frontend only — API requires local backend):** https://frontend-puce-gamma-26.vercel.app
 
 ---
 
