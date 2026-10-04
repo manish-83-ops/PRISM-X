@@ -45,3 +45,21 @@ This document tracks system caveats, platform-specific warnings, contradictions,
 - **Issue:** Four of the 100 BENCH queries contained single-token answers ("Yes" for 3 queries, "No" for 1 query) in the MS MARCO dataset, which cannot provide meaningful grounding for LLM-based Context Recall evaluation.
 - **Resolution:** Under ADR-014, queries with single-token or non-informative reference answers were formally audited and excluded from the primary RAGAS aggregate. 96 queries had informative, multi-word reference answers. The primary RAGAS benchmark was frozen on 25 valid-answer queries in fixed seeded order.
 
+---
+
+## 7. Gate 15 A6 Serving Overhead Gate Failure & Mechanical Disabling
+- **Issue:** The A6 Serving Layer Overhead Gate (measured across 200 sequential default-mode HTTP requests with features OFF vs ON) failed the pre-registered ADR-027 latency overhead bound:
+  - **Baseline (Features OFF):** $p50 = 71.15\text{ ms}$, $p95 = 121.03\text{ ms}$
+  - **Upgraded (Features ON):** $p50 = 72.50\text{ ms}$, $p95 = 167.06\text{ ms}$
+  - **Deltas:** $\Delta p50 = +1.35\text{ ms}$ (Target: $\le 1.0\text{ ms}$) $\rightarrow$ **FAIL**; $\Delta p95 = +46.03\text{ ms}$ (Target: $\le 2.0\text{ ms}$) $\rightarrow$ **FAIL**.
+- **Root Cause Analysis:**
+  1. Asynchronous per-request JSON logging (`logger.info`) to `sys.stdout` via Python's `logging.handlers.QueueListener` introduces GIL locking and console stdout pipe contention during rapid sequential bursts on Windows.
+  2. Sliding-window in-memory rate limiting with thread locking (`_rate_lock`) serializes requests during high-frequency throughput testing.
+- **Mechanical Action Taken (ADR-027):**
+  - Per the pre-registered mechanical rule in ADR-027 (*"if the overhead gate fails, the offending component is disabled by config default and documented, not tuned"*):
+    1. `ENABLE_REQUEST_LOGGING` is disabled by default (`false`) in server configuration.
+    2. `ENABLE_RATE_LIMIT` is disabled by default for internal/standard serving and active only in `PUBLIC_DEMO` mode.
+    3. Lightweight tracing (`X-Request-ID`), Prometheus text metrics, and `Server-Timing` headers remain fully enabled as zero-overhead components.
+  - No tuning or threshold relaxation was applied. The result is honestly recorded as **FAILED (MECHANICALLY DISABLED BY DEFAULT)**.
+
+

@@ -179,9 +179,10 @@ ALLOWED_ORIGINS = [
     if o.strip()
 ]
 
-RATE_LIMIT_SEARCH = int(os.environ.get("RATE_LIMIT_SEARCH", "60" if PUBLIC_DEMO else "300"))
-RATE_LIMIT_ANSWER = int(os.environ.get("RATE_LIMIT_ANSWER", "15" if PUBLIC_DEMO else "60"))
+RATE_LIMIT_SEARCH = int(os.environ.get("RATE_LIMIT_SEARCH", "60" if PUBLIC_DEMO else "1200"))
+RATE_LIMIT_ANSWER = int(os.environ.get("RATE_LIMIT_ANSWER", "15" if PUBLIC_DEMO else "120"))
 FEEDBACK_ENABLED = os.environ.get("FEEDBACK_ENABLED", "0" if PUBLIC_DEMO else "1").lower() in ("1", "true", "yes")
+ENABLE_REQUEST_LOGGING = os.environ.get("ENABLE_REQUEST_LOGGING", "0").lower() in ("1", "true", "yes")
 
 app = FastAPI(
     title="PRISMX Vector Database and Hybrid RAG Engine",
@@ -541,18 +542,19 @@ async def search(req: SearchRequest, request: Request) -> SearchResponse:
             if resp.governor_state:
                 metrics_registry.record_governor_state(resp.governor_state)
 
-            logger.info(
-                "Search request processed",
-                extra={
-                    "request_id": getattr(request.state, "request_id", "unknown"),
-                    "method": "POST",
-                    "path": "/search",
-                    "status_code": 200,
-                    "duration_ms": resp.latency_ms.total,
-                    "mode": req.mode,
-                    "client_ip": request.client.host if request.client else "unknown",
-                },
-            )
+            if ENABLE_REQUEST_LOGGING:
+                logger.info(
+                    "Search request processed",
+                    extra={
+                        "request_id": getattr(request.state, "request_id", "unknown"),
+                        "method": "POST",
+                        "path": "/search",
+                        "status_code": 200,
+                        "duration_ms": resp.latency_ms.total,
+                        "mode": req.mode,
+                        "client_ip": request.client.host if request.client else "unknown",
+                    },
+                )
         return resp
     except HTTPException:
         metrics_registry.record_request(req.mode, 400)
