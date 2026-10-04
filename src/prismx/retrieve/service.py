@@ -271,7 +271,8 @@ class SearchService:
 
         # Store in cache if enabled
         if use_cache and self.cache is not None and cache_key is not None:
-            self.cache.set(cache_key, response)
+            pids = [r.passage_id for r in results]
+            self.cache.set(cache_key, response, passage_ids=pids)
 
         return response
 
@@ -303,6 +304,7 @@ class SearchService:
         # 4. Invalidate/bump cache version
         if self.cache is not None:
             self.cache.bump_version()
+            self.cache.clear()
 
         # 5. Apply to Qdrant (idempotent with deterministic pt_id)
         from qdrant_client import models
@@ -342,6 +344,7 @@ class SearchService:
         if self.cache is not None:
             self.cache.evict_passage(pid_str)
             self.cache.bump_version()
+            self.cache.clear()
 
         # 3. Delete from Qdrant
         self.qdrant_store.delete_point(pid_str, wait=True)

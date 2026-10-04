@@ -38,6 +38,7 @@ def mock_service():
     dense_retriever.encoder.encode_queries.return_value = np.zeros((1, 384))
     hybrid_retriever.tokenizer.compute_doc_sparse_vector.return_value = ([1], [1.0])
     hybrid_retriever.tokenizer.tokenize.return_value = ["new", "text"]
+    hybrid_retriever._sparse_vector_name = "bm25"
 
     text_store.get_passages_by_ids.return_value = {
         "p1": {"passage_id": "p1", "text": "Passage text 1", "category": "tech", "source": "msmarco"}
@@ -45,6 +46,8 @@ def mock_service():
     text_store.get_meta.return_value = 1
     text_store.upsert_single.return_value = 2
     text_store.delete_single.return_value = (True, 3)
+    text_store.upsert_with_outbox.return_value = (1, 2)
+    text_store.delete_with_outbox.return_value = (1, True, 3)
 
     service = SearchService(
         dense_retriever=dense_retriever,
