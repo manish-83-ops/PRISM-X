@@ -135,10 +135,17 @@ curl http://127.0.0.1:6333/telemetry
 
 ## 4. Ingestion & Data Preparation: Two Reproduction Routes
 
-### Route A: Instant Verification via Restored Artifacts (Recommended)
-If Qdrant snapshot and SQLite text store are already populated in `data/c100k_raw/`:
+### Route A: Instant Verification via Restored Snapshot & SQLite (Recommended)
+If using the pre-computed artifacts or snapshot download:
 ```bash
-# Verify counts immediately:
+# 1. Download snapshot (if not already present in snapshots/c100k_raw/):
+# Download URL: https://github.com/manis/main_adrosonic/releases/download/v1.0-snapshots/c100k_raw-snapshot.snapshot
+# SHA-256: 80d7d5a3fb5ddfa478df8e7ab8c12319780df48512f7a0b537b4ba284526c333 (758.0 MB)
+
+# 2. Restore snapshot into Qdrant:
+python scripts/restore_snapshot.py
+
+# 3. Verify counts immediately (100,008 points in Qdrant & SQLite):
 python scripts/smoke_test.py
 ```
 *Expected: 100,008 points in Qdrant, 100,008 passages in `data/c100k_raw/text_store_raw.db`.*
