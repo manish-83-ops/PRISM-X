@@ -60,6 +60,8 @@ model_cache/
 
 # Temporary / Scratch
 scratch/
+tmp/
+temp/
 extracted_pdf.txt
 Vector_Database_Design_for_RAG_System.pdf
 
