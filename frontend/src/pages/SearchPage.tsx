@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
   ArrowRight, Search as SearchIcon, Clock, ChevronDown, ChevronUp, Zap,
-  X, Sparkles, AlertCircle, Bot, Cpu
+  X, Sparkles, AlertCircle, Bot, Cpu, ThumbsUp, ThumbsDown, Check, Info
 } from 'lucide-react';
 import { useApp } from '../hooks/useApp';
 import type { SearchResponse, AnswerResponse, BenchQuery } from '../api/types';
-import { search as apiSearch, answerQuery as apiAnswer, loadRecordedResponse, ApiError } from '../api/client';
+import { search as apiSearch, answerQuery as apiAnswer, submitFeedback, loadRecordedResponse, ApiError } from '../api/client';
 
 type SearchMode = 'hybrid' | 'hybrid_rerank' | 'dense';
 
@@ -65,6 +65,39 @@ function highlightMatches(text: string, queryText: string) {
   );
 }
 
+function getMatchedTerms(text: string, queryText: string): string[] {
+  if (!queryText.trim()) return [];
+  const terms = Array.from(
+    new Set(
+      queryText
+        .toLowerCase()
+        .split(/[^a-zA-Z0-9]+/)
+        .filter(t => t.length >= 3)
+    )
+  );
+  return terms.filter(t => text.toLowerCase().includes(t));
+}
+
+function getExplanationRationale(item: any, mode: string): string {
+  const isReranked = item.rerank_score != null;
+  const denseRank = item.dense_rank;
+  const sparseRank = item.bm25_rank ?? item.sparse_rank;
+
+  if (isReranked) {
+    return `Cross-encoder precision validated: promoted to rank #${item.rank} with BGE reranker score ${item.rerank_score.toFixed(4)}. Prior hybrid fusion rank was #${item.fused_rank ?? '—'}.`;
+  }
+  if (denseRank != null && sparseRank != null && denseRank <= 20 && sparseRank <= 20) {
+    return `Strong multimodal consensus: ranked #${denseRank} in dense semantic search (score ${item.dense_score?.toFixed(4) ?? '—'}) and #${sparseRank} in BM25 lexical keyword retrieval (score ${(item.bm25_score ?? item.sparse_score)?.toFixed(4) ?? '—'}).`;
+  }
+  if (denseRank != null && (sparseRank == null || denseRank < sparseRank)) {
+    return `Dense semantic driver: high embedding cosine proximity (rank #${denseRank}, score ${item.dense_score?.toFixed(4) ?? '—'}), capturing semantic intent beyond exact keyword matches.`;
+  }
+  if (sparseRank != null) {
+    return `Lexical BM25 driver: strong exact keyword match (rank #${sparseRank}, score ${(item.bm25_score ?? item.sparse_score)?.toFixed(4) ?? '—'}).`;
+  }
+  return `Retrieved at rank #${item.rank} under ${mode} mode via dual-vector fusion.`;
+}
+
 export function SearchPage() {
   const { recordedMode, meta, loadMeta, benchQueries, loadBenchQueries, setLastSearch } = useApp();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -117,6 +150,27 @@ export function SearchPage() {
   const findBenchMatch = useCallback((q: string): BenchQuery | null => {
     return benchQueries.find(bq => bq.query.toLowerCase() === q.toLowerCase()) || null;
   }, [benchQueries]);
+
+  const [feedbackState, setFeedbackState] = useState<Record<string, { vote: number; submitted: boolean }>>({});
+  const [submittingFeedback, setSubmittingFeedback] = useState<Record<string, boolean>>({});
+
+  const handleVote = async (passageId: string, vote: number) => {
+    setSubmittingFeedback(prev => ({ ...prev, [passageId]: true }));
+    try {
+      const bench = findBenchMatch(query);
+      await submitFeedback({
+        query_id: bench ? bench.query_id : undefined,
+        query: query,
+        passage_id: passageId,
+        vote,
+      });
+      setFeedbackState(prev => ({ ...prev, [passageId]: { vote, submitted: true } }));
+    } catch (err) {
+      console.error('Feedback submission failed:', err);
+    } finally {
+      setSubmittingFeedback(prev => ({ ...prev, [passageId]: false }));
+    }
+  };
 
   const executeSearch = async (
     qStr: string,
@@ -685,8 +739,8 @@ export function SearchPage() {
                     )}
                   </div>
 
-                  {/* Metadata Chips & Evidence Expander */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-100 text-xs">
+                  {/* Metadata Chips, Feedback & Explain Expander */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 text-xs">
                     <div className="flex flex-wrap items-center gap-2">
                       {item.category && (
                         <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-600">
@@ -703,57 +757,166 @@ export function SearchPage() {
                       </span>
                     </div>
 
-                    {/* Toggle Evidence Drawer */}
-                    <button
-                      type="button"
-                      onClick={() => toggleEvidence(item.passage_id)}
-                      className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-800 transition-colors cursor-pointer"
-                    >
-                      <span>{isEvidenceExpanded ? 'Hide Evidence' : 'Show Evidence'}</span>
-                      {isEvidenceExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-                    </button>
-                  </div>
-
-                  {/* Expandable Evidence Grid */}
-                  {isEvidenceExpanded && (
-                    <div className="bg-slate-50/90 rounded-xl p-4 border border-slate-200/80 space-y-3 animate-fade-in text-xs">
-                      <div className="font-semibold text-slate-700 flex items-center gap-1.5">
-                        <Cpu className="w-3.5 h-3.5 text-indigo-600" />
-                        <span>Retrieval Stage Evidence & Score Breakdown</span>
+                    <div className="flex items-center gap-3">
+                      {/* Thumbs Up / Down Feedback Widget */}
+                      <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200/90 rounded-lg px-2 py-1 shadow-2xs">
+                        <span className="text-[11px] text-slate-500 font-medium">Feedback:</span>
+                        <button
+                          type="button"
+                          onClick={() => handleVote(item.passage_id, 1)}
+                          disabled={submittingFeedback[item.passage_id]}
+                          className={`p-1 rounded transition-colors cursor-pointer ${
+                            feedbackState[item.passage_id]?.vote === 1
+                              ? 'text-emerald-700 bg-emerald-100/80 font-bold'
+                              : 'text-slate-400 hover:text-emerald-600 hover:bg-emerald-50'
+                          }`}
+                          title="Relevant passage (+1)"
+                        >
+                          <ThumbsUp className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleVote(item.passage_id, -1)}
+                          disabled={submittingFeedback[item.passage_id]}
+                          className={`p-1 rounded transition-colors cursor-pointer ${
+                            feedbackState[item.passage_id]?.vote === -1
+                              ? 'text-rose-700 bg-rose-100/80 font-bold'
+                              : 'text-slate-400 hover:text-rose-600 hover:bg-rose-50'
+                          }`}
+                          title="Irrelevant passage (-1)"
+                        >
+                          <ThumbsDown className="w-3.5 h-3.5" />
+                        </button>
+                        {feedbackState[item.passage_id]?.submitted && (
+                          <span className="text-[10px] text-emerald-600 font-semibold flex items-center gap-0.5 ml-1 animate-fade-in">
+                            <Check className="w-3 h-3" /> Saved
+                          </span>
+                        )}
                       </div>
 
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        <div className="bg-white p-2.5 rounded-lg border border-slate-200">
-                          <div className="text-slate-400 mb-0.5">Dense Score / Rank</div>
-                          <div className="font-mono font-semibold text-slate-800">
-                            {item.dense_score != null ? item.dense_score.toFixed(4) : '—'}
-                            {item.dense_rank != null && <span className="text-slate-400 text-[11px] ml-1">#{item.dense_rank}</span>}
+                      {/* Toggle Explain Panel Drawer */}
+                      <button
+                        type="button"
+                        onClick={() => toggleEvidence(item.passage_id)}
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold text-indigo-700 bg-indigo-50/70 hover:bg-indigo-100 border border-indigo-100 transition-colors cursor-pointer"
+                      >
+                        <Info className="w-3.5 h-3.5 text-indigo-600" />
+                        <span>{isEvidenceExpanded ? 'Hide Explain Panel' : 'Explain Panel'}</span>
+                        {isEvidenceExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Expandable Explain Panel */}
+                  {isEvidenceExpanded && (
+                    <div className="bg-slate-50/95 rounded-2xl p-4 sm:p-5 border border-slate-200/90 space-y-4 animate-fade-in text-xs shadow-inner">
+                      {/* Drawer Header & Badges */}
+                      <div className="flex items-center justify-between flex-wrap gap-2 pb-2.5 border-b border-slate-200">
+                        <div className="font-bold text-slate-800 flex items-center gap-2 text-sm">
+                          <Cpu className="w-4 h-4 text-indigo-600" />
+                          <span>Explain Panel: Retrieval Stages & Diagnostics</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                            Effective Mode: {mode}
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-700 border border-purple-200">
+                            Stage: {item.rerank_score != null ? 'reranked' : (mode === 'dense' ? 'dense' : 'hybrid')}
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                            Governor: {response.governor_state || 'normal'}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Why this passage was returned */}
+                      <div className="bg-white p-3.5 rounded-xl border border-slate-200 space-y-2">
+                        <div className="font-semibold text-slate-800 text-xs flex items-center gap-1.5">
+                          <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
+                          <span>Why this passage was returned:</span>
+                        </div>
+                        <p className="text-slate-600 leading-relaxed text-xs">
+                          {getExplanationRationale(item, mode)}
+                        </p>
+                        {getMatchedTerms(item.text, query).length > 0 && (
+                          <div className="flex items-center gap-1.5 pt-1 flex-wrap">
+                            <span className="text-[11px] font-medium text-slate-400">Matched query terms:</span>
+                            {getMatchedTerms(item.text, query).map(t => (
+                              <span key={t} className="px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200 font-mono text-[10px] font-semibold">
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Per-Stage Timings Breakdown */}
+                      <div className="space-y-1.5">
+                        <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Per-Stage Request Latency:</div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 font-mono text-center">
+                          <div className="bg-white p-2 rounded-lg border border-slate-200">
+                            <div className="text-[10px] text-slate-400">Encode</div>
+                            <div className="font-semibold text-slate-700">{response.latency_ms?.encode != null ? `${response.latency_ms.encode.toFixed(1)} ms` : '—'}</div>
+                          </div>
+                          <div className="bg-white p-2 rounded-lg border border-slate-200">
+                            <div className="text-[10px] text-slate-400">Dense Search</div>
+                            <div className="font-semibold text-slate-700">{response.latency_ms?.dense != null ? `${response.latency_ms.dense.toFixed(1)} ms` : '—'}</div>
+                          </div>
+                          <div className="bg-white p-2 rounded-lg border border-slate-200">
+                            <div className="text-[10px] text-slate-400">Sparse Search</div>
+                            <div className="font-semibold text-slate-700">{response.latency_ms?.sparse != null ? `${response.latency_ms.sparse.toFixed(1)} ms` : '—'}</div>
+                          </div>
+                          <div className="bg-white p-2 rounded-lg border border-slate-200">
+                            <div className="text-[10px] text-slate-400">Fusion</div>
+                            <div className="font-semibold text-slate-700">{response.latency_ms?.fusion != null ? `${response.latency_ms.fusion.toFixed(1)} ms` : '—'}</div>
+                          </div>
+                          <div className="bg-white p-2 rounded-lg border border-slate-200">
+                            <div className="text-[10px] text-slate-400">Rerank</div>
+                            <div className="font-semibold text-slate-700">{response.latency_ms?.rerank != null ? `${response.latency_ms.rerank.toFixed(1)} ms` : 'N/A'}</div>
+                          </div>
+                          <div className="bg-white p-2 rounded-lg border border-slate-200">
+                            <div className="text-[10px] text-slate-400">Total Latency</div>
+                            <div className="font-semibold text-indigo-700">{response.latency_ms?.total != null ? `${response.latency_ms.total.toFixed(1)} ms` : '—'}</div>
                           </div>
                         </div>
+                      </div>
 
-                        <div className="bg-white p-2.5 rounded-lg border border-slate-200">
-                          <div className="text-slate-400 mb-0.5">BM25 Score / Rank</div>
-                          <div className="font-mono font-semibold text-slate-800">
-                            {item.bm25_score != null ? item.bm25_score.toFixed(4) : (item.sparse_score != null ? item.sparse_score.toFixed(4) : '—')}
-                            {(item.bm25_rank != null || item.sparse_rank != null) && (
-                              <span className="text-slate-400 text-[11px] ml-1">#{item.bm25_rank ?? item.sparse_rank}</span>
-                            )}
+                      {/* Candidate Score Breakdown Across Stages */}
+                      <div className="space-y-1.5">
+                        <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Candidate Scores Across Stages:</div>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                          <div className="bg-white p-2.5 rounded-lg border border-slate-200">
+                            <div className="text-slate-400 mb-0.5">Dense Score / Rank</div>
+                            <div className="font-mono font-semibold text-slate-800">
+                              {item.dense_score != null ? item.dense_score.toFixed(4) : '—'}
+                              {item.dense_rank != null && <span className="text-slate-400 text-[11px] ml-1">#{item.dense_rank}</span>}
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="bg-white p-2.5 rounded-lg border border-slate-200">
-                          <div className="text-slate-400 mb-0.5">Fused Score / Rank</div>
-                          <div className="font-mono font-semibold text-slate-800">
-                            {item.fused_score != null ? item.fused_score.toFixed(4) : item.score.toFixed(4)}
-                            {item.fused_rank != null && <span className="text-slate-400 text-[11px] ml-1">#{item.fused_rank}</span>}
+                          <div className="bg-white p-2.5 rounded-lg border border-slate-200">
+                            <div className="text-slate-400 mb-0.5">BM25 Score / Rank</div>
+                            <div className="font-mono font-semibold text-slate-800">
+                              {item.bm25_score != null ? item.bm25_score.toFixed(4) : (item.sparse_score != null ? item.sparse_score.toFixed(4) : '—')}
+                              {(item.bm25_rank != null || item.sparse_rank != null) && (
+                                <span className="text-slate-400 text-[11px] ml-1">#{item.bm25_rank ?? item.sparse_rank}</span>
+                              )}
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="bg-white p-2.5 rounded-lg border border-slate-200">
-                          <div className="text-slate-400 mb-0.5">Rerank Score / Rank</div>
-                          <div className="font-mono font-semibold text-indigo-700">
-                            {item.rerank_score != null ? item.rerank_score.toFixed(4) : 'N/A (No Rerank)'}
-                            {item.rerank_rank != null && <span className="text-indigo-400 text-[11px] ml-1">#{item.rerank_rank}</span>}
+                          <div className="bg-white p-2.5 rounded-lg border border-slate-200">
+                            <div className="text-slate-400 mb-0.5">Fused Score / Rank</div>
+                            <div className="font-mono font-semibold text-slate-800">
+                              {item.fused_score != null ? item.fused_score.toFixed(4) : item.score.toFixed(4)}
+                              {item.fused_rank != null && <span className="text-slate-400 text-[11px] ml-1">#{item.fused_rank}</span>}
+                            </div>
+                          </div>
+
+                          <div className="bg-white p-2.5 rounded-lg border border-slate-200">
+                            <div className="text-slate-400 mb-0.5">Rerank Score / Rank</div>
+                            <div className="font-mono font-semibold text-indigo-700">
+                              {item.rerank_score != null ? item.rerank_score.toFixed(4) : 'N/A (No Rerank)'}
+                              {item.rerank_rank != null && <span className="text-indigo-400 text-[11px] ml-1">#{item.rerank_rank}</span>}
+                            </div>
                           </div>
                         </div>
                       </div>

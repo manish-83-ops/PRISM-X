@@ -148,6 +148,19 @@ export async function getResultsSummary(): Promise<Record<string, unknown>> {
   return request('/results/summary');
 }
 
+export async function submitFeedback(data: {
+  query_id?: string | number | null;
+  query?: string | null;
+  passage_id: string;
+  vote: number;
+  comment?: string | null;
+}): Promise<{ status: string; feedback_id: string; notice: string }> {
+  return request('/feedback', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
 /* ─── Recorded Data Loader ─── */
 
 export async function loadRecordedResponse(
@@ -165,3 +178,4 @@ export async function loadResultsData<T>(filename: string): Promise<T> {
 }
 
 export { ApiError };
+
