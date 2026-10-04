@@ -11,7 +11,7 @@
 
 A production-grade, two-stage information retrieval system combining dense semantic embeddings, server-side BM25 sparse vectors, min-max normalized weighted linear fusion, and deadline-governed cross-encoder reranking over a decoupled Qdrant-SQLite architecture.
 
-**Live Demo (frontend only — API requires local backend):** https://frontend-puce-gamma-26.vercel.app
+> **Live Demo:** [https://frontend-puce-gamma-26.vercel.app](https://frontend-puce-gamma-26.vercel.app) — Interactive frontend deployed on Vercel. Requires a locally running backend for search functionality.
 
 ---
 
@@ -431,19 +431,23 @@ The master configuration resides in `CONFIG.yaml` and is guarded by frozen hash 
 ```bash
 python scripts/run_server.py
 ```
-- API Base: `http://127.0.0.1:8000`
-- Interactive Swagger Documentation: `http://127.0.0.1:8000/docs`
-- Health Probe: `http://127.0.0.1:8000/health`
-- Prometheus Metrics: `http://127.0.0.1:8000/metrics`
+- API Base: `http://127.0.0.1:8000` *(local only)*
+- Interactive Swagger Documentation: `http://127.0.0.1:8000/docs` *(local only)*
+- Health Probe: `http://127.0.0.1:8000/health` *(local only)*
+- Prometheus Metrics: `http://127.0.0.1:8000/metrics` *(local only)*
 
 ### 2. Launch Interactive React Frontend
-In a separate terminal:
+
+> **Deployed Frontend (no local setup required):** [https://frontend-puce-gamma-26.vercel.app](https://frontend-puce-gamma-26.vercel.app)
+> Connect to your local backend by setting `VITE_API_URL=http://127.0.0.1:8000` in `frontend/.env`.
+
+To run the frontend locally:
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-Open browser at `http://127.0.0.1:5173`. Features include:
+Open browser at `http://127.0.0.1:5173` (local dev server). Features include:
 - Dual-mode search (Hybrid Default vs. PRISM-X Precision Rerank)
 - Pre-retrieval category and length filtering
 - Expandable **Explain Panel** showing per-stage latency telemetry, candidate scores across stages, and matched query terms
