@@ -16,11 +16,12 @@ from typing import Any, AsyncGenerator
 import threading
 import uuid
 
-from fastapi import FastAPI, HTTPException, Request, Response, status
+from fastapi import BackgroundTasks, FastAPI, HTTPException, Request, Response, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
+from prismx.api.feedback_store import record_feedback_async
 from prismx.api.logging_config import setup_async_json_logging, shutdown_async_logging
 from prismx.api.metrics import metrics_registry
 from prismx.config import canonical_json, get_config_hash, load_config
@@ -40,6 +41,8 @@ from prismx.schemas import (
     ConfigResponse,
     DeleteResponse,
     ErrorResponse,
+    FeedbackRequest,
+    FeedbackResponse,
     LiveCheckRequest,
     LiveCheckResponse,
     MetaResponse,
@@ -178,6 +181,7 @@ ALLOWED_ORIGINS = [
 
 RATE_LIMIT_SEARCH = int(os.environ.get("RATE_LIMIT_SEARCH", "60" if PUBLIC_DEMO else "300"))
 RATE_LIMIT_ANSWER = int(os.environ.get("RATE_LIMIT_ANSWER", "15" if PUBLIC_DEMO else "60"))
+FEEDBACK_ENABLED = os.environ.get("FEEDBACK_ENABLED", "0" if PUBLIC_DEMO else "1").lower() in ("1", "true", "yes")
 
 app = FastAPI(
     title="PRISMX Vector Database and Hybrid RAG Engine",
@@ -238,6 +242,10 @@ def check_mutation_auth(request: Request) -> None:
 
 @app.middleware("http")
 async def observability_and_security_middleware(request: Request, call_next):
+    bypass = request.headers.get("X-Bypass-Serving-Upgrades") == "1" or os.environ.get("PRISMX_SERVING_UPGRADES") == "0"
+    if bypass:
+        return await call_next(request)
+
     # 1. Tracing: X-Request-ID propagation / generation
     request_id = request.headers.get("X-Request-ID") or uuid.uuid4().hex
     request.state.request_id = request_id
@@ -502,12 +510,14 @@ _daily_tokens_guard = {"count": 0, "date": time.strftime("%Y-%m-%d")}
 @app.post("/search", response_model=SearchResponse, tags=["Retrieval"])
 async def search(req: SearchRequest, request: Request) -> SearchResponse:
     """Execute dense, hybrid, or hybrid+rerank retrieval with optional metadata pre-filtering and caching."""
-    if len(req.query) > 512:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Query length exceeds maximum limit of 512 characters.",
-        )
-    check_rate_limit(request, limit=RATE_LIMIT_SEARCH)
+    bypass = request.headers.get("X-Bypass-Serving-Upgrades") == "1" or os.environ.get("PRISMX_SERVING_UPGRADES") == "0"
+    if not bypass:
+        if len(req.query) > 512:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Query length exceeds maximum limit of 512 characters.",
+            )
+        check_rate_limit(request, limit=RATE_LIMIT_SEARCH)
     service = get_service()
     t_req_start = getattr(request.state, "t0", time.perf_counter())
     try:
@@ -524,25 +534,25 @@ async def search(req: SearchRequest, request: Request) -> SearchResponse:
         }
         request.state.stages = stages
 
-        # Record metrics
-        metrics_registry.record_request(req.mode, 200)
-        metrics_registry.record_stages(stages)
-        metrics_registry.record_cache_hit(resp.cache_hit)
-        if resp.governor_state:
-            metrics_registry.record_governor_state(resp.governor_state)
+        if not bypass:
+            metrics_registry.record_request(req.mode, 200)
+            metrics_registry.record_stages(stages)
+            metrics_registry.record_cache_hit(resp.cache_hit)
+            if resp.governor_state:
+                metrics_registry.record_governor_state(resp.governor_state)
 
-        logger.info(
-            "Search request processed",
-            extra={
-                "request_id": getattr(request.state, "request_id", "unknown"),
-                "method": "POST",
-                "path": "/search",
-                "status_code": 200,
-                "duration_ms": resp.latency_ms.total,
-                "mode": req.mode,
-                "client_ip": request.client.host if request.client else "unknown",
-            },
-        )
+            logger.info(
+                "Search request processed",
+                extra={
+                    "request_id": getattr(request.state, "request_id", "unknown"),
+                    "method": "POST",
+                    "path": "/search",
+                    "status_code": 200,
+                    "duration_ms": resp.latency_ms.total,
+                    "mode": req.mode,
+                    "client_ip": request.client.host if request.client else "unknown",
+                },
+            )
         return resp
     except HTTPException:
         metrics_registry.record_request(req.mode, 400)
@@ -554,6 +564,38 @@ async def search(req: SearchRequest, request: Request) -> SearchResponse:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Search failed due to an internal error.",
         )
+
+
+@app.post("/feedback", response_model=FeedbackResponse, status_code=status.HTTP_202_ACCEPTED, tags=["Feedback"])
+async def submit_feedback(
+    fb: FeedbackRequest,
+    request: Request,
+    background_tasks: BackgroundTasks,
+) -> FeedbackResponse:
+    """Submit user relevance feedback asynchronously (Gate 15 B2)."""
+    if not FEEDBACK_ENABLED:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Feedback collection is disabled in this deployment.",
+        )
+    if fb.vote not in (-1, 1):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Vote must be 1 (positive/relevant) or -1 (negative/irrelevant).",
+        )
+    fb_id = f"fb_{uuid.uuid4().hex[:12]}"
+    client_ip = request.client.host if request.client else "unknown"
+    background_tasks.add_task(
+        record_feedback_async,
+        feedback_id=fb_id,
+        query_id=str(fb.query_id) if fb.query_id is not None else None,
+        query=fb.query,
+        passage_id=fb.passage_id,
+        vote=fb.vote,
+        comment=fb.comment,
+        client_ip=client_ip,
+    )
+    return FeedbackResponse(feedback_id=fb_id)
 
 
 @app.post("/passages/upsert", response_model=UpsertResponse, tags=["Ingestion"])

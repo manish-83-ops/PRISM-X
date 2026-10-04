@@ -198,3 +198,18 @@ class LiveCheckResponse(BaseModel):
 class ErrorResponse(BaseModel):
     error: str
     detail: str
+
+
+class FeedbackRequest(BaseModel):
+    query_id: str | int | None = None
+    query: str | None = None
+    passage_id: str = Field(..., min_length=1)
+    vote: int = Field(..., description="1 for helpful/relevant, -1 for unhelpful/irrelevant")
+    comment: str | None = Field(default=None, max_length=500)
+
+
+class FeedbackResponse(BaseModel):
+    status: str = "accepted"
+    feedback_id: str
+    notice: str = "Feedback recorded. Queries and votes may be stored for model evaluation and dataset improvements."
+
