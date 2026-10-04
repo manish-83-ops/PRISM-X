@@ -285,7 +285,12 @@ function ComparisonColumn({
             )}
             {response.governor_state === 'truncated' && (
               <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-200" title="Reranking truncated by governor">
-                Gov Truncated
+                Gov Truncated ({response.candidates_scored || 0}/{response.K_requested || 5})
+              </span>
+            )}
+            {response.governor_state === 'skipped_budget' && (
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-rose-50 text-rose-700 border border-rose-200" title="Governor skipped reranking; degraded to hybrid">
+                Degraded to Hybrid (Budget Exhausted)
               </span>
             )}
           </div>
