@@ -1,0 +1,114 @@
+{
+  "timestamp": "2026-10-04T04:32:29Z",
+  "benchmark_dataset": "data/c100k_raw/bench_raw_100.json",
+  "total_queries": 100,
+  "elapsed_seconds": 35.98,
+  "results": {
+    "dense": {
+      "total_slots": 1000,
+      "id_matches": 1000,
+      "match_rate_pct": 100.0,
+      "max_score_diff": 0.0,
+      "status": "PASS"
+    },
+    "hybrid": {
+      "total_slots": 1000,
+      "id_matches": 1000,
+      "match_rate_pct": 100.0,
+      "max_score_diff": 0.0,
+      "status": "PASS"
+    },
+    "prismx": {
+      "full_queries_evaluated": 90,
+      "total_slots_evaluated": 900,
+      "id_matches": 900,
+      "match_rate_pct": 100.0,
+      "status": "PASS"
+    }
+  },
+  "governor_differences_count": 10,
+  "governor_differences": [
+    {
+      "query_id": 156087,
+      "query": "do earnest money go toward closing",
+      "base_governor": "normal",
+      "live_governor": "truncated",
+      "base_scored": 10,
+      "live_scored": 2
+    },
+    {
+      "query_id": 947750,
+      "query": "when does summer finish",
+      "base_governor": "truncated",
+      "live_governor": "normal",
+      "base_scored": 4,
+      "live_scored": 10
+    },
+    {
+      "query_id": 1054047,
+      "query": "what is hmc construction",
+      "base_governor": "normal",
+      "live_governor": "truncated",
+      "base_scored": 10,
+      "live_scored": 8
+    },
+    {
+      "query_id": 585818,
+      "query": "what causes blockage in dog stomach intestines",
+      "base_governor": "truncated",
+      "live_governor": "normal",
+      "base_scored": 8,
+      "live_scored": 10
+    },
+    {
+      "query_id": 1040168,
+      "query": "who is the father of the civil rights movement?????",
+      "base_governor": "truncated",
+      "live_governor": "normal",
+      "base_scored": 7,
+      "live_scored": 10
+    },
+    {
+      "query_id": 995564,
+      "query": "which cartoon was boris badenov",
+      "base_governor": "truncated",
+      "live_governor": "normal",
+      "base_scored": 6,
+      "live_scored": 10
+    },
+    {
+      "query_id": 1081730,
+      "query": "what family do squirrels belong to",
+      "base_governor": "skipped_budget",
+      "live_governor": "normal",
+      "base_scored": 0,
+      "live_scored": 10
+    },
+    {
+      "query_id": 573539,
+      "query": "what are the side effects of zonisamide in dogs?",
+      "base_governor": "truncated",
+      "live_governor": "normal",
+      "base_scored": 8,
+      "live_scored": 10
+    },
+    {
+      "query_id": 1043956,
+      "query": "what is the best riding lawn mower for hills",
+      "base_governor": "normal",
+      "live_governor": "truncated",
+      "base_scored": 10,
+      "live_scored": 8
+    },
+    {
+      "query_id": 1088420,
+      "query": "weather in leicester, ma",
+      "base_governor": "normal",
+      "live_governor": "skipped_budget",
+      "base_scored": 10,
+      "live_scored": 0
+    }
+  ],
+  "regressions_count": 0,
+  "regressions": []
+}
