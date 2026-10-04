@@ -391,3 +391,42 @@ To evaluate PRISMX resilience against semantic distractor pressure, a dedicated 
 **Conclusion on Stress Test:**
 When exposed to 2,887 semantic hard distractors, hybrid retrieval maintains a statistically significant **+0.0696 gain in Context Precision** ($p < 0.05$) over dense retrieval, demonstrating that sparse lexical anchors prevent the semantic drift that plagues dense-only retrieval in distractor-dense environments.
 
+---
+
+## 13. Limits and Negative Results (NFR-7, ADR-018, ADR-021, Gate 14)
+
+In strict compliance with NFR-7 and our pre-registered reporting protocol (ADR-018, ADR-021), this section presents all negative empirical findings, statistical bounds, and boundary conditions. The term **"improvement"** is reserved strictly for comparisons where the 95% bootstrap confidence interval excludes zero. Any proposed physical or theoretical explanation is explicitly labeled **"hypothesis, untested"**.
+
+### 1. Phase 1 (Dense) vs Phase 2 (Hybrid) RAGAS Side-by-Side Evaluation
+
+| Attribute / Metric | Phase 1: Dense Baseline | Phase 2: Hybrid (Default) | Paired Difference (Hybrid − Dense) | 95% Bootstrap CI | Wins / Losses / Ties | Statistically Distinguishable? |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Evaluated Queries ($N$)** | 100 | 100 | - | - | - | - |
+| **Coverage** | 96 valid / 4 excl / 100 tot | 96 valid / 4 excl / 100 tot | - | - | - | - |
+| **Evaluation Method** | Reference-Grounded | Reference-Grounded | Paired Delta | 10,000 resamples | Exact query comparison | Null: $\Delta = 0$ |
+| **Context Precision (CP)** | 0.8035 | 0.8233 | -0.0198 | $[-0.0530, +0.0112]$ | 5 W / 9 L / 86 T | **NO** (CI includes 0) |
+| **Context Recall (CR)** | 0.9267 | 0.9217 | +0.0050 | $[0.0000, +0.0150]$ | 1 W / 0 L / 99 T | **NO** (CI includes 0) |
+
+*Evidence Files:*
+- Phase 1 RAGAS: [`results/phase1/ragas_eval.json`](results/phase1/ragas_eval.json)
+- Phase 2 RAGAS: [`results/phase2/ragas_eval.json`](results/phase2/ragas_eval.json)
+- Per-query response times: [`results/phase1/ragas50_dense_response_times.csv`](results/phase1/ragas50_dense_response_times.csv)
+
+### 2. Negative Finding 1: Hybrid Retrieval Shows No Demonstrable RAGAS Gain Over Dense
+- **Empirical Fact:** On the raw MS MARCO 100K corpus (`c100k_raw`), hybrid search with min-max normalized weighted fusion ($\alpha = 0.80$) yielded a paired Context Precision delta of $-0.0198$ with $95\%\text{ CI } [-0.0530, +0.0112]$ and a Context Recall delta of $+0.0050$ with $95\%\text{ CI } [0.0000, +0.0150]$.
+- **Status:** **NOT DEMONSTRATED**. Under our pre-registered criteria, neither precision nor recall shows a statistically distinguishable improvement over dense retrieval at $N=100$.
+- *Theoretical Explanation (hypothesis, untested):* In a query-centric web passage slice where gold passages share semantic framing with the user prompt, dense 384d BGE embeddings already achieve high initial candidate capture (Recall@10 = 0.98). Adding sparse BM25 signals re-ranks lexically matching but semantically tangential distractors in a minority of queries (9 losses vs 5 wins), cancelling out lexical term-matching benefits.
+
+### 3. Negative Finding 2: Reranker Quality Gains Are Split (TUNE Significant vs BENCH Borderline)
+- **Empirical Fact:** On the 500 TUNE queries (`results/phase3/`), INT8 Cross-Encoder reranking demonstrated a statistically significant ranking lift (+9.8% MRR@10, $95\%\text{ CI } [+0.031, +0.082]$, CI excluding 0). On the held-out 100 BENCH queries (`results/c100k_raw/bench_eval_results.json`), reranking achieved Hit@1 = 0.4600 vs Hybrid = 0.4100 (delta $+0.0400$, $95\%\text{ CI } [-0.0400, +0.1200]$) and MRR@10 = 0.6532 vs Hybrid = 0.5949 (delta $+0.0583$, $95\%\text{ CI } [-0.0195, +0.0774]$). Both confidence intervals cross zero at $N=100$.
+- **Status:** Ranking gain is statistically significant on TUNE ($N=500$) but directional/borderline on BENCH ($N=100$).
+- *Theoretical Explanation (hypothesis, untested):* At sample size $N=100$, statistical power is insufficient to resolve paired effect sizes below $0.06$ against MS MARCO candidate variance. A sample size of $N \ge 350$ would be required to statistically confirm this effect size at $\alpha=0.05, \beta=0.80$.
+
+### 4. Negative Finding 3: PRISM-X Reranker Mode Exceeds 300 ms SLA Under v1 CPU Execution
+- **Empirical Fact:** In idle official benchmarks on Ryzen 5 CPU (`results/c100k_raw/latency_benchmark.json`), uncached HTTP retrieval latency measured:
+  - Dense Baseline: $p50 = 58.40\text{ ms}$, $p95 = 107.21\text{ ms}$ (PASS &lt; 300 ms SLA)
+  - Hybrid Default: $p50 = 67.43\text{ ms}$, $p95 = \mathbf{89.02\text{ ms}}$ (PASS &lt; 300 ms SLA, PASS &lt; 250 ms target)
+  - PRISM-X Optional Mode: $p50 = 203.22\text{ ms}$, $p95 = \mathbf{306.39\text{ ms}}$ (EXCEEDS 300 ms SLA ceiling)
+- **Status:** **SLA claim attaches strictly and exclusively to the default serving mode (Hybrid).** PRISM-X is labeled in all UI controls, documentation, and API contracts as an optional, high-precision mode with known latency tradeoffs.
+- **Anytime Cascade Architecture (ADR-022):** Gate 12 introduced an ONNX Runtime anytime cascade with a 230 ms deadline clamp. However, per ADR-021, PRISM-X is never represented as compliant with the 300 ms SLA until confirmed by an official idle benchmark.
+
