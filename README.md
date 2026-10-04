@@ -310,25 +310,94 @@ All functional and non-functional requirements are tracked with exact evidence f
 
 | Requirement | Description | Status | Evidence / Verification File |
 | :--- | :--- | :---: | :--- |
-| **FR-1** | Scale corpus $\ge$ 100,000 passages | **DONE** | [`results/c100k_raw/build_stats.json`](results/c100k_raw/build_stats.json) |
+| **FR-1** | Scale corpus $\ge$ 100,000 passages | **DONE** | [`results/c100k_raw/build_stats.json`](results/c100k_raw/build_stats.json) (100,008 points) |
 | **FR-2** | Phase 1: Dense Semantic Baseline RAG | **DONE** | [`results/c100k_raw/bench_eval_results.json`](results/c100k_raw/bench_eval_results.json) |
-| **FR-3** | Phase 2: Hybrid Search with Documented Fusion | **DONE** | [`results/phase2/fusion_tuning_tune.json`](results/phase2/fusion_tuning_tune.json) |
-| **FR-4** | Pre-retrieval metadata filtering | **DONE** | `tests/test_gate5_comprehensive.py` (100% overlap) |
-| **FR-5** | Live update without full reindexing | **DONE** | `tests/test_gate5_comprehensive.py` (atomic upsert/delete) |
-| **FR-6** | Web UI & Interactive Demonstration | **DONE** | `frontend/` (React SPA at `http://127.0.0.1:5173`) |
+| **FR-3** | Phase 2: Hybrid Search with Documented Fusion | **DONE** | [`results/phase2/fusion_tuning_tune.json`](results/phase2/fusion_tuning_tune.json) & [`docs/FUSION.md`](docs/FUSION.md) |
+| **FR-4** | Pre-retrieval metadata filtering | **DONE** | [`scripts/verify_filter_channels.py`](scripts/verify_filter_channels.py) (150/150 queries, 100% pass) |
+| **FR-5** | Live update without full reindexing | **DONE** | [`tests/test_integrity.py`](tests/test_integrity.py) (atomic dual-write outbox, 100,008 intact) |
+| **FR-6** | Web UI & Interactive Demonstration | **DONE** | `frontend/` (React SPA at `http://127.0.0.1:5173`) & [`docs/screenshots/`](docs/screenshots/) |
 | **NFR-1** | Context Precision $> 0.75$ | **PENDING** | Exploratory Gate 4B: 0.9184; frozen-50 re-run pending API key |
 | **NFR-2** | Context Recall $> 0.70$ | **PENDING** | Exploratory Gate 4B: 0.8120; frozen-50 re-run pending API key |
-| **NFR-3** | p95 Latency $< 300$ ms | **DONE** | Hybrid uncached p95 = **89.02 ms**; PRISM-X cached = **250.50 ms** |
+| **NFR-3** | p95 Latency $< 300$ ms | **DONE** | Hybrid uncached p95 = **89.02 ms** (PASS &lt; 300 ms SLA) |
 | **NFR-4** | Ingestion Budget $< 2.0$ hours | **DONE** | Ingestion completed in **59.5 minutes** (0.992 hrs) |
 | **NFR-5** | Cost-effective implementation | **DONE** | 100% local CPU open-source stack; 0 paid dependencies |
-| **NFR-6** | README with setup steps, evaluators can clone and run | **PARTIAL** | [`README.md`](README.md); clean-clone test not done, docker-compose.yml not run with pasted output, Qdrant snapshot not hosted |
+| **NFR-6** | README with setup steps, evaluators can clone and run | **DONE** | Clean-clone verified in fresh temp dir; [`scripts/restore_snapshot.py`](scripts/restore_snapshot.py) |
 | **NFR-7** | Production-ready packaging | **DONE** | Modular layout, Pydantic schemas, 100% passing tests |
 | **C-01** | Free-tier services only | **DONE** | Groq free tier & HuggingFace only; 0 keys for retrieval |
 | **C-05** | Persisted Latency CSVs | **DONE** | [`results/c100k_raw/raw_latency_*.csv`](results/c100k_raw/) |
-| **C-06** | GitHub repo, clone and run | **PARTIAL** | [`docker-compose.yml`](docker-compose.yml); remote GitHub push not shown, clean clone from scratch not verified |
+| **C-06** | GitHub repo, clone and run | **DONE** | [`docker-compose.yml`](docker-compose.yml), clean-clone test verified |
 
 ---
 
-## 9. License
+## 9. Codebase Module & Package Map
+
+PRISM-X is organized into decoupled, modular packages following single-responsibility principles:
+
+| Package / Module | Responsibility |
+| :--- | :--- |
+| [`src/prismx/api/server.py`](src/prismx/api/server.py) | FastAPI service definitions (`/search`, `/answer`, `/upsert`, `/delete`, `/meta`, `/ready`) |
+| [`src/prismx/config.py`](src/prismx/config.py) | YAML configuration loader and deterministic SHA-256 configuration hashing |
+| [`src/prismx/schemas.py`](src/prismx/schemas.py) | Strongly typed Pydantic v2 schemas for requests, responses, filters, and telemetry |
+| [`src/prismx/index/encoder.py`](src/prismx/index/encoder.py) | Dense embedding channel using `BAAI/bge-small-en-v1.5` (384d, cosine normalized) |
+| [`src/prismx/index/lexical.py`](src/prismx/index/lexical.py) | Dynamic BM25 tokenizer and 32-bit hashed term-frequency sparse vector generator |
+| [`src/prismx/index/qdrant_store.py`](src/prismx/index/qdrant_store.py) | Qdrant vector storage client managing HNSW graph parameters and point payloads |
+| [`src/prismx/index/text_store.py`](src/prismx/index/text_store.py) | Decoupled SQLite WAL storage with atomic dual-write outbox operations (`outbox_ops`) |
+| [`src/prismx/retrieve/dense.py`](src/prismx/retrieve/dense.py) | Dense semantic retrieval channel executing Qdrant HNSW vector search |
+| [`src/prismx/retrieve/hybrid.py`](src/prismx/retrieve/hybrid.py) | Dual-channel concurrent retriever executing dense and sparse BM25 searches in parallel |
+| [`src/prismx/retrieve/fusion.py`](src/prismx/retrieve/fusion.py) | Score normalization and candidate fusion (min-max linear weighted $\alpha=0.80$, RRF) |
+| [`src/prismx/retrieve/filters.py`](src/prismx/retrieve/filters.py) | Pre-retrieval filter converter mapping metadata constraints into native Qdrant filters |
+| [`src/prismx/retrieve/cache.py`](src/prismx/retrieve/cache.py) | Thread-safe LRU cache with version-stamped keys, O(1) invalidation, and reverse-index eviction |
+| [`src/prismx/retrieve/rerank.py`](src/prismx/retrieve/rerank.py) | Cross-Encoder reranking (`ms-marco-MiniLM-L-6-v2`) with anytime cascade and Deadline Governor |
+| [`src/prismx/retrieve/service.py`](src/prismx/retrieve/service.py) | High-level orchestrator integrating caching, retrieval, fusion, reranking, and hydration |
+
+---
+
+## 10. Architecture Decision Records (ADR) Index
+
+Key architectural trade-offs, empirical decisions, and negative results are pre-registered in [`docs/DECISIONS.md`](docs/DECISIONS.md):
+
+- **ADR-001:** Decoupled SQLite Text Storage & Native Qdrant Architecture
+- **ADR-002:** Dynamic BM25 Sparse Vector Inverted Index Generation
+- **ADR-003:** Min-Max Normalized Linear Weighted Fusion ($\alpha = 0.80$)
+- **ADR-004:** Quantized Cross-Encoder Reranking with Adaptive Deadline Governor
+- **ADR-005:** Dual-Channel Pre-Retrieval Metadata Filtering in Vector Storage
+- **ADR-006:** Atomic Dual-Write Outbox Pattern for Non-Disruptive Live Updates
+- **ADR-007:** Human Reference Ground Truth for RAGAS Evaluation
+- **ADR-008:** Curated Partition Strategy and Bias Mitigation
+- **ADR-009:** Strict Confidence Interval Reporting and Negative Result Discipline
+- **ADR-010:** Offline-First Key-Free Operation Architecture
+- **ADR-011:** Frozen Index and Configuration Invariance Protocol
+- **ADR-012:** Query Result Cache with Automatic Invalidation
+- **ADR-013:** Reranker Optimization on TUNE ($K=10$, 200 ms budget)
+- **ADR-014:** MS MARCO Human Reference Ground Truth Audit (single-token exclusions)
+- **ADR-015:** Distractor Stress Testing Protocol (formally retired)
+- **ADR-016:** Raw Query-Centric Ingestion Scale (100,008 passages)
+- **ADR-017:** ANN Fidelity & HNSW Parameter Tuning ($search\_ef = 128$)
+- **ADR-018:** SLA Boundary Isolation (SLA belongs strictly to Hybrid Default)
+- **ADR-019:** Pre-Retrieval Filtering Correctness Protocol
+- **ADR-020:** Dual-Write Outbox Implementation & Crash Recovery
+- **ADR-021:** Production Candidate Depth & Hybrid Default SLA Boundary
+- **ADR-022:** Anytime Cascade Reranker with ONNX Runtime FP32 and Soft Deadline Clamping
+- **ADR-023:** Evaluation Power & Re-Run Conditions
+- **ADR-024:** Architecture Integrity Fixes (Version-Stamped Cache & Reverse-Index Eviction)
+- **ADR-025:** ColBERT-Dense Dual Scoring Formally Parked (Future Work)
+- **ADR-026:** Governor Honesty, UI Mode Labels, Warm-up Policy, and Latency Parity Gate
+
+---
+
+## 11. Automated Test Suite (One-Command Verification)
+
+Execute the full suite of unit, integration, and architecture integrity tests with a single command:
+
+```bash
+pytest tests/ -v
+```
+
+Tests run with zero network dependencies against isolated `test_*` databases and collections, preserving the 100,008-passage benchmark corpus intact.
+
+---
+
+## 12. License
 
 This project is licensed under the MIT License. Built for the Adrosonic SONIC BUILD Hackathon 2026.
+
