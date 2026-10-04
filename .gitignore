@@ -1,9 +1,43 @@
-# Python
+# Environment & Secrets
+.env
+*.env
+*.env.local
+!.env.example
+
+# Data & Storage
+data/
+qdrant_storage/
+data/qdrant_storage/
+qdrant_snapshots/
+
+# Database files (SQLite text store)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+
+# Snapshots
+snapshots/
+snapshots
+*.snapshot
+
+# Temporary / Scratch
+tmp/
+temp/
+scratch/
+results/tmp/
+extracted_pdf.txt
+Vector_Database_Design_for_RAG_System.pdf
+
+# Python & Virtual Environments
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-.Python
+.venv/
+venv/
+ENV/
 build/
 develop-eggs/
 dist/
@@ -19,11 +53,25 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.Python
+*.so
 
-# Virtual Environment
-.venv/
-venv/
-ENV/
+# Large Model Files & Binary
+models/
+model_cache/
+.cache/
+bin/
+*.onnx
+*.bin
+*.pt
+*.safetensors
+*.npy
+*.npz
+
+# Frontend & Dependencies
+node_modules/
+frontend/node_modules/
+frontend/dist/
 
 # IDE / OS
 .idea/
@@ -33,38 +81,6 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# Secrets & Environment
-.env
-*.env.local
-
-# Qdrant & Binary & Cache
-bin/
-data/raw/
-data/cache/
-data/qdrant_storage/
-snapshots/
-models/
-*.snapshot
-data/*.jsonl
-data/*.db
-data/*.db-shm
-data/*.db-wal
-data/*.sqlite
-!data/manifests/
-!data/manifests/*
-model_cache/
-.cache/
-*.npy
-*.npz
-*.sqlite3-journal
-
-# Temporary / Scratch
-scratch/
-tmp/
-temp/
-extracted_pdf.txt
-Vector_Database_Design_for_RAG_System.pdf
-
 # Testing & Logs
 .pytest_cache/
 .coverage
@@ -72,4 +88,3 @@ htmlcov/
 *.log
 .qdrant-initialized
 traces.jsonl
-node_modules/
