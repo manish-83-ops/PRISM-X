@@ -69,11 +69,11 @@ Evaluated on the 100 BENCH queries (`data/c100k_raw/bench_raw_100.json`) over **
 | **Hit@1** | 0.4200 [0.320, 0.520] | 0.4100 [0.310, 0.510] | **0.4600** [0.360, 0.560] | Directional (+12.2% vs Hybrid, crosses 0) | **PASS** |
 | **Recall@10** | **0.9800** [0.950, 1.000] | 0.9700 [0.940, 1.000] | 0.9700 [0.940, 1.000] | Near ceiling (no diff) | **PASS** |
 | **Recall@50** | **0.9900** [0.970, 1.000] | 0.9800 [0.950, 1.000] | 0.9800 [0.950, 1.000] | Near ceiling (no diff) | **PASS** |
-| **p95 Latency (HTTP)** | 107.21 ms | **89.02 ms** (Serving Default) | 306.39 ms* (Optional Rerank) | N/A | **PASS** (&lt; 300 ms SLA) |
+| **p95 Latency (HTTP)** | 107.21 ms | **89.02 ms** (Serving Default: **PASS** &lt; 300 ms SLA) | 306.39 ms* (Optional: Exceeds 300 ms SLA) | N/A | Default Mode Meets SLA |
 | **p50 Latency (HTTP)** | 58.40 ms | 67.43 ms | 203.22 ms | N/A | **PASS** |
 | **Cache p95 (All-Unique)** | - | - | **250.50 ms** (p50: 176.66 ms) | N/A | **PASS** (&le; 250 ms) |
 
-*\*Note on PRISM-X Rerank Latency:* Per pre-registered decision rule ADR-018, because uncached PRISM-X rerank p95 was 306.39 ms (> 250 ms internal target), **Hybrid is mechanically designated as the default serving mode** (89.02 ms p95, well within both the 250 ms target and 300 ms SLA). PRISM-X is designated as the highlighted optional high-precision mode. Governor protected 100% of queries with a 5.0% intervention rate (4 truncated after batch 1, 1 exhausted before batch 1; 16 queries server_total > 250 ms, 18 queries client_wall_clock > 250 ms; derived per-batch median: 62.4 ms) and 0 dropped requests.
+*\*Note on Latency and SLA Claims (ADR-018, ADR-021, Gate 13 4k):* The **300 ms SLA claim is attached strictly to the default serving mode (Hybrid)**, which achieves an idle $p95 = 89.02\text{ ms}$ (well within both the 250 ms internal target and the 300 ms SLA). The PRISM-X optional reranking mode achieved an uncached $p95 = 306.39\text{ ms}$ on this laptop under v1 PyTorch INT8, exceeding the 300 ms SLA ceiling. While Gate 12 introduces an ONNX Runtime FP32 Anytime Cascade (ADR-022) with a 230 ms request-level deadline clamp, **PRISM-X is never presented as meeting the 300 ms SLA unless an official idle benchmark demonstrates that the ADR-021 parity gate passes**. The SLA compliance claim belongs exclusively to Hybrid default mode.
 
 ### Exploratory RAGAS Evaluation (Gate 4B, Curated Partition — Superseded)
 *Note: Evaluated on N=25 paired queries, judge `allam-2-7b`, top-5 contexts, curated 100k corpus. Formally superseded by c100k_raw; frozen-50 benchmark re-run remains pending API key rotation.*
@@ -153,6 +153,29 @@ python scripts/build_c100k_raw_index.py
 - Sparse lexical weights computed with frozen reference length `avgdl_ref = 53.2501` and dynamic Qdrant IDF modifier.
 - Raw text stored on disk in SQLite WAL database `data/c100k_raw/text_store_raw.db`.
 
+### 4.1 Metadata Schema & Category Provenance (FR-1, FR-4, Gate 13 4h)
+
+Every passage indexed in PRISM-X contains two core metadata fields stored in both Qdrant point payloads and the decoupled SQLite WAL store:
+
+1. **`source` Metadata Field (Verified: 100,008 / 100,008 points present):**
+   - **Provenance:** Contains the original web crawl URL extracted from MS MARCO candidate passages (e.g. `http://www.neighborhoodlink.com/zip/27104`, `https://www.pariscityvision.com/en/paris/districts/champs-elysees`, `http://www.answers.com/Q/Latitude_of_Paris`).
+   - **Verification:** 100% of indexed points have non-empty, valid web URLs populated in both Qdrant payloads and SQLite records.
+
+2. **`category` Metadata Field (Verified: 100,008 / 100,008 points present):**
+   - **Distribution Across Index:**
+     - `DESCRIPTION`: 53,813 passages (53.81%)
+     - `NUMERIC`: 26,072 passages (26.07%)
+     - `ENTITY`: 8,076 passages (8.08%)
+     - `PERSON`: 6,086 passages (6.09%)
+     - `LOCATION`: 5,961 passages (5.96%)
+     - **Total:** Exactly 100,008 passages.
+   - **Provenance & Assignment Rule:**
+     These category labels are **derived** and are **not native MS MARCO passage labels**. In the native MS MARCO v2.1 corpus (`microsoft/ms_marco` validation split), candidate passages do not carry category labels; instead, MS MARCO queries are annotated with a 5-class query intent taxonomy (`query_type`). During extraction (`scripts/extract_c100k_raw.py` lines 40–75), each extracted candidate passage inherited the `query_type` of its originating MS MARCO query as its derived `category` tag. When duplicate passages were merged across multiple queries, the primary originating query intent was preserved.
+   - **Filtered-Query Demo Usage:**
+     The live demo and query API allow users to filter retrieval by category (e.g., `{"filters": {"category": "LOCATION"}}`). PRISM-X executes this filter **pre-retrieval** directly at the Qdrant HNSW graph traversal level using a keyword payload index (`FieldCondition(key="category", match=MatchValue(value="LOCATION"))`). This ensures:
+     - **Zero false positives:** 100% of returned passages strictly match the requested category.
+     - **Zero candidate starvation:** Search explores the filtered subgraph without wasting the top-K candidate budget on out-of-category points.
+
 ---
 
 ## 5. Running the Application
@@ -197,12 +220,27 @@ Verifies all 7 checklist items:
 
 All numbers in the technical report trace directly to committed files under `results/`:
 
-### 1. Latency Benchmark (100 BENCH Queries, C-05, NFR-3)
-*Note: Run on an idle machine with AC power connected.*
+### 1. One-Command 100-Query Latency Benchmark Reproduction (Gate 13 4j, C-05, NFR-3)
+
+To reproduce the 100-query latency benchmark in a single command from a fresh server start:
+```bash
+python scripts/reproduce_latency_100.py --mode hybrid
+```
+
+#### Latency Reproduction Results (Gate 13 4j)
+
+| Protocol Scenario | N Queries | p50 (ms) | p95 (ms) | p99 (ms) | SLA Status (< 300 ms) | Status |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Row 1: First 100 Queries (Fresh Start, No Warmup Discarded)** | 100 | *PENDING* | *PENDING* | *PENDING* | Attached to Default Mode Only | *PENDING (Awaiting Step 3 Idle Session)* |
+| **Row 2: 100 Queries (20 Warmups Discarded)** | 100 | *PENDING* | *PENDING* | *PENDING* | Attached to Default Mode Only | *PENDING (Awaiting Step 3 Idle Session)* |
+
+> **SLA Reporting Policy (Gate 13 4k):** The 300 ms SLA claim applies strictly to the default serving mode (**Hybrid**, previous idle measurement: $p95 = 89.02\text{ ms}$). PRISM-X optional mode ($p95 = 306.39\text{ ms}$ under v1 PyTorch INT8) is **never** presented as meeting the 300 ms SLA unless the official idle benchmark demonstrates that the ADR-021/ADR-022 anytime cascade passes.
+
+To execute the full multi-scenario suite (Dense, Hybrid, PRISM-X, Cache 0%, Cache 30%):
 ```bash
 python scripts/run_latency_benchmark_gate5.py
 ```
-Committed raw latency artifacts:
+Committed raw latency artifacts from Gate 5.5 idle session:
 - Dense uncached: [`results/c100k_raw/raw_latency_dense_bench100.csv`](results/c100k_raw/raw_latency_dense_bench100.csv)
 - Hybrid uncached: [`results/c100k_raw/raw_latency_hybrid_bench100.csv`](results/c100k_raw/raw_latency_hybrid_bench100.csv)
 - PRISM-X uncached: [`results/c100k_raw/raw_latency_prismx_bench100.csv`](results/c100k_raw/raw_latency_prismx_bench100.csv)
@@ -259,7 +297,7 @@ PRISM-X indexes a 100,008-passage raw query-centric corpus (`data/c100k_raw/`) c
 
 ## 8. Requirements Traceability Matrix Summary
 
-All functional and non-functional requirements are tracked with exact evidence files and tests in [`docs/REQUIREMENTS_TRACE.md`](docs/REQUIREMENTS_TRACE.md):
+All functional and non-functional requirements are tracked with exact evidence files and tests in [`docs/REQUIREMENTS_TRACE.md`](docs/REQUIREMENTS_TRACE.md). For complete line-item compliance against the official Adrosonic problem statement (`docs/problem_statement.pdf`), see [`docs/PDF_COMPLIANCE.md`](docs/PDF_COMPLIANCE.md):
 
 | Requirement | Description | Status | Evidence / Verification File |
 | :--- | :--- | :---: | :--- |

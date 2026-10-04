@@ -30,8 +30,15 @@ class QueryCache:
         self._key_to_passages: dict[str, set[str]] = {}
         self._passage_to_keys: dict[str, set[str]] = defaultdict(set)
         self._lock = threading.Lock()
+        self.version: int = 1
         self.hits: int = 0
         self.misses: int = 0
+
+    def bump_version(self) -> int:
+        """Bump cache version to invalidate queries stamped with older corpus versions."""
+        with self._lock:
+            self.version += 1
+            return self.version
 
     def make_key(
         self,
