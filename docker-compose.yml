@@ -1,5 +1,15 @@
 version: "3.8"
 
+# =============================================================================
+# PRISMX Production-Ready Orchestration Compose File
+#
+# STORAGE ARCHITECTURE NOTE:
+# Persistent data volumes (qdrant_storage, sqlite_data) are declared as named
+# Docker volumes managed on the host's native root filesystem (e.g. /var/lib/docker/volumes
+# or WSL2 ext4), completely outside OneDrive, Dropbox, or other cloud sync sync roots.
+# Cloud folder syncing causes file-locking collisions on SQLite WAL and RocksDB logs.
+# =============================================================================
+
 services:
   qdrant:
     image: qdrant/qdrant:v1.19.1
@@ -9,6 +19,66 @@ services:
       - "6333:6333"
       - "6334:6334"
     volumes:
-      - ./data/qdrant_storage:/qdrant/storage:z
+      - qdrant_storage:/qdrant/storage:z
     environment:
       - QDRANT__SERVICE__GRPC_PORT=6334
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:6333/readyz || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: prismx_api
+    restart: unless-stopped
+    depends_on:
+      qdrant:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - sqlite_data:/app/data:rw
+      - ./config:/app/config:ro
+      - ./CONFIG.yaml:/app/CONFIG.yaml:ro
+    environment:
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - QDRANT_GRPC_PORT=6334
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - WRITE_TOKEN=${WRITE_TOKEN:-}
+      - PUBLIC_DEMO=${PUBLIC_DEMO:-false}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  ui:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: prismx_ui
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "5173:5173"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:5173/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  # Named volumes isolated from OneDrive synchronization
+  qdrant_storage:
+    name: prismx_qdrant_storage
+  sqlite_data:
+    name: prismx_sqlite_data
