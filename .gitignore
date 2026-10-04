@@ -42,6 +42,9 @@ bin/
 data/raw/
 data/cache/
 data/qdrant_storage/
+snapshots/
+models/
+*.snapshot
 data/*.jsonl
 data/*.db
 data/*.db-shm

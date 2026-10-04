@@ -25,7 +25,9 @@ dependencies = [
     "scipy>=1.10.0",
     "pytest>=8.0.0",
     "tqdm>=4.66.0",
-    "psutil>=5.9.0"
+    "psutil>=5.9.0",
+    "onnxruntime>=1.16.0",
+    "nltk>=3.8.0"
 ]
 
 [tool.setuptools.packages.find]
