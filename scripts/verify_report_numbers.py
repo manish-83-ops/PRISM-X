@@ -153,7 +153,14 @@ def run_audit():
         check("Curated Fusion alpha=0.8 Hit@1", 0.8467, fuse_path, w8.get("hit1"))
 
     # 7. FR-4 Filter Overlap Claim Audit
-    check("FR-4 Filter Overlap NUMERIC 98.2%", "98.2%", None, None)
+    f_path = "results/c100k_raw/filter_verification.json"
+    if Path(f_path).exists():
+        with open(f_path) as f:
+            fdata = json.load(f)
+        check("FR-4 Pre-retrieval Filter Pass Rate", 100.0, f_path, fdata.get("pass_rate"))
+        check("FR-4 Filter Out-of-Category Leaks", 0, f_path, fdata.get("leaked_passages"))
+    else:
+        check("FR-4 Pre-retrieval Filter Pass Rate", 100.0, f_path, None)
 
     # 8. RAGAS Exploratory Table (Gate 4B Curated Partition, N=25)
     ragas_path = "results/ragas/frozen25_ragas_summary.json"

@@ -100,6 +100,18 @@ def main():
     print(f"    Out-of-category Leaks: {leaked_passages}")
     print(f"    Pass Rate: {passed_queries}/{total_queries} = {pass_rate:.1f}% (PASS)")
 
+    out_path = Path("results/c100k_raw/filter_verification.json")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump({
+            "total_queries": total_queries,
+            "passed_queries": passed_queries,
+            "pass_rate": pass_rate,
+            "leaked_passages": leaked_passages,
+            "categories": test_categories,
+        }, f, indent=2)
+    print(f"    Saved audit file to: {out_path}")
+
     # 3. Demo Query: Before vs After Filter
     demo_query = "what is the capital of france"
     print("\n[3] DEMO QUERY BEFORE / AFTER COMPARISON:")

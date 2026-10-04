@@ -1,0 +1,11 @@
+{
+  "total_queries": 150,
+  "passed_queries": 150,
+  "pass_rate": 100.0,
+  "leaked_passages": 0,
+  "categories": [
+    "LOCATION",
+    "PERSON",
+    "NUMERIC"
+  ]
+}
